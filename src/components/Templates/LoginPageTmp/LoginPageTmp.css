@@ -1,0 +1,214 @@
+.mobile_img_wrapp {
+  display: none;
+}
+.LoginPageTmp-wrapp {
+  display: grid;
+  grid-template-columns: 56% 44%;
+  width: 100%;
+  height: 100vh;
+  .LoginPageTmp-L-colum {
+    display: grid;
+    align-items: center;
+    padding: 5% 5%;
+    z-index: 1;
+
+    height: 100%;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .login-form-wrapp {
+      display: grid;
+      justify-items: center;
+      .error-text-wrapp {
+        width: 100%;
+        font-size: 1rem;
+        margin-bottom: 3%;
+      }
+      .login-form-input {
+        width: 100%;
+        font-size: 1.2rem;
+        margin-bottom: 5%;
+      }
+      .login-form-link {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        border-bottom: #f9f4fc solid 0.3rem;
+        margin-bottom: 5%;
+        font-size: 1rem;
+      }
+      .login-form-button {
+        width: 60%;
+        font-size: 1.1rem;
+        margin-bottom: 5%;
+        &:last-child {
+          margin-bottom: 0%;
+        }
+      }
+    }
+  }
+  .LoginPageTmp-R-colum {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url("/RCaramBg.png");
+    background-repeat: no-repeat;
+    background-size: 44% 100%;
+    background-position: right;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .LoginPageTmp-wrapp {
+    .LoginPageTmp-L-colum {
+      .login-form-wrapp {
+        .error-text-wrapp {
+          font-size: 0.7rem;
+        }
+        .login-form-input {
+          font-size: 0.9rem;
+        }
+        .login-form-link {
+          font-size: 0.9rem;
+        }
+        .login-form-button {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1279px) and (min-height: 700px) {
+  .mobile_img_wrapp {
+    display: block;
+    background-image: url("/navigation/titleLogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    width: 100%;
+    padding: 20%;
+    margin-bottom: 10%;
+  }
+  .LoginPageTmp-wrapp {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    .LoginPageTmp-L-colum {
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      padding: 5% 2%;
+
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .login-form-wrapp {
+        .error-text-wrapp {
+          font-size: 1.8rem;
+          margin-bottom: 5%;
+        }
+        .login-form-input {
+          font-size: 2.2rem;
+          margin-bottom: 10%;
+        }
+        .login-form-link {
+          font-size: 1.8rem;
+          border-bottom: #f9f4fc solid 0.15rem;
+          margin-bottom: 10%;
+        }
+        .login-form-button {
+          font-size: 2.2rem;
+          margin-bottom: 10%;
+        }
+      }
+    }
+    .LoginPageTmp-R-colum {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .mobile_img_wrapp {
+    display: block;
+    background-image: url("/navigation/titleLogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    width: 100%;
+    padding: 20%;
+    margin-bottom: 10%;
+  }
+  .LoginPageTmp-wrapp {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    .LoginPageTmp-L-colum {
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      padding: 5% 2%;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .login-form-wrapp {
+        .error-text-wrapp {
+          font-size: 1.1rem;
+          margin-bottom: 5%;
+        }
+        .login-form-input {
+          font-size: 1.4rem;
+          margin-bottom: 10%;
+        }
+        .login-form-link {
+          font-size: 1.1rem;
+          border-bottom: #f9f4fc solid 0.15rem;
+          margin-bottom: 10%;
+        }
+        .login-form-button {
+          font-size: 1.4rem;
+          margin-bottom: 10%;
+        }
+      }
+    }
+    .LoginPageTmp-R-colum {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .LoginPageTmp-wrapp {
+    .LoginPageTmp-L-colum {
+      .login-form-wrapp {
+        .error-text-wrapp {
+          font-size: 0.8rem;
+        }
+        .login-form-input {
+          font-size: 1rem;
+        }
+        .login-form-link {
+          font-size: 0.8rem;
+          border-bottom: #f9f4fc solid 0.15rem;
+          margin-bottom: 10%;
+        }
+        .login-form-button {
+          font-size: 1rem;
+          margin-bottom: 10%;
+        }
+      }
+    }
+  }
+}

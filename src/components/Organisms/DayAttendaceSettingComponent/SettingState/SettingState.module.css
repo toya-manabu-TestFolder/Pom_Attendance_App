@@ -1,0 +1,28 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 18% 82%;
+  border-radius: clamp(5px, 2vw, 50px);
+  border: clamp(2px, 1vw * 0.4, 20px) solid #583225;
+  text-align: center;
+  overflow: hidden;
+  .title {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    font-size: 0.6em;
+    background-color: #7e262b;
+    border-bottom: clamp(0.5px, 0.15vw, 10px) solid #583225;
+  }
+  .body {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    font-size: 1em;
+    border-top: clamp(0.5px, 0.15vw, 10px) solid #583225;
+  }
+  .set_bg {
+    background-color: #ff0000;
+  }
+}

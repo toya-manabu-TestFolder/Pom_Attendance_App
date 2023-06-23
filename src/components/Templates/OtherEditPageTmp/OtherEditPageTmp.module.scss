@@ -1,0 +1,44 @@
+.OtherEditPageTmp {
+  .body {
+    margin-top: 16vh;
+    font-size: 10px 2vh 1000px;
+    padding: 6% 5%;
+    .select_wrapper {
+      display: flex;
+      justify-content: center;
+      .select {
+        width: 40%;
+        padding: 0.5% 0%;
+        font-family: "Meiryo";
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.1em;
+        border-radius: clamp(5px, 2vw, 50px);
+        border: clamp(2px, 0.3vw, 20px) solid #583225;
+        background-color: #7e262b;
+        color: #faf9a6;
+        cursor: url("/Cursor/cursor.png"), pointer;
+        background-image: url("/public/Parts/arrow.png");
+        background-repeat: no-repeat;
+        background-size: 6% 30%;
+        background-position: top 50% right 5%;
+        &:hover {
+          color: #f9f4fc;
+          background-color: #d04f2f;
+        }
+
+        .select_option {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+select {
+  -webkit-appearance: none;
+  appearance: 0; /* デフォルトの矢印を非表示 */
+}
+select::-ms-expand {
+  display: none; /* デフォルトの矢印を非表示(IE用) */
+}
