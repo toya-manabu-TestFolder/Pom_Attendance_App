@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  resize: none;
+}
+
+html {
+  font-size: clamp(10px, 1vw + 16px, 100px);
+  background-color: #fbd13d;
+}
+
+#storybook-root {
+  width: 100%;
+}
+
+.sb-main-padded .sb-show-main {
+  padding: 0;
+}

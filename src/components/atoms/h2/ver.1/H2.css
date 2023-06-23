@@ -1,0 +1,29 @@
+.H2_Ver1 {
+  width: 100%;
+  text-align: center;
+  position: relative;
+  font-family: BIZ UDPGothic;
+  font-size: 1em;
+  font-style: normal;
+  font-weight: 700;
+  -webkit-text-stroke: 0.3rem #583225;
+  color: #f9f4fc;
+}
+
+@media screen and (max-width: 1279px) {
+  .H2_Ver1 {
+    -webkit-text-stroke: 0.25rem #583225;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .H2_Ver1 {
+    -webkit-text-stroke: 0.15rem #583225;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .H2_Ver1 {
+    -webkit-text-stroke: 0.1rem #583225;
+  }
+}

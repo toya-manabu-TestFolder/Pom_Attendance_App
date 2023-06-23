@@ -1,0 +1,85 @@
+.GenderButtonForm {
+  display: grid;
+  grid-template-rows: 1fr 2fr 1fr;
+  .gender-label {
+    position: relative;
+    font-size: 0.7em;
+    padding-left: 2%;
+    font-family: Meiryo;
+    font-style: normal;
+    font-weight: bold;
+    -webkit-text-stroke: 0.3rem #583225;
+    .futidori {
+      color: #f9f4fc;
+      -webkit-text-stroke: 0;
+      position: absolute;
+    }
+  }
+
+  .select-gender-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 0.9em;
+    .RadioButton-wrapp {
+      margin-right: 5%;
+    }
+  }
+  .input-form-errorMsg {
+    padding-top: 0.5%;
+    width: 100%;
+    font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .GenderButtonForm {
+    .gender-label {
+      -webkit-text-stroke: 0.15rem #583225;
+    }
+
+    .select-gender-wrap {
+      font-size: 0.7em;
+    }
+    .input-form-errorMsg {
+      padding-top: 0.5%;
+      width: 100%;
+      font-size: 0.5em;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .GenderButtonForm {
+    .gender-label {
+      -webkit-text-stroke: 0.1rem #583225;
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .GenderButtonForm {
+    display: block;
+    .gender-label {
+      display: grid;
+      position: unset;
+      font-size: 0.7em;
+    }
+
+    .select-gender-wrap {
+      display: block;
+      font-size: 1em;
+      .RadioButton-wrapp {
+        margin-bottom: 7%;
+        margin-right: 0%;
+        &:last-child {
+          margin-bottom: 0%;
+        }
+      }
+    }
+    .input-form-errorMsg {
+      padding-top: 0.5%;
+      width: 100%;
+      font-size: 0.5em;
+    }
+  }
+}

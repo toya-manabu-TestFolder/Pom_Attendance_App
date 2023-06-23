@@ -1,0 +1,38 @@
+.futidori-wrapp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  width: 100%;
+  .futidori {
+    -webkit-text-stroke: 0;
+  }
+}
+
+.pass_toggle {
+  display: block;
+  justify-content: none;
+  align-items: none;
+}
+
+.errorMsg {
+  display: block;
+  justify-content: none;
+  align-items: none;
+}
+
+.display_block {
+  display: block;
+  justify-content: none;
+  align-items: none;
+}
+
+.menu_close {
+  display: block;
+  justify-content: none;
+  align-items: none;
+  &:hover {
+    color: #ff0000;
+  }
+}

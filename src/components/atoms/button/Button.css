@@ -1,0 +1,46 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 1.5% 0;
+  background-color: #ba886d;
+  border: #583225 clamp(2.5px, 1vw * 0.3, 8px) solid;
+  border-radius: 5rem;
+
+  font-family: Meiryo;
+  font-size: 1em;
+  font-style: normal;
+  font-weight: bold;
+  letter-spacing: 0.15625rem;
+  text-indent: 0.15625rem;
+  -webkit-text-stroke: clamp(2.5px, 1vw * 0.3, 8px) #583225;
+  cursor: url("/Cursor/cursor.png"), pointer;
+
+  color: #f6f7f6;
+  &:hover {
+    background-color: #d04f2f;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .button {
+    border: #583225 0.15rem solid;
+  }
+}
+@media screen and (max-width: 767px) {
+  .button {
+    border: #583225 0.1rem solid;
+    background-color: #d04f2f;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .button {
+    border: #583225 0.07rem solid;
+    letter-spacing: 0;
+  }
+}

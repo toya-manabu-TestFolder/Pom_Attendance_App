@@ -1,0 +1,62 @@
+.radiobutton-component {
+  padding: 0 3%;
+
+  .radio-button {
+    display: none;
+  }
+
+  .radio-label {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 2% 0;
+
+    font-family: Meiryo;
+    font-style: normal;
+    font-weight: bold;
+    cursor: url("/Cursor/cursor.png"), pointer;
+
+    border-radius: 50px;
+    border: #583225 0.2rem solid;
+    -webkit-text-stroke: 0.35rem #583225;
+
+    .radio-span {
+      position: absolute;
+      color: #faf9a6;
+      -webkit-text-stroke: 0;
+    }
+  }
+  .radio-button:checked + label {
+    background-color: #d04f2f;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .radiobutton-component {
+    .radio-label {
+      border: #583225 0.15rem solid;
+      -webkit-text-stroke: 0.2rem #583225;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .radiobutton-component {
+    .radio-label {
+      border: #583225 0.1rem solid;
+      -webkit-text-stroke: 0.1rem #583225;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .radiobutton-component {
+    .radio-label {
+      border: #583225 0.07rem solid;
+      -webkit-text-stroke: 0.07rem #583225;
+    }
+  }
+}

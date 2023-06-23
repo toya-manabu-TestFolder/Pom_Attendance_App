@@ -1,0 +1,93 @@
+.error_modal_wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: none;
+  justify-items: center;
+  align-items: center;
+  font-size: clamp(10px, 3vw, 500px);
+  z-index: 100;
+
+  .error_message_wrapper {
+    height: 90%;
+    width: 70%;
+    position: relative;
+    background-color: #fbd13d;
+    border: 0.3rem solid #583225;
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    .message {
+      display: grid;
+      text-align: center;
+    }
+    .img {
+      position: relative;
+      width: 100%;
+      height: 45%;
+      background-image: url("/public/Modals/errorModalImg.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .errorModal_button_wrapper {
+      padding: 0 20%;
+    }
+  }
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.7;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .error_modal_wrapper {
+    .error_message_wrapper {
+      height: 90%;
+      width: 90%;
+      align-items: center;
+      .message {
+        font-size: 1.8em;
+      }
+      .img {
+        width: 80%;
+      }
+      .errorModal_button_wrapper {
+        width: 100%;
+        font-size: 3em;
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .error_modal_wrapper {
+    .error_message_wrapper {
+      height: 80%;
+      .message {
+        font-size: 1.9em;
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .error_modal_wrapper {
+    .error_message_wrapper {
+      height: 50%;
+      .message {
+        font-size: 1.7em;
+      }
+    }
+  }
+}

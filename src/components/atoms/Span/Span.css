@@ -1,0 +1,36 @@
+.span-cmponent {
+  display: grid;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  font-weight: bold;
+  font-size: 1em;
+  font-family: Meiryo;
+  -webkit-text-stroke: 0.15rem #583225;
+}
+
+.time_now_top {
+  display: grid;
+  align-items: center;
+  font-family: Sigmar One;
+}
+
+.Month_attend_day {
+  border-bottom: clamp(2px, 0.1vw, 100px) solid #583225;
+  cursor: url("/Cursor/cursor.png"), pointer;
+  &:hover {
+    color: #69f551;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .span-cmponent {
+    -webkit-text-stroke: 0.1rem #583225;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .span-cmponent {
+    -webkit-text-stroke: 0.07rem #583225;
+  }
+}
