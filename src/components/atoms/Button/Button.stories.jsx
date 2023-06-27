@@ -7,5 +7,6 @@ export default {
   component: Button,
 };
 // ↓storyBookのButton直下にコンポーネントが作られる。
-export const HelloButton = () => <Button>Hello World</Button>;
-export const ClickButton = () => <Button>Click!</Button>;
+export const Default = () => <Button>Hello World</Button>;
+export const Primary = () => <Button color="primary">Click!</Button>;
+export const Danger = () => <Button color="primary">Click!</Button>;
