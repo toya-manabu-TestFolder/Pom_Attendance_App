@@ -1,0 +1,35 @@
+input {
+  height: 70%;
+  width: 100%;
+  padding: 0 5%;
+  background-color: #7e262b;
+  border-radius: 50px;
+  border: 5px solid #583225;
+
+  color: #fff;
+  font-size: 2rem;
+  font-family: Meiryo;
+  font-style: normal;
+  font-weight: 700;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  background: transparent;
+  z-index: 1;
+}
+
+input[type="radio"] {
+  display: none;
+}
+input.gender-select-btn {
+  width: 20%;
+  background-color: transparent;
+  -webkit-text-stroke: 2px #583225;
+}
