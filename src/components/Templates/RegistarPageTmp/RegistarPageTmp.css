@@ -1,0 +1,17 @@
+.RegistarPageTmp-wrapp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  background-color: #fbd13d;
+  .H2_Ver1-wrapp {
+    margin: 7% 0;
+  }
+  .RegistarInputSection-wrapp {
+    width: 60%;
+  }
+  .Button-wrapp {
+    margin: 7% 0;
+    width: 40%;
+  }
+}
