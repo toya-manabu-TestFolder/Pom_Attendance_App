@@ -1,0 +1,15 @@
+.label {
+  position: relative;
+
+  font-family: Meiryo;
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: bold;
+  -webkit-text-stroke: 6px #583225;
+  cursor: url("../../../../public/cursol.png"), pointer;
+  .futidori {
+    color: #f9f4fc;
+    -webkit-text-stroke: 0;
+    position: absolute;
+  }
+}

@@ -1,0 +1,13 @@
+.H2_Ver1 {
+  position: relative;
+  font-family: BIZ UDPGothic;
+  font-size: 3.75rem;
+  font-style: normal;
+  font-weight: 700;
+  -webkit-text-stroke: 8px #583225;
+  .futidori {
+    -webkit-text-stroke: 0;
+    position: absolute;
+    color: #f9f4fc;
+  }
+}
