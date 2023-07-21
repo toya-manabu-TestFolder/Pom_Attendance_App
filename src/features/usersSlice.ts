@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const apiUrl = "http://localhost:8000/";
-
 export const getUsers: any = createAsyncThunk("users/getUsers", async () => {
-  return await fetch("https://jsonplaceholder.typicode.com/users").then((res) =>
-    res.json()
-  );
+  return await axios
+    .get(`${import.meta.env.VITE_API_URL}api/get`)
+    .then((res: any) => {
+      // apiから返ってきているのはもうjson形式になっている。
+      return res.data;
+    });
 });
 
 const usersSlice = createSlice({
@@ -14,11 +15,10 @@ const usersSlice = createSlice({
   initialState: {
     users: [],
   },
-  extraReducers: {
-    [getUsers.fulfilled]: (state, action) => {
-      console.log(action);
+  extraReducers: (builder) => {
+    builder.addCase(getUsers.fulfilled, (state, action) => {
       state.users = action.payload;
-    },
+    });
   },
   reducers: {},
 });
