@@ -1,0 +1,10 @@
+.span-cmponent {
+  position: relative;
+  font-weight: bold;
+  font-family: Meiryo;
+  -webkit-text-stroke: 6px #583225;
+  .futidori {
+    -webkit-text-stroke: 0;
+    position: absolute;
+  }
+}

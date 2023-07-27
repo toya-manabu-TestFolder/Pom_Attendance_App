@@ -8,7 +8,8 @@ type Props = {
   input_style: string;
   input_type: string;
   input_id: string;
-  onClickFun: any;
+  inputValue: string;
+  onChange: (e: string) => void;
 };
 
 export default function InputForm({
@@ -18,18 +19,24 @@ export default function InputForm({
   input_style,
   input_type,
   input_id,
-  onClickFun,
+  inputValue,
+  onChange,
 }: Props) {
   return (
     <div className="input-form">
-      <Label label_id={label_id} label_value={label_value} />
-      <Input
-        input_placeholder={input_placeholder}
-        input_style={input_style}
-        input_type={input_type}
-        input_id={input_id}
-        onClickFun={onClickFun}
-      />
+      <div className="input-form-label">
+        <Label label_id={label_id} label_value={label_value} />
+      </div>
+      <div className="input-form-input">
+        <Input
+          input_placeholder={input_placeholder}
+          input_style={input_style}
+          input_type={input_type}
+          input_id={input_id}
+          inputValue={inputValue}
+          onChange={onChange}
+        />
+      </div>
     </div>
   );
 }

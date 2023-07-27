@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import RegistarPageTmp from "./RegistarPageTmp";
+import { Provider } from "react-redux";
+import { store } from "../../../app/store";
+import { BrowserRouter } from "react-router-dom";
 
 const meta = {
   title: "Temlates/RegistarPageTmp",
@@ -18,5 +21,11 @@ export default meta;
 type Story = StoryObj<typeof RegistarPageTmp>;
 
 export const Default: Story = {
-  args: {},
+  render: () => (
+    <Provider store={store}>
+      <BrowserRouter>
+        <RegistarPageTmp />
+      </BrowserRouter>
+    </Provider>
+  ),
 };

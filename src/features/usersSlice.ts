@@ -1,13 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const getUsers: any = createAsyncThunk("users/getUsers", async () => {
-  return await axios
-    .get(`${import.meta.env.VITE_API_URL}api/get`)
-    .then((res: any) => {
-      // apiから返ってきているのはもうjson形式になっている。
-      return res.data;
-    });
+  return await axios.get(`${API_URL}api/get`).then((res: any) => {
+    // apiから返ってきているのはもうjson形式になっている。
+    return res.data;
+  });
 });
 
 const usersSlice = createSlice({

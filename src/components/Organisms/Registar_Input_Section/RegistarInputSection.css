@@ -1,0 +1,9 @@
+.RegistarInputSection {
+  display: grid;
+  .RegistarInputForm-wrapp {
+    margin-bottom: 6%;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
