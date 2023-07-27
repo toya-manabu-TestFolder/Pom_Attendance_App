@@ -1,12 +1,12 @@
 import "./input.css";
 import "../../../css/index.css";
-import { useState } from "react";
 type Props = {
   input_type: string;
   input_placeholder: string;
   input_id: string;
   input_style: string | undefined;
-  onClickFun: any;
+  inputValue: string;
+  onChange: (e: string) => void;
 };
 
 export default function Input({
@@ -14,10 +14,9 @@ export default function Input({
   input_type,
   input_id,
   input_style,
-  onClickFun,
+  inputValue,
+  onChange,
 }: Props) {
-  const [inputText, setInputText] = useState("");
-
   return (
     <>
       {input_type !== "radio" ? (
@@ -26,9 +25,10 @@ export default function Input({
           className={input_style}
           type={input_type}
           placeholder={input_placeholder}
-          value={inputText}
-          onChange={(event) => setInputText(event.target.value)}
-          onClick={onClickFun}
+          value={inputValue}
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+            onChange(event.target.value)
+          }
         />
       ) : (
         <>
@@ -39,7 +39,6 @@ export default function Input({
             placeholder={input_placeholder}
             value={input_id}
             name="gender"
-            onClick={onClickFun}
           />
           <label className="radio-label" htmlFor={input_id}>
             <span className="radio-span">{input_id}</span>

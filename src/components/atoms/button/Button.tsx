@@ -1,15 +1,14 @@
 import "./Button.css";
 type Props = {
+  type: "button" | "submit" | "reset" | undefined;
   text: string;
-  test: any;
+  onClick: () => void;
 };
 
-export default function Button({ text, test }: Props) {
+export default function Button({ type, text, onClick }: Props) {
   return (
-    <button className="button">
-      <span className="futidori" onClick={test}>
-        {text}
-      </span>
+    <button type={type} className="button" onClick={onClick}>
+      <span className="futidori">{text}</span>
       {text}
     </button>
   );

@@ -6,12 +6,15 @@
   background-color: #fbd13d;
   .H2_Ver1-wrapp {
     margin: 7% 0;
+    font-size: 3rem;
   }
   .RegistarInputSection-wrapp {
     width: 60%;
+    font-size: 2.5rem;
   }
   .Button-wrapp {
-    margin: 7% 0;
-    width: 40%;
+    margin: 10% 0;
+    width: 50%;
+    font-size: 3rem;
   }
 }

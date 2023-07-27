@@ -1,29 +1,37 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import RegistarInputSection from "./RegistarInputSection";
+import LoginPageTmp from "./LoginPageTmp";
 import { Provider } from "react-redux";
 import { store } from "../../../app/store";
 import { BrowserRouter } from "react-router-dom";
 
 const meta = {
-  title: "Organisms/RegistarInputSection",
-  component: RegistarInputSection,
+  title: "Temlates/LoginPageTmp",
+  component: LoginPageTmp,
   tags: ["autodocs"],
   parameters: {
     backgrounds: {
       values: [{ name: "default", value: "#FBD13D" }],
     },
   },
-} satisfies Meta<typeof RegistarInputSection>;
+  argTypes: {},
+} satisfies Meta<typeof LoginPageTmp>;
 
 export default meta;
 
-type Story = StoryObj<typeof RegistarInputSection>;
-
-export const Default: Story = {
+export const Default = {
   render: () => (
     <Provider store={store}>
       <BrowserRouter>
-        <RegistarInputSection />
+        <LoginPageTmp LoginError={false} />
+      </BrowserRouter>
+    </Provider>
+  ),
+};
+export const Error = {
+  render: () => (
+    <Provider store={store}>
+      <BrowserRouter>
+        <LoginPageTmp LoginError={true} />
       </BrowserRouter>
     </Provider>
   ),

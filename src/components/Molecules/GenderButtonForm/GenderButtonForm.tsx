@@ -1,5 +1,4 @@
 import Input from "../../atoms/input/Input";
-import Label from "../../atoms/label/Label";
 import "./GenderButtonForm.css";
 
 export default function GenderButtonForm() {
@@ -15,18 +14,24 @@ export default function GenderButtonForm() {
           input_placeholder=""
           input_style="gender-select-btn"
           input_type="radio"
+          inputValue="男性"
+          onChange={() => {}}
         />
         <Input
           input_id="女性"
           input_placeholder=""
           input_style="gender-select-btn"
           input_type="radio"
+          inputValue="女性"
+          onChange={() => {}}
         />
         <Input
           input_id="回答しない"
           input_placeholder=""
           input_style="gender-select-btn"
           input_type="radio"
+          inputValue="回答しない"
+          onChange={() => {}}
         />
       </div>
     </div>

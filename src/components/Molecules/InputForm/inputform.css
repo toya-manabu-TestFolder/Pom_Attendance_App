@@ -1,8 +1,16 @@
 .input-form {
-  height: 70%;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  margin-top: 5%;
-  &:first-child {
-    margin-top: 0;
+  height: 100%;
+  .input-form-label {
+    width: 100%;
+    height: 35%;
+    padding-bottom: 0.5%;
+    font-size: 0.8em;
+  }
+  .input-form-input {
+    width: 100%;
+    height: 65%;
   }
 }

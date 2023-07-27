@@ -28,9 +28,11 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
-    input_type: "text",
-    input_placeholder: "default",
-    input_id: "default",
+    input_placeholder: "",
+    input_type: "",
+    input_id: "",
     input_style: "",
+    inputValue: "",
+    setInputValue: "",
   },
 };

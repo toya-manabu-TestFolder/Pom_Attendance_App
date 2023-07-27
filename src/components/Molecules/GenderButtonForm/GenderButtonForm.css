@@ -15,9 +15,8 @@
 
 .gender-label {
   position: relative;
-
+  font-size: 0.8em;
   font-family: Meiryo;
-  font-size: 2rem;
   font-style: normal;
   font-weight: bold;
   -webkit-text-stroke: 6px #583225;

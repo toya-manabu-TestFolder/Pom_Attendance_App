@@ -1,6 +1,6 @@
 input {
-  height: 100%;
   width: 100%;
+  height: 100%;
   padding: 1% 3%;
   background-color: #d04f2f;
   border-radius: 50px;
@@ -8,9 +8,9 @@ input {
   cursor: url("../../../../public/cursol.png"), pointer;
 
   color: #faf9a6;
-  font-size: 2rem;
   font-family: Meiryo;
   font-style: normal;
+  font-size: 1em;
   font-weight: 700;
   &::placeholder {
     color: #faf9a6;
@@ -23,11 +23,10 @@ input {
 
 .radio-label {
   position: relative;
-  height: 70%;
+  height: 100%;
   padding: 1% 3%;
 
   font-family: Meiryo;
-  font-size: 2rem;
   font-style: normal;
   font-weight: bold;
   cursor: url("../../../../public/cursol.png"), pointer;
@@ -46,4 +45,31 @@ input {
 }
 .radio-button:checked + label {
   background-color: #d04f2f;
+}
+
+input[type="date"] {
+  position: relative;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40%;
+  height: 100%;
+  background: transparent;
+  cursor: url("../../../../public/cursol.png"), pointer;
+  z-index: 1;
+}
+input[type="date"]::after {
+  position: absolute;
+  content: "カレンダーで選択";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  bottom: 0;
 }
