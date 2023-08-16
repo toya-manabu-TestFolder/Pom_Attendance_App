@@ -1,0 +1,28 @@
+.InputConfirmationPageTmp-wrapp {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fbd13d;
+  .InputConfirmationPage-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-top: 10%;
+  }
+  .confirmationSection-wrapp {
+    font-size: 1.5rem;
+    width: 70%;
+    margin: 5% 0;
+  }
+  .error-wrapp {
+    text-align: center;
+    width: 70%;
+    font-size: 1.2rem;
+  }
+  .confirmation-button {
+    width: 50%;
+    margin-bottom: 5%;
+    font-size: 1.5rem;
+  }
+}

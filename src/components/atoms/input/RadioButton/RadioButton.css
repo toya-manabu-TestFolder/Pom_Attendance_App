@@ -1,0 +1,37 @@
+.radiobutton-component {
+  height: 100%;
+  padding: 0 3%;
+
+  .radio-button {
+    display: none;
+  }
+
+  .radio-label {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    padding: 2% 0;
+
+    font-family: Meiryo;
+    font-style: normal;
+    font-weight: bold;
+    cursor: url("../../../../public/cursol.png"), pointer;
+
+    border-radius: 50px;
+    border: #583225 0.3rem solid;
+    -webkit-text-stroke: 0.35rem #583225;
+
+    .radio-span {
+      position: absolute;
+      color: #faf9a6;
+      -webkit-text-stroke: 0;
+    }
+  }
+  .radio-button:checked + label {
+    background-color: #d04f2f;
+  }
+}

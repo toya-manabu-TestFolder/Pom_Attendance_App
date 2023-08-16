@@ -3,39 +3,60 @@ import Button from "../../atoms/button/Button";
 import H2_Ver1 from "../../atoms/h2/ver.1/H2";
 import "./RegistarPageTmp.css";
 import "../../../css/index.css";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  registarData,
-  sendRegistarData,
-} from "../../../features/registarSlice";
-import { RegistarType } from "../../../types/types";
+import { sendRegistarData, reducers } from "../../../features/registarSlice";
+import { confirmationReducers } from "../../../features/confirmationSlice";
+import { RegistData } from "../../../types/types";
 
-type Props = {};
+type Props = RegistData["registar"];
 
-export default function RegistarPageTmp({}: Props) {
+export default function RegistarPageTmp({ registarDataState }: Props) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const registarDataState = useSelector(registarData);
+
   async function personalInfoSubmit(
     e: React.FormEvent<HTMLFormElement>,
-    registarDataState: RegistarType
+    registarDataState: any
   ) {
     e.preventDefault();
-    const result = await dispatch(sendRegistarData(registarDataState));
-    console.log(result.data);
+    const resetErrorObj = {
+      name: "",
+      furigana: "",
+      mailaddress: "",
+      birthday: "",
+      phone: "",
+      password: "",
+      configrationPass: "",
+    };
+    dispatch(reducers.resetStateErrors(resetErrorObj));
+    const result = await dispatch(
+      sendRegistarData(registarDataState.registarData)
+    );
+    if (result.payload === "OK") {
+      const registData = registarDataState.registarData;
+      dispatch(confirmationReducers.confirmationDataToUpdate(registData));
+      dispatch(confirmationReducers.sendDataUpdate(registData));
+      navigate("/inputConfirmation");
+    }
   }
+
   return (
     <form onSubmit={(e) => personalInfoSubmit(e, registarDataState)}>
       <div className="RegistarPageTmp-wrapp">
         <div className="H2_Ver1-wrapp">
-          <H2_Ver1 text="新規会員登録" />
+          <H2_Ver1 text="新規会員登録" dataTestId="regist-title" />
         </div>
         <div className="RegistarInputSection-wrapp">
-          <RegistarInputSection />
+          <RegistarInputSection errors={registarDataState.errors} />
         </div>
         <div className="Button-wrapp">
-          <Button type="submit" text="登録情報を確認する" onClick={() => {}} />
+          <Button
+            type="submit"
+            text="登録情報を確認する"
+            onClick={() => {}}
+            dataTestid="regist-button"
+          />
         </div>
       </div>
     </form>

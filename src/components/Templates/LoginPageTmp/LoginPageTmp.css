@@ -1,54 +1,85 @@
 .LoginPageTmp-wrapp {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
   width: 100%;
   height: 100vh;
   .LoginPageTmp-L-colum {
-    display: flex;
-    justify-content: center;
+    display: grid;
     align-items: center;
-    width: 55%;
+    padding: 0% 5%;
     background-color: #fbd13d;
     .login-form-wrapp {
-      width: 80%;
-      height: 80%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      width: 100%;
+      display: grid;
+      grid-template-rows: 0.3fr 1fr 1fr 0.3fr 0.5fr 0.5fr;
+      justify-items: center;
+
       .error-text-wrapp {
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 10%;
-        font-size: 2rem;
+        font-size: 1rem;
       }
       .login-form-input {
         width: 100%;
-        height: 18%;
         font-size: 1.5rem;
-        margin-bottom: 5%;
       }
       .login-form-link {
         display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 10%;
-        font-size: 1.5rem;
+        align-items: flex-end;
+        border-bottom: #f9f4fc solid 0.3rem;
+        font-size: 1rem;
       }
       .login-form-button {
         width: 60%;
-        height: 17%;
-        padding: 3% 0;
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        margin-top: 5%;
       }
     }
   }
   .LoginPageTmp-R-colum {
-    width: 45%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
     height: 100%;
-    background-image: url("../../../../public/RCaramBg.png");
-    background-size: cover;
-    background-position: center;
+    overflow: hidden;
+    .img {
+      width: 97%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .LoginPageTmp-wrapp {
+    .LoginPageTmp-R-colum {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      .img {
+        width: 100%;
+        height: 100%;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    .LoginPageTmp-L-colum {
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .LoginPageTmp-wrapp {
+    display: grid;
+    grid-template-columns: none;
+    .LoginPageTmp-R-colum {
+      display: none;
+    }
+    .LoginPageTmp-L-colum {
+      width: 100%;
+      padding: 5% 5%;
+    }
   }
 }

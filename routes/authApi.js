@@ -3,6 +3,7 @@ import axios from "axios";
 // dontenvはexpress上でenvファイルを読み込むモジュール。
 import dotenv from "dotenv";
 dotenv.config();
+// viteだとinport.meta.envだがexpressだとprocess.env
 const API_KEY = process.env.VITE_API_KEY;
 
 const authRouter = express.Router();
@@ -32,9 +33,9 @@ authRouter.post("/", async (req, res) => {
       user.password === req.body.password
   );
   if (result) {
-    res.json(true);
+    res.status(200).json();
   } else {
-    res.json(false);
+    res.status(400).json();
   }
 });
 

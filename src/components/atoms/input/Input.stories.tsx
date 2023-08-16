@@ -10,16 +10,6 @@ const meta = {
       values: [{ name: "default", value: "#FBD13D" }],
     },
   },
-  argTypes: {
-    input_type: {
-      options: ["text", "radio", "button", "email", "date", "password", "tel"],
-      control: { type: "select" },
-      // table: {
-      //   defaultValue: { summary: "test" },
-      // },
-      description: "inputのデフォルト",
-    },
-  },
 } satisfies Meta<typeof Input>;
 
 export default meta;
@@ -28,11 +18,13 @@ type Story = StoryObj<typeof Input>;
 
 export const Default: Story = {
   args: {
-    input_placeholder: "",
-    input_type: "",
-    input_id: "",
+    input_placeholder: "デフォルトです。",
+    input_type: "text",
+    input_id: "default",
     input_style: "",
     inputValue: "",
-    setInputValue: "",
+    dataTestid: "",
+    disabled: false,
+    onChange: () => {},
   },
 };

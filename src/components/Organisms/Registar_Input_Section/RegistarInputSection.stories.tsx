@@ -13,6 +13,15 @@ const meta = {
       values: [{ name: "default", value: "#FBD13D" }],
     },
   },
+  decorators: [
+    (Story) => (
+      <Provider store={store}>
+        <BrowserRouter>
+          <Story />
+        </BrowserRouter>
+      </Provider>
+    ),
+  ],
 } satisfies Meta<typeof RegistarInputSection>;
 
 export default meta;
@@ -20,11 +29,16 @@ export default meta;
 type Story = StoryObj<typeof RegistarInputSection>;
 
 export const Default: Story = {
-  render: () => (
-    <Provider store={store}>
-      <BrowserRouter>
-        <RegistarInputSection />
-      </BrowserRouter>
-    </Provider>
-  ),
+  args: {
+    errors: {
+      birthday: "",
+      configrationPass: "",
+      furigana: "",
+      gender: "",
+      mailaddress: "",
+      name: "",
+      password: "",
+      phone: "",
+    },
+  },
 };

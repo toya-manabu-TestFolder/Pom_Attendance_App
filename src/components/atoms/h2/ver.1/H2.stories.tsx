@@ -20,20 +20,24 @@ type Story = StoryObj<typeof h2>;
 export const Default: Story = {
   args: {
     text: "Default",
+    dataTestId: "",
   },
 };
 export const Registar: Story = {
   args: {
+    ...Default.args,
     text: "新規会員登録",
   },
 };
 export const RegistarConfirmation: Story = {
   args: {
+    ...Default.args,
     text: "登録内容の確認",
   },
 };
 export const RegistarCompleted: Story = {
   args: {
+    ...Default.args,
     text: "会員登録が完了しました！！",
   },
 };

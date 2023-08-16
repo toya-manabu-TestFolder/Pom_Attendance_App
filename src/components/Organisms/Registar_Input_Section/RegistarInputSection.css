@@ -1,5 +1,7 @@
 .RegistarInputSection {
-  display: grid;
+  font-size: 1em;
+  height: 100%;
+  width: 100%;
   .RegistarInputForm-wrapp {
     margin-bottom: 6%;
     &:last-child {

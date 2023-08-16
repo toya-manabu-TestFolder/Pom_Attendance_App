@@ -1,3 +1,4 @@
+import FutidoriSpan from "../Span/FutidoriSpan/FutidoriSpan";
 import "./label.css";
 type Props = {
   label_value: string;
@@ -7,7 +8,7 @@ type Props = {
 export default function Label({ label_value, label_id }: Props) {
   return (
     <label className="label" htmlFor={label_id}>
-      <span className="futidori">{label_value}</span>
+      <FutidoriSpan text={label_value} style={""} />
       {label_value}
     </label>
   );

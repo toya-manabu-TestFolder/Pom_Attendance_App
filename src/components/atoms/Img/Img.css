@@ -1,0 +1,14 @@
+.img_component {
+  max-width: 100%;
+  max-height: 100%;
+}
+.login_user {
+  position: absolute;
+  bottom: 0;
+}
+.now_time {
+  position: absolute;
+  right: 1.5%;
+  bottom: 0;
+  z-index: 1;
+}
