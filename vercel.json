@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "https://pom-attendance-pyg73vykk-toya-manabu-testfolder.vercel.app/api/authApi/(.*)",
-      "destination": "./api/routes/authApi.js"
+      "destination": "/api/routes/authApi.js"
     }
   ]
 }
