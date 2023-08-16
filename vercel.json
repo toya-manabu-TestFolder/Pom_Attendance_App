@@ -1,6 +1,6 @@
 {
   "functions": {
-    "routes/authApi.js": {
+    "api/server.js": {
       "memory": 1024
     }
   },
