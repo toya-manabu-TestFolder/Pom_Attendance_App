@@ -17,7 +17,7 @@
   font-weight: bold;
   letter-spacing: 0.15625rem;
   -webkit-text-stroke: 0.15em #583225;
-  cursor: url("../../../../public/cursol.png"), pointer;
+  cursor: url("cursol.png"), pointer;
 
   color: #fbd13d;
   &:hover {

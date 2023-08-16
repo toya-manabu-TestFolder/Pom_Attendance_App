@@ -18,7 +18,7 @@
   border-radius: 0.5rem;
   background-color: transparent;
 
-  cursor: url("../../../../public/cursol.png"), pointer;
+  cursor: url("cursol.png"), pointer;
   &:hover {
     background-color: #7e262b;
     border: #f9f4fc 0.2rem solid;

@@ -90,7 +90,7 @@ export default function LoginPageTmp({ LoginError }: Props) {
               <Button
                 type="button"
                 text="新規会員登録"
-                onClick={() => navigate("/registar")}
+                onClick={() => navigate("/Home")}
                 dataTestid="regist-Button"
               />
             </div>

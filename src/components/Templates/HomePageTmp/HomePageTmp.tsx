@@ -39,17 +39,13 @@ const HomePageTmp = ({ attendanceData }: Props) => {
       <div className={styles.employee_attend_wrapp}>
         <nav className={styles.nav}>
           <div className={styles.Home_link_wrapp} data-testid="Home-link">
-            <Img
-              alt="タイトルロゴ"
-              src="../../../../public/navigation/titleLogo.png"
-              style=""
-            />
+            <Img alt="タイトルロゴ" src="/navigation/titleLogo.png" style="" />
           </div>
           <div className={styles.login_user_wrapp} data-testid="login-user">
             <div className={styles.img_wrapp}>
               <Img
                 alt="ログインしているユーザー名"
-                src="../../../../public/navigation/loginUser.png"
+                src="/navigation/loginUser.png"
                 style="login_user"
               />
               <span className={styles.text}>
@@ -88,11 +84,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                   <div className={styles.body_content}>
                     <div className={styles.top_content}>
                       <div className={styles.img_wrapp}>
-                        <Img
-                          alt="空白"
-                          src="../../../../public/navigation/space.png"
-                          style=""
-                        />
+                        <Img alt="空白" src="/navigation/space.png" style="" />
                       </div>
                     </div>
                     <>
@@ -134,11 +126,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
               </div>
             </div>
             <div className={styles.now_time_info_wrapp} data-testid="time-now">
-              <Img
-                alt=""
-                src="../../../../public/navigation/nowTime.png"
-                style="now_time"
-              />
+              <Img alt="" src="/navigation/nowTime.png" style="now_time" />
               <div className={styles.time_now}>
                 <div className={styles.top}>
                   <Span
@@ -199,7 +187,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                     <div className={styles.img}>
                       <Img
                         alt=""
-                        src="../../../../public/homepage/attendance_img1.png"
+                        src="/homepage/attendance_img1.png"
                         style=""
                       />
                     </div>

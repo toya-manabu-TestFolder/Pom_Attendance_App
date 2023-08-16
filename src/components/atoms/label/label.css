@@ -7,5 +7,5 @@
   color: #f9f4fc;
 
   -webkit-text-stroke: 0.3rem #583225;
-  cursor: url("../../../../public/cursol.png"), pointer;
+  cursor: url("/cursol.png"), pointer;
 }

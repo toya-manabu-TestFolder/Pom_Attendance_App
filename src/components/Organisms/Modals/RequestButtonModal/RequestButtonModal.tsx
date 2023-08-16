@@ -21,7 +21,7 @@ function RequestButtonModal({ text }: Props) {
           <div className={styles.img}>
             <Img
               alt="タイトルロゴ"
-              src="../../../../../public/Modals/RequestModal/RequestModal_img.png"
+              src="..//Modals/RequestModal/RequestModal_img.png"
               style=""
             />
           </div>

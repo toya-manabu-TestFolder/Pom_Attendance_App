@@ -19,21 +19,21 @@ type Story = StoryObj<typeof Img>;
 
 export const TitleLogo: Story = {
   args: {
-    src: "../../../../public/navigation/titleLogo.png",
+    src: "/navigation/titleLogo.png",
     alt: "タイトルロゴ",
     style: "",
   },
 };
 export const LoginUser: Story = {
   args: {
-    src: "../../../../public/navigation/loginUser.png",
+    src: "/navigation/loginUser.png",
     alt: "ログインしているユーザー名",
     style: "",
   },
 };
 export const SpaceImg: Story = {
   args: {
-    src: "../../../../public/navigation/space.png",
+    src: "/navigation/space.png",
     alt: "空白",
     style: "",
   },
