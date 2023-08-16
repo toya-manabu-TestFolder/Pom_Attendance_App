@@ -4,8 +4,5 @@
       "memory": 1024
     }
   },
-  "rewrites": [
-    { "source": "/api/routes/authApi.js", "destination": "/authApi" },
-    { "source": "/api/routes/registarApi.js", "destination": "/registarApi" }
-  ]
+  "rewrites": [{ "source": "/api/server.js", "destination": "/api" }]
 }
