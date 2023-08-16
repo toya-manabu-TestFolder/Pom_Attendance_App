@@ -97,7 +97,7 @@ export default function LoginPageTmp({ LoginError }: Props) {
           </div>
         </div>
         <div className="LoginPageTmp-R-colum">
-          <img className="img" src="../../../../public/RCaramBg.png" alt="" />
+          <img className="img" src="RCaramBg.png" alt="" />
         </div>
       </div>
     </form>
