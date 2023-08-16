@@ -23,7 +23,7 @@ export default function LoginPageTmp({ LoginError }: Props) {
   const onSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const result = await dispatch(sendInputData(inputData));
-    if (result.payload === 200) navigate("/registar");
+    if (result.payload === 200) navigate("/Home");
   };
   return (
     <form onSubmit={onSubmit}>
@@ -90,7 +90,7 @@ export default function LoginPageTmp({ LoginError }: Props) {
               <Button
                 type="button"
                 text="新規会員登録"
-                onClick={() => navigate("/Home")}
+                onClick={() => navigate("/registar")}
                 dataTestid="regist-Button"
               />
             </div>
