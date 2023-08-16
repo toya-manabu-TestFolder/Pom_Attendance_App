@@ -24,7 +24,7 @@ app.use(express.json());
 app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
 
-app.get("/api/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Express + TypeScript Server");
 });
 
