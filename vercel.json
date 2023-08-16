@@ -1,15 +1,8 @@
 {
   "functions": {
-    "api/server.js": {
+    "api/routes/authApi.js": {
       "memory": 1024
     }
   },
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/api" },
-    { "source": "/authApi/(.*)", "destination": "/api/routes/authApi.js" },
-    {
-      "source": "/registarApi/(.*)",
-      "destination": "/api/routes/registarApi.js"
-    }
-  ]
+  "rewrites": [{ "source": "/authApi/(.*)", "destination": "/api/routes" }]
 }
