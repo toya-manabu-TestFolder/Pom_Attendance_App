@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/authApi", "destination": "/api/routes/authApi.js" }
+    { "source": "/api/authApi/(.*)", "destination": "/api/routes/authApi.js" }
   ]
 }
