@@ -24,4 +24,8 @@ app.use(express.json());
 app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
 
+app.get("/", (req, res) => {
+  res.send("Express + TypeScript Server");
+});
+
 app.listen(port, () => console.log("startExpress!!"));
