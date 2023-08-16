@@ -1,7 +1,5 @@
 {
-  "functions": {
-    "api/server.js": {
-      "memory": 1024
-    }
-  }
+  "rewrites": [
+    { "source": "/authApi", "destination": "/api/routes/authApi.js" }
+  ]
 }
