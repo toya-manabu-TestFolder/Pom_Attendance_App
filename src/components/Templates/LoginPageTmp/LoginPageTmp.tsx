@@ -32,7 +32,7 @@ export default function LoginPageTmp({ LoginError }: Props) {
           <div className="login-form-wrapp">
             <div className="error-text-wrapp" data-testid="error-text">
               <Span
-                style=""
+                style="display_block"
                 color="red"
                 text={LoginError}
                 onClickSpan={() => {}}

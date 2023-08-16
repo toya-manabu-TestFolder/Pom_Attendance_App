@@ -74,12 +74,35 @@
   .LoginPageTmp-wrapp {
     display: grid;
     grid-template-columns: none;
+
     .LoginPageTmp-R-colum {
       display: none;
     }
     .LoginPageTmp-L-colum {
       width: 100%;
       padding: 5% 5%;
+      .login-form-wrapp {
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        height: 70%;
+        grid-template-rows: 10% 20% 20% 10% 20% 20%;
+        .error-text-wrapp {
+          font-size: 1.5rem;
+        }
+        .login-form-input {
+          font-size: 2rem;
+          height: 100%;
+        }
+        .login-form-button {
+          font-size: 2rem;
+          height: 60%;
+          margin-top: 0;
+        }
+        .login-form-link {
+          font-size: 1.5rem;
+        }
+      }
     }
   }
 }
