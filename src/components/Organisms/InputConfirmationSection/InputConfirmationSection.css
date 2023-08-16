@@ -1,0 +1,6 @@
+.InputConfirmaiton-wrapp {
+  /* margin-bottom: 1%; */
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

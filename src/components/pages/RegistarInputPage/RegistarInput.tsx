@@ -1,7 +1,9 @@
+import { useSelector } from "react-redux";
 import RegistarPageTmp from "../../Templates/RegistarPageTmp/RegistarPageTmp";
+import { registarState } from "../../../features/registarSlice";
 
-type Props = {};
+export default function RegistarInputPage({}) {
+  const registarDataState = useSelector(registarState);
 
-export default function RegistarInputPage({}: Props) {
-  return <RegistarPageTmp />;
+  return <RegistarPageTmp registarDataState={registarDataState} />;
 }

@@ -12,7 +12,7 @@ import {
 import Span from "../../atoms/Span/Span";
 
 type Props = {
-  LoginError: boolean;
+  LoginError: string;
 };
 
 export default function LoginPageTmp({ LoginError }: Props) {
@@ -23,17 +23,20 @@ export default function LoginPageTmp({ LoginError }: Props) {
   const onSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const result = await dispatch(sendInputData(inputData));
-    if (result.payload) navigate("/registar");
+    if (result.payload === 200) navigate("/registar");
   };
   return (
     <form onSubmit={onSubmit}>
       <div className="LoginPageTmp-wrapp">
         <div className="LoginPageTmp-L-colum">
           <div className="login-form-wrapp">
-            <div className="error-text-wrapp">
-              {LoginError && (
-                <Span color="red" text="ログイン情報が間違っています！！" />
-              )}
+            <div className="error-text-wrapp" data-testid="error-text">
+              <Span
+                style=""
+                color="red"
+                text={LoginError}
+                onClickSpan={() => {}}
+              />
             </div>
             <div className="login-form-input">
               <InputForm
@@ -45,6 +48,10 @@ export default function LoginPageTmp({ LoginError }: Props) {
                 label_value="メールアドレス"
                 inputValue={inputData.mailaddress}
                 onChange={(e) => dispatch(inputMail(e))}
+                errorText={""}
+                inputPassProps={""}
+                disabled={false}
+                dataTestid="auth-email"
               />
             </div>
             <div className="login-form-input">
@@ -57,24 +64,41 @@ export default function LoginPageTmp({ LoginError }: Props) {
                 label_value="パスワード"
                 inputValue={inputData.password}
                 onChange={(e) => dispatch(inputPass(e))}
+                errorText={""}
+                inputPassProps={""}
+                disabled={false}
+                dataTestid="auth-pass"
               />
             </div>
             <div className="login-form-link">
-              <Span color="#faf9a6" text="パスワードをお忘れの方はコチラ。" />
+              <Span
+                style=""
+                color="#faf9a6"
+                text="パスワードをお忘れの方はコチラ。"
+                onClickSpan={() => {}}
+              />
             </div>
             <div className="login-form-button">
-              <Button type="submit" text="ログイン" onClick={() => {}} />
+              <Button
+                type="submit"
+                text="ログイン"
+                onClick={() => {}}
+                dataTestid="login-Button"
+              />
             </div>
             <div className="login-form-button">
               <Button
                 type="button"
                 text="新規会員登録"
                 onClick={() => navigate("/registar")}
+                dataTestid="regist-Button"
               />
             </div>
           </div>
         </div>
-        <div className="LoginPageTmp-R-colum"></div>
+        <div className="LoginPageTmp-R-colum">
+          <img className="img" src="../../../../public/RCaramBg.png" alt="" />
+        </div>
       </div>
     </form>
   );

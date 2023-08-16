@@ -1,11 +1,19 @@
+import FutidoriSpan from "./FutidoriSpan/FutidoriSpan";
 import "./Span.css";
-type Props = { text: string; color: string };
+type Props = {
+  text: string | number;
+  style: string;
+  color: string;
+  onClickSpan: () => void;
+};
 
-export default function Span({ text, color }: Props) {
+export default function Span({ text, style, color, onClickSpan }: Props) {
   return (
-    <span className="span-cmponent" style={{ color: `${color}` }}>
-      <span className="futidori">{text}</span>
-      {text}
-    </span>
+    <div className="span-cmponent">
+      <span className={style} style={{ color: color }} onClick={onClickSpan}>
+        <FutidoriSpan style={style} text={text} />
+        {text}
+      </span>
+    </div>
   );
 }

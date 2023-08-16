@@ -1,10 +1,12 @@
 .span-cmponent {
+  width: 100%;
   position: relative;
   font-weight: bold;
+  font-size: 1em;
   font-family: Meiryo;
-  -webkit-text-stroke: 6px #583225;
-  .futidori {
-    -webkit-text-stroke: 0;
-    position: absolute;
-  }
+  -webkit-text-stroke: 0.15rem #583225;
+}
+
+.time_now_top {
+  font-family: Sigmar One;
 }
