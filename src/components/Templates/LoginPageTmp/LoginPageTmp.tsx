@@ -10,6 +10,7 @@ import {
   inputValues,
 } from "../../../features/authSlice";
 import Span from "../../atoms/Span/Span";
+import Img from "../../atoms/Img/Img";
 
 type Props = {
   LoginError: string;
@@ -30,6 +31,13 @@ export default function LoginPageTmp({ LoginError }: Props) {
       <div className="LoginPageTmp-wrapp">
         <div className="LoginPageTmp-L-colum">
           <div className="login-form-wrapp">
+            <div className="mobile_img_wrapp">
+              <Img
+                alt="タイトルロゴ"
+                src="/navigation/titleLogo.png"
+                style=""
+              />
+            </div>
             <div className="error-text-wrapp" data-testid="error-text">
               <Span
                 style="display_block"

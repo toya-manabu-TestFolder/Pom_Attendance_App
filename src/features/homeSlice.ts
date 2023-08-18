@@ -4,22 +4,33 @@ import { createSlice } from "@reduxjs/toolkit";
 
 type Props = {
   home: {
-    startButtonDisabled: boolean;
+    firstCloseModal: boolean;
+    startModalOpen: boolean;
+    startButtonDesable: boolean;
   };
 };
 
 const homeSlice = createSlice({
   name: "home",
   initialState: {
-    startButtonDisabled: false,
+    firstCloseModal: true,
+    startModalOpen: false,
+    startButtonDesable: false,
   },
   extraReducers: () => {},
   reducers: {
     startButtonFn: (state) => {
-      const result = confirm("午前09:00で出勤登録してよろしいですか？");
-      if (result) {
-        state.startButtonDisabled = true;
-      }
+      (state.firstCloseModal = false), (state.startModalOpen = true);
+    },
+    endButtonFn: (state) => {
+      (state.firstCloseModal = false), (state.startModalOpen = true);
+    },
+    startOkFn: (state) => {
+      state.startButtonDesable = true;
+      state.startModalOpen = false;
+    },
+    noButtonFn: (state) => {
+      state.startModalOpen = false;
     },
   },
 });

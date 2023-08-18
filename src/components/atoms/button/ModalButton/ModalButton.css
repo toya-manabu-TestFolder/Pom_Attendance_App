@@ -1,0 +1,16 @@
+.modalButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0% 10%;
+  background-color: transparent;
+  border: #583225 0.3rem solid;
+  border-radius: 5rem;
+  cursor: url("cursol.png"), pointer;
+
+  &:hover {
+    background-color: #d04f2f;
+  }
+}

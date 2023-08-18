@@ -1,0 +1,67 @@
+.Box_component {
+  display: grid;
+  grid-template-rows: 20% 80%;
+  width: 100%;
+  height: 100%;
+  border: #583225 0.2rem solid;
+  border-radius: 50px;
+  overflow: hidden;
+  .Box_component_title {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    font-size: 1.5em;
+    letter-spacing: 0.1rem;
+    background-color: #7e262b;
+    border-bottom: #583225 0.2rem solid;
+  }
+  .Box_component_body {
+    width: 100%;
+    font-size: 1em;
+  }
+}
+
+.Time {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 1.8rem;
+  color: #f9f4fc;
+}
+
+.disabled {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 1.8rem;
+  background-color: #7e262b;
+  color: #fbd13d;
+}
+
+@media screen and (max-width: 600px) {
+  .Box_component {
+    display: grid;
+    grid-template-rows: 30% 70%;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    border: #583225 0.2rem solid;
+    border-radius: 50px;
+    overflow: hidden;
+    font-size: 1em;
+    .Box_component_title {
+      display: flex;
+      font-size: 1em;
+      height: 100%;
+      letter-spacing: 0.1rem;
+      background-color: #7e262b;
+      border-bottom: #583225 0.2rem solid;
+    }
+    .Box_component_body {
+      width: 100%;
+    }
+  }
+}

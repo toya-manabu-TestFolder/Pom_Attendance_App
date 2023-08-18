@@ -7,6 +7,8 @@ import styles from "./HomePageTmp.module.css";
 import RequestButton from "../../atoms/button/RequestButton/RequestButton";
 import { Stats, homeSliceReducers } from "../../../features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
+import RequestButtonModal from "../../Organisms/Modals/RequestButtonModal/RequestButtonModal";
+import Box from "../../atoms/Box/Box";
 
 type Props = attendanceDataType;
 
@@ -33,7 +35,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
   }, []);
   const dispatch = useDispatch();
   const homeSliceStats = useSelector(Stats);
-  const startButtonDisabled = homeSliceStats.startButtonDisabled;
+
   return (
     <div className={styles.HomePateTmp_wrapp}>
       <div className={styles.employee_attend_wrapp}>
@@ -175,7 +177,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                     <div className={styles.button}>
                       <RequestButton
                         dataTestid=""
-                        disabled={startButtonDisabled}
+                        disabled={homeSliceStats.startButtonDesable}
                         onClick={() => {
                           dispatch(homeSliceReducers.startButtonFn());
                         }}
@@ -192,14 +194,108 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                       />
                     </div>
                   </div>
-                  <div className={styles.right}></div>
+                  <div className={styles.right}>
+                    <div className={styles.stanpTime_wrapp}>
+                      <Box
+                        element={
+                          <div className="Time">
+                            <Span
+                              color="#F9F4FC"
+                              onClickSpan={() => {}}
+                              style="display_block"
+                              text="09&nbsp;:&nbsp;00"
+                            />
+                          </div>
+                        }
+                        title="開始時間"
+                      />
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.content}></div>
-                <div className={styles.content}></div>
+                <div className={styles.content}>
+                  <div className={styles.left}>
+                    <div className={styles.button}>
+                      <RequestButton
+                        dataTestid=""
+                        disabled={homeSliceStats.startButtonDesable}
+                        onClick={() => {
+                          dispatch(homeSliceReducers.endButtonFn());
+                        }}
+                        style=""
+                        text="退勤"
+                        type="button"
+                      />
+                    </div>
+                    <div className={styles.img}>
+                      <Img
+                        alt=""
+                        src="/public/homepage/attendance_img2.png"
+                        style=""
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.right}>
+                    <div className={styles.stanpTime_wrapp}>
+                      <Box
+                        element={
+                          <div className="Time">
+                            <Span
+                              color="#F9F4FC"
+                              onClickSpan={() => {}}
+                              style="display_block"
+                              text="18&nbsp;:&nbsp;00"
+                            />
+                          </div>
+                        }
+                        title="終了時間"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.body_approvalbutton_wrapp}>
+                  <div className={styles.approvalbutton_Img}>
+                    <Img
+                      alt=""
+                      src="/public/homepage/applovar_left.png"
+                      style=""
+                    />
+                  </div>
+                  <div className={styles.approvalbutton}>
+                    <RequestButton
+                      dataTestid=""
+                      disabled={homeSliceStats.startButtonDesable}
+                      onClick={() => {
+                        dispatch(homeSliceReducers.endButtonFn());
+                      }}
+                      style=""
+                      text="承認申請"
+                      type="button"
+                    />
+                  </div>
+                  <div className={styles.approvalbutton_Img}>
+                    <Img
+                      alt=""
+                      src="/public/homepage/applovar_right.png"
+                      style=""
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
+        <div style={homeSliceStats.firstCloseModal ? { display: "none" } : {}}>
+          <RequestButtonModal
+            okButton={() => {
+              dispatch(homeSliceReducers.startOkFn());
+            }}
+            noButton={() => {
+              dispatch(homeSliceReducers.noButtonFn());
+            }}
+            text="午前09:00で出勤登録してよろしいですか？"
+            toggle={homeSliceStats.startModalOpen}
+          />
+        </div>
       </div>
     </div>
   );

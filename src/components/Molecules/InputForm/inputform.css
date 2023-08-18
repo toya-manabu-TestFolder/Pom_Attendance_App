@@ -29,3 +29,38 @@
     font-size: 0.5em;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .input-form {
+    display: grid;
+    align-items: center;
+    grid-template-rows: 15px 25px 25px;
+    width: 100%;
+    height: 100%;
+    font-size: 1em;
+
+    .input-label-wrapp {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      cursor: pointer;
+      font-size: 0.7em;
+      .input-form-label {
+        padding-left: 3%;
+      }
+      .pass-toggle {
+        text-align: end;
+        padding-right: 3%;
+      }
+    }
+
+    .input-form-input {
+      width: 100%;
+      font-size: 0.8em;
+    }
+    .input-form-errorMsg {
+      padding-top: 0.5%;
+      width: 100%;
+      font-size: 0.5em;
+    }
+  }
+}

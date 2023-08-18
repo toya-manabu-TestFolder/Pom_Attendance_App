@@ -27,10 +27,15 @@ type Story = StoryObj<typeof RequestButtonModal>;
 export const Default: Story = {
   args: {
     text: "Default",
+    okButton: () => {},
+    noButton: () => {},
   },
 };
 export const startAttend: Story = {
   args: {
     text: "午前09:00で出勤登録してよろしいですか？",
+    okButton: () => {},
+    noButton: () => {},
+    toggle: false,
   },
 };

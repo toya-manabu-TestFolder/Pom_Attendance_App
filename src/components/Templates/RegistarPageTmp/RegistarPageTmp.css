@@ -17,3 +17,59 @@
     margin: 10% 0;
   }
 }
+
+@media screen and (max-width: 1400px) {
+  .RegistarPageTmp-wrapp {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fbd13d;
+    .H2_Ver1-wrapp {
+      font-size: 2rem;
+      margin: 10% 0;
+    }
+    .RegistarInputSection-wrapp {
+      width: 70%;
+      font-size: 1.5rem;
+    }
+    .Button-wrapp {
+      width: 50%;
+      font-size: 1.5rem;
+      margin: 10% 0;
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .RegistarPageTmp-wrapp {
+    .H2_Ver1-wrapp {
+      font-size: 3rem;
+      margin: 15% 0;
+    }
+    .RegistarInputSection-wrapp {
+      width: 90%;
+      font-size: 2rem;
+    }
+    .Button-wrapp {
+      width: 80%;
+      font-size: 2.5rem;
+      margin: 15% 0;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .RegistarPageTmp-wrapp {
+    .H2_Ver1-wrapp {
+      font-size: 4rem;
+      margin: 15% 0;
+    }
+    .RegistarInputSection-wrapp {
+      width: 90%;
+      font-size: 3.2rem;
+    }
+    .Button-wrapp {
+      width: 80%;
+      font-size: 3rem;
+      margin: 10% 0 15% 0;
+    }
+  }
+}

@@ -1,13 +1,38 @@
+import { useEffect } from "react";
 import Img from "../../../atoms/Img/Img";
 import Span from "../../../atoms/Span/Span";
-import Button from "../../../atoms/button/Button";
+import ModalButton from "../../../atoms/button/ModalButton/ModalButton";
 import styles from "./RequestButtonModal.module.css";
+import { gsap } from "gsap";
 type Props = {
   text: string;
+  okButton: () => void;
+  noButton: () => void;
+  toggle: boolean;
 };
-function RequestButtonModal({ text }: Props) {
+
+function RequestButtonModal({ text, okButton, noButton, toggle }: Props) {
+  useEffect(() => {
+    const duration = 0.4;
+    if (toggle) {
+      gsap.set("#overlay", { display: "flex" });
+      gsap.to("#overlay", {
+        duration: duration,
+        opacity: 1,
+      });
+    } else {
+      gsap.to("#overlay", {
+        duration: duration,
+        opacity: 0,
+      });
+      setTimeout(() => {
+        gsap.set("#overlay", { display: "none" });
+      }, duration * 1000);
+    }
+  }, [toggle]);
+
   return (
-    <div className={styles.overlay}>
+    <div id="overlay" className={styles.overlay}>
       <div className={styles.modal_body}>
         <div className={styles.body_top}>
           <div className={styles.text}>
@@ -21,17 +46,31 @@ function RequestButtonModal({ text }: Props) {
           <div className={styles.img}>
             <Img
               alt="タイトルロゴ"
-              src="..//Modals/RequestModal/RequestModal_img.png"
+              src="/Modals/RequestModal/RequestModal_img.png"
               style=""
             />
           </div>
         </div>
         <div className={styles.body_under}>
-          <div className={styles.content}>
-            <Button dataTestid="" onClick={() => {}} text="OK" type="button" />
+          <div className={styles.botton_wrapp}>
+            <ModalButton
+              dataTestId=""
+              imgAlt="OKボタン"
+              imgSrc="/public/Modals/RequestModal/Ok.png"
+              imgStyle="modalButton_anime"
+              onClick={okButton}
+              type="button"
+            />
           </div>
-          <div className={styles.content}>
-            <Button dataTestid="" onClick={() => {}} text="NO" type="button" />
+          <div className={styles.botton_wrapp}>
+            <ModalButton
+              dataTestId=""
+              imgAlt="NOボタン"
+              imgSrc="/public/Modals/RequestModal/NO.png"
+              imgStyle="modalButton_anime"
+              onClick={noButton}
+              type="button"
+            />
           </div>
         </div>
       </div>
