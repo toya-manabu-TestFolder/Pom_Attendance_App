@@ -10,6 +10,13 @@ const meta = {
       values: [{ name: "default", value: "#FBD13D" }],
     },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "100vw" }}>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies Meta<typeof InputForm>;
 
 export default meta;

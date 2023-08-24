@@ -1,58 +1,18 @@
 .HomePateTmp_wrapp {
-  position: relative;
   background-color: #fbd13d;
   width: 100vw;
   .employee_attend_wrapp {
     display: grid;
     height: 100vh;
     grid-template-rows: 15% 85%;
-    .nav {
-      width: 100%;
-      display: grid;
-      grid-template-columns: 0.3fr 1fr 0.3fr;
-      border-bottom: 0.5rem solid #583225;
-      .Home_link_wrapp {
-        display: flex;
-        justify-content: flex-start;
-        align-items: end;
-        width: 90%;
-        height: 100%;
-        padding-left: 5%;
-      }
-      .login_user_wrapp {
-        width: 100%;
-        height: 100%;
-        .img_wrapp {
-          width: 100%;
-          height: 100%;
-          position: relative;
-          .text {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #7e262b;
-            position: absolute;
-            top: 10px;
-            left: 150px;
-          }
-        }
-      }
-      .menu_button_wrapp {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        padding: 0 15%;
-        font-size: 1rem;
-        .menu_button {
-          width: 100%;
-        }
-      }
-    }
     .attendance_operation {
       display: grid;
+      width: 100%;
       grid-template-columns: 45% 55%;
       .left_column {
         display: grid;
-        grid-template-rows: 50% 50%;
+        height: 100%;
+        grid-template-rows: 45% 55%;
         .payd_info_wrapp {
           width: 100%;
           padding: 2% 2%;
@@ -66,7 +26,7 @@
               justify-content: center;
               text-align: center;
               background-color: #7e262b;
-              font-size: 1.3rem;
+              font-size: 1.1rem;
               border-bottom: 0.3rem solid #583225;
               width: 100%;
               height: 20%;
@@ -89,8 +49,12 @@
                   border-right: 0.3rem solid #583225;
                   border-bottom: 0.2rem solid #583225;
                   .img_wrapp {
-                    width: 90%;
-                    height: 80%;
+                    height: 100%;
+                    width: 100%;
+                    background-image: url("/public/navigation/space.png");
+                    background-size: 70% 80%;
+                    background-position: center;
+                    background-repeat: no-repeat;
                   }
                 }
                 .top_content:last-child {
@@ -113,20 +77,33 @@
         .now_time_info_wrapp {
           height: 100%;
           width: 100%;
+          display: grid;
+          grid-template-columns: repeat(100, 1%);
+          grid-template-rows: repeat(100, 1%);
+          overflow: hidden;
           position: relative;
-          .time_now {
+          &::after {
+            content: "";
             position: absolute;
-            bottom: 6%;
-            right: 5%;
-            width: 44%;
-            height: 60%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url("/navigation/nowTime.png");
+            background-size: 90% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+          .time_now {
+            grid-row: 34/94;
+            grid-column: 51/93;
             display: grid;
             grid-template-rows: 32% 33% 33%;
             .top {
               display: flex;
               text-align: center;
               justify-content: center;
-              font-size: 1.5rem;
+              font-size: 1.2rem;
               background-color: #7e262b;
               border-bottom: 0.3rem solid #583225;
             }
@@ -161,7 +138,7 @@
             justify-content: center;
             text-align: center;
             background-color: #7e262b;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             border-bottom: 0.3rem solid #583225;
             width: 100%;
           }
@@ -189,8 +166,21 @@
                   height: 100%;
                   width: 100%;
                 }
-                .img {
-                  height: 80%;
+                .left_img {
+                  width: 100%;
+                  height: 100%;
+                  background-image: url("/public/homepage/attendance_img1.png");
+                  background-size: 100% 75%;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                }
+                .right_img {
+                  width: 100%;
+                  height: 100%;
+                  background-image: url("/public/homepage/attendance_img2.png");
+                  background-size: 85% 75%;
+                  background-position: center;
+                  background-repeat: no-repeat;
                 }
               }
               .right {
@@ -217,12 +207,21 @@
                 width: 100%;
                 font-size: 2rem;
               }
-              .approvalbutton_Img {
-                display: flex;
-                height: 80%;
-                width: 50%;
-                align-items: center;
-                justify-content: center;
+              .approvalbutton_left_Img {
+                width: 100%;
+                height: 100%;
+                background-image: url("/public/homepage/applovar_left.png");
+                background-size: 70% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+              }
+              .approvalbutton_right_Img {
+                width: 100%;
+                height: 100%;
+                background-image: url("/public/homepage/applovar_right.png");
+                background-size: 50% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
               }
             }
           }
@@ -232,114 +231,171 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1400px) {
   .HomePateTmp_wrapp {
     .employee_attend_wrapp {
-      height: 100vh;
-      grid-template-rows: 10% 90%;
-      .nav {
-        grid-template-columns: 25% 55% 20%;
-        .Home_link_wrapp {
-          display: flex;
-          justify-content: none;
-          align-items: none;
-          width: 100%;
-          height: 100%;
-          padding-left: 0;
-        }
-        .login_user_wrapp {
-          padding-left: 5%;
-          .img_wrapp {
-            .text {
-              font-size: 1.3rem;
-              top: 20%;
-              left: 23%;
+      .attendance_operation {
+        .left_column {
+          .payd_info_wrapp {
+            .section_box {
+              border: #583225 0.3rem solid;
+              .title {
+                font-size: 1.5rem;
+              }
+              .body {
+                .body_content {
+                  font-size: 1.1rem;
+                  .top_content {
+                    border-right: 0.3rem solid #583225;
+                    border-bottom: 0.1rem solid #583225;
+                  }
+                }
+              }
             }
           }
-        }
-        .menu_button_wrapp {
-          padding: 0 10%;
-          font-size: 1rem;
-        }
-      }
-      .attendance_operation {
-        display: grid;
-        grid-template-columns: none;
-
-        height: 100%;
-        grid-template-rows: 50% 50%;
-        .left_column {
-          display: grid;
-          height: 100%;
-          grid-template-rows: repeat(2, 1fr);
-          justify-items: center;
           .now_time_info_wrapp {
-            grid-row: 1;
-            height: 100%;
-            width: 60%;
-            position: relative;
+            &::after {
+              background-size: 100% 100%;
+            }
             .time_now {
+              grid-column: 51/98;
               .top {
                 font-size: 1.8rem;
               }
               .center {
-                font-size: 1.2rem;
+                font-size: 1rem;
               }
               .under {
                 font-size: 1.4rem;
               }
             }
           }
+        }
+        .right_column {
+          .attend_stanp_operation {
+            border: #583225 0.3rem solid;
+            .title {
+              font-size: 2rem;
+            }
+            .body {
+              .content {
+                border-bottom: #583225 0.3rem solid;
+                .left {
+                  .button {
+                    font-size: 2rem;
+                    padding: 20% 10%;
+                  }
+                }
+                .right {
+                  font-size: 0.8rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      .attendance_operation {
+        .left_column {
           .payd_info_wrapp {
-            width: 100%;
-            height: 100%;
-            padding: 2% 2%;
             .section_box {
-              display: grid;
-              height: 100%;
-              grid-template-rows: 25% 75%;
+              border: #583225 0.2rem solid;
               .title {
-                display: flex;
-                justify-content: center;
-                text-align: center;
-                background-color: #7e262b;
-                font-size: 1.8rem;
-                border-bottom: 0.3rem solid #583225;
-                width: 100%;
-                height: 100%;
+                font-size: 1.2rem;
               }
               .body {
-                display: grid;
-                grid-template-rows: repeat(2, 1fr);
-                height: 100%;
                 .body_content {
-                  width: 100%;
-                  display: grid;
-                  grid-template-columns: repeat(5, 1fr);
-                  text-align: center;
+                  font-size: 0.9rem;
+                  .top_content {
+                    border-right: 0.3rem solid #583225;
+                    border-bottom: 0.1rem solid #583225;
+                  }
+                }
+              }
+            }
+          }
+          .now_time_info_wrapp {
+            &::after {
+              background-size: 100% 100%;
+            }
+            .time_now {
+              grid-column: 51/98;
+              .top {
+                font-size: 1.5rem;
+              }
+              .center {
+                font-size: 0.8rem;
+              }
+              .under {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+        .right_column {
+          .attend_stanp_operation {
+            border: #583225 0.2rem solid;
+            .title {
+              font-size: 1.5rem;
+            }
+            .body {
+              .content {
+                border-bottom: #583225 0.2rem solid;
+                .left {
+                  .button {
+                    font-size: 1.5rem;
+                    padding: 20% 10%;
+                  }
+                }
+                .right {
+                  font-size: 0.5rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      display: block;
+      height: auto;
+      .attendance_operation {
+        display: block;
+        .left_column {
+          display: block;
+          height: auto;
+          .payd_info_wrapp {
+            margin-top: 5%;
+            height: 100%;
+            .section_box {
+              border: #583225 0.5rem solid;
+              height: 100%;
+              .title {
+                font-size: 3em;
+              }
+              .body {
+                height: 20vh;
+                .body_content {
                   font-size: 2rem;
                   .top_content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-right: 0.3rem solid #583225;
-                    border-bottom: 0.2rem solid #583225;
-                    .img_wrapp {
-                      display: flex;
-                      justify-content: center;
-                      max-width: 40%;
-                      max-height: 80%;
-                    }
+                    border-top: 0.5rem solid #583225;
+                    border-right: 0.5rem solid #583225;
                   }
                   .top_content:last-child {
                     border-right: none;
                   }
                   .under_content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-right: 0.3rem solid #583225;
-                    border-top: 0.2rem solid #583225;
+                    border-right: 0.5rem solid #583225;
+                    border-top: 0.5rem solid #583225;
                   }
                   .under_content:last-child {
                     border-right: none;
@@ -348,63 +404,48 @@
               }
             }
           }
+          .now_time_info_wrapp {
+            margin-top: 5%;
+            height: 30vh;
+            .time_now {
+              .top {
+                font-size: 2.5em;
+              }
+              .center {
+                font-size: 2em;
+              }
+              .under {
+                font-size: 2.5em;
+              }
+            }
+          }
         }
         .right_column {
-          padding: 1.6% 2%;
+          margin-top: 5%;
           .attend_stanp_operation {
-            grid-template-rows: 13% 87%;
+            height: 50vh;
+            border: #583225 0.5rem solid;
             .title {
-              align-items: center;
-              text-align: none;
-              font-size: 1.8rem;
+              display: grid;
+              font-size: 3rem;
+              border-bottom: 0.3rem solid #583225;
             }
             .body {
-              height: 100%;
-              grid-template-rows: 35% 35% 30%;
               .content {
-                width: 100%;
-                grid-template-columns: repeat(2, 50%);
+                border-bottom: #583225 0.5rem solid;
                 .left {
                   .button {
-                    font-size: 2rem;
-                  }
-                  .img {
-                    display: flex;
-                    max-width: 80%;
-                    height: 80%;
+                    font-size: 3em;
+                    padding: 20% 15%;
                   }
                 }
                 .right {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  font-size: 0.5rem;
-                  .stanpTime_wrapp {
-                    display: flex;
-                    align-items: center;
-                    text-align: center;
-                    width: 80%;
-                    height: 85%;
-                  }
+                  font-size: 1em;
                 }
               }
               .body_approvalbutton_wrapp {
-                display: grid;
-                width: 100%;
-                grid-template-columns: 30% 40% 30%;
-                justify-items: center;
-                align-items: center;
                 .approvalbutton {
-                  height: 75%;
-                  width: 100%;
-                  font-size: 2rem;
-                }
-                .approvalbutton_Img {
-                  display: flex;
-                  height: 80%;
-                  max-width: 40%;
-                  align-items: center;
-                  justify-content: center;
+                  font-size: 3em;
                 }
               }
             }
@@ -416,376 +457,37 @@
 }
 @media screen and (max-width: 600px) {
   .HomePateTmp_wrapp {
-    position: relative;
-    background-color: #fbd13d;
-    height: auto;
-    width: 100%;
     .employee_attend_wrapp {
       display: block;
       height: auto;
-      grid-template-rows: 0;
-      .nav {
-        width: 100%;
-        height: 40vh;
-        display: grid;
-        grid-template-rows: 60% 40%;
-        grid-template-columns: 80% 20%;
-        border-bottom: 0.5rem solid #583225;
-        justify-items: center;
-        .Home_link_wrapp {
-          grid-row: 1;
-          grid-column: 1/3;
-          padding-left: 0;
-          width: 80%;
-        }
-        .login_user_wrapp {
-          width: 100%;
-          height: 100%;
-          grid-row: 2;
-          grid-column: 1/2;
-          .img_wrapp {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            .text {
-              font-size: 1.7rem;
-              font-weight: bold;
-              color: #7e262b;
-              position: absolute;
-              top: 30%;
-              left: 25%;
-            }
-          }
-        }
-        .menu_button_wrapp {
-          display: flex;
-          justify-content: end;
-          align-items: center;
-          padding: 0 10% 0 0;
-          font-size: 2rem;
-          grid-row: 2;
-          grid-column: 2/3;
-          width: 100%;
-          .menu_button {
-            width: 100%;
-          }
-        }
-      }
       .attendance_operation {
-        height: auto;
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 1fr 1.2fr;
-
+        display: block;
         .left_column {
+          display: block;
           height: auto;
-          display: grid;
-          grid-template-rows: 30vh 30vh;
-          align-items: center;
           .payd_info_wrapp {
-            padding: 2% 2%;
+            margin-top: 5%;
+            height: 100%;
             .section_box {
-              height: 100%;
-              width: 100%;
               border: #583225 0.5rem solid;
-              border-radius: 0.5rem;
-              display: grid;
-              grid-template-rows: 25% 75%;
+              height: 100%;
               .title {
-                display: flex;
-                justify-content: center;
-                text-align: none;
-                align-items: center;
-                background-color: #7e262b;
-                font-size: 2.5rem;
-                border-bottom: 0.3rem solid #583225;
-                width: 100%;
-                height: 100%;
+                font-size: 3em;
               }
               .body {
-                display: grid;
-                grid-template-rows: repeat(2, 1fr);
-                width: 100%;
-                height: 100%;
+                height: 20vh;
                 .body_content {
-                  width: 100%;
-                  display: grid;
-                  grid-template-columns: repeat(5, 1fr);
-                  text-align: center;
-                  font-size: 2rem;
-                  .top_content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-right: 0.3rem solid #583225;
-                    border-bottom: 0.2rem solid #583225;
-                    .img_wrapp {
-                      width: 90%;
-                      height: 80%;
-                    }
-                  }
-                  .top_content:last-child {
-                    border-right: none;
-                  }
-                  .under_content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-right: 0.3rem solid #583225;
-                    border-top: 0.2rem solid #583225;
-                  }
-                  .under_content:last-child {
-                    border-right: none;
-                  }
-                }
-              }
-            }
-          }
-          .now_time_info_wrapp {
-            height: 90%;
-            width: auto;
-            position: none;
-            .time_now {
-              position: absolute;
-              bottom: 6%;
-              right: 4%;
-              width: 46%;
-              height: 60%;
-              display: grid;
-              grid-template-rows: 32% 33% 33%;
-              .top {
-                display: flex;
-                text-align: center;
-                justify-content: center;
-                font-size: 2rem;
-                background-color: #7e262b;
-                border-bottom: 0.3rem solid #583225;
-              }
-              .center {
-                display: grid;
-                text-align: center;
-                align-items: center;
-                font-size: 1.3rem;
-                border-bottom: 0.3rem solid #583225;
-              }
-              .under {
-                background-color: #faf9a6;
-                display: grid;
-                text-align: center;
-                align-items: center;
-                font-size: 1.5rem;
-              }
-            }
-          }
-        }
-        .right_column {
-          padding: 5% 2%;
-          .attend_stanp_operation {
-            display: grid;
-            grid-template-rows: 10% 90%;
-            width: 100%;
-            height: 100%;
-            border: #583225 0.5rem solid;
-            border-radius: 0.5rem;
-            .title {
-              display: flex;
-              justify-content: center;
-              text-align: center;
-              background-color: #7e262b;
-              font-size: 2.5rem;
-              border-bottom: 0.3rem solid #583225;
-              width: 100%;
-            }
-            .body {
-              width: 100%;
-              display: grid;
-              grid-template-rows: 35% 35% 30%;
-              .content {
-                display: grid;
-                grid-template-columns: repeat(2, 50%);
-                height: 100%;
-                border-bottom: #583225 0.5rem solid;
-                &:last-child {
-                  border-bottom: none;
-                }
-                .left {
-                  display: grid;
-                  grid-template-columns: repeat(2, 50%);
-                  align-items: center;
-                  justify-items: center;
-                  border-right: #583225 0.25rem solid;
-                  .button {
-                    font-size: 3rem;
-                    padding: 10%;
-                    height: 90%;
-                    width: 100%;
-                  }
-                  .img {
-                    max-height: 70%;
-                    max-width: 100%;
-                  }
-                }
-                .right {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  .stanpTime_wrapp {
-                    display: flex;
-                    align-items: center;
-                    text-align: center;
-                    width: 80%;
-                    height: 85%;
-                    font-size: 2rem;
-                  }
-                }
-              }
-              .body_approvalbutton_wrapp {
-                display: grid;
-                grid-template-columns: 30% 40% 30%;
-                justify-items: center;
-                align-items: center;
-                .approvalbutton {
-                  height: 75%;
-                  width: 100%;
-                  font-size: 2rem;
-                }
-                .approvalbutton_Img {
-                  display: flex;
-                  max-height: 80%;
-                  max-width: 60%;
-                  height: 100%;
-                  width: 100%;
-                  align-items: center;
-                  justify-content: center;
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-@media screen and (max-width: 500px) {
-  .HomePateTmp_wrapp {
-    position: relative;
-    background-color: #fbd13d;
-    height: auto;
-    width: 100%;
-    .employee_attend_wrapp {
-      display: grid;
-      height: auto;
-      grid-template-rows: 40vh 100vh;
-      .nav {
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-rows: 60% 40%;
-        grid-template-columns: 80% 20%;
-        border-bottom: 0.5rem solid #583225;
-        justify-items: center;
-        .Home_link_wrapp {
-          grid-row: 1;
-          grid-column: 1/3;
-          padding-left: 0;
-          width: 80%;
-        }
-        .login_user_wrapp {
-          width: 100%;
-          height: 100%;
-          grid-row: 2;
-          grid-column: 1/2;
-          .img_wrapp {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            .text {
-              font-size: 1.4rem;
-              font-weight: bold;
-              color: #7e262b;
-              position: absolute;
-              top: 55%;
-              left: 25%;
-            }
-          }
-        }
-        .menu_button_wrapp {
-          display: flex;
-          justify-content: end;
-          align-items: center;
-          padding: 50% 10% 0 0;
-          font-size: 1.5rem;
-          grid-row: 2;
-          grid-column: 2/3;
-          width: 100%;
-          .menu_button {
-            width: 100%;
-          }
-        }
-      }
-      .attendance_operation {
-        height: auto;
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 1fr 1.2fr;
-
-        .left_column {
-          height: auto;
-          display: grid;
-          grid-template-rows: 30vh 30vh;
-          align-items: center;
-          .payd_info_wrapp {
-            padding: 2% 2%;
-            .section_box {
-              height: 100%;
-              width: 100%;
-              border: #583225 0.5rem solid;
-              border-radius: 0.5rem;
-              display: grid;
-              grid-template-rows: 20% 80%;
-              .title {
-                display: flex;
-                justify-content: center;
-                text-align: none;
-                align-items: center;
-                background-color: #7e262b;
-                font-size: 2.5rem;
-                border-bottom: 0.3rem solid #583225;
-                width: 100%;
-                height: 100%;
-              }
-              .body {
-                display: grid;
-                grid-template-rows: repeat(2, 1fr);
-                width: 100%;
-                height: 100%;
-                .body_content {
-                  width: 100%;
-                  display: grid;
-                  grid-template-columns: repeat(5, 1fr);
-                  text-align: center;
                   font-size: 1.5rem;
                   .top_content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-right: 0.3rem solid #583225;
-                    border-bottom: 0.2rem solid #583225;
-                    .img_wrapp {
-                      width: 100%;
-                      height: 80%;
-                      max-width: 80%;
-                    }
+                    border-top: 0.5rem solid #583225;
+                    border-right: 0.5rem solid #583225;
                   }
                   .top_content:last-child {
                     border-right: none;
                   }
                   .under_content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-right: 0.3rem solid #583225;
-                    border-top: 0.2rem solid #583225;
+                    border-right: 0.5rem solid #583225;
+                    border-top: 0.5rem solid #583225;
                   }
                   .under_content:last-child {
                     border-right: none;
@@ -795,124 +497,50 @@
             }
           }
           .now_time_info_wrapp {
-            height: 90%;
-            width: 90%;
-            position: relative;
-            display: grid;
-            align-items: center;
+            margin-top: 5%;
+            height: 30vh;
             .time_now {
-              position: absolute;
-              bottom: none;
-              top: 39%;
-              right: 4%;
-              width: 46%;
-              height: 45%;
-              display: grid;
-              grid-template-rows: 32% 33% 33%;
               .top {
-                display: flex;
-                text-align: center;
-                justify-content: center;
-                font-size: 2rem;
-                background-color: #7e262b;
-                border-bottom: 0.3rem solid #583225;
+                font-size: 2em;
               }
               .center {
-                display: grid;
-                text-align: center;
-                align-items: center;
-                font-size: 1.3rem;
-                border-bottom: 0.3rem solid #583225;
+                font-size: 1.4em;
               }
               .under {
-                background-color: #faf9a6;
-                display: grid;
-                text-align: center;
-                align-items: center;
-                font-size: 1.5rem;
+                font-size: 2em;
               }
             }
           }
         }
         .right_column {
-          padding: 5% 2%;
+          margin-top: 5%;
           .attend_stanp_operation {
-            display: grid;
-            grid-template-rows: 15% 85%;
-            width: 100%;
-            height: 100%;
+            height: 50vh;
             border: #583225 0.5rem solid;
-            border-radius: 0.5rem;
             .title {
-              display: flex;
-              justify-content: center;
-              text-align: center;
-              background-color: #7e262b;
-              font-size: 2.5rem;
+              display: grid;
+              font-size: 3rem;
               border-bottom: 0.3rem solid #583225;
-              width: 100%;
             }
             .body {
-              width: 100%;
-              display: grid;
-              grid-template-rows: 35% 35% 30%;
               .content {
-                display: grid;
-                grid-template-columns: repeat(2, 50%);
-                height: 100%;
                 border-bottom: #583225 0.5rem solid;
-                &:last-child {
-                  border-bottom: none;
-                }
                 .left {
-                  display: grid;
-                  grid-template-columns: repeat(2, 50%);
-                  align-items: center;
-                  justify-items: center;
-                  border-right: #583225 0.25rem solid;
                   .button {
                     font-size: 2rem;
-                    padding: 10%;
-                    height: 90%;
-                    width: 100%;
-                  }
-                  .img {
-                    max-height: 70%;
-                    max-width: 100%;
+                    padding: 30% 15%;
                   }
                 }
                 .right {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
+                  font-size: 1rem;
                   .stanpTime_wrapp {
-                    display: flex;
-                    align-items: center;
-                    text-align: center;
-                    width: 80%;
-                    height: 85%;
-                    font-size: 2rem;
+                    height: 60%;
                   }
                 }
               }
               .body_approvalbutton_wrapp {
-                display: grid;
-                grid-template-columns: 30% 40% 30%;
-                justify-items: center;
-                align-items: center;
                 .approvalbutton {
-                  height: 75%;
-                  width: 100%;
-                  font-size: 1rem;
-                }
-                .approvalbutton_Img {
-                  display: flex;
-                  max-height: 80%;
-                  max-width: 60%;
-                  height: 100%;
-                  width: 100%;
-                  align-items: center;
-                  justify-content: center;
+                  font-size: 2.5rem;
                 }
               }
             }
@@ -922,126 +550,39 @@
     }
   }
 }
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 400px) {
   .HomePateTmp_wrapp {
-    position: relative;
-    background-color: #fbd13d;
-    height: auto;
-    width: 100%;
     .employee_attend_wrapp {
-      display: grid;
+      display: block;
       height: auto;
-      grid-template-rows: 40vh 100vh;
-      .nav {
-        width: 100%;
-        height: 100%;
-        display: grid;
-        grid-template-rows: 60% 40%;
-        grid-template-columns: 80% 20%;
-        border-bottom: 0.5rem solid #583225;
-        justify-items: center;
-        .Home_link_wrapp {
-          grid-row: 1;
-          grid-column: 1/3;
-          padding-left: 0;
-          width: 80%;
-        }
-        .login_user_wrapp {
-          width: 100%;
-          height: 100%;
-          grid-row: 2;
-          grid-column: 1/2;
-          .img_wrapp {
-            width: 100%;
-            height: 100%;
-            position: relative;
-            .text {
-              font-size: 1.5rem;
-              font-weight: bold;
-              color: #7e262b;
-              position: absolute;
-              top: 55%;
-              left: 25%;
-            }
-          }
-        }
-        .menu_button_wrapp {
-          display: flex;
-          justify-content: end;
-          align-items: center;
-          padding: 50% 10% 0 0;
-          font-size: 1.5rem;
-          grid-row: 2;
-          grid-column: 2/3;
-          width: 100%;
-          .menu_button {
-            width: 100%;
-          }
-        }
-      }
       .attendance_operation {
-        height: auto;
-        display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 1fr 1.2fr;
-
+        display: block;
         .left_column {
+          display: block;
           height: auto;
-          display: grid;
-          grid-template-rows: 30vh 30vh;
-          align-items: center;
           .payd_info_wrapp {
-            padding: 2% 2%;
+            margin-top: 5%;
+            height: 100%;
             .section_box {
-              height: 100%;
-              width: 100%;
               border: #583225 0.5rem solid;
-              border-radius: 0.5rem;
-              display: grid;
-              grid-template-rows: 20% 80%;
+              height: 100%;
               .title {
-                display: flex;
-                justify-content: center;
-                text-align: none;
-                align-items: center;
-                background-color: #7e262b;
-                font-size: 3rem;
-                border-bottom: 0.3rem solid #583225;
-                width: 100%;
-                height: 100%;
+                font-size: 3em;
               }
               .body {
-                display: grid;
-                grid-template-rows: repeat(2, 1fr);
-                width: 100%;
-                height: 100%;
+                height: 20vh;
                 .body_content {
-                  width: 100%;
-                  display: grid;
-                  grid-template-columns: repeat(5, 1fr);
-                  text-align: center;
-                  font-size: 2.5rem;
+                  font-size: 2rem;
                   .top_content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-right: 0.3rem solid #583225;
-                    border-bottom: 0.2rem solid #583225;
-                    .img_wrapp {
-                      width: 100%;
-                      height: 80%;
-                      max-width: 80%;
-                    }
+                    border-top: 0.5rem solid #583225;
+                    border-right: 0.5rem solid #583225;
                   }
                   .top_content:last-child {
                     border-right: none;
                   }
                   .under_content {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    border-right: 0.3rem solid #583225;
-                    border-top: 0.2rem solid #583225;
+                    border-right: 0.5rem solid #583225;
+                    border-top: 0.5rem solid #583225;
                   }
                   .under_content:last-child {
                     border-right: none;
@@ -1051,124 +592,47 @@
             }
           }
           .now_time_info_wrapp {
-            height: 90%;
-            width: 90%;
-            position: relative;
-            display: grid;
-            align-items: center;
+            margin-top: 5%;
+            height: 30vh;
             .time_now {
-              position: absolute;
-              bottom: none;
-              top: 39%;
-              right: 4%;
-              width: 46%;
-              height: 45%;
-              display: grid;
-              grid-template-rows: 32% 33% 33%;
               .top {
-                display: flex;
-                text-align: center;
-                justify-content: center;
-                font-size: 2rem;
-                background-color: #7e262b;
-                border-bottom: 0.3rem solid #583225;
+                font-size: 2em;
               }
               .center {
-                display: grid;
-                text-align: center;
-                align-items: center;
-                font-size: 1.3rem;
-                border-bottom: 0.3rem solid #583225;
+                font-size: 1.8em;
               }
               .under {
-                background-color: #faf9a6;
-                display: grid;
-                text-align: center;
-                align-items: center;
-                font-size: 1.5rem;
+                font-size: 2em;
               }
             }
           }
         }
         .right_column {
-          padding: 5% 2%;
+          margin-top: 5%;
           .attend_stanp_operation {
-            display: grid;
-            grid-template-rows: 15% 85%;
-            width: 100%;
-            height: 100%;
+            height: 50vh;
             border: #583225 0.5rem solid;
-            border-radius: 0.5rem;
             .title {
-              display: flex;
-              justify-content: center;
-              text-align: center;
-              background-color: #7e262b;
+              display: grid;
               font-size: 3rem;
               border-bottom: 0.3rem solid #583225;
-              width: 100%;
             }
             .body {
-              width: 100%;
-              display: grid;
-              grid-template-rows: 35% 35% 30%;
               .content {
-                display: grid;
-                grid-template-columns: repeat(2, 50%);
-                height: 100%;
                 border-bottom: #583225 0.5rem solid;
-                &:last-child {
-                  border-bottom: none;
-                }
                 .left {
-                  display: grid;
-                  grid-template-columns: repeat(2, 50%);
-                  align-items: center;
-                  justify-items: center;
-                  border-right: #583225 0.25rem solid;
                   .button {
-                    font-size: 2rem;
-                    padding: 10%;
-                    height: 90%;
-                    width: 100%;
-                  }
-                  .img {
-                    max-height: 70%;
-                    max-width: 100%;
+                    font-size: 3em;
+                    padding: 20% 15%;
                   }
                 }
                 .right {
-                  display: flex;
-                  justify-content: center;
-                  align-items: center;
-                  .stanpTime_wrapp {
-                    display: flex;
-                    align-items: center;
-                    text-align: center;
-                    width: 80%;
-                    height: 85%;
-                    font-size: 2rem;
-                  }
+                  font-size: 1.2em;
                 }
               }
               .body_approvalbutton_wrapp {
-                display: grid;
-                grid-template-columns: 30% 40% 30%;
-                justify-items: center;
-                align-items: center;
                 .approvalbutton {
-                  height: 75%;
-                  width: 100%;
-                  font-size: 1rem;
-                }
-                .approvalbutton_Img {
-                  display: flex;
-                  max-height: 80%;
-                  max-width: 60%;
-                  height: 100%;
-                  width: 100%;
-                  align-items: center;
-                  justify-content: center;
+                  font-size: 3em;
                 }
               }
             }

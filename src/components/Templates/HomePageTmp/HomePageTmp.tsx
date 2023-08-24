@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { attendanceDataType } from "../../../types/types";
-import Img from "../../atoms/Img/Img";
 import Span from "../../atoms/Span/Span";
-import Button from "../../atoms/button/Button";
 import styles from "./HomePageTmp.module.css";
 import RequestButton from "../../atoms/button/RequestButton/RequestButton";
 import { Stats, homeSliceReducers } from "../../../features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import RequestButtonModal from "../../Organisms/Modals/RequestButtonModal/RequestButtonModal";
 import Box from "../../atoms/Box/Box";
+import Headers from "../../Organisms/Headers/Headers";
 
 type Props = attendanceDataType;
 
@@ -39,33 +38,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
   return (
     <div className={styles.HomePateTmp_wrapp}>
       <div className={styles.employee_attend_wrapp}>
-        <nav className={styles.nav}>
-          <div className={styles.Home_link_wrapp} data-testid="Home-link">
-            <Img alt="タイトルロゴ" src="/navigation/titleLogo.png" style="" />
-          </div>
-          <div className={styles.login_user_wrapp} data-testid="login-user">
-            <div className={styles.img_wrapp}>
-              <Img
-                alt="ログインしているユーザー名"
-                src="/navigation/loginUser.png"
-                style="login_user"
-              />
-              <span className={styles.text}>
-                こんにちは！{attendanceData.loginUser}さん！
-              </span>
-            </div>
-          </div>
-          <div className={styles.menu_button_wrapp} data-testid="menu-button">
-            <div className={styles.menu_button}>
-              <Button
-                dataTestid=""
-                onClick={() => {}}
-                text="MENU"
-                type="button"
-              />
-            </div>
-          </div>
-        </nav>
+        <Headers loginUser={attendanceData.loginUser} />
 
         <section className={styles.attendance_operation}>
           <div className={styles.left_column}>
@@ -85,9 +58,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                 <div className={styles.body}>
                   <div className={styles.body_content}>
                     <div className={styles.top_content}>
-                      <div className={styles.img_wrapp}>
-                        <Img alt="空白" src="/navigation/space.png" style="" />
-                      </div>
+                      <div className={styles.img_wrapp}></div>
                     </div>
                     <>
                       {attendanceData.payds.map((payd) => (
@@ -128,7 +99,6 @@ const HomePageTmp = ({ attendanceData }: Props) => {
               </div>
             </div>
             <div className={styles.now_time_info_wrapp} data-testid="time-now">
-              <Img alt="" src="/navigation/nowTime.png" style="now_time" />
               <div className={styles.time_now}>
                 <div className={styles.top}>
                   <Span
@@ -186,13 +156,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                         type="button"
                       />
                     </div>
-                    <div className={styles.img}>
-                      <Img
-                        alt=""
-                        src="/homepage/attendance_img1.png"
-                        style=""
-                      />
-                    </div>
+                    <div className={styles.left_img}></div>
                   </div>
                   <div className={styles.right}>
                     <div className={styles.stanpTime_wrapp}>
@@ -226,13 +190,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                         type="button"
                       />
                     </div>
-                    <div className={styles.img}>
-                      <Img
-                        alt=""
-                        src="/public/homepage/attendance_img2.png"
-                        style=""
-                      />
-                    </div>
+                    <div className={styles.right_img}></div>
                   </div>
                   <div className={styles.right}>
                     <div className={styles.stanpTime_wrapp}>
@@ -253,13 +211,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                   </div>
                 </div>
                 <div className={styles.body_approvalbutton_wrapp}>
-                  <div className={styles.approvalbutton_Img}>
-                    <Img
-                      alt=""
-                      src="/public/homepage/applovar_left.png"
-                      style=""
-                    />
-                  </div>
+                  <div className={styles.approvalbutton_left_Img}></div>
                   <div className={styles.approvalbutton}>
                     <RequestButton
                       dataTestid=""
@@ -272,30 +224,24 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                       type="button"
                     />
                   </div>
-                  <div className={styles.approvalbutton_Img}>
-                    <Img
-                      alt=""
-                      src="/public/homepage/applovar_right.png"
-                      style=""
-                    />
-                  </div>
+                  <div className={styles.approvalbutton_right_Img}></div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <div style={homeSliceStats.firstCloseModal ? { display: "none" } : {}}>
-          <RequestButtonModal
-            okButton={() => {
-              dispatch(homeSliceReducers.startOkFn());
-            }}
-            noButton={() => {
-              dispatch(homeSliceReducers.noButtonFn());
-            }}
-            text="午前09:00で出勤登録してよろしいですか？"
-            toggle={homeSliceStats.startModalOpen}
-          />
-        </div>
+      </div>
+      <div style={homeSliceStats.firstCloseModal ? { display: "none" } : {}}>
+        <RequestButtonModal
+          okButton={() => {
+            dispatch(homeSliceReducers.startOkFn());
+          }}
+          noButton={() => {
+            dispatch(homeSliceReducers.noButtonFn());
+          }}
+          text="午前09:00で出勤登録してよろしいですか？"
+          toggle={homeSliceStats.startModalOpen}
+        />
       </div>
     </div>
   );

@@ -1,0 +1,32 @@
+.DaySchedulePageTmp {
+  width: 100%;
+  height: auto;
+
+  .head {
+    height: 100%;
+  }
+  .body {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    .body_left {
+      display: grid;
+      grid-template-rows: 60% 40%;
+      .calendar_wrapp {
+        display: grid;
+        grid-template-rows: 10% 90%;
+        .calendar_title {
+        }
+        .calendar_body_wrapp {
+          width: 100%;
+          background-image: "/public/DaySchedulePage/calendar_wrapp.png";
+          background-size: auto;
+        }
+      }
+      .img_wrapp {
+      }
+    }
+    .body_right {
+      background-color: rgb(20, 214, 59);
+    }
+  }
+}

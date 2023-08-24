@@ -6,15 +6,18 @@
   .H2_Ver1-wrapp {
     font-size: 2rem;
     margin: 10% 0;
+    height: 100%;
   }
   .RegistarInputSection-wrapp {
     width: 70%;
     font-size: 1.5rem;
+    height: 100%;
   }
   .Button-wrapp {
     width: 50%;
     font-size: 1.5rem;
     margin: 10% 0;
+    height: 100%;
   }
 }
 

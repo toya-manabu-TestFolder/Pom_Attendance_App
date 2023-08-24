@@ -1,4 +1,6 @@
 .span-cmponent {
+  display: grid;
+  align-items: center;
   width: 100%;
   position: relative;
   font-weight: bold;
@@ -8,5 +10,7 @@
 }
 
 .time_now_top {
+  display: grid;
+  align-items: center;
   font-family: Sigmar One;
 }
