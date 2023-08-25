@@ -24,3 +24,14 @@
     background-color: #d04f2f;
   }
 }
+
+@media screen and (max-width: 1279px) {
+  .button {
+    border: #583225 0.2rem solid;
+  }
+}
+@media screen and (max-width: 767px) {
+  .button {
+    border: #583225 0.15rem solid;
+  }
+}

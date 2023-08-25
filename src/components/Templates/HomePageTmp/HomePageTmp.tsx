@@ -133,7 +133,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
           </div>
           <div className={styles.right_column}>
             <div className={styles.attend_stanp_operation} data-testid="">
-              <div className={styles.title}>
+              <div className={styles.title_of_right_column}>
                 <Span
                   style=""
                   color="#fbd13d"
@@ -141,9 +141,9 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                   text="打&nbsp;刻"
                 />
               </div>
-              <div className={styles.body}>
+              <div className={styles.body_of_right_column}>
                 <div className={styles.content}>
-                  <div className={styles.left}>
+                  <div className={styles.left_content}>
                     <div className={styles.button}>
                       <RequestButton
                         dataTestid=""
@@ -152,13 +152,13 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                           dispatch(homeSliceReducers.startButtonFn());
                         }}
                         style=""
-                        text="出勤"
+                        text="出&nbsp;勤"
                         type="button"
                       />
                     </div>
-                    <div className={styles.left_img}></div>
+                    <div className={styles.start_img}></div>
                   </div>
-                  <div className={styles.right}>
+                  <div className={styles.right_content}>
                     <div className={styles.stanpTime_wrapp}>
                       <Box
                         element={
@@ -177,7 +177,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                   </div>
                 </div>
                 <div className={styles.content}>
-                  <div className={styles.left}>
+                  <div className={styles.left_content}>
                     <div className={styles.button}>
                       <RequestButton
                         dataTestid=""
@@ -186,13 +186,13 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                           dispatch(homeSliceReducers.endButtonFn());
                         }}
                         style=""
-                        text="退勤"
+                        text="退&nbsp;勤"
                         type="button"
                       />
                     </div>
-                    <div className={styles.right_img}></div>
+                    <div className={styles.end_img}></div>
                   </div>
-                  <div className={styles.right}>
+                  <div className={styles.right_content}>
                     <div className={styles.stanpTime_wrapp}>
                       <Box
                         element={
