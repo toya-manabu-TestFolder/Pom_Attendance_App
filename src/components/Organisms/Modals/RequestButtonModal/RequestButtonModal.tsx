@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import Img from "../../../atoms/Img/Img";
 import Span from "../../../atoms/Span/Span";
 import ModalButton from "../../../atoms/button/ModalButton/ModalButton";
 import styles from "./RequestButtonModal.module.css";
@@ -43,20 +42,14 @@ function RequestButtonModal({ text, okButton, noButton, toggle }: Props) {
               text={text}
             />
           </div>
-          <div className={styles.img}>
-            <Img
-              alt="タイトルロゴ"
-              src="/Modals/RequestModal/RequestModal_img.png"
-              style=""
-            />
-          </div>
+          <div className={styles.img}></div>
         </div>
         <div className={styles.body_under}>
           <div className={styles.botton_wrapp}>
             <ModalButton
               dataTestId=""
               imgAlt="OKボタン"
-              imgSrc="/public/Modals/RequestModal/Ok.png"
+              imgSrc="/Modals/RequestModal/Ok.png"
               imgStyle="modalButton_anime"
               onClick={okButton}
               type="button"
@@ -66,7 +59,7 @@ function RequestButtonModal({ text, okButton, noButton, toggle }: Props) {
             <ModalButton
               dataTestId=""
               imgAlt="NOボタン"
-              imgSrc="/public/Modals/RequestModal/NO.png"
+              imgSrc="/Modals/RequestModal/NO.png"
               imgStyle="modalButton_anime"
               onClick={noButton}
               type="button"

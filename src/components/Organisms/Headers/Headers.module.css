@@ -113,10 +113,10 @@
       background-position: center;
       padding: 6% 0%;
       .text_wrapp {
-        grid-row: 1/56;
+        grid-row: 1/40;
         grid-column: 28/100;
         .text {
-          font-size: 0.6rem;
+          font-size: 1.15rem;
         }
       }
     }
@@ -126,8 +126,73 @@
       right: 5%;
       width: 20%;
       padding: 0;
-      font-size: 0.6rem;
+      font-size: 1.2rem;
       z-index: 1;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav {
+    border-bottom: 0.2rem solid #583225;
+    .login_user_wrapp {
+      .text_wrapp {
+        grid-row: 1/35;
+        .text {
+          font-size: 1rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      font-size: 1rem;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .nav {
+    border-bottom: 0.2rem solid #583225;
+    .login_user_wrapp {
+      .text_wrapp {
+        grid-row: 1/35;
+        .text {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      font-size: 0.9rem;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .nav {
+    border-bottom: 0.2rem solid #583225;
+    .login_user_wrapp {
+      .text_wrapp {
+        grid-row: 1/35;
+        .text {
+          font-size: 0.7rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      font-size: 0.75rem;
+    }
+  }
+}
+@media screen and (max-width: 300px) {
+  .nav {
+    border-bottom: 0.2rem solid #583225;
+    .login_user_wrapp {
+      .text_wrapp {
+        grid-row: 1/50;
+        .text {
+          font-size: 0.6rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      font-size: 0.6rem;
     }
   }
 }
