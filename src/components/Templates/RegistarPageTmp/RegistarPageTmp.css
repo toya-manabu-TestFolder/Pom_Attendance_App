@@ -33,7 +33,7 @@
 
 @media screen and (max-width: 767px) {
   .RegistarPageTmp_form {
-    height: 100vh;
+    padding: 15% 0;
     .RegistarPageTmp-wrapp {
       display: grid;
       align-items: center;
@@ -41,13 +41,16 @@
       overflow-y: scroll;
       height: 100%;
       .H2_Ver1-wrapp {
-        font-size: 1rem;
+        font-size: 1.5rem;
       }
       .RegistarInputSection-wrapp {
-        font-size: 0.7rem;
+        width: 95%;
+        margin: 10% 0;
+        font-size: 1.35rem;
       }
       .Button-wrapp {
-        font-size: 0.7rem;
+        width: 70%;
+        font-size: 1.3rem;
       }
     }
   }
@@ -56,13 +59,13 @@
   .RegistarPageTmp_form {
     .RegistarPageTmp-wrapp {
       .H2_Ver1-wrapp {
-        font-size: 0.7rem;
+        font-size: 1.2rem;
       }
       .RegistarInputSection-wrapp {
-        font-size: 0.4rem;
+        font-size: 1rem;
       }
       .Button-wrapp {
-        font-size: 0.4rem;
+        font-size: 1rem;
       }
     }
   }
