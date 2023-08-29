@@ -3,157 +3,148 @@
 }
 .LoginPageTmp-wrapp {
   display: grid;
-  grid-template-columns: 1fr 0.9fr;
+  grid-template-columns: 56% 44%;
   width: 100%;
-  height: 100vh;
+  height: auto;
   .LoginPageTmp-L-colum {
     display: grid;
     align-items: center;
-    padding: 0% 5%;
-    background-color: #fbd13d;
+    padding: 5% 5%;
+    z-index: 1;
     .login-form-wrapp {
-      width: 100%;
       display: grid;
-      grid-template-rows: 0.3fr 1fr 1fr 0.3fr 0.5fr 0.5fr;
       justify-items: center;
 
       .error-text-wrapp {
-        display: flex;
-        justify-content: center;
-        align-items: center;
         width: 100%;
         font-size: 1rem;
+        margin-bottom: 3%;
       }
       .login-form-input {
         width: 100%;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
+        margin-bottom: 5%;
       }
       .login-form-link {
         display: flex;
         align-items: flex-end;
+        justify-content: center;
         border-bottom: #f9f4fc solid 0.3rem;
+        margin-bottom: 5%;
         font-size: 1rem;
       }
       .login-form-button {
         width: 60%;
-        font-size: 1.4rem;
-        margin-top: 5%;
+        font-size: 1.1rem;
+        margin-bottom: 5%;
+        &:last-child {
+          margin-bottom: 0%;
+        }
       }
     }
   }
   .LoginPageTmp-R-colum {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    .img {
-      width: 97%;
-      height: 100%;
-      max-width: 100%;
-      max-height: 100%;
-    }
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-image: url("/public/RCaramBg.png");
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: right;
   }
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1279px) {
   .LoginPageTmp-wrapp {
-    .LoginPageTmp-R-colum {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      .img {
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
+    .LoginPageTmp-L-colum {
+      .login-form-wrapp {
+        .error-text-wrapp {
+          font-size: 0.7rem;
+        }
+        .login-form-input {
+          font-size: 0.9rem;
+        }
+        .login-form-link {
+          font-size: 0.9rem;
+        }
+        .login-form-button {
+          font-size: 0.9rem;
+        }
       }
     }
-    .LoginPageTmp-L-colum {
-    }
   }
 }
-@media screen and (max-width: 1000px) {
-  .LoginPageTmp-wrapp {
-    display: grid;
-    grid-template-columns: none;
 
+@media screen and (max-width: 767px) {
+  .mobile_img_wrapp {
+    display: block;
+    background-image: url("/public/navigation/titleLogo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    width: 100%;
+    padding: 15%;
+    margin-bottom: 15%;
+  }
+  .LoginPageTmp-wrapp {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    .LoginPageTmp-L-colum {
+      overflow-y: auto;
+      height: 100%;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .login-form-wrapp {
+        .error-text-wrapp {
+          font-size: 0.8rem;
+          margin-bottom: 5%;
+        }
+        .login-form-input {
+          font-size: 0.85rem;
+          margin-bottom: 10%;
+        }
+        .login-form-link {
+          font-size: 0.7rem;
+          border-bottom: #f9f4fc solid 0.15rem;
+          margin-bottom: 10%;
+        }
+        .login-form-button {
+          font-size: 0.85rem;
+          margin-bottom: 10%;
+        }
+      }
+    }
     .LoginPageTmp-R-colum {
       display: none;
     }
-    .LoginPageTmp-L-colum {
-      width: 100%;
-      padding: 5% 2%;
-      .mobile_img_wrapp {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-      }
-      .login-form-wrapp {
-        display: grid;
-        justify-items: center;
-        align-items: center;
-        height: 100%;
-        grid-template-rows: 15% 10% 15% 15% 10% 15% 15%;
-        .error-text-wrapp {
-          font-size: 2rem;
-        }
-        .login-form-input {
-          font-size: 2.4rem;
-          height: 100%;
-        }
-        .login-form-button {
-          font-size: 2.4rem;
-          height: 60%;
-          width: 70%;
-          margin-top: 0;
-        }
-        .login-form-link {
-          font-size: 2rem;
-        }
-      }
-    }
   }
 }
+
 @media screen and (max-width: 400px) {
   .LoginPageTmp-wrapp {
-    display: grid;
-    grid-template-columns: none;
-
-    .LoginPageTmp-R-colum {
-      display: none;
-    }
     .LoginPageTmp-L-colum {
-      width: 100%;
-      padding: 5% 2%;
-      .mobile_img_wrapp {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-      }
       .login-form-wrapp {
-        display: grid;
-        justify-items: center;
-        align-items: center;
-        height: 100%;
-        grid-template-rows: 15% 10% 15% 15% 10% 15% 15%;
         .error-text-wrapp {
-          font-size: 3.5rem;
+          font-size: 0.7rem;
         }
         .login-form-input {
-          font-size: 3.9rem;
-          height: 100%;
-        }
-        .login-form-button {
-          font-size: 3.9rem;
-          height: 60%;
-          width: 70%;
-          margin-top: 0;
+          font-size: 0.75rem;
         }
         .login-form-link {
-          font-size: 3.5rem;
+          font-size: 0.6rem;
+          border-bottom: #f9f4fc solid 0.15rem;
+          margin-bottom: 10%;
+        }
+        .login-form-button {
+          font-size: 0.75rem;
+          margin-bottom: 10%;
         }
       }
     }

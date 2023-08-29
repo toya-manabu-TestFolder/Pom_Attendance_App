@@ -2,77 +2,68 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fbd13d;
   .H2_Ver1-wrapp {
     font-size: 2rem;
     margin: 10% 0;
-    height: 100%;
   }
   .RegistarInputSection-wrapp {
     width: 70%;
     font-size: 1.5rem;
-    height: 100%;
   }
   .Button-wrapp {
     width: 50%;
     font-size: 1.5rem;
     margin: 10% 0;
-    height: 100%;
   }
 }
 
-@media screen and (max-width: 1400px) {
+@media screen and (max-width: 1279px) {
   .RegistarPageTmp-wrapp {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #fbd13d;
     .H2_Ver1-wrapp {
-      font-size: 2rem;
-      margin: 10% 0;
+      font-size: 1.5rem;
     }
     .RegistarInputSection-wrapp {
-      width: 70%;
-      font-size: 1.5rem;
+      font-size: 1.3rem;
     }
     .Button-wrapp {
-      width: 50%;
-      font-size: 1.5rem;
-      margin: 10% 0;
+      font-size: 1.3rem;
     }
   }
 }
-@media screen and (max-width: 1000px) {
-  .RegistarPageTmp-wrapp {
-    .H2_Ver1-wrapp {
-      font-size: 3rem;
-      margin: 15% 0;
-    }
-    .RegistarInputSection-wrapp {
-      width: 90%;
-      font-size: 2rem;
-    }
-    .Button-wrapp {
-      width: 80%;
-      font-size: 2.5rem;
-      margin: 15% 0;
+
+@media screen and (max-width: 767px) {
+  .RegistarPageTmp_form {
+    height: 100vh;
+    .RegistarPageTmp-wrapp {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      overflow-y: scroll;
+      height: 100%;
+      .H2_Ver1-wrapp {
+        font-size: 1rem;
+      }
+      .RegistarInputSection-wrapp {
+        font-size: 0.7rem;
+      }
+      .Button-wrapp {
+        font-size: 0.7rem;
+      }
     }
   }
 }
 @media screen and (max-width: 400px) {
-  .RegistarPageTmp-wrapp {
-    .H2_Ver1-wrapp {
-      font-size: 4rem;
-      margin: 15% 0;
-    }
-    .RegistarInputSection-wrapp {
-      width: 90%;
-      font-size: 3.2rem;
-    }
-    .Button-wrapp {
-      width: 80%;
-      font-size: 3rem;
-      margin: 10% 0 15% 0;
+  .RegistarPageTmp_form {
+    .RegistarPageTmp-wrapp {
+      .H2_Ver1-wrapp {
+        font-size: 0.7rem;
+      }
+      .RegistarInputSection-wrapp {
+        font-size: 0.4rem;
+      }
+      .Button-wrapp {
+        font-size: 0.4rem;
+      }
     }
   }
 }

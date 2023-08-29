@@ -28,3 +28,12 @@
   justify-content: none;
   align-items: none;
 }
+
+.menu_close {
+  display: block;
+  justify-content: none;
+  align-items: none;
+  &:hover {
+    color: #ff0000;
+  }
+}

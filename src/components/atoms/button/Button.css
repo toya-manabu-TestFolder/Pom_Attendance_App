@@ -16,6 +16,7 @@
   font-style: normal;
   font-weight: bold;
   letter-spacing: 0.15625rem;
+  text-indent: 0.15625rem;
   -webkit-text-stroke: 0.15em #583225;
   cursor: url("cursol.png"), pointer;
 
@@ -27,11 +28,18 @@
 
 @media screen and (max-width: 1279px) {
   .button {
-    border: #583225 0.2rem solid;
+    border: #583225 0.15rem solid;
   }
 }
 @media screen and (max-width: 767px) {
   .button {
-    border: #583225 0.15rem solid;
+    border: #583225 0.1rem solid;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .button {
+    border: #583225 0.07rem solid;
+    letter-spacing: 0;
   }
 }

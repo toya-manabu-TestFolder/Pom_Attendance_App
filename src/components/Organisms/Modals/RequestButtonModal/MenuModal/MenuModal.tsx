@@ -1,3 +1,4 @@
+import Span from "../../../../atoms/Span/Span";
 import Button from "../../../../atoms/button/Button";
 import styles from "./MenuModal.module.css";
 
@@ -15,95 +16,110 @@ function MenuModal({ setIsMenu }: Props) {
         }}
       ></div>
       <div className={styles.menu_wrapp}>
-        <div className={styles.menu_button}>
-          <img
-            className={styles.menu_pointer}
-            src="/navigation/navPointer.png"
-            alt=""
-          />
-          <Button
-            dataTestid=""
-            onClick={() => {
-              setIsMenu(true);
-            }}
-            text="TOP"
-            type="button"
-          />
-        </div>
-        <div className={styles.menu_button}>
-          <img
-            className={styles.menu_pointer}
-            src="/navigation/navPointer.png"
-            alt=""
-          />
-          <Button
-            dataTestid=""
-            onClick={() => {
-              setIsMenu(true);
-            }}
-            text="日次勤怠"
-            type="button"
-          />
-        </div>
-        <div className={styles.menu_button}>
-          <img
-            className={styles.menu_pointer}
-            src="/navigation/navPointer.png"
-            alt=""
-          />
-          <Button
-            dataTestid=""
-            onClick={() => {
-              setIsMenu(true);
-            }}
-            text="月次勤怠"
-            type="button"
-          />
-        </div>
-        <div className={styles.menu_button}>
-          <img
-            className={styles.menu_pointer}
-            src="/navigation/navPointer.png"
-            alt=""
-          />
-          <Button
-            dataTestid=""
-            onClick={() => {
-              setIsMenu(true);
-            }}
-            text="各種設定"
-            type="button"
-          />
-        </div>
-        <div className={styles.menu_button}>
-          <img
-            className={styles.menu_pointer}
-            src="/navigation/navPointer.png"
-            alt=""
-          />
-          <Button
-            dataTestid=""
-            onClick={() => {
-              setIsMenu(true);
-            }}
-            text="ログアウト"
-            type="button"
-          />
-        </div>
-        <div className={styles.menu_button}>
-          <img
-            className={styles.menu_pointer}
-            src="/navigation/navPointer.png"
-            alt=""
-          />
-          <Button
-            dataTestid=""
-            onClick={() => {
+        <div className={styles.close_button_wrapper}>
+          <Span
+            color="#fbd13d"
+            onClickSpan={() => {
               setIsMenu(false);
             }}
-            text="とじる"
-            type="button"
+            style="menu_close"
+            text="×"
           />
+        </div>
+        <div className={styles.menu_button_wrapper}>
+          <div className={styles.menu_pointer}>
+            <img
+              className={styles.menu_pointer_img}
+              src="/navigation/navPointer.png"
+              alt=""
+            />
+          </div>
+          <div className={styles.menu_button}>
+            <Button
+              dataTestid=""
+              onClick={() => {
+                setIsMenu(true);
+              }}
+              text="TOP"
+              type="button"
+            />
+          </div>
+        </div>
+        <div className={styles.menu_button_wrapper}>
+          <div className={styles.menu_pointer}>
+            <img
+              className={styles.menu_pointer_img}
+              src="/navigation/navPointer.png"
+              alt=""
+            />
+          </div>
+          <div className={styles.menu_button}>
+            <Button
+              dataTestid=""
+              onClick={() => {
+                setIsMenu(true);
+              }}
+              text="日次勤怠"
+              type="button"
+            />
+          </div>
+        </div>
+        <div className={styles.menu_button_wrapper}>
+          <div className={styles.menu_pointer}>
+            <img
+              className={styles.menu_pointer_img}
+              src="/navigation/navPointer.png"
+              alt=""
+            />
+          </div>
+          <div className={styles.menu_button}>
+            <Button
+              dataTestid=""
+              onClick={() => {
+                setIsMenu(true);
+              }}
+              text="月次勤怠"
+              type="button"
+            />
+          </div>
+        </div>
+        <div className={styles.menu_button_wrapper}>
+          <div className={styles.menu_pointer}>
+            <img
+              className={styles.menu_pointer_img}
+              src="/navigation/navPointer.png"
+              alt=""
+            />
+          </div>
+          <div className={styles.menu_button}>
+            <Button
+              dataTestid=""
+              onClick={() => {
+                setIsMenu(true);
+              }}
+              text="各種設定"
+              type="button"
+            />
+          </div>
+        </div>
+        <div className={styles.menu_button_wrapper}>
+          <div className={styles.menu_pointer}>
+            <img
+              className={styles.menu_pointer_img}
+              src="/navigation/navPointer.png"
+              alt=""
+            />
+          </div>
+          <div className={styles.menu_button}>
+            <Button
+              dataTestid=""
+              onClick={() => {
+                setIsMenu(true);
+              }}
+              text="ログアウト"
+              type="button"
+            />
+          </div>
         </div>
       </div>
     </div>

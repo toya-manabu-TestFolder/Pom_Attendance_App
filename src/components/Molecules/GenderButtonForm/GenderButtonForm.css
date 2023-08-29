@@ -19,7 +19,7 @@
   .select-gender-wrap {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    font-size: 0.7em;
+    font-size: 0.9em;
     .RadioButton-wrapp {
       margin-right: 5%;
     }
@@ -28,5 +28,38 @@
     padding-top: 0.5%;
     width: 100%;
     font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .GenderButtonForm {
+    .gender-label {
+      -webkit-text-stroke: 0.15rem #583225;
+    }
+
+    .select-gender-wrap {
+      font-size: 0.7em;
+    }
+    .input-form-errorMsg {
+      padding-top: 0.5%;
+      width: 100%;
+      font-size: 0.5em;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .GenderButtonForm {
+    .gender-label {
+      -webkit-text-stroke: 0.1rem #583225;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .GenderButtonForm {
+    .gender-label {
+      -webkit-text-stroke: 0.07rem #583225;
+    }
   }
 }

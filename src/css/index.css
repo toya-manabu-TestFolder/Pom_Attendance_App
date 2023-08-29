@@ -6,7 +6,7 @@
 }
 
 html {
-  font-size: clamp(24px, 1vw + 16px, 36px);
+  font-size: clamp(16px, 1vw + 16px, 36px);
   background-color: #fbd13d;
 }
 
@@ -16,57 +16,3 @@ html {
 #storybook-root {
   width: 100vw;
 }
-
-/* @media screen and (max-width: 2000px) {
-  html {
-    font-size: 200%;
-  }
-}
-@media screen and (max-width: 1900px) {
-  html {
-    font-size: 190%;
-  }
-}
-@media screen and (max-width: 1800px) {
-  html {
-    font-size: 180%;
-  }
-}
-@media screen and (max-width: 1700px) {
-  html {
-    font-size: 170%;
-  }
-}
-@media screen and (max-width: 1600px) {
-  html {
-    font-size: 160%;
-  }
-}
-@media screen and (max-width: 1300px) {
-  html {
-    font-size: 130%;
-  }
-}
-@media screen and (max-width: 1000px) {
-  html {
-    font-size: 100%;
-  }
-}
-@media screen and (max-width: 768px) {
-  html {
-    font-size: 70%;
-  }
-}
-@media screen and (max-width: 400px) {
-  html {
-    font-size: 40%;
-  }
-}
-@media screen and (max-width: 300px) {
-  html {
-    font-size: 30%;
-  }
-  input::placeholder {
-    font-size: 0px;
-  }
-} */

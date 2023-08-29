@@ -2,46 +2,106 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
   .menu_overlay {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
   }
   .menu_wrapp {
     position: absolute;
     right: 0;
-    border-left: 0.5rem solid #583225;
-
+    z-index: 3;
     width: 30%;
     height: 100%;
-    padding: 3% 5%;
     background-color: #7e262b;
     overflow-y: scroll;
 
-    display: block;
-    .menu_button {
-      position: relative;
-      display: flex;
-      justify-content: center;
-
-      font-size: 1.3rem;
-      height: 10%;
+    padding: 3% 5%;
+    border-left: 0.5rem solid #583225;
+    .close_button_wrapper {
+      position: absolute;
+      top: -1%;
+      right: 3%;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+    .menu_button_wrapper {
       width: 100%;
-      margin-bottom: 15%;
-      .menu_pointer {
-        position: absolute;
-        top: 0%;
-        transition: all 0.2s linear;
-      }
 
+      height: 18%;
+      margin-bottom: 2%;
+      font-size: 1.2rem;
+      .menu_pointer {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        width: 100%;
+        height: 35%;
+
+        .menu_pointer_img {
+          position: absolute;
+          bottom: -130%;
+          max-width: 100%;
+          height: 100%;
+          transition: all 0.2s ease-in;
+        }
+      }
+      .menu_button {
+        height: 65%;
+      }
       &:hover {
+        .menu_pointer_img {
+          bottom: -5%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .module_wrapp {
+    .menu_wrapp {
+      padding: 3% 3%;
+      border-left: 0.3rem solid #583225;
+      .close_button_wrapper {
+        font-size: 1.5rem;
+      }
+      .menu_button_wrapper {
+        height: 21%;
+        margin-bottom: 5%;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .module_wrapp {
+    .menu_wrapp {
+      padding: 20% 15% 0%;
+      border-left: 0rem solid rgb(88, 50, 37);
+      width: 100%;
+      .close_button_wrapper {
+        top: -1%;
+        right: 3%;
+        font-size: 2rem;
+      }
+      .menu_button_wrapper {
+        height: auto;
+        margin-bottom: 15%;
+        font-size: 1rem;
         .menu_pointer {
-          top: -60%;
+          display: none;
+        }
+        .menu_button {
+          height: 100%;
         }
       }
     }

@@ -42,7 +42,10 @@ export default function RegistarPageTmp({ registarDataState }: Props) {
   }
 
   return (
-    <form onSubmit={(e) => personalInfoSubmit(e, registarDataState)}>
+    <form
+      className={"RegistarPageTmp_form"}
+      onSubmit={(e) => personalInfoSubmit(e, registarDataState)}
+    >
       <div className="RegistarPageTmp-wrapp">
         <div className="H2_Ver1-wrapp">
           <H2_Ver1 text="新規会員登録" dataTestId="regist-title" />
