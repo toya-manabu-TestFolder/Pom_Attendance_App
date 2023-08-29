@@ -27,3 +27,25 @@
     font-size: 0.5em;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .input-form {
+    .input-form-errorMsg {
+      font-size: 0.8em;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .input-form {
+    .input-form-errorMsg {
+      font-size: 0.9em;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .input-form {
+    .input-form-errorMsg {
+      font-size: 1em;
+    }
+  }
+}
