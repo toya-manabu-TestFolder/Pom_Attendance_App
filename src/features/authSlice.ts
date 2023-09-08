@@ -7,7 +7,10 @@ export const sendInputData: any = createAsyncThunk(
   "auth/sendInputData",
   async (data) => {
     try {
-      const response = await axios.post(`${API_URL}authApi/`, data);
+      const response = await axios.post(`${API_URL}authApi/`, data, {
+        // ↓cookieの送受信を許可する。
+        withCredentials: true,
+      });
       // response.dataとすることで、返ってきた値をreducerでaction.payloadとして扱える。
       return response.status;
     } catch (error: any) {

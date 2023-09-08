@@ -50,7 +50,6 @@ function RequestButtonModal({ text, okButton, noButton, toggle }: Props) {
               dataTestId=""
               imgAlt="OKボタン"
               imgSrc="/Modals/RequestModal/Ok.png"
-              imgStyle="modalButton_anime"
               onClick={okButton}
               type="button"
             />
@@ -60,7 +59,6 @@ function RequestButtonModal({ text, okButton, noButton, toggle }: Props) {
               dataTestId=""
               imgAlt="NOボタン"
               imgSrc="/Modals/RequestModal/NO.png"
-              imgStyle="modalButton_anime"
               onClick={noButton}
               type="button"
             />

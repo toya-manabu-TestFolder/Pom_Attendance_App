@@ -13,7 +13,7 @@
   font-weight: bold;
   -webkit-text-stroke: 0.15em #583225;
 
-  border: #583225 0.2rem solid;
+  border: clamp(3px, 0.4vw, 20px) solid #583225;
   border-radius: 0.5rem;
   background-color: transparent;
 
@@ -48,8 +48,6 @@
 
 @media screen and (max-width: 767px) {
   .RequestButton_component {
-    border: #583225 0.15rem solid;
-
     cursor: url("cursol.png"), pointer;
     &:hover {
       border: #f9f4fc 0.15rem solid;

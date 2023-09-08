@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Span from "../../../../atoms/Span/Span";
 import Button from "../../../../atoms/button/Button";
 import styles from "./MenuModal.module.css";
@@ -7,6 +8,7 @@ type Props = {
 };
 
 function MenuModal({ setIsMenu }: Props) {
+  const navigate = useNavigate();
   return (
     <div className={styles.module_wrapp}>
       <div
@@ -38,7 +40,7 @@ function MenuModal({ setIsMenu }: Props) {
             <Button
               dataTestid=""
               onClick={() => {
-                setIsMenu(true);
+                navigate("/Home");
               }}
               text="TOP"
               type="button"
@@ -57,7 +59,7 @@ function MenuModal({ setIsMenu }: Props) {
             <Button
               dataTestid=""
               onClick={() => {
-                setIsMenu(true);
+                navigate("/DaySchedule");
               }}
               text="日次勤怠"
               type="button"
@@ -114,7 +116,7 @@ function MenuModal({ setIsMenu }: Props) {
             <Button
               dataTestid=""
               onClick={() => {
-                setIsMenu(true);
+                navigate("/");
               }}
               text="ログアウト"
               type="button"

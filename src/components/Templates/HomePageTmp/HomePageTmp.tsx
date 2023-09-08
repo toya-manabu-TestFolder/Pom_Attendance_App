@@ -8,10 +8,12 @@ import { useDispatch, useSelector } from "react-redux";
 import RequestButtonModal from "../../Organisms/Modals/RequestButtonModal/RequestButtonModal";
 import Box from "../../atoms/Box/Box";
 import Headers from "../../Organisms/Headers/Headers";
-
 type Props = attendanceDataType;
 
 const HomePageTmp = ({ attendanceData }: Props) => {
+  const dispatch = useDispatch();
+  const homeSliceStats = useSelector(Stats);
+
   const [Year, setYear] = useState(0);
   const [Month, setMonth] = useState(0);
   const [Data, setData] = useState(0);
@@ -32,13 +34,11 @@ const HomePageTmp = ({ attendanceData }: Props) => {
       setSecond(nowTime.getSeconds());
     }, 1000);
   }, []);
-  const dispatch = useDispatch();
-  const homeSliceStats = useSelector(Stats);
 
   return (
     <div className={styles.HomePateTmp_wrapp}>
       <div className={styles.employee_attend_wrapp}>
-        <Headers loginUser={attendanceData.loginUser} />
+        <Headers />
 
         <section className={styles.attendance_operation}>
           <div className={styles.left_column}>
@@ -61,8 +61,8 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                       <div className={styles.img_wrapp}></div>
                     </div>
                     <>
-                      {attendanceData.payds.map((payd) => (
-                        <div className={styles.top_content}>
+                      {attendanceData.payds.map((payd, index) => (
+                        <div className={styles.top_content} key={index}>
                           <Span
                             style=""
                             color="#D04F2F"
@@ -83,8 +83,8 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                       />
                     </div>
                     <>
-                      {attendanceData.payds.map((payd) => (
-                        <div className={styles.under_content}>
+                      {attendanceData.payds.map((payd, index) => (
+                        <div className={styles.under_content} key={index}>
                           <Span
                             style=""
                             color="#F9F4FC"

@@ -13,6 +13,27 @@
   &:hover {
     background-color: #d04f2f;
   }
+  .modalButton_img {
+    max-width: 100%;
+    animation: buttonAnime 3s linear infinite;
+  }
+}
+@keyframes buttonAnime {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(15deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-15deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 @media screen and (max-width: 1279px) {
@@ -37,6 +58,9 @@
 
     &:hover {
       background-color: #d04f2f;
+    }
+    .modalButton_img {
+      max-width: 60%;
     }
   }
 }

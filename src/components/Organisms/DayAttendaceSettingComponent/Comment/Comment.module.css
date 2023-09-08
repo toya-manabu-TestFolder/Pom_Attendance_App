@@ -1,0 +1,164 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 15% 85%;
+  grid-template-rows: 18% 82%;
+  border-radius: clamp(5px, 2vw, 50px);
+  border: clamp(2px, 1vw * 0.4, 20px) solid #583225;
+  text-align: center;
+  overflow: hidden;
+  .title {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    font-size: 0.6em;
+    background-color: #7e262b;
+    border-bottom: clamp(0.5px, 0.15vw, 10px) solid #583225;
+  }
+  .body {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-rows: repeat(2, 50%);
+    border-top: clamp(0.5px, 0.15vw, 10px) solid #583225;
+
+    .comment_wrapper {
+      padding: 0% 3%;
+      font-weight: bold;
+      color: #ff0000;
+
+      font-size: 0.7em;
+      .comment {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+
+        background-color: #f9f4fc;
+        border: 0.1rem solid #583225;
+      }
+    }
+    .comment_button_wrapper {
+      padding: 0% 5%;
+      font-size: 0.6em;
+    }
+  }
+}
+
+.modal_wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow-y: scroll;
+  display: grid;
+  grid-template-rows: 70% 30%;
+  animation: Appearance 0.2s linear;
+  padding: 2% 5%;
+  z-index: 4;
+
+  .modal_textarea_wrapper {
+    position: relative;
+    display: grid;
+    width: 100%;
+    height: 100%;
+    .modal_textarea {
+      color: #fbd13d;
+      border: 0.3rem solid #f9f4fc;
+      background-color: #7e262b;
+      font-weight: bold;
+      font-size: 1.5em;
+      padding: 1.5%;
+      &:focus {
+        color: #000;
+        background-color: #f9f4fc;
+      }
+    }
+  }
+  .modal_button_wrapper {
+    padding: 3% 5%;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10%;
+
+    font-size: 1.4em;
+    .modal_button {
+      width: 100%;
+    }
+  }
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.5;
+  }
+}
+
+.completed_modal_wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  animation: Appearance 0.2s linear;
+
+  .completed_message_wrapper {
+    height: 80%;
+    width: 60%;
+    position: relative;
+    background-color: #fbd13d;
+    border: 0.3rem solid #583225;
+    border-radius: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .message {
+      display: grid;
+      font-size: 2em;
+      text-align: center;
+      margin-bottom: 5%;
+    }
+    .img {
+      position: relative;
+      width: 100%;
+      height: 50%;
+      background-image: url("/DaySchedulePage/comment_edit_comp.png");
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+  }
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: black;
+    opacity: 0.7;
+  }
+}
+
+@keyframes Appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

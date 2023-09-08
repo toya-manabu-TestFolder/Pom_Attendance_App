@@ -7,21 +7,22 @@ import jaLocale from "@fullcalendar/core/locales/ja";
 import interactionPlugin from "@fullcalendar/interaction";
 import styled from "@emotion/styled";
 import styles from "./Calendar.module.css";
-import Img from "../../atoms/Img/Img";
+// import { Reducer, State } from "../../../features/DayScheduleSlice";
+// import { useDispatch, useSelector } from "react-redux";
 
 function Calendar() {
-  const handleDateClick = () => {
-    alert("test");
+  // const dispatch = useDispatch();
+  // const DayScheduleState = useSelector(State);
+
+  const handleDateClick = (event: any) => {
+    // const selectDay = Reducer.selectDay;
+    // dispatch(selectDay(event.dateStr));
+    // dispatch(Reducer.getToDay());
+    console.log(event.date);
   };
+
   return (
     <div className={styles.calendar_component_wrapper}>
-      <div className={styles.calendar_frame}>
-        <Img
-          alt="タイトルロゴ"
-          src="/DaySchedulePage/calendar_wrapp.png"
-          style=""
-        />
-      </div>
       <StyleWrapper className={styles.StyleWrapper}>
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
@@ -29,7 +30,7 @@ function Calendar() {
           locales={[jaLocale]}
           locale="ja"
           headerToolbar={{ left: "prev", center: "title", right: "next" }}
-          dateClick={() => handleDateClick()}
+          dateClick={(event) => handleDateClick(event)}
         />
       </StyleWrapper>
     </div>
@@ -39,63 +40,114 @@ function Calendar() {
 export const StyleWrapper = styled.div`
   .fc {
     display: grid;
-    grid-template-rows: 10% 90%;
-    height: 100%;
-    font-size: 1em;
+    grid-template-rows: 12% 88%;
+    height: auto;
   }
-  .fc div:nth-of-type(2) {
-    height: 100% !important;
+  .fc-view-harness.fc-view-harness-active {
+    height: auto !important;
   }
   .css-1v5p8ik .fc .fc-view-harness {
-    height: 100%;
+    height: auto;
   }
+  // 月切り替え
   .fc .fc-toolbar {
-    align-items: center;
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: end;
     justify-content: space-around;
-    height: 100%;
+    height: auto;
+    background-color: #7e262b;
     margin-bottom: 0;
   }
-  .fc .fc-button-primary {
-    background-color: transparent;
-    border-color: transparent;
-    color: #d04f2f;
+  .fc-toolbar-chunk {
+    display: grid;
+    align-items: center;
+    height: auto;
   }
   .fc-toolbar-title {
-    color: #d04f2f;
-    -webkit-text-stroke: 0.05rem #583225;
+    color: #fbd13d;
+    font-size: 0.8em;
+  }
+  .fc-button {
+    display: grid;
+    background-color: transparent;
+    border-color: transparent;
+    color: #f9f4fc;
+    padding: 0;
+    z-index: 1;
+  }
+  .fc-button:hover {
+    background-color: transparent;
+    color: #fbd13d;
+    border: 0em solid;
+  }
+  .fc .fc-button .fc-icon {
+    font-size: 1.3em;
+  }
+
+  // 曜日
+  .fc-col-header-cell-cushion {
+    color: #7e262b;
+    font-size: 0.8em;
+  }
+  .fc-theme-standard th {
+    border: 0.15em solid #583225;
   }
   .fc-col-header {
     width: 100%;
-  }
-  .fc-col-header-cell-cushion {
-    color: #7e262b;
-    font-size: 1.3rem;
-  }
-  .fc-theme-standard th {
-    border: 0.2rem solid #583225;
+    z-index: 4;
   }
   .fc-day-sun {
-    background-color: red;
+    background-color: #ff0000 !important;
   }
   .fc-day-sat {
-    background-color: #a3dee2;
+    background-color: #a3dee2 !important;
   }
-  .fc-theme-standard td {
-    border-left: 0.2rem solid #583225;
-    border-bottom: 0.2rem solid #583225;
-    border-right: 0.2rem solid #583225;
+
+  // 日付
+  .fc-daygrid-day-top {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .fc-day {
+    background-color: #faf9a6;
+  }
+  .fc .fc-daygrid-day.fc-day-today {
+    background-color: #faf9a6;
+  }
+  .fc .fc-daygrid-day-number {
+    cursor: pointer;
+    padding: 0%;
+  }
+  .fc-daygrid-day-events {
+    display: none;
   }
   .fc .fc-daygrid-day-frame {
-    min-height: 100%;
+    min-height: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem;
     font-weight: bold;
     color: #ffffff;
     position: relative;
-    -webkit-text-stroke: 0.07rem #583225;
+    -webkit-text-stroke: 0.055em #583225;
+    font-size: 0.729em;
+    padding: 2% 0;
+  }
+  .fc-theme-standard td {
+    border-left: 0.15em solid #583225;
+    border-bottom: 0.15em solid #583225;
+    border-right: 0.15em solid #583225;
+  }
+  .fc-theme-standard td:hover {
+    background-color: #fbd13d !important ;
+  }
+  .fc-scrollgrid-sync-inner {
+    height: auto;
+    display: grid;
   }
   .fc .fc-view-harness {
     position: unset;
@@ -103,7 +155,7 @@ export const StyleWrapper = styled.div`
   .fc .fc-view-harness-active > .fc-view {
     inset: 0px;
     position: unset;
-    height: 100%;
+    height: auto;
   }
   .fc .fc-scroller-harness {
     position: unset;
@@ -116,30 +168,30 @@ export const StyleWrapper = styled.div`
   }
   .fc .fc-scroller-liquid-absolute {
     position: unset;
-    height: 100%;
+    height: auto;
   }
   .fc .fc-daygrid-body {
     width: 100% !important;
-    height: 100%;
+    height: auto;
     position: unset;
   }
   .fc .fc-scrollgrid-section-body table {
     border-bottom-style: hidden;
-    height: 100% !important;
+    height: auto !important;
     width: 100% !important;
   }
   .fc-scrollgrid-sync-table {
     width: 100%;
-    height: 100%;
+    height: auto;
   }
   .fc-dayGridMonth-view .fc-view .fc-daygrid {
-    height: 100%;
+    height: auto;
   }
   .fc-scroller .fc-scroller-liquid-absolute {
-    height: 100%;
+    height: auto;
   }
   .fc .fc-scrollgrid-section table {
-    height: 100%;
+    height: auto !important;
     width: 100% !important;
   }
   .fc .fc-scrollgrid table {
@@ -147,9 +199,6 @@ export const StyleWrapper = styled.div`
     border-right-style: hidden;
     border-top-style: hidden;
     border-bottom-style: hidden;
-  }
-  .fc .fc-daygrid-day-number {
-    cursor: pointer;
   }
 `;
 

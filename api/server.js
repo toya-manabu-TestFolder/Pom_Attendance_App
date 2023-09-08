@@ -1,5 +1,5 @@
 import express from "express";
-
+import cookie from "cookie-parser";
 //  cors()はCross-origin resource sharingを設定するミドルウェア
 //  これを設定しないと、ローカルとバックのアドレスが違うからエラーが発生する。
 //  厳密に言うと、webブラウザにcorsとsopの二つのポリシーがあり、
@@ -8,10 +8,11 @@ import express from "express";
 import cors from "cors";
 import authRouter from "./routes/authApi.js";
 import registarRouter from "./routes/registarApi.js";
+import DayScheduleRouter from "./routes/DayScheduleApi.js";
 
 const app = express();
 const port = 3000;
-
+app.use(cookie());
 app.use(
   cors({
     origin: "http://localhost:5173", //アクセス許可するオリジン
@@ -21,11 +22,9 @@ app.use(
 );
 // express.json()でjson形式のデータを読み取ることが出来る。
 app.use(express.json());
+
 app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
-
-app.get("/", (req, res) => {
-  res.send("Express + TypeScript Server");
-});
+app.use("/DayScheduleApi", DayScheduleRouter);
 
 app.listen(port, () => console.log("startExpress!!"));

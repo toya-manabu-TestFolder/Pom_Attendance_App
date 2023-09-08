@@ -1,5 +1,7 @@
+import DaySchedulePageTmp from "../../Templates/DaySchedulePageTmp/DaySchedulePageTmp";
+
 function DaySchedulePage() {
-  return <div>DaySchedulePage</div>;
+  return <DaySchedulePageTmp />;
 }
 
 export default DaySchedulePage;

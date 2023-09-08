@@ -30,7 +30,6 @@ export const OK: Story = {
     dataTestId: "",
     imgSrc: "/public/Modals/RequestModal/Ok.png",
     imgAlt: "OKボタン",
-    imgStyle: "",
   },
 };
 export const NO: Story = {
@@ -40,6 +39,5 @@ export const NO: Story = {
     dataTestId: "",
     imgSrc: "/public/Modals/RequestModal/NO.png",
     imgAlt: "NOボタン",
-    imgStyle: "",
   },
 };

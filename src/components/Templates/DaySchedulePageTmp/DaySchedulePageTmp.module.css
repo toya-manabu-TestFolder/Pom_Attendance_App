@@ -1,32 +1,174 @@
 .DaySchedulePageTmp {
-  width: 100%;
-  height: auto;
-
-  .head {
-    height: 100%;
-  }
   .body {
     display: grid;
+    border-bottom: clamp(2.5px, 1vw * 0.3, 12px) solid #583225;
     grid-template-columns: 40% 60%;
+
     .body_left {
-      display: grid;
-      grid-template-rows: 60% 40%;
+      display: block;
+      border-right: clamp(1.5px, 1vw * 0.25, 4px) solid #583225;
+      font-size: clamp(10px, 1.85vw, 200px);
       .calendar_wrapp {
-        display: grid;
-        grid-template-rows: 10% 90%;
-        .calendar_title {
-        }
-        .calendar_body_wrapp {
-          width: 100%;
-          background-image: "/public/DaySchedulePage/calendar_wrapp.png";
-          background-size: auto;
-        }
+        padding: 0.5%;
       }
-      .img_wrapp {
+      .calendar_img {
+        padding: 24.2%;
+        height: auto;
+        background-image: url("/DaySchedulePage/calendar_img.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: bottom;
       }
     }
     .body_right {
-      background-color: rgb(20, 214, 59);
+      display: block;
+      border-left: clamp(1.5px, 0.25vw, 4px) solid #583225;
+      height: 100%;
+      font-size: clamp(10px, 1vw, 100px);
+      .day_attendance_setting_section {
+        display: grid;
+        grid-template-rows: 10% 78% 12%;
+        height: 100%;
+        .title_wrapper {
+          display: grid;
+          align-items: center;
+          padding: 0% 10%;
+          font-size: 1.4em;
+        }
+        .day_attendance_setting_wrapper {
+          display: grid;
+          grid-template-rows: repeat(3, 1fr);
+          grid-template-columns: repeat(3, 1fr);
+          column-gap: 2%;
+          gap: 0.5em;
+          border-bottom: clamp(1.5px, 1vw * 0.25, 4px) solid #583225;
+          padding: 0% 2% 1% 2%;
+          font-size: 2em;
+        }
+        .day_attendance_setting_button_wrapper {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          border-top: clamp(1.5px, 1vw * 0.25, 4px) solid #583225;
+
+          padding: 2% 0%;
+          font-size: 2em;
+          .day_attendance_setting_button {
+            margin-right: 3%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .DaySchedulePageTmp {
+    .body {
+      .body_left {
+        font-size: clamp(10px, 2.35vw, 100px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .DaySchedulePageTmp {
+    .body {
+      display: block;
+      grid-template-columns: 1fr;
+      border-bottom: clamp(2.5px, 1vw, 12px) solid #583225;
+
+      .body_left {
+        display: block;
+        border-right: 0 solid #583225;
+        font-size: clamp(10px, 5.5vw, 200px);
+        padding-top: 5%;
+        .calendar_img {
+          display: none;
+        }
+      }
+      .body_right {
+        margin-top: 10%;
+        display: block;
+        border-left: 0 solid #583225;
+        font-size: clamp(10px, 1vw, 100px);
+        .day_attendance_setting_section {
+          display: block;
+          height: auto;
+          .title_wrapper {
+            font-size: 3.5em;
+            margin: 5% 0;
+          }
+          .day_attendance_setting_wrapper {
+            grid-template-rows: repeat(5, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            border-bottom: unset;
+            font-size: 3.3em;
+          }
+          .day_attendance_setting_button_wrapper {
+            border-top: clamp(1.5px, 0.7vw, 6px) solid #583225;
+            font-size: 3em;
+            padding: 5% 0;
+            .day_attendance_setting_button {
+              margin-right: 3%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .DaySchedulePageTmp {
+    .body {
+      display: block;
+      grid-template-columns: 1fr;
+      border-bottom: clamp(2.5px, 1vw, 12px) solid #583225;
+
+      .body_left {
+        display: block;
+        border-right: 0 solid #583225;
+        font-size: clamp(10px, 6.5vw, 200px);
+        padding-top: 5%;
+        .calendar_img {
+          display: none;
+        }
+      }
+      .body_right {
+        display: block;
+        border-left: 0 solid #583225;
+        font-size: clamp(10px, 1vw, 100px);
+        .day_attendance_setting_section {
+          display: block;
+          height: auto;
+          .title_wrapper {
+            font-size: 2.5em;
+          }
+          .day_attendance_setting_wrapper {
+            grid-template-rows: repeat(9, 1fr);
+            grid-template-columns: 1fr;
+            row-gap: 30px;
+            border-bottom: unset;
+            font-size: 3.5em;
+            padding: 10% 2%;
+          }
+          .day_attendance_setting_button_wrapper {
+            flex-direction: column;
+            border-top: clamp(1.5px, 0.7vw, 6px) solid #583225;
+            font-size: 2.5em;
+            padding: 10%;
+            .day_attendance_setting_button {
+              width: 100%;
+              margin-bottom: 10%;
+              margin-right: 0;
+              &:last-child {
+                margin-bottom: 0%;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

@@ -26,6 +26,7 @@ function RequestButton({
       disabled={disabled}
     >
       <FutidoriSpan style={style} text={text} />
+      <span></span>
       {text}
     </button>
   );

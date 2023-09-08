@@ -23,7 +23,9 @@ export default function LoginPageTmp({ LoginError }: Props) {
   const onSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const result = await dispatch(sendInputData(inputData));
-    if (result.payload === 200) navigate("/Home");
+    if (result.payload === 200) {
+      navigate("/Home");
+    }
   };
   return (
     <form onSubmit={onSubmit}>

@@ -1,4 +1,3 @@
-import Img from "../../Img/Img";
 import "./ModalButton.css";
 
 type Props = {
@@ -7,17 +6,9 @@ type Props = {
   dataTestId: string;
   imgSrc: string;
   imgAlt: string;
-  imgStyle: string;
 };
 
-function ModalButton({
-  type,
-  onClick,
-  dataTestId,
-  imgSrc,
-  imgAlt,
-  imgStyle,
-}: Props) {
+function ModalButton({ type, onClick, dataTestId, imgSrc, imgAlt }: Props) {
   return (
     <button
       className="modalButton"
@@ -25,7 +16,7 @@ function ModalButton({
       onClick={onClick}
       data-testid={dataTestId}
     >
-      <Img alt={imgAlt} src={imgSrc} style={imgStyle} />
+      <img className="modalButton_img" alt={imgAlt} src={imgSrc} />
     </button>
   );
 }
