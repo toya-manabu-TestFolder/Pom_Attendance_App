@@ -13,7 +13,7 @@ const authRouter = express.Router();
 authRouter.post("/", async (req, res) => {
   const user = await axios
     .get(
-      `${SUPABASE_URL}users?mailaddress=eq.${req.body.mailaddress}&password=eq.${req.body.password}`,
+      `https://blltumbexweiimidgyhd.supabase.co/rest/v1/users?mailaddress=eq.${req.body.mailaddress}&password=eq.${req.body.password}`,
       {
         headers: {
           apikey: `${API_KEY}`,
