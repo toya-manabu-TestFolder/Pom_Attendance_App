@@ -172,3 +172,56 @@
     }
   }
 }
+@media screen and (max-width: 300px) {
+  .DaySchedulePageTmp {
+    .body {
+      display: block;
+      grid-template-columns: 1fr;
+      border-bottom: clamp(2.5px, 1vw, 12px) solid #583225;
+
+      .body_left {
+        display: block;
+        border-right: 0 solid #583225;
+        font-size: clamp(10px, 6.5vw, 200px);
+        padding-top: 5%;
+        .calendar_img {
+          display: none;
+        }
+      }
+      .body_right {
+        display: block;
+        border-left: 0 solid #583225;
+        font-size: clamp(10px, 1vw, 100px);
+        .day_attendance_setting_section {
+          display: block;
+          height: auto;
+          .title_wrapper {
+            font-size: 2.5em;
+          }
+          .day_attendance_setting_wrapper {
+            grid-template-rows: repeat(9, 1fr);
+            grid-template-columns: 1fr;
+            row-gap: 30px;
+            border-bottom: unset;
+            font-size: 3em;
+            padding: 10% 2%;
+          }
+          .day_attendance_setting_button_wrapper {
+            flex-direction: column;
+            border-top: clamp(1.5px, 0.7vw, 6px) solid #583225;
+            font-size: 2.5em;
+            padding: 10%;
+            .day_attendance_setting_button {
+              width: 100%;
+              margin-bottom: 10%;
+              margin-right: 0;
+              &:last-child {
+                margin-bottom: 0%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
