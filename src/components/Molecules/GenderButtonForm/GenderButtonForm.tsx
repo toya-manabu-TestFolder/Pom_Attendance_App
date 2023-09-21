@@ -7,9 +7,9 @@ import RadioButton from "../../atoms/input/RadioButton/RadioButton";
 export default function GenderButtonForm({ errorText }: any) {
   const dispatch = useDispatch();
   const selectGenderType = [
-    { id: "male", value: "男性", name: "男性" },
-    { id: "female", value: "女性", name: "女性" },
-    { id: "other", value: "回答しない", name: "回答しない" },
+    { id: "male", value: 1, name: "男性" },
+    { id: "female", value: 2, name: "女性" },
+    { id: "other", value: 3, name: "回答しない" },
   ];
   return (
     <div className="GenderButtonForm">
@@ -30,7 +30,12 @@ export default function GenderButtonForm({ errorText }: any) {
         ))}
       </div>
       <div className="input-form-errorMsg">
-        <Span style="" color="red" text={errorText} onClickSpan={() => {}} />
+        <Span
+          style="display_block"
+          color="red"
+          text={errorText}
+          onClickSpan={() => {}}
+        />
       </div>
     </div>
   );

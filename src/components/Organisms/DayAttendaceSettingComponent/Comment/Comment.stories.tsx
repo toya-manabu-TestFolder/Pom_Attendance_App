@@ -30,6 +30,6 @@ export const Default: Story = {
   render: () => {
     const DayScheduleState = useSelector(State);
     const DayAttendanceData = DayScheduleState.DayAttendanceData;
-    return <Comment Comment={DayAttendanceData.comment} />;
+    return <Comment Comment={DayAttendanceData.comment} disabled={false} />;
   },
 };

@@ -53,12 +53,11 @@
   bottom: 0;
   right: 0;
   left: 0;
-  overflow-y: scroll;
   display: grid;
   grid-template-rows: 70% 30%;
   animation: Appearance 0.2s linear;
   padding: 2% 5%;
-  z-index: 4;
+  z-index: 150;
 
   .modal_textarea_wrapper {
     position: relative;
@@ -160,5 +159,67 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .modal_wrapper {
+    grid-template-rows: 65% 35%;
+    padding: 3%;
+
+    .modal_textarea_wrapper {
+      .modal_textarea {
+        font-size: 1.2em;
+        padding: 2%;
+      }
+    }
+    .modal_button_wrapper {
+      padding: 10% 0%;
+      display: flex;
+      flex-direction: column;
+      font-size: 1.2em;
+      justify-content: space-around;
+    }
+  }
+  .completed_modal_wrapper {
+    .completed_message_wrapper {
+      height: 50%;
+      width: 98%;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .message {
+        font-size: 1.05em;
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .modal_wrapper {
+    .modal_textarea_wrapper {
+      .modal_textarea {
+        font-size: 1em;
+      }
+    }
+    .modal_button_wrapper {
+      font-size: 0.8em;
+    }
+  }
+  .completed_modal_wrapper {
+    .completed_message_wrapper {
+      .message {
+        font-size: 1em;
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .completed_modal_wrapper {
+    .completed_message_wrapper {
+      .message {
+        font-size: 0.63em;
+      }
+    }
   }
 }

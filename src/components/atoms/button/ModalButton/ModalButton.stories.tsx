@@ -28,7 +28,7 @@ export const OK: Story = {
     type: "button",
     onClick: () => {},
     dataTestId: "",
-    imgSrc: "/public/Modals/RequestModal/Ok.png",
+    imgSrc: "/Modals/RequestModal/Ok.png",
     imgAlt: "OKボタン",
   },
 };
@@ -37,7 +37,7 @@ export const NO: Story = {
     type: "button",
     onClick: () => {},
     dataTestId: "",
-    imgSrc: "/public/Modals/RequestModal/NO.png",
+    imgSrc: "/Modals/RequestModal/NO.png",
     imgAlt: "NOボタン",
   },
 };

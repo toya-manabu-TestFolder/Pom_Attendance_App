@@ -35,6 +35,7 @@ export const Default: Story = {
         endTime={DayAttendanceData.default_end_time}
         registState={DayAttendanceData.attendance_type}
         startTime={DayAttendanceData.default_start_time}
+        disabled={false}
       />
     );
   },

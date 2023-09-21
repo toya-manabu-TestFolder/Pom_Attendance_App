@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Button from "../../atoms/button/Button";
 import styles from "./Headers.module.css";
-import MenuModal from "../Modals/RequestButtonModal/MenuModal/MenuModal";
+import MenuModal from "../Modals/MenuModal/MenuModal";
 import Cookies from "js-cookie";
 
 // type Props = {};
@@ -34,6 +34,7 @@ function Headers() {
               }}
               text="MENU"
               type="button"
+              disabled={false}
             />
           </div>
         </div>

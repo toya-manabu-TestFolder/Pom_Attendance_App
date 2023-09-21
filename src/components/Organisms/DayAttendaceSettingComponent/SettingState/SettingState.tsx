@@ -13,10 +13,14 @@ function SettingState({ registState }: Props) {
           color="#FBD13D"
           onClickSpan={() => {}}
           style="display_block"
-          text="登&nbsp;録&nbsp;状&nbsp;態"
+          text="登&nbsp;録&nbsp;承&nbsp;認&nbsp;状&nbsp;態"
         />
       </div>
-      <div className={styles.body}>
+      <div
+        className={`${styles.body} ${
+          registState === "登録なし" ? "" : styles.set_bg
+        }`}
+      >
         <Span
           color="#F9F4FC"
           onClickSpan={() => {}}

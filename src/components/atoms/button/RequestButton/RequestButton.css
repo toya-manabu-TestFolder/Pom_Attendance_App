@@ -20,7 +20,7 @@
   cursor: url("cursol.png"), pointer;
   &:hover {
     background-color: #7e262b;
-    border: #f9f4fc 0.2rem solid;
+    border: clamp(3px, 0.4vw, 20px) solid #f9f4fc;
     color: #fbd13d;
   }
 }
@@ -38,10 +38,9 @@
   font-size: 1em;
   font-style: normal;
   font-weight: bold;
-  letter-spacing: 0.2rem;
   -webkit-text-stroke: 0.15em #583225;
 
-  border: #f9f4fc 0.2rem solid;
+  border: clamp(3px, 0.4vw, 20px) solid #f9f4fc;
   border-radius: 0.5rem;
   background-color: #7e262b;
 }

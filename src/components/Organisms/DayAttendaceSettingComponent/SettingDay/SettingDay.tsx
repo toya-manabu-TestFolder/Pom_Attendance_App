@@ -2,13 +2,16 @@ import Span from "../../../atoms/Span/Span";
 import styles from "./SettingDay.module.css";
 
 type Props = {
-  year: string;
-  month: string;
-  day: string;
-  dayOfWeek: string;
+  toDay: string;
 };
 
-function SettingDay({ year, month, day, dayOfWeek }: Props) {
+function SettingDay({ toDay }: Props) {
+  const week = ["日", "月", "火", "水", "木", "金", "土"];
+  const newDay = new Date(toDay);
+  const year = newDay.getFullYear();
+  const month = newDay.getMonth() + 1;
+  const day = newDay.getDate();
+  const dayOfWeek = week[newDay.getDay()];
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>

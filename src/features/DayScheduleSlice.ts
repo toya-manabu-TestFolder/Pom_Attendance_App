@@ -1,120 +1,203 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { DayScheduleTypes } from "../types/types";
 
 const API_URL = import.meta.env.VITE_API_URL;
+
+type Props = {
+  DaySchedule: {
+    resetDayAttendanceData: DayScheduleTypes["DayAttendanceDataType"];
+    defaultDayAttendanceData: DayScheduleTypes["DayAttendanceDataType"];
+    editedDayAttendanceData: DayScheduleTypes["DayAttendanceDataType"];
+    canApprovalRequest: boolean;
+    isError: boolean;
+    errorMessage: string;
+    errorOfBtnDisable: boolean;
+  };
+};
 
 export const getDayAttendanceData: any = createAsyncThunk(
   "DaySchedule/getDayAttendanceData",
   async (data) => {
-    try {
-      const response = await axios.post(
-        `${API_URL}DayScheduleApi/getDayAttendanceData`,
-        data
-      );
-      // response.dataとすることで、返ってきた値をreducerでaction.payloadとして扱える。;
-      return response.data;
-    } catch (error: any) {
-      return { message: "通信に失敗しました！！" };
-    }
+    const result = await axios.post(
+      `${API_URL}DayScheduleApi/getDayAttendanceData`,
+      data
+    );
+    return result.data;
   }
 );
 
-type Props = {
-  DaySchedule: {
-    DayAttendanceData: {
-      id: string;
-      date: string;
-      regist_state: string;
-      attendance_type: string;
-      default_start_time: string;
-      default_end_time: string;
-      start_time: string;
-      end_time: string;
-      attendance_state: string;
-      paid_time: string;
-      break_time: string;
-      lose_time: string;
-      over_time: string;
-      comment: string;
-    };
-  };
-};
+export const registDayAttendData: any = createAsyncThunk(
+  "DaySchedule/registDayAttendData",
+  async (data) => {
+    const result = await axios.post(
+      `${API_URL}DayScheduleApi/registDayAttendData`,
+      data
+    );
+    return result.data;
+  }
+);
+
+export const updateDayAttendData: any = createAsyncThunk(
+  "DaySchedule/updateDayAttendData",
+  async (data) => {
+    const result = await axios.post(
+      `${API_URL}DayScheduleApi/updateDayAttendData`,
+      data
+    );
+    return result.data;
+  }
+);
+
+export const approvalRequestDayAttendData: any = createAsyncThunk(
+  "DaySchedule/approvalRequestDayAttendData",
+  async (data) => {
+    const result = await axios.post(
+      `${API_URL}DayScheduleApi/approvalRequestDayAttendData`,
+      data
+    );
+    return result.data;
+  }
+);
 
 const DayScheduleSlice = createSlice({
   name: "DaySchedule",
   initialState: {
-    DayAttendanceData: {
-      id: "",
+    resetDayAttendanceData: {
+      user_id: "",
       date: "",
+      approvel_request_state: false,
+      approvel_state: false,
       regist_state: "登録なし",
       attendance_type: "通常業務",
-      default_start_time: "09:00:00",
-      default_end_time: "18:00:00",
-      start_time: "09:00:00",
-      end_time: "18:00:00",
+      default_start_time: "09:00",
+      default_end_time: "18:00",
+      start_time: "09:00",
+      end_time: "18:00",
       attendance_state: "出勤",
-      paid_time: "00:00:00",
-      break_time: "00:00:00",
-      lose_time: "00:00:00",
-      over_time: "00:00:00",
+      paid_time: "00:00",
+      break_time: "00:00",
+      lose_time: "00:00",
+      over_time: "00:00",
+      total_time: "08:00",
       comment: "",
+      selected: false,
     },
+    editedDayAttendanceData: {
+      user_id: "",
+      date: "",
+      approvel_request_state: false,
+      approvel_state: false,
+      regist_state: "登録なし",
+      attendance_type: "通常業務",
+      default_start_time: "09:00",
+      default_end_time: "18:00",
+      start_time: "09:00",
+      end_time: "18:00",
+      attendance_state: "出勤",
+      paid_time: "00:00",
+      break_time: "00:00",
+      lose_time: "00:00",
+      over_time: "00:00",
+      total_time: "08:00",
+      comment: "",
+      selected: false,
+    },
+    canApprovalRequest: true,
+    isError: false,
+    errorOfBtnDisable: false,
+    errorMessage: "",
   },
   extraReducers: (builder) => {
     builder.addCase(getDayAttendanceData.fulfilled, (state, action) => {
-      const DayAttendanceData = state.DayAttendanceData;
-      const inportData = action.payload[0];
-      if (action.payload.length) {
-        DayAttendanceData.id = inportData.id;
-        DayAttendanceData.date = inportData.date;
-        DayAttendanceData.regist_state = inportData.regist_state;
-        DayAttendanceData.attendance_type = inportData.attendance_type;
-        DayAttendanceData.default_start_time = inportData.default_start_time;
-        DayAttendanceData.default_end_time = inportData.default_end_time;
-        DayAttendanceData.start_time = inportData.start_time;
-        DayAttendanceData.end_time = inportData.end_time;
-        DayAttendanceData.attendance_state = inportData.attendance_state;
-        DayAttendanceData.paid_time = inportData.paid_time;
-        DayAttendanceData.break_time = inportData.break_time;
-        DayAttendanceData.lose_time = inportData.lose_time;
-        DayAttendanceData.over_time = inportData.over_time;
-        DayAttendanceData.comment = inportData.comment;
+      if (action.payload.status !== 200) {
+        state.isError = true;
+        state.errorOfBtnDisable = true;
+        state.errorMessage = "通信エラーが発生しました。";
+      }
+
+      const inportData = action.payload.data[0];
+      if (action.payload.data.length) {
+        state.editedDayAttendanceData = inportData;
       } else {
-        DayAttendanceData.id = action.meta.arg.userId;
-        DayAttendanceData.date = action.meta.arg.toDaya;
+        state.editedDayAttendanceData.user_id = action.meta.arg.userId;
+        state.editedDayAttendanceData.date = action.meta.arg.toDay;
+        state.resetDayAttendanceData.user_id = action.meta.arg.userId;
+        state.resetDayAttendanceData.date = action.meta.arg.toDay;
+        state.editedDayAttendanceData = state.resetDayAttendanceData;
+      }
+    });
+    builder.addCase(registDayAttendData.fulfilled, (state, action) => {
+      if (action.payload.status === 200) {
+        state.editedDayAttendanceData = action.payload.data;
+      } else {
+        state.isError = true;
+        state.errorMessage = "通信エラーが発生しました。";
+      }
+    });
+    builder.addCase(updateDayAttendData.fulfilled, (state, action) => {
+      if (action.payload.status === 200) {
+        state.editedDayAttendanceData = action.payload.data;
+      } else {
+        state.isError = true;
+        state.errorMessage = "通信エラーが発生しました。";
+      }
+    });
+    builder.addCase(approvalRequestDayAttendData.fulfilled, (state, action) => {
+      if (action.payload.status === 200) {
+        state.editedDayAttendanceData = action.payload.data;
+      } else {
+        state.isError = true;
+        state.errorMessage = "通信エラーが発生しました。";
       }
     });
   },
   reducers: {
     selectDay: (state, action) => {
-      state.DayAttendanceData.date = action.payload;
+      state.editedDayAttendanceData.date = action.payload;
     },
     setShiftType: (state, action) => {
-      state.DayAttendanceData.attendance_type = action.payload;
+      state.editedDayAttendanceData.attendance_type = action.payload;
     },
     setShiftStartTime: (state, action) => {
-      state.DayAttendanceData.default_start_time = action.payload;
+      state.editedDayAttendanceData.default_start_time = action.payload;
     },
     setShiftEndTime: (state, action) => {
-      state.DayAttendanceData.default_end_time = action.payload;
+      state.editedDayAttendanceData.default_end_time = action.payload;
     },
     setAttendStartTime: (state, action) => {
-      state.DayAttendanceData.start_time = action.payload;
+      state.editedDayAttendanceData.start_time = action.payload;
     },
     setAttendEndTime: (state, action) => {
-      state.DayAttendanceData.end_time = action.payload;
+      state.editedDayAttendanceData.end_time = action.payload;
     },
     setAttendState: (state, action) => {
-      state.DayAttendanceData.attendance_state = action.payload;
+      state.editedDayAttendanceData.attendance_state = action.payload;
     },
     setPaidTime: (state, action) => {
-      state.DayAttendanceData.paid_time = action.payload;
+      state.editedDayAttendanceData.paid_time = action.payload;
     },
     setBreakTime: (state, action) => {
-      state.DayAttendanceData.break_time = action.payload;
+      state.editedDayAttendanceData.break_time = action.payload;
+    },
+    setTotalTime: (state, action) => {
+      state.editedDayAttendanceData.total_time = action.payload;
     },
     setComment: (state, action) => {
-      state.DayAttendanceData.comment = action.payload;
+      state.editedDayAttendanceData.comment = action.payload;
+    },
+    setRegistState: (state, action) => {
+      state.editedDayAttendanceData.regist_state =
+        action.payload === "登録済み" ? "登録なし" : "登録済み";
+    },
+    setApprovalReqState: (state) => {
+      state.editedDayAttendanceData.approvel_request_state = state
+        .editedDayAttendanceData.approvel_request_state
+        ? false
+        : true;
+    },
+    closeErrorModal: (state) => {
+      state.isError = false;
     },
   },
 });

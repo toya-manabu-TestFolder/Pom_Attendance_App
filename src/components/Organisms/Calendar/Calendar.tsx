@@ -7,18 +7,44 @@ import jaLocale from "@fullcalendar/core/locales/ja";
 import interactionPlugin from "@fullcalendar/interaction";
 import styled from "@emotion/styled";
 import styles from "./Calendar.module.css";
-// import { Reducer, State } from "../../../features/DayScheduleSlice";
-// import { useDispatch, useSelector } from "react-redux";
+import { getDayAttendanceData } from "../../../features/DayScheduleSlice";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
+import { useEffect } from "react";
 
 function Calendar() {
-  // const dispatch = useDispatch();
-  // const DayScheduleState = useSelector(State);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const toDay = new Date();
+    const Year = toDay.getFullYear();
+    const Month = "0" + (toDay.getMonth() + 1);
+    const date = "0" + toDay.getDate();
 
-  const handleDateClick = (event: any) => {
-    // const selectDay = Reducer.selectDay;
-    // dispatch(selectDay(event.dateStr));
-    // dispatch(Reducer.getToDay());
-    console.log(event.date);
+    const todayElWrapper = document.querySelector(
+      `[data-date="${Year + "-" + Month.slice(-2) + "-" + date.slice(-2)}"]`
+    );
+    if (todayElWrapper !== null) todayElWrapper.classList.add("setBgColor");
+
+    const todayEl = document.querySelector(
+      `[aria-label="${Year}年${Month.slice(1)}月${date.slice(1)}日"]`
+    );
+    if (todayEl !== null) todayEl.classList.add("setTextColor");
+  }, []);
+
+  const handleDateClick = async (event: any) => {
+    const setBgColor = document.querySelector(".setBgColor");
+    if (setBgColor !== null) setBgColor.classList.remove("setBgColor");
+
+    const setTextColor = document.querySelector(".setTextColor");
+    if (setTextColor !== null) setTextColor.classList.remove("setTextColor");
+
+    event.dayEl.classList.add("setBgColor");
+    event.dayEl.querySelector("a").classList.add("setTextColor");
+    const sendData = {
+      toDay: `${event.dateStr}`,
+      userId: Cookies.get("userId"),
+    };
+    await dispatch(getDayAttendanceData(sendData));
   };
 
   return (
@@ -38,7 +64,13 @@ function Calendar() {
 }
 
 export const StyleWrapper = styled.div`
-  .fc {
+  .setBgColor {
+    background-color: #fbd13d !important;
+  }
+  .setTextColor {
+    color: #ff0000;
+  }
+  #D04F2F .fc {
     display: grid;
     grid-template-rows: 12% 88%;
     height: auto;
@@ -98,11 +130,17 @@ export const StyleWrapper = styled.div`
     width: 100%;
     z-index: 4;
   }
-  .fc-day-sun {
-    background-color: #ff0000 !important;
+  td.fc-day.fc-day-sat.fc-day-future.fc-daygrid-day {
+    background-color: #a3dee2;
   }
-  .fc-day-sat {
-    background-color: #a3dee2 !important;
+  td.fc-day.fc-day-sat.fc-day-past.fc-daygrid-day {
+    background-color: #a3dee2;
+  }
+  td.fc-day.fc-day-sun.fc-day-future.fc-daygrid-day {
+    background-color: #ff0000;
+  }
+  td.fc-day.fc-day-sun.fc-day-past.fc-daygrid-day {
+    background-color: #ff0000;
   }
 
   // 日付

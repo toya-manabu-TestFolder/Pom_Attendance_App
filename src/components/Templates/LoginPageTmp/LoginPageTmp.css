@@ -57,7 +57,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-image: url("/public/RCaramBg.png");
+    background-image: url("/RCaramBg.png");
     background-repeat: no-repeat;
     background-size: 44% 100%;
     background-position: right;
@@ -87,7 +87,7 @@
 @media screen and (max-width: 1279px) and (min-height: 700px) {
   .mobile_img_wrapp {
     display: block;
-    background-image: url("/public/navigation/titleLogo.png");
+    background-image: url("/navigation/titleLogo.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -140,7 +140,7 @@
 @media screen and (max-width: 767px) {
   .mobile_img_wrapp {
     display: block;
-    background-image: url("/public/navigation/titleLogo.png");
+    background-image: url("/navigation/titleLogo.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100% 100%;

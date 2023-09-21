@@ -7,9 +7,10 @@ type Props = {
   registState: string;
   startTime: string;
   endTime: string;
+  disabled: boolean;
 };
 
-function SettingShift({ registState, startTime, endTime }: Props) {
+function SettingShift({ registState, startTime, endTime, disabled }: Props) {
   const dispatch = useDispatch();
   return (
     <div className={styles.wrapper}>
@@ -18,7 +19,7 @@ function SettingShift({ registState, startTime, endTime }: Props) {
           color="#FBD13D"
           onClickSpan={() => {}}
           style="display_block"
-          text="勤&nbsp;務&nbsp;状&nbsp;況"
+          text="予&nbsp;定&nbsp;勤&nbsp;務&nbsp;状&nbsp;況"
         />
       </div>
       <div className={styles.body}>
@@ -28,7 +29,8 @@ function SettingShift({ registState, startTime, endTime }: Props) {
             onChange={(event) =>
               dispatch(Reducer.setShiftType(event.target.value))
             }
-            defaultValue={registState}
+            value={registState}
+            disabled={disabled}
           >
             <option className={styles.options} value="通常業務">
               通常業務
@@ -51,19 +53,21 @@ function SettingShift({ registState, startTime, endTime }: Props) {
           <input
             type="time"
             className={styles.start_time}
+            onChange={(event) => {
+              dispatch(Reducer.setShiftStartTime(event.target.value));
+            }}
             value={startTime}
-            onChange={(event) =>
-              dispatch(Reducer.setShiftStartTime(event.target.value))
-            }
+            disabled={disabled}
           />
           <span className={styles.time_space}>～</span>
           <input
             type="time"
             className={styles.end_time}
-            value={endTime}
             onChange={(event) =>
               dispatch(Reducer.setShiftEndTime(event.target.value))
             }
+            value={endTime}
+            disabled={disabled}
           />
         </div>
       </div>

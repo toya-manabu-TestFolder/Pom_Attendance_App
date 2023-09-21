@@ -1,13 +1,14 @@
-import { useDispatch } from "react-redux";
 import Span from "../../../atoms/Span/Span";
 import styles from "./BreakTime.module.css";
 import { Reducer } from "../../../../features/DayScheduleSlice";
+import { useDispatch } from "react-redux";
 
 type Props = {
   breakTime: string;
+  disabled: boolean;
 };
 
-function BreakTime({ breakTime }: Props) {
+function BreakTime({ breakTime, disabled }: Props) {
   const dispatch = useDispatch();
 
   return (
@@ -25,10 +26,11 @@ function BreakTime({ breakTime }: Props) {
           <input
             type="time"
             className={styles.start_time}
-            value={breakTime}
             onChange={(event) =>
               dispatch(Reducer.setBreakTime(event.target.value))
             }
+            value={breakTime}
+            disabled={disabled}
           />
         </div>
       </div>

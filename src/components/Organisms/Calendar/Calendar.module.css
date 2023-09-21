@@ -2,6 +2,7 @@
   .StyleWrapper {
     position: relative;
     padding: 4%;
+
     &::before {
       content: "";
       position: absolute;
@@ -16,6 +17,7 @@
     }
   }
 }
+
 :root {
   --fc-border-color: none;
 }

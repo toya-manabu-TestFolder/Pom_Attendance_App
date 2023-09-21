@@ -14,18 +14,23 @@ type Props = ConfirmationDataType;
 export const RegistData: any = createAsyncThunk(
   "confirmation/RegistData",
   async (data) => {
-    try {
-      const result = await axios.post(`${API_URL}registarApi/regist`, data);
-      return result.data;
-    } catch (error: any) {
-      return error.message;
-    }
+    const result = await axios.post(`${API_URL}registarApi/regist`, data);
+    return result.status;
   }
 );
 
 const confirmationSlice = createSlice({
   name: "confirmation",
   initialState: {
+    resetConfirmationData: [
+      { name: "お名前", value: "", type: "text" },
+      { name: "フリガナ", value: "", type: "text" },
+      { name: "性別", value: "", type: "text" },
+      { name: "生年月日", value: "", type: "text" },
+      { name: "メールアドレス", value: "", type: "text" },
+      { name: "電話番号", value: "", type: "text" },
+      { name: "パスワード", value: "", type: "password" },
+    ],
     confirmationData: [
       { name: "お名前", value: "", type: "text" },
       { name: "フリガナ", value: "", type: "text" },
@@ -53,8 +58,9 @@ const confirmationSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(RegistData.fulfilled, (state, action) => {
-      if (action.payload === "Network Error")
+      if (action.payload === 400) {
         state.error = "登録が失敗しました。ネットワーク状況をご確認ください。";
+      }
     });
   },
   reducers: {
@@ -82,14 +88,7 @@ const confirmationSlice = createSlice({
     sendDataUpdate: (state, action) => {
       state.sendData.name = action.payload.name;
       state.sendData.furigana = action.payload.furigana;
-      state.sendData.gender_id =
-        action.payload.gender_id === "男性"
-          ? 1
-          : action.payload.gender_id === "女性"
-          ? 2
-          : action.payload.gender_id === "回答しない"
-          ? 3
-          : 0;
+      state.sendData.gender_id = action.payload.gender_id;
       state.sendData.birthday = action.payload.birthday;
       state.sendData.mailaddress = action.payload.mailaddress;
       state.sendData.phone = action.payload.phone;
@@ -106,6 +105,29 @@ const confirmationSlice = createSlice({
 
       // emailJS送信
       emailjs.send(serviceID, templateID, templateVariables, userID);
+    },
+    resetState: (state) => {
+      const resetConfirmationData = [
+        { name: "お名前", value: "", type: "text" },
+        { name: "フリガナ", value: "", type: "text" },
+        { name: "性別", value: "", type: "text" },
+        { name: "生年月日", value: "", type: "text" },
+        { name: "メールアドレス", value: "", type: "text" },
+        { name: "電話番号", value: "", type: "text" },
+        { name: "パスワード", value: "", type: "password" },
+      ];
+      const resetSendData = {
+        name: "",
+        furigana: "",
+        gender_id: 0,
+        birthday: "0000-00-00",
+        mailaddress: "",
+        phone: "",
+        password: "",
+      };
+
+      state.confirmationData = resetConfirmationData;
+      state.sendData = resetSendData;
     },
   },
 });

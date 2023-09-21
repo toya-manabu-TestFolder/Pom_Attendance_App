@@ -1,22 +1,24 @@
 import Span from "../../../atoms/Span/Span";
 import styles from "./Comment.module.css";
-import { Reducer } from "../../../../features/DayScheduleSlice";
-import { useDispatch } from "react-redux";
 import Button from "../../../atoms/button/Button";
 import { useState } from "react";
 import { gsap } from "gsap";
+import CompletModal from "../../Modals/CompletModal/CompletModal";
+import { Reducer } from "../../../../features/DayScheduleSlice";
+import { useDispatch } from "react-redux";
 
 type Props = {
   Comment: string;
+  disabled: boolean;
 };
 
-function Comment({ Comment }: Props) {
+function Comment({ Comment, disabled }: Props) {
   const [isModal, setIsModal] = useState(false);
   const [isEditComplet, setIsEditComplet] = useState(false);
-  const [editComment, setEditCommetn] = useState(Comment);
+  const [editComment, setEditComment] = useState("");
   const dispatch = useDispatch();
 
-  function editCommentCompleted() {
+  function editCommentCompleted(editComment: string) {
     dispatch(Reducer.setComment(editComment));
     gsap.to(".edit_comment_completed", {
       duration: 0.5,
@@ -38,7 +40,6 @@ function Comment({ Comment }: Props) {
       setIsModal(false);
     }, 300);
   }
-
   return (
     <>
       <div className={styles.wrapper}>
@@ -61,81 +62,67 @@ function Comment({ Comment }: Props) {
               <Button
                 dataTestid=""
                 onClick={() => {
+                  setEditComment(Comment);
                   setIsModal(true);
                 }}
-                text="編集する"
+                text="内容を確認する"
                 type="button"
+                disabled={false}
               />
             </div>
           </div>
         </div>
       </div>
-      <>
-        {isModal ? (
-          <>
-            <div
-              className={`${styles.modal_wrapper} edit_comment_completed cancel_animation`}
-            >
-              <div className={styles.modal_textarea_wrapper}>
-                <textarea
-                  className={styles.modal_textarea}
-                  placeholder="コメントがあれば入力してください。"
-                  disabled={false}
-                  onChange={(event) => setEditCommetn(event.target.value)}
-                >
-                  {Comment}
-                </textarea>
-              </div>
-              <div className={styles.modal_button_wrapper}>
-                <div className={styles.modal_button}>
-                  <Button
-                    dataTestid=""
-                    onClick={() => {
-                      setIsEditComplet(true);
-                      setTimeout(() => {
-                        editCommentCompleted();
-                      }, 0);
-                    }}
-                    text="コメントを保存する"
-                    type="button"
-                  />
-                </div>
-                <div className={styles.modal_button}>
-                  <Button
-                    dataTestid=""
-                    onClick={() => {
-                      cancelFun();
-                    }}
-                    text="編集をキャンセルする"
-                    type="button"
-                  />
-                </div>
-              </div>
-              <>
-                {isEditComplet ? (
-                  <div className={styles.completed_modal_wrapper}>
-                    <div className={styles.completed_message_wrapper}>
-                      <div className={styles.message}>
-                        <Span
-                          color="#F9F4FC"
-                          onClickSpan={() => {}}
-                          style="display_block"
-                          text="コメントを保存しました！！"
-                        />
-                      </div>
-                      <div className={styles.img}></div>
-                    </div>
-                  </div>
-                ) : (
-                  <></>
-                )}
-              </>
+
+      {isModal && (
+        <div
+          className={`${styles.modal_wrapper} edit_comment_completed cancel_animation`}
+        >
+          <div className={styles.modal_textarea_wrapper}>
+            <textarea
+              className={styles.modal_textarea}
+              placeholder="コメントがあれば入力してください。"
+              disabled={disabled}
+              onChange={(event) => setEditComment(event.target.value)}
+              value={editComment}
+            ></textarea>
+          </div>
+          <div className={styles.modal_button_wrapper}>
+            <div className={styles.modal_button}>
+              <Button
+                dataTestid=""
+                onClick={() => {
+                  setIsEditComplet(true);
+                  setTimeout(() => {
+                    editCommentCompleted(editComment);
+                  }, 0);
+                }}
+                text="コメントを保存する"
+                type="button"
+                disabled={disabled}
+              />
             </div>
-          </>
-        ) : (
-          <></>
-        )}
-      </>
+            <div className={styles.modal_button}>
+              <Button
+                dataTestid=""
+                onClick={() => {
+                  cancelFun();
+                }}
+                text="編集をキャンセルする"
+                type="button"
+                disabled={false}
+              />
+            </div>
+          </div>
+
+          {isEditComplet && (
+            <CompletModal
+              imgURL="/Modals/comment_edit_comp.png"
+              text={"コメントを保存しました！！"}
+            />
+          )}
+        </div>
+      )}
     </>
   );
 }

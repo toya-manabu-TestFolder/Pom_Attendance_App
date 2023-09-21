@@ -5,9 +5,10 @@ import { useDispatch } from "react-redux";
 
 type Props = {
   attendState: string;
+  disabled: boolean;
 };
 
-function AttendState({ attendState }: Props) {
+function AttendState({ attendState, disabled }: Props) {
   const dispatch = useDispatch();
   return (
     <div className={styles.wrapper}>
@@ -26,7 +27,8 @@ function AttendState({ attendState }: Props) {
             onChange={(event) =>
               dispatch(Reducer.setAttendState(event.target.value))
             }
-            defaultValue={attendState}
+            value={attendState}
+            disabled={disabled}
           >
             <option className={styles.options} value="出勤">
               出勤

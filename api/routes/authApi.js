@@ -11,21 +11,19 @@ const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const authRouter = express.Router();
 
 authRouter.post("/", async (req, res) => {
-  const user = await axios
-    .get(
-      `https://blltumbexweiimidgyhd.supabase.co/rest/v1/users?mailaddress=eq.${req.body.mailaddress}&password=eq.${req.body.password}`,
-      {
-        headers: {
-          apikey: `${API_KEY}`,
-        },
-      }
-    )
-    .then((res) => res.data);
-  if (user.length) {
+  const user = await axios.get(
+    `https://blltumbexweiimidgyhd.supabase.co/rest/v1/users?mailaddress=eq.${req.body.mailaddress}&password=eq.${req.body.password}`,
+    {
+      headers: {
+        apikey: `${API_KEY}`,
+      },
+    }
+  );
+  if (user.data.length) {
     res
       .status(200)
-      .cookie("userId", `${user[0].id}`)
-      .cookie("userName", `${user[0].name}`)
+      .cookie("userId", `${user.data[0].id}`)
+      .cookie("userName", `${user.data[0].name}`)
       .json();
   } else {
     res.status(400).json();

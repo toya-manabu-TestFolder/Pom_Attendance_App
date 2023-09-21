@@ -5,10 +5,12 @@ import { useDispatch } from "react-redux";
 
 type Props = {
   PaidTime: string;
+  disabled: boolean;
 };
 
-function PaidTime({ PaidTime }: Props) {
+function PaidTime({ PaidTime, disabled }: Props) {
   const dispatch = useDispatch();
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -16,7 +18,7 @@ function PaidTime({ PaidTime }: Props) {
           color="#FBD13D"
           onClickSpan={() => {}}
           style="display_block"
-          text="時&nbsp;間&nbsp;有&nbsp;給"
+          text="取&nbsp;得&nbsp;時&nbsp;間&nbsp;有&nbsp;給"
         />
       </div>
       <div className={styles.body}>
@@ -26,7 +28,8 @@ function PaidTime({ PaidTime }: Props) {
             onChange={(event) => {
               dispatch(Reducer.setPaidTime(event.target.value));
             }}
-            defaultValue={PaidTime}
+            value={PaidTime}
+            disabled={disabled}
           >
             <option className={styles.options} value="00:00:00">
               0&nbsp;時間

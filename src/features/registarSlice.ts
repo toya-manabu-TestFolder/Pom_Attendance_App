@@ -95,6 +95,19 @@ const registarSlice = createSlice({
     resetStateErrors: (state, action) => {
       state.registarDataState.errors = action.payload;
     },
+    resetRegistarData: (state) => {
+      const resetData = {
+        name: "",
+        furigana: "",
+        gender_id: "",
+        birthday: "0000-00-00",
+        mailaddress: "",
+        phone: "",
+        password: "",
+        configrationPass: "",
+      };
+      state.registarDataState.registarData = resetData;
+    },
     inputPassToggle: (state, action) => {
       if (action.payload) {
         state.registarDataState.inputPassState.text = "非表示";

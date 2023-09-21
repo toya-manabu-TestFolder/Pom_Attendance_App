@@ -59,6 +59,7 @@ export default function RegistarPageTmp({ registarDataState }: Props) {
             text="登録情報を確認する"
             onClick={() => {}}
             dataTestid="regist-button"
+            disabled={false}
           />
         </div>
       </div>
