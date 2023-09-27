@@ -5,15 +5,23 @@ type Props = {
   text: string;
   onClick: () => void;
   dataTestid: string;
+  disabled: boolean;
 };
 
-export default function Button({ type, text, onClick, dataTestid }: Props) {
+export default function Button({
+  type,
+  text,
+  onClick,
+  dataTestid,
+  disabled,
+}: Props) {
   return (
     <button
       type={type}
       className="button"
       onClick={onClick}
       data-testid={dataTestid}
+      disabled={disabled}
     >
       <FutidoriSpan text={text} style={""} />
       {text}

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import RequestButtonModal from "./RequestButtonModal";
+import RequestModal from "./RequestModal";
 
 const meta = {
-  title: "Organisms/Modals/RequestButtonModal ",
-  component: RequestButtonModal,
+  title: "Organisms/Modals/RequestModal ",
+  component: RequestModal,
   tags: ["autodocs"],
   parameters: {
     backgrounds: {
@@ -18,19 +18,25 @@ const meta = {
     ),
   ],
   argTypes: {},
-} satisfies Meta<typeof RequestButtonModal>;
+} satisfies Meta<typeof RequestModal>;
 
 export default meta;
 
-type Story = StoryObj<typeof RequestButtonModal>;
+type Story = StoryObj<typeof RequestModal>;
 
 export const Default: Story = {
   args: {
     text: "Default",
+    okBtnFunProps: () => {},
+    noBtnFunProps: () => {},
+    setIsModal: () => {},
   },
 };
 export const startAttend: Story = {
   args: {
     text: "午前09:00で出勤登録してよろしいですか？",
+    okBtnFunProps: () => {},
+    noBtnFunProps: () => {},
+    setIsModal: () => {},
   },
 };

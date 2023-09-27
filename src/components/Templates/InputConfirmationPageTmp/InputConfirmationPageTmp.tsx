@@ -6,6 +6,7 @@ import {
   RegistData,
   confirmationReducers,
 } from "../../../features/confirmationSlice";
+import { reducers } from "../../../features/registarSlice";
 import InputConfirmationSection from "../../Organisms/InputConfirmationSection/InputConfirmationSection";
 import Button from "../../atoms/button/Button";
 import H2_Ver1 from "../../atoms/h2/ver.1/H2";
@@ -27,9 +28,13 @@ function InputConfirmationPageTmp({ confirmationState }: Props) {
   ) => {
     event.preventDefault();
     const result = await dispatch(RegistData(sendData));
-    if (result.payload === 201) {
+    if (result.payload === 200) {
       dispatch(confirmationReducers.sendEmail());
-      navigate("/CompletRegist");
+      setTimeout(() => {
+        dispatch(confirmationReducers.resetState());
+        dispatch(reducers.resetRegistarData());
+        navigate("/CompletRegist");
+      }, 0);
     }
   };
 
@@ -51,6 +56,7 @@ function InputConfirmationPageTmp({ confirmationState }: Props) {
             text="これで登録する"
             type="submit"
             dataTestid="submit-button"
+            disabled={false}
           />
         </div>
         <div className="confirmation-button">
@@ -61,6 +67,7 @@ function InputConfirmationPageTmp({ confirmationState }: Props) {
             text="内容を変更する"
             type="button"
             dataTestid="change-button"
+            disabled={false}
           />
         </div>
       </div>

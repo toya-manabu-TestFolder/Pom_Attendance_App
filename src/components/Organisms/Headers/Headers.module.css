@@ -1,0 +1,190 @@
+.nav {
+  width: 100%;
+  display: grid;
+  align-items: end;
+  grid-template-columns: 0.3fr 1fr 0.3fr;
+  border-bottom: clamp(3px, 1vw * 0.5, 8px) solid #583225;
+  .Home_link_wrapp {
+    width: 100%;
+    height: 100%;
+    background-image: url("/navigation/titleLogo.png");
+    background-size: 90% 90%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
+  .login_user_wrapp {
+    display: grid;
+    align-items: end;
+    grid-template-columns: repeat(100, 1%);
+    grid-template-rows: repeat(100, 1%);
+
+    width: 100%;
+    height: 100%;
+    background-image: url("/navigation/loginUser.png");
+    background-size: 53% 100%;
+    background-position: left;
+    background-repeat: no-repeat;
+    .text_wrapp {
+      grid-row: 1/50;
+      grid-column: 15/100;
+      .text {
+        max-height: 100%;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #7e262b;
+      }
+    }
+  }
+  .menu_button_wrapp {
+    padding: 5% 15%;
+    font-size: 1rem;
+    z-index: 100;
+    .menu_button {
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .nav {
+    .Home_link_wrapp {
+      background-size: 95% 90%;
+    }
+    .login_user_wrapp {
+      .text_wrapp {
+        grid-row: 1/57;
+      }
+    }
+    .menu_button_wrapp {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) and (min-height: 700px) {
+  .nav {
+    width: 100%;
+    display: block;
+    grid-template-columns: 1fr;
+    .Home_link_wrapp {
+      background-size: 70% 60%;
+      background-position: bottom;
+      padding: 25% 0%;
+    }
+    .login_user_wrapp {
+      margin-top: 15%;
+      background-size: 70% 100%;
+      background-position: center;
+      padding: 6% 0%;
+      .text_wrapp {
+        grid-row: 1/40;
+        grid-column: 33/100;
+        .text {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      position: fixed;
+      top: 5%;
+      right: 5%;
+      width: 20%;
+      padding: 0;
+      font-size: 1.5rem;
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .nav {
+    width: 100%;
+    display: block;
+    grid-template-columns: 1fr;
+    .Home_link_wrapp {
+      background-size: 75% 65%;
+      background-position: bottom;
+      padding: 25% 0%;
+    }
+    .login_user_wrapp {
+      margin-top: 15%;
+      background-size: 90% 100%;
+      background-position: center;
+      padding: 6% 0%;
+      .text_wrapp {
+        grid-row: 1/40;
+        grid-column: 28/100;
+        .text {
+          font-size: 1.15rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      position: fixed;
+      top: 5%;
+      right: 5%;
+      width: 20%;
+      padding: 0;
+      font-size: 1.2rem;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .nav {
+    .login_user_wrapp {
+      .text_wrapp {
+        grid-row: 1/35;
+        .text {
+          font-size: 1rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      font-size: 1rem;
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .nav {
+    .login_user_wrapp {
+      .text_wrapp {
+        grid-row: 1/35;
+        .text {
+          font-size: 0.9rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      font-size: 0.9rem;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .nav {
+    .login_user_wrapp {
+      .text_wrapp {
+        grid-row: 1/35;
+        .text {
+          font-size: 0.7rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      font-size: 0.75rem;
+    }
+  }
+}
+@media screen and (max-width: 300px) {
+  .nav {
+    .login_user_wrapp {
+      .text_wrapp {
+        grid-row: 1/50;
+        .text {
+          font-size: 0.6rem;
+        }
+      }
+    }
+    .menu_button_wrapp {
+      font-size: 0.6rem;
+    }
+  }
+}

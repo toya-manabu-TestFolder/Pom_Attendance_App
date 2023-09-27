@@ -1,42 +1,35 @@
 import express from "express";
 import axios from "axios";
+import bcrypt from "bcrypt";
+
 // dontenvはexpress上でenvファイルを読み込むモジュール。
 import dotenv from "dotenv";
 dotenv.config();
 // viteだとinport.meta.envだがexpressだとprocess.env
 const API_KEY = process.env.VITE_API_KEY;
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 
 const authRouter = express.Router();
 
-authRouter.get("/", async (req, res) => {
-  const user = await axios
-    .get("https://blltumbexweiimidgyhd.supabase.co/rest/v1/users", {
-      headers: {
-        apikey: `${API_KEY}`,
-      },
-    })
-    .then((res) => res.data);
-  res.json(user);
-});
-
 authRouter.post("/", async (req, res) => {
-  const users = await axios
-    .get("https://blltumbexweiimidgyhd.supabase.co/rest/v1/users", {
+  const user = await axios.get(
+    `https://blltumbexweiimidgyhd.supabase.co/rest/v1/users?mailaddress=eq.${req.body.mailaddress}`,
+    {
       headers: {
         apikey: `${API_KEY}`,
       },
-    })
-    .then((res) => res.data);
-  const result = users.some(
-    (user) =>
-      user.mailaddress === req.body.mailaddress &&
-      user.password === req.body.password
+    }
   );
-  if (result) {
-    res.status(200).json();
-  } else {
-    res.status(400).json();
-  }
+  if (!user.data.length) return res.json({ status: 400 });
+  bcrypt.compare(req.body.password, user.data[0].password, (err, result) => {
+    if (result) {
+      res
+        .cookie("LoginUser", `${user.data[0].name}`, { secure: true })
+        .json({ status: 200, user: user.data[0].name });
+    } else {
+      res.json({ status: 400 });
+    }
+  });
 });
 
 export default authRouter;

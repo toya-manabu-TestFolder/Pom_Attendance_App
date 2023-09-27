@@ -47,3 +47,31 @@ export const Pushed: Story = {
     disabled: true,
   },
 };
+export const Approval: Story = {
+  args: {
+    ...Default.args,
+    text: "承認申請",
+    disabled: true,
+  },
+};
+export const PlanRegist: Story = {
+  args: {
+    ...Default.args,
+    text: "予定登録",
+    disabled: false,
+  },
+};
+export const ApprovalReqest: Story = {
+  args: {
+    ...Default.args,
+    text: "承認申請",
+    disabled: false,
+  },
+};
+export const ApprovalCancel: Story = {
+  args: {
+    ...Default.args,
+    text: "承認申請取消し",
+    disabled: false,
+  },
+};

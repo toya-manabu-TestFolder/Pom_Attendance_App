@@ -1,4 +1,6 @@
 .span-cmponent {
+  display: grid;
+  align-items: center;
   width: 100%;
   position: relative;
   font-weight: bold;
@@ -8,5 +10,18 @@
 }
 
 .time_now_top {
+  display: grid;
+  align-items: center;
   font-family: Sigmar One;
+}
+@media screen and (max-width: 1279px) {
+  .span-cmponent {
+    -webkit-text-stroke: 0.1rem #583225;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .span-cmponent {
+    -webkit-text-stroke: 0.07rem #583225;
+  }
 }

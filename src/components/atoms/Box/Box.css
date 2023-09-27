@@ -1,0 +1,46 @@
+.Box_component {
+  width: 100%;
+  border: #583225 0.2rem solid;
+  border-radius: 50px;
+  overflow: hidden;
+  .Box_component_title {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 1em;
+    letter-spacing: 0.1rem;
+    background-color: #7e262b;
+    border-bottom: #583225 0.2rem solid;
+  }
+  .Box_component_body {
+    width: 100%;
+  }
+}
+
+.Time {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 1em;
+  color: #f9f4fc;
+}
+
+.disabled {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 1.8rem;
+  background-color: #7e262b;
+  color: #fbd13d;
+}
+
+@media screen and (max-width: 767px) {
+  .Box_component {
+    border: #583225 0.15rem solid;
+    .Box_component_title {
+      border-bottom: #583225 0.15rem solid;
+    }
+  }
+}

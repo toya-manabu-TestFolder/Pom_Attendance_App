@@ -8,7 +8,7 @@
   height: 100%;
   padding: 1.5% 0;
   background-color: #faf9a6;
-  border: #583225 0.3rem solid;
+  border: #583225 clamp(2.5px, 1vw * 0.3, 8px) solid;
   border-radius: 5rem;
 
   font-family: Meiryo;
@@ -16,11 +16,31 @@
   font-style: normal;
   font-weight: bold;
   letter-spacing: 0.15625rem;
-  -webkit-text-stroke: 0.15em #583225;
-  cursor: url("../../../../public/cursol.png"), pointer;
+  text-indent: 0.15625rem;
+  -webkit-text-stroke: clamp(2.5px, 1vw * 0.3, 8px) #583225;
+  cursor: url("cursol.png"), pointer;
 
   color: #fbd13d;
   &:hover {
     background-color: #d04f2f;
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .button {
+    border: #583225 0.15rem solid;
+  }
+}
+@media screen and (max-width: 767px) {
+  .button {
+    border: #583225 0.1rem solid;
+    background-color: #d04f2f;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .button {
+    border: #583225 0.07rem solid;
+    letter-spacing: 0;
   }
 }

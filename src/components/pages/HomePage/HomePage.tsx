@@ -15,7 +15,7 @@ const HomePage = () => {
       startTime: "09:00",
       endTime: "18:00",
     },
-    loginUser: "たぬき",
+    loginUser: "たぬき たぬき",
   };
   return <HomePageTmp attendanceData={attendanceData} />;
 };

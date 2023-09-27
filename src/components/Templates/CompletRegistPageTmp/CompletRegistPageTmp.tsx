@@ -25,6 +25,7 @@ const CompletRegistPageTmp = () => {
           }}
           text="ログインページへ"
           type="button"
+          disabled={false}
         />
       </div>
     </div>

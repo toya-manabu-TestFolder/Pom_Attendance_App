@@ -1,63 +1,17 @@
 .HomePateTmp_wrapp {
-  background-color: #fbd13d;
-  width: 100vw;
+  width: 100%;
   .employee_attend_wrapp {
-    height: 100vh;
-    width: 100%;
-    .nav {
-      height: 15%;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 0.3fr 1fr 0.3fr;
-      border-bottom: 0.5rem solid #583225;
-      .Home_link_wrapp {
-        display: flex;
-        justify-content: flex-start;
-        align-items: end;
-        width: 100%;
-        height: 100%;
-        padding-left: 5%;
-      }
-      .login_user_wrapp {
-        width: 100%;
-        height: 100%;
-        .img_wrapp {
-          width: 100%;
-          height: 100%;
-          position: relative;
-          .text {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #7e262b;
-            position: absolute;
-            top: 10px;
-            left: 150px;
-          }
-        }
-      }
-      .menu_button_wrapp {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        padding: 0 15%;
-        font-size: 1rem;
-        .menu_button {
-          width: 100%;
-        }
-      }
-    }
+    height: auto;
     .attendance_operation {
-      height: 85%;
       display: grid;
-      grid-template-columns: 45% 55%;
+      width: 100%;
+      grid-template-columns: 50% 50%;
       .left_column {
-        display: grid;
-        grid-template-rows: 50% 50%;
         .payd_info_wrapp {
           width: 100%;
           padding: 2% 2%;
           .section_box {
-            height: 100%;
+            height: auto;
             width: 100%;
             border: #583225 0.5rem solid;
             border-radius: 0.5rem;
@@ -66,83 +20,101 @@
               justify-content: center;
               text-align: center;
               background-color: #7e262b;
-              font-size: 1.3rem;
+              font-size: 1.2rem;
               border-bottom: 0.3rem solid #583225;
               width: 100%;
-              height: 20%;
             }
             .body {
               display: grid;
               grid-template-rows: repeat(2, 1fr);
               width: 100%;
-              height: 80%;
               .body_content {
                 width: 100%;
                 display: grid;
                 grid-template-columns: repeat(5, 1fr);
                 text-align: center;
-                font-size: 1rem;
+                font-size: 0.85rem;
+                letter-spacing: 0.05rem;
                 .top_content {
                   display: flex;
                   align-items: center;
                   justify-content: center;
                   border-right: 0.3rem solid #583225;
                   border-bottom: 0.2rem solid #583225;
+                  &:last-child {
+                    border-right: 0rem solid #583225;
+                  }
                   .img_wrapp {
-                    width: 90%;
-                    height: 80%;
+                    height: 100%;
+                    width: 100%;
+                    background-image: url("/navigation/space.png");
+                    background-size: 50% 80%;
+                    padding: 30% 0;
+                    background-position: center;
+                    background-repeat: no-repeat;
                   }
                 }
-                .top_content:last-child {
-                  border-right: none;
-                }
+
                 .under_content {
                   display: flex;
                   align-items: center;
                   justify-content: center;
                   border-right: 0.3rem solid #583225;
                   border-top: 0.2rem solid #583225;
-                }
-                .under_content:last-child {
-                  border-right: none;
+                  &:last-child {
+                    border-right: 0rem solid #583225;
+                  }
                 }
               }
             }
           }
         }
         .now_time_info_wrapp {
-          height: 100%;
-          width: 100%;
           position: relative;
-          .time_now {
+
+          height: auto;
+          width: 100%;
+          padding: 15% 4% 3% 50%;
+          /* padding: 0 4% 0 50%; */
+          &::after {
+            content: "";
             position: absolute;
-            bottom: 6%;
-            right: 5%;
-            width: 44%;
-            height: 60%;
-            display: grid;
-            grid-template-rows: 32% 33% 33%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url("/navigation/nowTime.png");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+          .time_now {
+            height: auto;
+            width: 100%;
             .top {
               display: flex;
               text-align: center;
               justify-content: center;
-              font-size: 1.5rem;
+              font-size: 1.3rem;
               background-color: #7e262b;
               border-bottom: 0.3rem solid #583225;
+              padding-top: 3%;
             }
             .center {
               display: grid;
               text-align: center;
               align-items: center;
-              font-size: 0.9rem;
+              font-size: 0.75rem;
               border-bottom: 0.3rem solid #583225;
+              padding: 3% 0px;
             }
             .under {
               background-color: #faf9a6;
               display: grid;
               text-align: center;
               align-items: center;
-              font-size: 1rem;
+              font-size: 0.9rem;
+              padding: 4% 0px;
             }
           }
         }
@@ -151,10 +123,9 @@
         padding: 1.6% 2%;
         .attend_stanp_operation {
           width: 100%;
-          height: 100%;
           border: #583225 0.5rem solid;
           border-radius: 0.5rem;
-          .title {
+          .title_of_right_column {
             display: flex;
             justify-content: center;
             text-align: center;
@@ -162,13 +133,9 @@
             font-size: 1.3rem;
             border-bottom: 0.3rem solid #583225;
             width: 100%;
-            height: 10%;
           }
-          .body {
-            height: 90%;
+          .body_of_right_column {
             width: 100%;
-            display: grid;
-            grid-template-rows: repeat(3, 1fr);
             .content {
               display: grid;
               grid-template-columns: repeat(2, 50%);
@@ -177,19 +144,625 @@
               &:last-child {
                 border-bottom: none;
               }
-              .left {
+              .left_content {
                 display: grid;
                 grid-template-columns: repeat(2, 50%);
                 align-items: center;
                 justify-items: center;
                 border-right: #583225 0.25rem solid;
                 .button {
-                  font-size: 1.5rem;
-                  padding: 10%;
+                  font-size: 1.3rem;
+                  padding: 15% 10%;
                   height: 100%;
                   width: 100%;
                 }
-                .img {
+                .start_img {
+                  width: 100%;
+                  height: 100%;
+                  background-image: url("/homepage/attendance_img1.png");
+                  background-size: 100% 75%;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                }
+                .end_img {
+                  width: 100%;
+                  height: 100%;
+                  background-image: url("/homepage/attendance_img2.png");
+                  background-size: 85% 75%;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                }
+              }
+              .right_content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.2rem;
+                padding: 5% 0;
+                .stanpTime_wrapp {
+                  display: flex;
+                  align-items: center;
+                  text-align: center;
+                  width: 80%;
+                  height: 85%;
+                }
+              }
+            }
+            .body_approvalbutton_wrapp {
+              display: grid;
+              grid-template-columns: 30% 40% 30%;
+              justify-items: center;
+              align-items: center;
+              .approvalbutton {
+                width: 100%;
+                height: 100%;
+                font-size: 1.3rem;
+                padding: 10% 0;
+              }
+              .approvalbutton_left_Img {
+                width: 100%;
+                height: 100%;
+                background-image: url("/homepage/applovar_left.png");
+                background-size: 70% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+                padding: 40% 0;
+              }
+              .approvalbutton_right_Img {
+                width: 100%;
+                height: 100%;
+                background-image: url("/homepage/applovar_right.png");
+                background-size: 50% 100%;
+                background-position: center;
+                background-repeat: no-repeat;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      .attendance_operation {
+        .left_column {
+          .payd_info_wrapp {
+            .section_box {
+              border: #583225 0.3rem solid;
+              .title {
+                border-bottom: 0.2rem solid #583225;
+              }
+              .body {
+                .body_content {
+                  font-size: 0.55rem;
+                  .top_content {
+                    border-right: 0.2rem solid #583225;
+                    border-bottom: 0.1rem solid #583225;
+                  }
+                  .under_content {
+                    border-right: 0.2rem solid #583225;
+                    border-top: 0.1rem solid #583225;
+                  }
+                }
+              }
+            }
+          }
+          .now_time_info_wrapp {
+            .time_now {
+              .top {
+                font-size: 1.1rem;
+                border-bottom: 0.2rem solid #583225;
+                padding-top: 5%;
+              }
+              .center {
+                font-size: 0.56rem;
+                border-bottom: 0.2rem solid #583225;
+              }
+              .under {
+                font-size: 0.6rem;
+              }
+            }
+          }
+        }
+        .right_column {
+          .attend_stanp_operation {
+            border: #583225 0.3rem solid;
+            .title_of_right_column {
+              border-bottom: 0.2rem solid #583225;
+            }
+            .body_of_right_column {
+              .content {
+                border-bottom: #583225 0.2rem solid;
+                .left_content {
+                  border-right: #583225 0.2rem solid;
+                  .button {
+                    font-size: 0.9rem;
+                    padding: 20% 10%;
+                  }
+                }
+                .right_content {
+                  font-size: 0.75rem;
+                  padding: 5% 0;
+                }
+              }
+              .body_approvalbutton_wrapp {
+                .approvalbutton {
+                  font-size: 1rem;
+                  padding: 10% 0;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1279px) and (min-height: 700px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      .attendance_operation {
+        display: block;
+        .left_column {
+          .payd_info_wrapp {
+            padding: 2% 2%;
+            .section_box {
+              margin-top: 5%;
+              border: #583225 0.4rem solid;
+              .title {
+                font-size: 2rem;
+                border-bottom: 0.3rem solid #583225;
+              }
+              .body {
+                .body_content {
+                  letter-spacing: 0.1rem;
+                  font-size: 1.3rem;
+                  .top_content {
+                    border-right: 0.3rem solid #583225;
+                    border-bottom: 0.15rem solid #583225;
+                  }
+                  .under_content {
+                    border-right: 0.3rem solid #583225;
+                    border-top: 0.15rem solid #583225;
+                  }
+                }
+              }
+            }
+          }
+          .now_time_info_wrapp {
+            margin-top: 5%;
+            .time_now {
+              .top {
+                padding-top: 3%;
+                font-size: 2.5rem;
+                border-bottom: 0.3rem solid #583225;
+              }
+              .center {
+                padding: 3% 0px;
+                font-size: 1.25rem;
+                border-bottom: 0.3rem solid #583225;
+              }
+              .under {
+                font-size: 1.5rem;
+                padding: 4% 0px;
+              }
+            }
+          }
+        }
+        .right_column {
+          margin: 10% 0;
+          padding: 1.6% 2%;
+          .attend_stanp_operation {
+            border: #583225 0.4rem solid;
+            .title_of_right_column {
+              font-size: 2rem;
+              border-bottom: 0.3rem solid #583225;
+            }
+            .body_of_right_column {
+              .content {
+                border-bottom: #583225 0.3rem solid;
+                .left_content {
+                  border-right: #583225 0.3rem solid;
+                  .button {
+                    font-size: 2rem;
+                    padding: 10% 10%;
+                  }
+                  .start_img {
+                    background-size: 90% 70%;
+                  }
+                  .end_img {
+                    background-size: 90% 80%;
+                  }
+                }
+                .right_content {
+                  font-size: 1.5rem;
+                }
+              }
+              .body_approvalbutton_wrapp {
+                .approvalbutton {
+                  font-size: 2.5rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      .attendance_operation {
+        display: block;
+        .left_column {
+          .payd_info_wrapp {
+            padding: 0% 2%;
+            margin: 10% 0;
+            .section_box {
+              border: #583225 0.4rem solid;
+              .title {
+                font-size: 1.8rem;
+                border-bottom: 0.4rem solid #583225;
+              }
+              .body {
+                display: grid;
+                grid-template-rows: none;
+                grid-template-columns: repeat(2, 1fr);
+                .body_content {
+                  grid-template-columns: none;
+                  grid-template-rows: repeat(4, 1fr);
+                  font-size: 1.5rem;
+                  letter-spacing: 0.05rem;
+                  .top_content {
+                    border-right: 0.15rem solid #583225;
+                    border-bottom: 0.3rem solid #583225;
+                    &:first-child {
+                      display: none;
+                    }
+                    &:last-child {
+                      border-right: 0.15rem solid #583225;
+                      border-bottom: 0rem solid #583225;
+                    }
+                  }
+                  .under_content {
+                    border-left: 0.15rem solid #583225;
+                    border-bottom: 0.3rem solid #583225;
+                    border-right: 0rem solid #583225;
+                    border-top: 0rem solid #583225;
+                    &:first-child {
+                      display: none;
+                    }
+                    &:last-child {
+                      border-left: 0.15rem solid #583225;
+                      border-bottom: 0rem solid #583225;
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .now_time_info_wrapp {
+            margin-bottom: 10%;
+            .time_now {
+              .top {
+                font-size: 1.8rem;
+              }
+              .center {
+                font-size: 1rem;
+              }
+              .under {
+                font-size: 1.2rem;
+              }
+            }
+          }
+        }
+        .right_column {
+          margin-bottom: 10%;
+          .attend_stanp_operation {
+            border: #583225 0.4rem solid;
+            .title_of_right_column {
+              font-size: 1.8rem;
+            }
+            .body_of_right_column {
+              .content {
+                border-bottom: #583225 0.3rem solid;
+                .left_content {
+                  border-right: #583225 0.15rem solid;
+                  .button {
+                    font-size: 1.5rem;
+                  }
+                  .start_img {
+                    background-size: 100% 75%;
+                  }
+                  .end_img {
+                    background-size: 85% 75%;
+                  }
+                }
+                .right_content {
+                  font-size: 1.4rem;
+                  border-left: #583225 0.15rem solid;
+                  .stanpTime_wrapp {
+                    width: 80%;
+                    height: 85%;
+                  }
+                }
+              }
+              .body_approvalbutton_wrapp {
+                .approvalbutton {
+                  font-size: 1.8rem;
+                }
+                .approvalbutton_left_Img {
+                  background-size: 70% 100%;
+                  padding: 40% 0;
+                }
+                .approvalbutton_right_Img {
+                  background-size: 50% 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      .attendance_operation {
+        .left_column {
+          .payd_info_wrapp {
+            .section_box {
+              border: #583225 0.4rem solid;
+              .title {
+                font-size: 1.8rem;
+                border-bottom: 0.4rem solid #583225;
+              }
+              .body {
+                .body_content {
+                  font-size: 1.5rem;
+                  letter-spacing: 0.05rem;
+                  .top_content {
+                    border-right: 0.15rem solid #583225;
+                    border-bottom: 0.3rem solid #583225;
+                  }
+                  .under_content {
+                    border-left: 0.15rem solid #583225;
+                    border-bottom: 0.3rem solid #583225;
+                    border-right: 0rem solid #583225;
+                  }
+                }
+              }
+            }
+          }
+          .now_time_info_wrapp {
+            .time_now {
+              .top {
+                font-size: 1.6rem;
+              }
+              .center {
+                font-size: 0.9rem;
+              }
+              .under {
+                font-size: 1.1rem;
+              }
+            }
+          }
+        }
+        .right_column {
+          .attend_stanp_operation {
+            border: #583225 0.4rem solid;
+            .title_of_right_column {
+              font-size: 1.8rem;
+            }
+            .body_of_right_column {
+              .content {
+                border-bottom: #583225 0.3rem solid;
+                .left_content {
+                  border-right: #583225 0.15rem solid;
+                  .button {
+                    font-size: 1.5rem;
+                  }
+                  .start_img {
+                    background-size: 100% 75%;
+                  }
+                  .end_img {
+                    background-size: 85% 75%;
+                  }
+                }
+                .right_content {
+                  font-size: 1.2rem;
+                  border-left: #583225 0.15rem solid;
+                  .stanpTime_wrapp {
+                    width: 80%;
+                    height: 85%;
+                  }
+                }
+              }
+              .body_approvalbutton_wrapp {
+                .approvalbutton {
+                  font-size: 1.7rem;
+                }
+                .approvalbutton_left_Img {
+                  background-size: 70% 100%;
+                  padding: 40% 0;
+                }
+                .approvalbutton_right_Img {
+                  background-size: 50% 100%;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      .attendance_operation {
+        .left_column {
+          .payd_info_wrapp {
+            .section_box {
+              .title {
+                font-size: 1.8rem;
+              }
+              .body {
+                .body_content {
+                  font-size: 1.5rem;
+                }
+              }
+            }
+          }
+          .now_time_info_wrapp {
+            .time_now {
+              .top {
+                font-size: 1.4rem;
+              }
+              .center {
+                font-size: 0.75rem;
+              }
+              .under {
+                font-size: 1rem;
+              }
+            }
+          }
+        }
+        .right_column {
+          .attend_stanp_operation {
+            .title_of_right_column {
+              font-size: 1.8rem;
+            }
+            .body_of_right_column {
+              .content {
+                .left_content {
+                  .button {
+                    font-size: 1.3rem;
+                  }
+                }
+                .right_content {
+                  font-size: 1rem;
+                }
+              }
+              .body_approvalbutton_wrapp {
+                .approvalbutton {
+                  font-size: 1.5rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      .attendance_operation {
+        .left_column {
+          .payd_info_wrapp {
+            .section_box {
+              .title {
+                font-size: 1.5rem;
+              }
+              .body {
+                .body_content {
+                  font-size: 1.3rem;
+                }
+              }
+            }
+          }
+          .now_time_info_wrapp {
+            .time_now {
+              .top {
+                font-size: 1.1rem;
+              }
+              .center {
+                font-size: 0.6rem;
+              }
+              .under {
+                font-size: 0.8rem;
+              }
+            }
+          }
+        }
+        .right_column {
+          .attend_stanp_operation {
+            .title_of_right_column {
+              font-size: 1.5rem;
+            }
+            .body_of_right_column {
+              .content {
+                .left_content {
+                  .button {
+                    font-size: 1rem;
+                  }
+                }
+                .right_content {
+                  font-size: 0.8rem;
+                }
+              }
+              .body_approvalbutton_wrapp {
+                .approvalbutton {
+                  font-size: 1.2rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 300px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      .attendance_operation {
+        .left_column {
+          .payd_info_wrapp {
+            .section_box {
+              .title {
+                font-size: 1.3rem;
+              }
+              .body {
+                .body_content {
+                  font-size: 1rem;
+                }
+              }
+            }
+          }
+          .now_time_info_wrapp {
+            display: none;
+          }
+        }
+        .right_column {
+          .attend_stanp_operation {
+            .title_of_right_column {
+              font-size: 1.3rem;
+            }
+            .body_of_right_column {
+              .content {
+                .left_content {
+                  .button {
+                    font-size: 0.6rem;
+                  }
+                }
+                .right_content {
+                  font-size: 0.5rem;
+                }
+              }
+              .body_approvalbutton_wrapp {
+                .approvalbutton {
+                  font-size: 0.8rem;
                 }
               }
             }

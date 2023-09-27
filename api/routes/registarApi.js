@@ -1,10 +1,11 @@
-import express from "express";
+import express, { response } from "express";
 import axios from "axios";
 import dotenv from "dotenv";
-// bodyは
+import bcrypt from "bcrypt"; // ハッシュ化ライブラリ
 import { checkSchema, validationResult } from "express-validator";
 dotenv.config();
 const API_KEY = process.env.VITE_API_KEY;
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 
 const regisatrRouter = express.Router();
 
@@ -27,11 +28,8 @@ regisatrRouter.post(
     },
     gender_id: {
       custom: {
-        if: (value, { req }) => {
-          if (value === 0) {
-            return true;
-          }
-          return false;
+        if: (value) => {
+          if (value === "") return true;
         },
         errorMessage: "※ 選択されていません!!",
       },
@@ -65,54 +63,81 @@ regisatrRouter.post(
       custom: {
         // ifを使うなら、OKだったら何を返すか記述する。
         if: (value, { req }) => {
-          if (value !== req.body.password) {
-            return true;
-          }
-          return false;
+          if (value !== req.body.password) return true;
         },
         errorMessage: "※ パスワードが一致しません‼",
       },
     },
   }),
   async (req, res) => {
-    const registarData = await req.body;
-    const errors = validationResult(req);
-
-    !errors.isEmpty()
-      ? res.status(400).json({ errors: errors.array() })
-      : (await isAlreadyEmail(registarData.mailaddress))
-      ? res.status(400).json("既に登録済みのメールアドレスです！！")
-      : res.json("OK");
+    const errors = validationResult(req).array();
+    await axios
+      .get(`${SUPABASE_URL}users?mailaddress=eq.${req.body.mailaddress}`, {
+        headers: {
+          apikey: `${API_KEY}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.length) {
+          const emailError = {
+            msg: "※ 既に登録済みのメールアドレスです‼",
+            path: "mailaddress",
+          };
+          errors.push(emailError);
+        }
+      });
+    if (errors.length) {
+      res.status(400).json({ errors: errors });
+    } else {
+      res.json("OK");
+    }
   }
 );
 
-async function isAlreadyEmail(reqEmail) {
-  const EmailAddressAry = await axios.get(
-    "https://blltumbexweiimidgyhd.supabase.co/rest/v1/users?select=mailaddress",
-    {
-      headers: {
-        apikey: `${API_KEY}`,
-      },
-    }
-  );
-  const result = await EmailAddressAry.data.some((email) => {
-    email.mailaddress === reqEmail;
-  });
-  return await result;
-}
-
 regisatrRouter.post("/regist", async (req, res) => {
-  const data = await req.body;
-  const respnse = await axios.post(
-    "https://blltumbexweiimidgyhd.supabase.co/rest/v1/users",
-    data,
-    {
+  req.body.password = await bcrypt.hash(req.body.password, 10);
+  try {
+    await axios.post(`${SUPABASE_URL}users`, req.body, {
       headers: {
         apikey: `${API_KEY}`,
         "Content-Type": "application/json",
       },
-    }
-  );
-  res.json(respnse.status);
+    });
+    await axios
+      .get(
+        `${SUPABASE_URL}users?mailaddress=eq.${req.body.mailaddress}&select=id`,
+        {
+          headers: {
+            apikey: `${API_KEY}`,
+          },
+        }
+      )
+      .then(async (res) => {
+        const toDay = new Date();
+        const Year = toDay.getFullYear();
+        const Month = "0" + (toDay.getMonth() + 1);
+        const date = "0" + toDay.getDate();
+
+        const sendPaidData = {
+          user_id: res.data[0].id,
+          remaining_paiddays: 0,
+          remaining_psidtime: 0,
+          consumption_time: 80,
+          give_lastday: `${
+            Year + "-" + Month.slice(-2) + "-" + date.slice(-2)
+          }`,
+        };
+        await axios.post(`${SUPABASE_URL}users_paid`, sendPaidData, {
+          headers: {
+            apikey: `${API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        });
+      });
+
+    res.status(200).json();
+  } catch (error) {
+    res.status(400).json();
+  }
 });
 export default regisatrRouter;

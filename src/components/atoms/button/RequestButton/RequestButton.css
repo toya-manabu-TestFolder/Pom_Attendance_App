@@ -11,17 +11,16 @@
   font-size: 1em;
   font-style: normal;
   font-weight: bold;
-  letter-spacing: 0.2rem;
   -webkit-text-stroke: 0.15em #583225;
 
-  border: #583225 0.2rem solid;
+  border: clamp(3px, 0.4vw, 20px) solid #583225;
   border-radius: 0.5rem;
   background-color: transparent;
 
-  cursor: url("../../../../public/cursol.png"), pointer;
+  cursor: url("cursol.png"), pointer;
   &:hover {
     background-color: #7e262b;
-    border: #f9f4fc 0.2rem solid;
+    border: clamp(3px, 0.4vw, 20px) solid #f9f4fc;
     color: #fbd13d;
   }
 }
@@ -39,10 +38,39 @@
   font-size: 1em;
   font-style: normal;
   font-weight: bold;
-  letter-spacing: 0.2rem;
   -webkit-text-stroke: 0.15em #583225;
 
-  border: #f9f4fc 0.2rem solid;
+  border: clamp(3px, 0.4vw, 20px) solid #f9f4fc;
   border-radius: 0.5rem;
   background-color: #7e262b;
+}
+
+@media screen and (max-width: 767px) {
+  .RequestButton_component {
+    cursor: url("cursol.png"), pointer;
+    &:hover {
+      border: #f9f4fc 0.15rem solid;
+    }
+  }
+
+  .pushed {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+
+    color: #fbd13d;
+    font-family: Meiryo;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: 0.2rem;
+    -webkit-text-stroke: 0.15em #583225;
+
+    border: #f9f4fc 0.2rem solid;
+    border-radius: 0.5rem;
+    background-color: #7e262b;
+  }
 }

@@ -23,16 +23,20 @@ export default function LoginPageTmp({ LoginError }: Props) {
   const onSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const result = await dispatch(sendInputData(inputData));
-    if (result.payload === 200) navigate("/registar");
+    if (result.payload.status === 200) {
+      navigate("/Home");
+    }
   };
   return (
     <form onSubmit={onSubmit}>
       <div className="LoginPageTmp-wrapp">
         <div className="LoginPageTmp-L-colum">
           <div className="login-form-wrapp">
+            <div className="mobile_img_wrapp"></div>
+
             <div className="error-text-wrapp" data-testid="error-text">
               <Span
-                style=""
+                style="display_block"
                 color="red"
                 text={LoginError}
                 onClickSpan={() => {}}
@@ -84,6 +88,7 @@ export default function LoginPageTmp({ LoginError }: Props) {
                 text="ログイン"
                 onClick={() => {}}
                 dataTestid="login-Button"
+                disabled={false}
               />
             </div>
             <div className="login-form-button">
@@ -92,13 +97,12 @@ export default function LoginPageTmp({ LoginError }: Props) {
                 text="新規会員登録"
                 onClick={() => navigate("/registar")}
                 dataTestid="regist-Button"
+                disabled={false}
               />
             </div>
           </div>
         </div>
-        <div className="LoginPageTmp-R-colum">
-          <img className="img" src="../../../../public/RCaramBg.png" alt="" />
-        </div>
+        <div className="LoginPageTmp-R-colum"></div>
       </div>
     </form>
   );
