@@ -24,12 +24,13 @@ authRouter.post("/", async (req, res) => {
   bcrypt.compare(req.body.password, user.data[0].password, (err, result) => {
     if (result) {
       req.session.userID = user.data[0].id;
-      res
-        .cookie("LoginUser", `${user.data[0].name}`, {
-          httpOnly: true,
-          secure: true,
-        })
-        .json({ status: 200, user: user.data[0].name });
+      setTimeout(() => {
+        res
+          .cookie("LoginUser", `${user.data[0].name}`, {
+            secure: true,
+          })
+          .json({ status: 200, user: user.data[0].name });
+      }, 0);
     } else {
       res.json({ status: 400 });
     }
