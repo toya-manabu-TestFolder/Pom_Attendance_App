@@ -14,7 +14,7 @@ const authRouter = express.Router();
 authRouter.post("/", async (req, res) => {
   console.log("authApi");
   const user = await axios.get(
-    `https://blltumbexweiimidgyhd.supabase.co/rest/v1/users?mailaddress=eq.${req.body.mailaddress}`,
+    `${SUPABASE_URL}users?mailaddress=eq.${req.body.mailaddress}`,
     {
       headers: {
         apikey: `${API_KEY}`,

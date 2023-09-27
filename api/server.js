@@ -14,7 +14,12 @@ import https from "https";
 import session from "express-session";
 import RedisStore from "connect-redis";
 import redis from "redis";
+import axios from "axios";
 
+//
+const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
+const API_KEY = process.env.VITE_API_KEY;
+//
 const app = express();
 const port = 3000;
 const option = {
@@ -41,37 +46,47 @@ app.use(express.json());
 
 //
 // redisの操作宣言
-// const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
-// let redisClient = redis.createClient({
-//   url: REDIS_URL,
-// });
-// // RedisServerへ接続
-// redisClient.connect().catch(console.error);
+const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
+let redisClient = redis.createClient({
+  url: REDIS_URL,
+});
+// RedisServerへ接続
+redisClient.connect().catch(console.error);
 
-// // express-sessionの保存先変数
-// let redisStore = new RedisStore({
-//   client: redisClient,
-//   prefix: "myapp:",
-// });
+// express-sessionの保存先変数
+let redisStore = new RedisStore({
+  client: redisClient,
+  prefix: "myapp:",
+});
 
-// // express-sessionの設定と利用宣言
-// app.use(
-//   session({
-//     name: "SSDN",
-//     resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
-//     saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
-//     secret: "keyboard cat",
-//     store: redisStore,
-//     cookie: { httpOnly: true, secure: true },
-//   })
-// );
+// express-sessionの設定と利用宣言
+app.use(
+  session({
+    name: "SSDN",
+    resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
+    saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
+    secret: "keyboard cat",
+    store: redisStore,
+    cookie: { httpOnly: true, secure: true },
+  })
+);
 
-// app.get("/logout", async (req, res) => {
-//   redisClient.del(`myapp:${req.sessionID}`);
-// });
+app.get("/logout", async (req, res) => {
+  redisClient.del(`myapp:${req.sessionID}`);
+});
+
+//
+app.get("/getTest", async (req, res) => {
+  const user = await axios.get(`${SUPABASE_URL}users`, {
+    headers: {
+      apikey: `${API_KEY}`,
+    },
+  });
+  res.json(user.data);
+});
 //
 app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
 app.use("/DayScheduleApi", DayScheduleRouter);
 
-server.listen(port, () => console.log("startExpress!!"));
+app.listen(port, () => console.log("startExpress!!"));
