@@ -12,7 +12,6 @@ const SUPABASE_URL = process.env.VITE_SUPABASE_URL;
 const authRouter = express.Router();
 
 authRouter.post("/", async (req, res) => {
-  console.log("authApi");
   const user = await axios.get(
     `${SUPABASE_URL}users?mailaddress=eq.${req.body.mailaddress}`,
     {
