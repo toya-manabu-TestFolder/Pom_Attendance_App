@@ -64,7 +64,7 @@ let redisStore = new RedisStore({
 app.use(
   session({
     name: "SSDN",
-    resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
+    resave: true, // セッションデータが書き換えられなくてもID発行するかどうか。
     saveUninitialized: true, // 未変更のセッションデータを保存し直すアクションをするかどうか。
     secret: "keyboard cat",
     store: redisStore,
@@ -72,20 +72,10 @@ app.use(
   })
 );
 
-app.get("/logout", async (req, res) => {
-  redisClient.del(`myapp:${req.sessionID}`);
-});
+// app.get("/logout", async (req, res) => {
+//   redisClient.del(`myapp:${req.sessionID}`);
+// });
 
-//
-app.get("/getTest", async (req, res) => {
-  const user = await axios.get(`${SUPABASE_URL}users`, {
-    headers: {
-      apikey: `${API_KEY}`,
-    },
-  });
-  res.json(user.data);
-});
-//
 app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
 app.use("/DayScheduleApi", DayScheduleRouter);
