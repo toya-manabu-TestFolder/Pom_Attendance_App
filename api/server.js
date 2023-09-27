@@ -65,7 +65,7 @@ app.use(
   session({
     name: "SSDN",
     resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
-    saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
+    saveUninitialized: true, // 未変更のセッションデータを保存し直すアクションをするかどうか。
     secret: "keyboard cat",
     store: redisStore,
     cookie: { httpOnly: true, secure: true },
