@@ -65,12 +65,11 @@ app.use(
     name: "SSDN",
     resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
     saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
-    secret: "keyboard cat",
+    secret: "keyboardcat",
     store: redisStore,
     cookie: {
       httpOnly: true,
       secure: true,
-      sameSite: true,
     },
   })
 );
