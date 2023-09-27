@@ -70,8 +70,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: true,
-      path: "/",
-      domain: "pom-attendance-app.vercel.app",
+      sameSite: true,
     },
   })
 );
