@@ -21,17 +21,20 @@ authRouter.post("/", async (req, res) => {
     }
   );
   if (!user.data.length) return res.json({ status: 400 });
-  req.session.userID = user.data[0].id;
   bcrypt.compare(
     req.body.password,
     user.data[0].password,
     async (err, result) => {
       if (result) {
+        req.session.userID = user.data[0].id;
         res
           .cookie("LoginUser", `${user.data[0].name}`, {
             secure: true,
           })
-          .json({ status: 200, user: user.data[0].name });
+          .json({
+            status: 200,
+            user: user.data[0].name,
+          });
       } else {
         res.json({ status: 400 });
       }
