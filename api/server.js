@@ -67,7 +67,12 @@ app.use(
     saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
     secret: "keyboard cat",
     store: redisStore,
-    cookie: { httpOnly: true, secure: true },
+    cookie: {
+      httpOnly: true,
+      secure: true,
+      path: "/",
+      domain: "pom-attendance-app.vercel.app",
+    },
   })
 );
 
