@@ -22,12 +22,12 @@ const API_KEY = process.env.VITE_API_KEY;
 //
 const app = express();
 const port = 3000;
-const option = {
-  // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
-  cert: fs.readFileSync(`./api/cert.pem`),
-  key: fs.readFileSync(`./api/privatekey.pem`),
-};
-const server = https.createServer(option, app);
+// const option = {
+//   // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
+//   cert: fs.readFileSync(`./api/cert.pem`),
+//   key: fs.readFileSync(`./api/privatekey.pem`),
+// };
+// const server = https.createServer(option, app);
 
 app.use(cookie());
 app.use(
@@ -89,4 +89,4 @@ app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
 app.use("/DayScheduleApi", DayScheduleRouter);
 
-server.listen(port, () => console.log("startExpress!!"));
+app.listen(port, () => console.log("startExpress!!"));
