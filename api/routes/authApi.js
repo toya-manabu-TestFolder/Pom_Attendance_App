@@ -1,6 +1,7 @@
 import express from "express";
-import cookieParser from "cookie-parser";
 import axios from "axios";
+import bcrypt from "bcrypt";
+
 // dontenvはexpress上でenvファイルを読み込むモジュール。
 import dotenv from "dotenv";
 dotenv.config();
@@ -12,22 +13,23 @@ const authRouter = express.Router();
 
 authRouter.post("/", async (req, res) => {
   const user = await axios.get(
-    `https://blltumbexweiimidgyhd.supabase.co/rest/v1/users?mailaddress=eq.${req.body.mailaddress}&password=eq.${req.body.password}`,
+    `https://blltumbexweiimidgyhd.supabase.co/rest/v1/users?mailaddress=eq.${req.body.mailaddress}`,
     {
       headers: {
         apikey: `${API_KEY}`,
       },
     }
   );
-  if (user.data.length) {
-    res
-      .status(200)
-      .cookie("userId", `${user.data[0].id}`)
-      .cookie("userName", `${user.data[0].name}`)
-      .json();
-  } else {
-    res.status(400).json();
-  }
+  if (!user.data.length) return res.json({ status: 400 });
+  bcrypt.compare(req.body.password, user.data[0].password, (err, result) => {
+    if (result) {
+      res
+        .cookie("LoginUser", `${user.data[0].name}`, { secure: true })
+        .json({ status: 200, user: user.data[0].name });
+    } else {
+      res.json({ status: 400 });
+    }
+  });
 });
 
 export default authRouter;

@@ -29,7 +29,12 @@ type Story = StoryObj<typeof AttendState>;
 export const Default: Story = {
   render: () => {
     const DayScheduleState = useSelector(State);
-    const DayAttendanceData = DayScheduleState.DayAttendanceData;
-    return <AttendState attendState={DayAttendanceData.attendance_type} />;
+    const DayAttendanceData = DayScheduleState.editedDayAttendanceData;
+    return (
+      <AttendState
+        attendState={DayAttendanceData.attendance_type}
+        disabled={false}
+      />
+    );
   },
 };

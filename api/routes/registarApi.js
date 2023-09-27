@@ -1,7 +1,7 @@
 import express, { response } from "express";
 import axios from "axios";
 import dotenv from "dotenv";
-// bodyは
+import bcrypt from "bcrypt"; // ハッシュ化ライブラリ
 import { checkSchema, validationResult } from "express-validator";
 dotenv.config();
 const API_KEY = process.env.VITE_API_KEY;
@@ -95,6 +95,7 @@ regisatrRouter.post(
 );
 
 regisatrRouter.post("/regist", async (req, res) => {
+  req.body.password = await bcrypt.hash(req.body.password, 10);
   try {
     await axios.post(`${SUPABASE_URL}users`, req.body, {
       headers: {
@@ -102,7 +103,7 @@ regisatrRouter.post("/regist", async (req, res) => {
         "Content-Type": "application/json",
       },
     });
-    const response = await axios
+    await axios
       .get(
         `${SUPABASE_URL}users?mailaddress=eq.${req.body.mailaddress}&select=id`,
         {

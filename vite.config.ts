@@ -1,16 +1,11 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import fs from "fs";
+import mkcert from "vite-plugin-mkcert";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), mkcert()],
   server: {
     open: true,
-    // httpsの証明書設定
-    // https: {
-    //   key: fs.readFileSync("./certs/localhost-key.pem"),
-    //   cert: fs.readFileSync("./certs/localhost.pem"),
-    // },
   },
 });

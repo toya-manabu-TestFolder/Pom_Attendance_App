@@ -33,11 +33,12 @@ export const Default: Story = {
   },
   render: () => {
     const DayScheduleState = useSelector(State);
-    const DayAttendanceData = DayScheduleState.DayAttendanceData;
+    const DayAttendanceData = DayScheduleState.editedDayAttendanceData;
     return (
       <AttendTime
         endTime={DayAttendanceData.end_time}
         startTime={DayAttendanceData.start_time}
+        disabled={false}
       />
     );
   },

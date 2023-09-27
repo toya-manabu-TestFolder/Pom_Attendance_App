@@ -19,9 +19,6 @@ type Story = StoryObj<typeof SettingDay>;
 
 export const Default: Story = {
   args: {
-    year: "2023",
-    month: "09",
-    day: "01",
-    dayOfWeek: "火",
+    toDay: "",
   },
 };

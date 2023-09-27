@@ -21,7 +21,10 @@ export const getDayAttendanceData: any = createAsyncThunk(
   async (data) => {
     const result = await axios.post(
       `${API_URL}DayScheduleApi/getDayAttendanceData`,
-      data
+      data,
+      {
+        withCredentials: true,
+      }
     );
     return result.data;
   }
@@ -33,6 +36,10 @@ export const registDayAttendData: any = createAsyncThunk(
     const result = await axios.post(
       `${API_URL}DayScheduleApi/registDayAttendData`,
       data
+      ,
+      {
+        withCredentials: true,
+      }
     );
     return result.data;
   }
@@ -43,7 +50,10 @@ export const updateDayAttendData: any = createAsyncThunk(
   async (data) => {
     const result = await axios.post(
       `${API_URL}DayScheduleApi/updateDayAttendData`,
-      data
+      data,
+      {
+        withCredentials: true,
+      }
     );
     return result.data;
   }
@@ -54,7 +64,10 @@ export const approvalRequestDayAttendData: any = createAsyncThunk(
   async (data) => {
     const result = await axios.post(
       `${API_URL}DayScheduleApi/approvalRequestDayAttendData`,
-      data
+      data,
+      {
+        withCredentials: true,
+      }
     );
     return result.data;
   }
@@ -64,7 +77,6 @@ const DayScheduleSlice = createSlice({
   name: "DaySchedule",
   initialState: {
     resetDayAttendanceData: {
-      user_id: "",
       date: "",
       approvel_request_state: false,
       approvel_state: false,
@@ -84,7 +96,6 @@ const DayScheduleSlice = createSlice({
       selected: false,
     },
     editedDayAttendanceData: {
-      user_id: "",
       date: "",
       approvel_request_state: false,
       approvel_state: false,
@@ -120,9 +131,7 @@ const DayScheduleSlice = createSlice({
       if (action.payload.data.length) {
         state.editedDayAttendanceData = inportData;
       } else {
-        state.editedDayAttendanceData.user_id = action.meta.arg.userId;
         state.editedDayAttendanceData.date = action.meta.arg.toDay;
-        state.resetDayAttendanceData.user_id = action.meta.arg.userId;
         state.resetDayAttendanceData.date = action.meta.arg.toDay;
         state.editedDayAttendanceData = state.resetDayAttendanceData;
       }

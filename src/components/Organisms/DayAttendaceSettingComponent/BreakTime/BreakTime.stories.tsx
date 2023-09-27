@@ -32,7 +32,9 @@ export const Default: Story = {
   },
   render: () => {
     const DayScheduleState = useSelector(State);
-    const DayAttendanceData = DayScheduleState.DayAttendanceData;
-    return <BreakTime breakTime={DayAttendanceData.break_time} />;
+    const DayAttendanceData = DayScheduleState.editedDayAttendanceData;
+    return (
+      <BreakTime breakTime={DayAttendanceData.break_time} disabled={false} />
+    );
   },
 };

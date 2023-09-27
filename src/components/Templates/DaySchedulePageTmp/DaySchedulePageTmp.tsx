@@ -11,7 +11,6 @@ import {
 } from "../../../features/DayScheduleSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import Cookies from "js-cookie";
 import H2_Ver2 from "../../atoms/h2/ver.2/h2";
 import SettingDay from "../../Organisms/DayAttendaceSettingComponent/SettingDay/SettingDay";
 import SettingShift from "../../Organisms/DayAttendaceSettingComponent/SettingShift/SettingShift";
@@ -44,7 +43,6 @@ function DaySchedulePageTmp() {
 
     const sendData = {
       toDay: `${Year + "-" + Month.slice(-2) + "-" + date.slice(-2)}`,
-      userId: Cookies.get("userId"),
     };
     (async function () {
       await dispatch(getDayAttendanceData(sendData));

@@ -10,7 +10,7 @@ const DayScheduleRouter = express.Router();
 DayScheduleRouter.post("/getDayAttendanceData", async (req, res) => {
   try {
     const result = await axios.get(
-      `${SUPABASE_URL}day_attendance?user_id=eq.${req.body.userId}&date=eq.${req.body.toDay}`,
+      `${SUPABASE_URL}day_attendance?user_id=eq.${req.session.userID}&date=eq.${req.body.toDay}`,
       {
         headers: {
           apikey: `${API_KEY}`,
@@ -24,6 +24,7 @@ DayScheduleRouter.post("/getDayAttendanceData", async (req, res) => {
 });
 
 DayScheduleRouter.post("/registDayAttendData", async (req, res) => {
+  req.body["user_id"] = req.session.userID;
   req.body["regist_state"] = "登録済み";
   try {
     await axios.post(`${SUPABASE_URL}day_attendance`, req.body, {
@@ -48,7 +49,7 @@ DayScheduleRouter.post("/updateDayAttendData", async (req, res) => {
   try {
     await axios
       .get(
-        `${SUPABASE_URL}day_attendance?user_id=eq.${req.body.user_id}&date=eq.${req.body.date}&select=id`,
+        `${SUPABASE_URL}day_attendance?user_id=eq.${req.session.userID}&date=eq.${req.body.date}&select=id`,
         {
           headers: {
             apikey: `${API_KEY}`,
@@ -91,7 +92,7 @@ DayScheduleRouter.post("/approvalRequestDayAttendData", async (req, res) => {
     });
     await axios
       .get(
-        `${SUPABASE_URL}day_attendance?user_id=eq.${req.body.user_id}&date=eq.${req.body.date}&select=id`,
+        `${SUPABASE_URL}day_attendance?user_id=eq.${req.session.userID}&date=eq.${req.body.date}&select=id`,
         {
           headers: {
             apikey: `${API_KEY}`,

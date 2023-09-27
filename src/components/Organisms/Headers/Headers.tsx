@@ -1,18 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../../atoms/button/Button";
 import styles from "./Headers.module.css";
 import MenuModal from "../Modals/MenuModal/MenuModal";
-import Cookies from "js-cookie";
-
-// type Props = {};
+import Cookie from "js-cookie";
 
 function Headers() {
   const [isMenu, setIsMenu] = useState(false);
-  const [loginUserName, setLoginUserName] = useState<string | undefined>("");
-
-  useEffect(() => {
-    setLoginUserName(Cookies.get("userName"));
-  }, []);
 
   return (
     <>
@@ -21,7 +14,7 @@ function Headers() {
         <div className={styles.login_user_wrapp} data-testid="login-user">
           <div className={styles.text_wrapp}>
             <span className={styles.text}>
-              こんにちは！{loginUserName}さん！
+              こんにちは！{Cookie.get("LoginUser")}さん！
             </span>
           </div>
         </div>

@@ -2,6 +2,9 @@ import { useNavigate } from "react-router-dom";
 import Span from "../../../atoms/Span/Span";
 import Button from "../../../atoms/button/Button";
 import styles from "./MenuModal.module.css";
+import Cookie from "js-cookie";
+import { LogOut } from "../../../../features/authSlice";
+import { useDispatch } from "react-redux";
 
 type Props = {
   setIsMenu: (event: boolean) => void;
@@ -9,6 +12,8 @@ type Props = {
 
 function MenuModal({ setIsMenu }: Props) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.module_wrapp}>
       <div
@@ -117,15 +122,18 @@ function MenuModal({ setIsMenu }: Props) {
             />
           </div>
           <div className={styles.menu_button}>
-            <Button
-              dataTestid=""
-              onClick={() => {
-                navigate("/");
-              }}
-              text="ログアウト"
-              type="button"
-              disabled={false}
-            />
+            <a href="/" style={{ textDecoration: "none" }}>
+              <Button
+                dataTestid=""
+                onClick={() => {
+                  dispatch(LogOut());
+                  Cookie.remove("LoginUser");
+                }}
+                text="ログアウト"
+                type="button"
+                disabled={false}
+              />
+            </a>
           </div>
         </div>
       </div>

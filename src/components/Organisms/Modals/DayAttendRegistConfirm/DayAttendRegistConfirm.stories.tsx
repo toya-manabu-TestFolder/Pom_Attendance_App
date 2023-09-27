@@ -32,7 +32,7 @@ type Story = StoryObj<typeof DayAttendRegistConfirm>;
 export const Default: Story = {
   render: () => {
     const DayScheduleState = useSelector(State);
-    const DayAttendanceData = DayScheduleState.DayAttendanceData;
+    const DayAttendanceData = DayScheduleState.editedDayAttendanceData;
     return (
       <DayAttendRegistConfirm
         registData={DayAttendanceData}

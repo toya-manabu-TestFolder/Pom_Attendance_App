@@ -31,7 +31,7 @@ type Story = StoryObj<typeof TotalTime>;
 export const Default: Story = {
   render: () => {
     const DayScheduleState = useSelector(State);
-    const DayAttendanceData = DayScheduleState.DayAttendanceData;
+    const DayAttendanceData = DayScheduleState.editedDayAttendanceData;
     return (
       <TotalTime
         attendStartTime={DayAttendanceData.start_time}

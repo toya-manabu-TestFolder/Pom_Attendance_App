@@ -29,7 +29,7 @@ type Story = StoryObj<typeof SettingShift>;
 export const Default: Story = {
   render: () => {
     const DayScheduleState = useSelector(State);
-    const DayAttendanceData = DayScheduleState.DayAttendanceData;
+    const DayAttendanceData = DayScheduleState.editedDayAttendanceData;
     return (
       <SettingShift
         endTime={DayAttendanceData.default_end_time}

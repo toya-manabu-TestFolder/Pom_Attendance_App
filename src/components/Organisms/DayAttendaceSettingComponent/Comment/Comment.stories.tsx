@@ -29,7 +29,7 @@ type Story = StoryObj<typeof Comment>;
 export const Default: Story = {
   render: () => {
     const DayScheduleState = useSelector(State);
-    const DayAttendanceData = DayScheduleState.DayAttendanceData;
+    const DayAttendanceData = DayScheduleState.editedDayAttendanceData;
     return <Comment Comment={DayAttendanceData.comment} disabled={false} />;
   },
 };

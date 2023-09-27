@@ -29,7 +29,7 @@ type Story = StoryObj<typeof PaidTime>;
 export const Default: Story = {
   render: () => {
     const DayScheduleState = useSelector(State);
-    const DayAttendanceData = DayScheduleState.DayAttendanceData;
-    return <PaidTime PaidTime={DayAttendanceData.paid_time} />;
+    const DayAttendanceData = DayScheduleState.editedDayAttendanceData;
+    return <PaidTime PaidTime={DayAttendanceData.paid_time} disabled={false} />;
   },
 };

@@ -23,7 +23,7 @@ export default function LoginPageTmp({ LoginError }: Props) {
   const onSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const result = await dispatch(sendInputData(inputData));
-    if (result.payload === 200) {
+    if (result.payload.status === 200) {
       navigate("/Home");
     }
   };

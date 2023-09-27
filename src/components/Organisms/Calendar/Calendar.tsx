@@ -9,7 +9,6 @@ import styled from "@emotion/styled";
 import styles from "./Calendar.module.css";
 import { getDayAttendanceData } from "../../../features/DayScheduleSlice";
 import { useDispatch } from "react-redux";
-import Cookies from "js-cookie";
 import { useEffect } from "react";
 
 function Calendar() {
@@ -42,7 +41,6 @@ function Calendar() {
     event.dayEl.querySelector("a").classList.add("setTextColor");
     const sendData = {
       toDay: `${event.dateStr}`,
-      userId: Cookies.get("userId"),
     };
     await dispatch(getDayAttendanceData(sendData));
   };
