@@ -48,10 +48,11 @@ app.use(express.json());
 // redisの操作宣言
 const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
 let redisClient = redis.createClient({
-  url: `${REDIS_URL}`,
+  url: "rediss://default:47cf1d3e6e3a47e983a83eb6cea2ab51@apn1-capital-ox-34614.upstash.io:34614",
+  // url: `${REDIS_URL}`,
 });
 // RedisServerへ接続
-redisClient.connect().catch(console.error);
+await redisClient.connect().catch(console.error);
 
 // express-sessionの保存先変数
 let redisStore = new RedisStore({
