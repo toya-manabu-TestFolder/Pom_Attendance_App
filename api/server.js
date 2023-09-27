@@ -74,4 +74,4 @@ app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
 app.use("/DayScheduleApi", DayScheduleRouter);
 
-app.listen(port, () => console.log("startExpress!!"));
+server.listen(port, () => console.log("startExpress!!"));

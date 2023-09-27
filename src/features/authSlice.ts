@@ -6,6 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 export const sendInputData: any = createAsyncThunk(
   "auth/sendInputData",
   async (data) => {
+    console.log("authSlice");
     const response = await axios.post(`${API_URL}authApi/`, data, {
       // ↓cookieの送受信を許可する。
       withCredentials: true,
