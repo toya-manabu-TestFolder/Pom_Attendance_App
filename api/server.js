@@ -41,34 +41,34 @@ app.use(express.json());
 
 //
 // redisの操作宣言
-const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
-let redisClient = redis.createClient({
-  url: REDIS_URL,
-});
-// RedisServerへ接続
-redisClient.connect().catch(console.error);
+// const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
+// let redisClient = redis.createClient({
+//   url: REDIS_URL,
+// });
+// // RedisServerへ接続
+// redisClient.connect().catch(console.error);
 
-// express-sessionの保存先変数
-let redisStore = new RedisStore({
-  client: redisClient,
-  prefix: "myapp:",
-});
+// // express-sessionの保存先変数
+// let redisStore = new RedisStore({
+//   client: redisClient,
+//   prefix: "myapp:",
+// });
 
-// express-sessionの設定と利用宣言
-app.use(
-  session({
-    name: "SSDN",
-    resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
-    saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
-    secret: "keyboard cat",
-    store: redisStore,
-    cookie: { httpOnly: true, secure: true },
-  })
-);
+// // express-sessionの設定と利用宣言
+// app.use(
+//   session({
+//     name: "SSDN",
+//     resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
+//     saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
+//     secret: "keyboard cat",
+//     store: redisStore,
+//     cookie: { httpOnly: true, secure: true },
+//   })
+// );
 
-app.get("/logout", async (req, res) => {
-  redisClient.del(`myapp:${req.sessionID}`);
-});
+// app.get("/logout", async (req, res) => {
+//   redisClient.del(`myapp:${req.sessionID}`);
+// });
 //
 app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
