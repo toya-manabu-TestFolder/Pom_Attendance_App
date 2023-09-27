@@ -48,8 +48,7 @@ app.use(express.json());
 // redisの操作宣言
 const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
 let redisClient = redis.createClient({
-  url: "rediss://default:47cf1d3e6e3a47e983a83eb6cea2ab51@apn1-capital-ox-34614.upstash.io:34614",
-  // url: `${REDIS_URL}`,
+  url: `${REDIS_URL}`,
 });
 // RedisServerへ接続
 await redisClient.connect().catch(console.error);
@@ -64,20 +63,21 @@ let redisStore = new RedisStore({
 app.use(
   session({
     name: "SSDN",
-    resave: true, // セッションデータが書き換えられなくてもID発行するかどうか。
-    saveUninitialized: true, // 未変更のセッションデータを保存し直すアクションをするかどうか。
+    resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
+    saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
     secret: "keyboard cat",
     store: redisStore,
     cookie: { httpOnly: true, secure: true },
   })
 );
 
-// app.get("/logout", async (req, res) => {
-//   redisClient.del(`myapp:${req.sessionID}`);
-// });
+app.get("/logout", async (req, res) => {
+  redisClient.del(`myapp:${req.sessionID}`);
+});
 
 app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
 app.use("/DayScheduleApi", DayScheduleRouter);
 
+// server.listen(port, () => console.log("startExpress!!"));
 app.listen(port, () => console.log("startExpress!!"));

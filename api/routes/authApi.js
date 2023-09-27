@@ -25,7 +25,10 @@ authRouter.post("/", async (req, res) => {
     if (result) {
       req.session.userID = user.data[0].id;
       res
-        .cookie("LoginUser", `${user.data[0].name}`, { secure: true })
+        .cookie("LoginUser", `${user.data[0].name}`, {
+          httpOnly: true,
+          secure: true,
+        })
         .json({ status: 200, user: user.data[0].name });
     } else {
       res.json({ status: 400 });
