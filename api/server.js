@@ -48,7 +48,7 @@ app.use(express.json());
 // redisの操作宣言
 const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
 let redisClient = redis.createClient({
-  url: REDIS_URL,
+  url: `${REDIS_URL}`,
 });
 // RedisServerへ接続
 redisClient.connect().catch(console.error);
