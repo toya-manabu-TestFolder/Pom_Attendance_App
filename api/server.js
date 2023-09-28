@@ -70,6 +70,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: true,
+      domain : "vercel.app"
     },
   })
 );
