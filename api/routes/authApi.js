@@ -33,7 +33,6 @@ authRouter.post("/", async (req, res) => {
           })
           .json({
             status: 200,
-            ssid: req.sessionID,
           });
       } else {
         res.json({ status: 400 });
