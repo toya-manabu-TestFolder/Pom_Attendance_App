@@ -27,6 +27,3 @@ dist-ssr
 .env
 
 /docker
-
-cert.pem
-privatekey.pem
