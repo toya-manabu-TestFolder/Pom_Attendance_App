@@ -14,6 +14,7 @@ import https from "https";
 import session from "express-session";
 import RedisStore from "connect-redis";
 import redis from "redis";
+// import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
 const port = 3000;
@@ -61,6 +62,7 @@ let redisStore = new RedisStore({
 });
 
 // express-sessionの設定と利用宣言
+app.set("trust proxy", 1);
 app.use(
   session({
     name: "pom_ssid",
@@ -68,10 +70,10 @@ app.use(
     saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
     secret: "keyboardcat",
     store: redisStore,
-    // cookie: {
-    //   secure: true,
-    //   httpOnly: true,
-    // },
+    cookie: {
+      secure: true,
+      httpOnly: true,
+    },
   })
 );
 

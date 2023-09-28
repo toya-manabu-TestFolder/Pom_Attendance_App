@@ -26,9 +26,7 @@ authRouter.post("/", async (req, res) => {
     user.data[0].password,
     async (err, result) => {
       if (result) {
-        req.session.cookie.secure = true;
         req.session.userID = user.data[0].id;
-        console.log(req.session);
         res
           .cookie("LoginUser", `${user.data[0].name}`, {
             secure: true,
