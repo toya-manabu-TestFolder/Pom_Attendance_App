@@ -26,8 +26,4 @@ dist-ssr
 #env
 .env
 
-#ローカル認証キー
-*.pem
-
-#docer
 /docker

@@ -9,7 +9,6 @@ import cors from "cors";
 import authRouter from "./routes/authApi.js";
 import registarRouter from "./routes/registarApi.js";
 import DayScheduleRouter from "./routes/DayScheduleApi.js";
-import fs from "fs";
 import https from "https";
 import session from "express-session";
 import RedisStore from "connect-redis";
@@ -17,12 +16,18 @@ import redis from "redis";
 
 const app = express();
 const port = 3000;
-const option = {
-  // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
-  cert: fs.readFileSync(`./api/cert.pem`),
-  key: fs.readFileSync(`./api/privatekey.pem`),
-};
-const server = https.createServer(option, app);
+const CERT = process.env.cert;
+const CERT_KEY = process.env.cert_key;
+//
+// const option = {
+//   // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
+//   cert: CERT,
+//   key: CERT_KEY,
+// };
+// const server = https.createServer(option, app);
+// server.listen(port, () => console.log("startExpress!!"));
+//
+app.listen(port, () => console.log("startExpress!!"));
 
 app.use(cookie());
 app.use(
@@ -36,17 +41,15 @@ app.use(
     optionsSuccessStatus: 200, //レスポンスstatusを200に設定
   })
 );
-// express.json()でjson形式のデータを読み取ることが出来る。
-app.use(express.json());
+app.use(express.json()); // express.json()でjson形式のデータを読み取ることが出来る。
 
 //
-// redisの操作宣言
-const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL;
+const REDIS_URL = process.env.UPSTASH_REDIS_REST_URL; // redisの操作宣言
 let redisClient = redis.createClient({
-  url: REDIS_URL,
+  url: `${REDIS_URL}`,
 });
-// RedisServerへ接続
-redisClient.connect().catch(console.error);
+
+await redisClient.connect().catch(console.error); // RedisServerへ接続
 
 // express-sessionの保存先変数
 let redisStore = new RedisStore({
@@ -54,24 +57,27 @@ let redisStore = new RedisStore({
   prefix: "myapp:",
 });
 
+app.set("trust proxy", true); //X-Forwarded-Host ヘッダーを信頼する設定
+
 // express-sessionの設定と利用宣言
 app.use(
   session({
-    name: "SSDN",
+    name: "pom_ssid", //保存するcookie名
     resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
     saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
-    secret: "keyboard cat",
-    store: redisStore,
-    cookie: { httpOnly: true, secure: true },
+    secret: "fjoascosamdfjfc", //セッションIDが書き換えられていないか確認するためのランダムな値
+    store: redisStore, //store設定
+    cookie: {
+      secure: true, //httpsとのみやり取りする。
+      httpOnly: true, //httpからのjavascriptでのやり取り不可。
+    },
   })
 );
 
 app.get("/logout", async (req, res) => {
   redisClient.del(`myapp:${req.sessionID}`);
 });
-//
+
 app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
 app.use("/DayScheduleApi", DayScheduleRouter);
-
-server.listen(port, () => console.log("startExpress!!"));
