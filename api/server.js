@@ -69,8 +69,7 @@ app.use(
     store: redisStore,
     cookie: {
       secure: true,
-      domain: "vercel.app",
-      SameSite: "none",
+      sameSite: "none",
     },
   })
 );
