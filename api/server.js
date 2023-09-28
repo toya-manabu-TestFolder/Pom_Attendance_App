@@ -62,14 +62,11 @@ let redisStore = new RedisStore({
 // express-sessionの設定と利用宣言
 app.use(
   session({
-    name: "pom_ssid",
+    name: "SSID",
     resave: false, // セッションデータが書き換えられなくてもID発行するかどうか。
     saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
     secret: "keyboardcat",
     store: redisStore,
-    cookie: {
-      httpOnly: true,
-    },
   })
 );
 
