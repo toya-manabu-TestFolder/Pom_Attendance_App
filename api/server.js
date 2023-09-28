@@ -67,6 +67,10 @@ app.use(
     saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
     secret: "keyboardcat",
     store: redisStore,
+    cookie: {
+      httpOnly: true,
+      secure: true,
+    },
   })
 );
 
