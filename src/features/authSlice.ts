@@ -10,6 +10,7 @@ export const sendInputData: any = createAsyncThunk(
       // ↓cookieの送受信を許可する。
       withCredentials: true,
     });
+    console.log(response);
     // response.dataとすることで、返ってきた値をreducerでaction.payloadとして扱える。
     return response.data;
   }
