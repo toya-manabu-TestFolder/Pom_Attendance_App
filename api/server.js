@@ -70,13 +70,16 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: true,
-      domain : "vercel.app"
+      domain: ".vercel.app",
     },
   })
 );
 
 app.get("/logout", async (req, res) => {
   redisClient.del(`myapp:${req.sessionID}`);
+});
+app.get("/test", async (req, res) => {
+  res.cookie("test", "test").json();
 });
 
 app.use("/authApi", authRouter);

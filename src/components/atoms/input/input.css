@@ -5,7 +5,7 @@
   background-color: #d04f2f;
   border-radius: 50px;
   border: 0.2rem solid #583225;
-  cursor: url("/cursol.png"), pointer;
+  cursor: url("cursol.png"), pointer;
 
   color: #faf9a6;
   font-family: Meiryo;
@@ -50,7 +50,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   width: 40%;
   height: 100%;
   background: transparent;
-  cursor: url("/cursol.png"), pointer;
+  cursor: url("cursol.png"), pointer;
   z-index: 1;
 }
 input[type="date"]::after {
