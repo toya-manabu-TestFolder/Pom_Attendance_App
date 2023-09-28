@@ -19,15 +19,15 @@ const port = 3000;
 const CERT = process.env.cert;
 const CERT_KEY = process.env.cert_key;
 //
-const option = {
-  // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
-  cert: CERT,
-  key: CERT_KEY,
-};
-const server = https.createServer(option, app);
-server.listen(port, () => console.log("startExpress!!"));
+// const option = {
+//   // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
+//   cert: CERT,
+//   key: CERT_KEY,
+// };
+// const server = https.createServer(option, app);
+// server.listen(port, () => console.log("startExpress!!"));
 //
-// app.listen(port, () => console.log("startExpress!!"));
+app.listen(port, () => console.log("startExpress!!"));
 
 app.use(cookie());
 app.use(
