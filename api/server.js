@@ -68,9 +68,9 @@ app.use(
     secret: "keyboardcat",
     store: redisStore,
     cookie: {
-      httpOnly: true,
       secure: true,
-      domain: ".vercel.app",
+      domain: "vercel.app",
+      SameSite: "none",
     },
   })
 );
