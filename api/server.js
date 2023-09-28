@@ -67,8 +67,8 @@ app.use(
     secret: "keyboardcat",
     store: redisStore,
     cookie: {
-      httpOnly: true,
-      secure: true,
+      Secure: true,
+      HttpOnly: true,
     },
   })
 );
