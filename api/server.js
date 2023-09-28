@@ -19,6 +19,7 @@ const app = express();
 const port = 3000;
 const CERT = process.env.cert;
 const CERT_KEY = process.env.cert_key;
+//
 // const option = {
 //   // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
 //   cert: CERT,
@@ -26,6 +27,7 @@ const CERT_KEY = process.env.cert_key;
 // };
 // const server = https.createServer(option, app);
 // server.listen(port, () => console.log("startExpress!!"));
+//
 app.listen(port, () => console.log("startExpress!!"));
 
 app.use(cookie());
@@ -66,10 +68,10 @@ app.use(
     saveUninitialized: false, // 未変更のセッションデータを保存し直すアクションをするかどうか。
     secret: "keyboardcat",
     store: redisStore,
-    cookie: {
-      Secure: true,
-      HttpOnly: true,
-    },
+    // cookie: {
+    //   secure: true,
+    //   httpOnly: true,
+    // },
   })
 );
 
