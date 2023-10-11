@@ -1,0 +1,133 @@
+.Loading_modal_wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: grid;
+  animation: Appearance 0.2s linear;
+  z-index: 200;
+  background-color: #fbd13d;
+
+  @for $i from 1 through 8 {
+    .Loding_text#{$i} {
+      position: absolute;
+      font-size: clamp(10px, 5vw, 500px);
+      top: 15%;
+      left: 28% + 6% * $i;
+    }
+  }
+  .Loding_img {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .pom {
+    width: 22%;
+    height: 45%;
+    bottom: 15%;
+    left: 38%;
+    background-image: url("/public/Modals//LodingModal/pom.png");
+  }
+  .mint {
+    width: 7%;
+    height: 15%;
+    bottom: 26%;
+    left: 71%;
+    background-image: url("/public/Modals//LodingModal/mint.png");
+  }
+  .muffin {
+    width: 10%;
+    height: 20%;
+    bottom: 5%;
+    left: 30%;
+    background-image: url("/public/Modals//LodingModal/muffin.png");
+  }
+  .powder {
+    width: 9%;
+    height: 25%;
+    bottom: 45%;
+    left: 27%;
+    background-image: url("/public/Modals//LodingModal/powder.png");
+  }
+  .scone {
+    width: 10%;
+    height: 20%;
+    bottom: 4%;
+    left: 60%;
+    background-image: url("/public/Modals//LodingModal/scone.png");
+  }
+  .tart {
+    width: 10%;
+    height: 21%;
+    bottom: 43%;
+    left: 64%;
+    background-image: url("/public/Modals//LodingModal/tart.png");
+  }
+  .bagel {
+    width: 10%;
+    height: 20%;
+    bottom: 26%;
+    left: 21%;
+    background-image: url("/public/Modals//LodingModal/bagel.png");
+  }
+
+  .onp1 {
+    width: 3%;
+    height: 10%;
+    bottom: 86%;
+    left: 37%;
+    z-index: -1;
+    background-image: url("/public/Modals//LodingModal/onp1.png");
+  }
+  .onp2 {
+    width: 5%;
+    height: 10%;
+    bottom: 59%;
+    left: 13%;
+    z-index: -1;
+    background-image: url("/public/Modals//LodingModal/onp2.png");
+  }
+  .onp3 {
+    width: 6%;
+    height: 9%;
+    bottom: 4%;
+    left: 24%;
+    z-index: -1;
+    background-image: url("/public/Modals//LodingModal/onp3.png");
+  }
+  .onp4 {
+    width: 5%;
+    height: 9%;
+    bottom: 86%;
+    left: 59%;
+    z-index: -1;
+    background-image: url("/public/Modals//LodingModal/onp4.png");
+  }
+  .onp5 {
+    width: 5%;
+    height: 10%;
+    bottom: 2%;
+    left: 71%;
+    z-index: -1;
+    background-image: url("/public/Modals//LodingModal/onp5.png");
+  }
+  .onp6 {
+    width: 4%;
+    height: 10%;
+    bottom: 56%;
+    left: 84%;
+    z-index: -1;
+    background-image: url("/public/Modals//LodingModal/onp6.png");
+  }
+}
+
+@keyframes Appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
