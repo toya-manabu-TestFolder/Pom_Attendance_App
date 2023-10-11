@@ -1,0 +1,20 @@
+.body {
+  padding: 0% 1.5%;
+  .date_data_wrapper {
+    width: 100%;
+    display: grid;
+    font-size: clamp(10px, 2.5vw, 1000px);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0% 2%;
+    .month_select_wrapper {
+      width: 100%;
+    }
+    .period_month_wrapper {
+      width: 100%;
+    }
+  }
+  .attend_everydata_wrapper {
+    .attend_data_wrapper {
+    }
+  }
+}
