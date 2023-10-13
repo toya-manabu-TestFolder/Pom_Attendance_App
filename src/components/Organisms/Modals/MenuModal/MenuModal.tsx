@@ -85,7 +85,7 @@ function MenuModal({ setIsMenu }: Props) {
             <Button
               dataTestid=""
               onClick={() => {
-                setIsMenu(true);
+                navigate("/MonthSchedule");
               }}
               text="月次勤怠"
               type="button"

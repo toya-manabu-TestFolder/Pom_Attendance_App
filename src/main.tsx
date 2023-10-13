@@ -11,6 +11,7 @@ import InputConfirmationPage from "./components/pages/InputConfirmationPage/Inpu
 import CompletRegistPage from "./components/pages/CompletRegistPage/CompletRegistPage.tsx";
 import HomePage from "./components/pages/HomePage/HomePage.tsx";
 import DaySchedulePage from "./components/pages/DaySchedulePage/DaySchedulePage.tsx";
+import MonthSchedulePage from "./components/pages/MonthSchedulePage/MonthSchedulePage.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   // <React.StrictMode>
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Route path="/CompletRegist" element={<CompletRegistPage />} />
         <Route path="/Home" element={<HomePage />} />
         <Route path="/DaySchedule" element={<DaySchedulePage />} />
+        <Route path="/MonthSchedule" element={<MonthSchedulePage />} />
       </Routes>
     </Provider>
   </BrowserRouter>

@@ -1,20 +1,16 @@
 import Headers from "../../Organisms/Headers/Headers";
 import H2_Ver2 from "../../atoms/h2/ver.2/h2";
 import styles from "./MonthSchedulePageTmp.module.scss";
-import {
-  MonthScheduleState,
-  // MonthScheduleReducers,
-  getMonthAttendanceData,
-} from "../../../features/MonthScheduleSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { getMonthAttendanceData } from "../../../features/MonthScheduleSlice";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import DisplayMonth from "../../Organisms/MonthAttendaceComponent/DisplayMonth/DisplayMonth";
 import MonthSelect from "../../Organisms/MonthAttendaceComponent/MonthSelect/MonthSelect";
 import MonthAttend from "../../Organisms/MonthAttendaceComponent/MonthAttend/MonthAttend";
+import EditMonthAttend from "../../Organisms/MonthAttendaceComponent/EditMonthAttend/EditMonthAttend";
 
 function MonthSchedulePageTmp() {
   const dispatch = useDispatch();
-  const { allAtttendData } = useSelector(MonthScheduleState);
   useEffect(() => {
     const toDay = new Date();
     const Year = toDay.getFullYear();
@@ -47,14 +43,10 @@ function MonthSchedulePageTmp() {
           </div>
         </div>
         <div className={styles.attend_everydata_wrapper}>
-          <div className={styles.attend_data_wrapper}>
-            <MonthAttend />
-          </div>
+          <MonthAttend />
         </div>
         <div className={styles.month_schedule_wrapper}>
-          <div className={styles.month_schedule_title}></div>
-          <div className={styles.month_schedule_edits}></div>
-          <div className={styles.month_schedule_lists}></div>
+          <EditMonthAttend />
         </div>
       </div>
       <div className={styles.footer}>

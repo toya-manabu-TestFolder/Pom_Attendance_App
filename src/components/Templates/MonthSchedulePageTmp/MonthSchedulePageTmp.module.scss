@@ -14,7 +14,9 @@
     }
   }
   .attend_everydata_wrapper {
-    .attend_data_wrapper {
-    }
+    font-size: clamp(10px, 1.7vw, 1000px);
+  }
+  .month_schedule_wrapper {
+    font-size: clamp(10px, 1.7vw, 1000px);
   }
 }

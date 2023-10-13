@@ -1,0 +1,19 @@
+.wrapper {
+  display: block;
+  border-radius: clamp(5px, 2vw, 50px);
+  border: clamp(2px, 0.4vw, 20px) solid #583225;
+  text-align: center;
+  overflow: hidden;
+
+  .title {
+    width: 100%;
+    background-color: #7e262b;
+    border-bottom: clamp(0.5px, 0.15vw, 10px) solid #583225;
+  }
+  .body {
+    display: grid;
+    padding: 2% 4%;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4%;
+  }
+}

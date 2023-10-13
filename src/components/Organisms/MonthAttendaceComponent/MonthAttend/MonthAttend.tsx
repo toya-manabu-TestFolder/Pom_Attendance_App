@@ -1,18 +1,23 @@
 import Span from "../../../atoms/Span/Span";
-import Button from "../../../atoms/button/Button";
 import styles from "./MonthAttend.module.scss";
-import {
-  MonthScheduleState,
-  MonthScheduleReducers,
-} from "../../../../features/MonthScheduleSlice";
+import { MonthScheduleState } from "../../../../features/MonthScheduleSlice";
 import { useSelector } from "react-redux";
 
 function MonthAttend() {
   const { allAtttendData } = useSelector(MonthScheduleState);
-  console.log(allAtttendData);
-  const test = () => {
+
+  const createList = () => {
     const result = [];
-    for (const data in allAtttendData) {
+    for (let i = 0; i < 12; i++) {
+      let attendType =
+        Object.keys(allAtttendData)[i] === undefined
+          ? "なし"
+          : Object.keys(allAtttendData)[i];
+      let attendValue =
+        Object.values(allAtttendData)[i] === undefined
+          ? "なし"
+          : Object.values(allAtttendData)[i];
+
       result.push(
         <div className={styles.attend_data_warapper}>
           <div className={styles.attend_type}>
@@ -20,7 +25,7 @@ function MonthAttend() {
               color="#FBD13D"
               onClickSpan={() => {}}
               style="display_block"
-              text={data}
+              text={attendType}
             />
           </div>
           <div className={styles.attend_value}>
@@ -28,7 +33,7 @@ function MonthAttend() {
               color="#F9F4FC"
               onClickSpan={() => {}}
               style="display_block"
-              text={allAtttendData.data}
+              text={attendValue}
             />
           </div>
         </div>
@@ -46,29 +51,7 @@ function MonthAttend() {
           text="勤&nbsp;怠&nbsp;状&nbsp;況"
         />
       </div>
-      <div className={styles.body}>
-        {test()}
-        {/* {testArray.map((attendData, index) => (
-          <div className={styles.attend_data_warapper} key={index}>
-            <div className={styles.attend_type}>
-              <Span
-                color="#FBD13D"
-                onClickSpan={() => {}}
-                style="display_block"
-                text={attendData.attendType}
-              />
-            </div>
-            <div className={styles.attend_value}>
-              <Span
-                color="#F9F4FC"
-                onClickSpan={() => {}}
-                style="display_block"
-                text={attendData.attendValue}
-              />
-            </div>
-          </div>
-        ))} */}
-      </div>
+      <div className={styles.body}>{createList()}</div>
     </div>
   );
 }
