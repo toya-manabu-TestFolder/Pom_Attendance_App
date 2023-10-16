@@ -18,16 +18,16 @@ import MonthScheduleRouter from "./routes/MonthScheduleApi.js";
 
 const app = express();
 const port = 3000;
-//
-const option = {
-  // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
-  cert: fs.readFileSync("cert.pem"),
-  key: fs.readFileSync("privatekey.pem"),
-};
-const server = https.createServer(option, app);
-server.listen(port, () => console.log("startExpress!!"));
-//
-// app.listen(port, () => console.log("startExpress!!"));
+//---------------------------------------------------------------------
+// const option = {
+//   // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
+//   cert: fs.readFileSync("cert.pem"),
+//   key: fs.readFileSync("privatekey.pem"),
+// };
+// const server = https.createServer(option, app);
+// server.listen(port, () => console.log("startExpress!!"));
+//---------------------------------------------------------------------
+app.listen(port, () => console.log("startExpress!!"));
 
 app.use(cookie());
 app.use(

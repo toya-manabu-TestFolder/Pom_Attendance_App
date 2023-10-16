@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import MonthSelect from "./MonthSelect";
-import { Provider, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import { store } from "../../../../app/store";
-import { State } from "../../../../features/DayScheduleSlice";
 
 const meta = {
   title: "Organisms/MonthAttendaceComponent/MonthSelect",

@@ -8,17 +8,20 @@ import { useDispatch, useSelector } from "react-redux";
 import ListOperation from "./ListOperation/ListOperation";
 import DataOperation from "./DataOperation/DataOperation";
 import Button from "../../../atoms/button/Button";
+// randomUUIDはランダムなIDを生成する。
+// レンダリングの外で生成することで、不変でランダムなIDを造れる。
+// Kye Propsが正常に設定してなければ、無駄なレンダリングをしてしまう。
+// indexを設定してしまうと、keyは0番目を永遠にIDとして認識してしまうため、
+// これにより無駄な挙動が増えてしまう。
 
 function EditMonthAttend() {
-  let { MonthAttendList } = useSelector(MonthScheduleState);
+  let { MonthAttendList, uuid } = useSelector(MonthScheduleState);
   const dispatch = useDispatch();
-  // console.log(MonthAttendList);
-
   const CreateListTytle = (list: any) => {
     const ListTytle = [];
     for (const obj in list) {
       ListTytle.push(
-        <li className={`${styles.month_data} ${styles.TytleStyle}`}>
+        <li className={` ${styles.TytleStyle}`} key={obj}>
           <Span
             color="#FBD13D"
             onClickSpan={() => {}}
@@ -33,13 +36,15 @@ function EditMonthAttend() {
   const CreateList = (list: any, index: number) => {
     const List = [];
     List.push(
-      <li className={`${styles.month_data} `}>
+      <li className={`${styles.month_data_li} `} key={"選択" + index}>
         <input
           className={styles.checboxStyle}
           type="checkbox"
+          checked={list.選択}
           onChange={(event) => {
-            MonthAttendList[0].選択 = true;
-            console.log(MonthAttendList[0].選択);
+            dispatch(
+              MonthScheduleReducers.changeSelect([event.target.checked, index])
+            );
           }}
         />
       </li>
@@ -49,16 +54,18 @@ function EditMonthAttend() {
         List.push(
           <li
             className={`
-          ${styles.month_data} 
+          ${styles.month_data_li}
           ${styles.addStyle}
           ${
             (list[obj] === "登録済み" || list[obj] === "承認済み") &&
             styles.regiredStyle
           }
+          ${list[obj] === "申請中" && styles.applyingStyle}
           `}
+            key={obj + index}
           >
             <Span
-              color={list[obj] === "祝日" ? "yellow" : "#F9F4FC"}
+              color={""}
               onClickSpan={() => {}}
               style="display_block"
               text={list[obj] === undefined ? "" : String(list[obj])}
@@ -68,7 +75,10 @@ function EditMonthAttend() {
       }
     }
     List.push(
-      <li className={`${styles.month_data} ${styles.ButtonStyle}`}>
+      <li
+        className={`${styles.month_data_li} ${styles.ButtonStyle}`}
+        key={"コメント" + index}
+      >
         <Button
           dataTestid=""
           onClick={() => {}}
@@ -100,13 +110,16 @@ function EditMonthAttend() {
           {MonthAttendList.map((list, index) => (
             <ul
               className={`
-            ${styles.month_data_list}
+            ${styles.month_data_ul}
             ${list["曜日"] === "土" && styles.saturday_stayle}
             ${list["曜日"] === "日" && styles.sunday_stayle}
             ${list["種類"] === "祝日" && styles.specialday_stayle}
+            ${list["選択"] && styles.slecredStyle}
             `}
+              key={uuid.month_data_ul[index]}
             >
-              {!index ? CreateListTytle(list) : CreateList(list, index)}
+              {!index && CreateListTytle(list)}
+              {CreateList(list, index)}
             </ul>
           ))}
         </div>

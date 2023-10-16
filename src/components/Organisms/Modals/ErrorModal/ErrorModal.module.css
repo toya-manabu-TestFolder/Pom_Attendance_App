@@ -9,7 +9,7 @@
   display: grid;
   justify-items: center;
   align-items: center;
-  font-size: clamp(10px, 2.2vw, 500px);
+  font-size: clamp(10px, 3vw, 500px);
   animation: Appearance 0.2s linear;
   z-index: 100;
 
@@ -26,20 +26,18 @@
     justify-content: space-evenly;
     .message {
       display: grid;
-      font-size: 2em;
       text-align: center;
     }
     .img {
       position: relative;
       width: 100%;
-      height: 50%;
+      height: 45%;
       background-image: url("/public/Modals/errorModalImg.png");
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
     }
     .errorModal_button_wrapper {
-      font-size: 1.5em;
       padding: 0 20%;
     }
   }

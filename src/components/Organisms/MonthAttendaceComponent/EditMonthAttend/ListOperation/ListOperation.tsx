@@ -1,7 +1,11 @@
+import { useDispatch } from "react-redux";
 import Span from "../../../../atoms/Span/Span";
 import Button from "../../../../atoms/button/Button";
 import styles from "./ListOperation.module.scss";
+import { MonthScheduleReducers } from "../../../../../features/MonthScheduleSlice";
 function ListOperation() {
+  const dispatch = useDispatch();
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -15,21 +19,27 @@ function ListOperation() {
       <div className={styles.body}>
         <Button
           dataTestid=""
-          onClick={() => {}}
-          text="未承認"
+          onClick={() => {
+            dispatch(MonthScheduleReducers.bundleSelect("承認"));
+          }}
+          text="未承認(平日)"
           type="button"
           disabled={false}
         />
         <Button
           dataTestid=""
-          onClick={() => {}}
-          text="未登録"
+          onClick={() => {
+            dispatch(MonthScheduleReducers.bundleSelect("登録"));
+          }}
+          text="未登録(平日)"
           type="button"
           disabled={false}
         />
         <Button
           dataTestid=""
-          onClick={() => {}}
+          onClick={() => {
+            dispatch(MonthScheduleReducers.bundleSelect(""));
+          }}
           text="選択解除"
           type="button"
           disabled={false}
