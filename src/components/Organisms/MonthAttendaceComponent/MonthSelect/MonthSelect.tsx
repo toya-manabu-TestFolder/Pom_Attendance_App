@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function MonthSelect() {
   const dispatch = useDispatch();
-  const { selectMonth, startDay, lastDay } = useSelector(MonthScheduleState);
+  const { selectMonth } = useSelector(MonthScheduleState);
 
   function sendPeriod(selectMonth: string) {
     const sendData = {

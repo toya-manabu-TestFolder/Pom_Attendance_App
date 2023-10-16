@@ -66,35 +66,35 @@ MonthScheduleRouter.post("/getMonthAttendanceData", async (req, res) => {
       for (const data of MonthAttendData) {
         if (data.attendance_state === "出勤") Count++;
       }
-      return Count;
+      return Count + " 日";
     }
     function AbsenteeismTotal(MonthAttendData) {
       let Count = 0;
       for (const data of MonthAttendData) {
         if (data.attendance_state === "欠勤") Count++;
       }
-      return Count;
+      return Count + " 日";
     }
     function HolidayWorkTotal(MonthAttendData) {
       let Count = 0;
       for (const data of MonthAttendData) {
         if (data.attendance_type === "休日出勤") Count++;
       }
-      return Count;
+      return Count + " 日";
     }
     function SpecialHolidayTotal(MonthAttendData) {
       let Count = 0;
       for (const data of MonthAttendData) {
         if (data.attendance_type === "特別休暇") Count++;
       }
-      return Count;
+      return Count + " 日";
     }
     function SubHolidayTotal(MonthAttendData) {
       let Count = 0;
       for (const data of MonthAttendData) {
         if (data.attendance_type === "代休") Count++;
       }
-      return Count;
+      return Count + " 日";
     }
     function LoseTimeTotal(MonthAttendData) {
       let TotalTime = 0;
@@ -107,7 +107,7 @@ MonthScheduleRouter.post("/getMonthAttendanceData", async (req, res) => {
       }
       const ConvertTime = `${("0" + Math.floor(TotalTime / 60)).slice(
         -2
-      )}時間${("0" + (TotalTime % 60)).slice(-2)}分`;
+      )}時間 ${("0" + (TotalTime % 60)).slice(-2)}分`;
       return ConvertTime;
     }
     function OverTimeTotal(MonthAttendData) {
@@ -121,7 +121,7 @@ MonthScheduleRouter.post("/getMonthAttendanceData", async (req, res) => {
       }
       const ConvertTime = `${("0" + Math.floor(TotalTime / 60)).slice(
         -2
-      )}時間${("0" + (TotalTime % 60)).slice(-2)}分`;
+      )}時間 ${("0" + (TotalTime % 60)).slice(-2)}分`;
       return ConvertTime;
     }
     function PaidTimeTotal(MonthAttendData) {
@@ -135,7 +135,7 @@ MonthScheduleRouter.post("/getMonthAttendanceData", async (req, res) => {
       }
       const ConvertTime = `${("0" + Math.floor(TotalTime / 60)).slice(
         -2
-      )}時間${("0" + (TotalTime % 60)).slice(-2)}分`;
+      )}時間 ${("0" + (TotalTime % 60)).slice(-2)}分`;
       return ConvertTime;
     }
     function PaidDayTotal(MonthAttendData) {
@@ -143,7 +143,7 @@ MonthScheduleRouter.post("/getMonthAttendanceData", async (req, res) => {
       for (const data of MonthAttendData) {
         if (data.attendance_type === "有給休暇") Count++;
       }
-      return Count;
+      return Count + " 日";
     }
     res.json({
       DateData: {

@@ -1,11 +1,15 @@
 .body {
   padding: 0% 1.5%;
+  .main_title {
+    margin: 3% 0;
+  }
   .date_data_wrapper {
     width: 100%;
     display: grid;
     font-size: clamp(10px, 2.5vw, 1000px);
     grid-template-columns: repeat(2, 1fr);
     gap: 0% 2%;
+    margin-bottom: 3%;
     .month_select_wrapper {
       width: 100%;
     }
@@ -14,7 +18,25 @@
     }
   }
   .attend_everydata_wrapper {
-    .attend_data_wrapper {
-    }
+    font-size: clamp(10px, 1.7vw, 1000px);
+    margin-bottom: 3%;
+  }
+  .month_schedule_wrapper {
+    font-size: clamp(10px, 1.7vw, 1000px);
+  }
+}
+.footer {
+  display: grid;
+  justify-items: end;
+  padding-right: 5%;
+  margin: 5% 0;
+  .top_scroll_button_wrapper {
+    width: 23%;
+    cursor: url("cursol.png"), pointer;
+    height: clamp(10px, 10vw, 1000px);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("/public/MonthSchedulePage/TopScroll.png");
+    background-position: 90%;
   }
 }

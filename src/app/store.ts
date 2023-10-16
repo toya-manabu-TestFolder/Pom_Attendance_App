@@ -4,6 +4,7 @@ import registarSlice from "../features/registarSlice";
 import confirmationSlice from "../features/confirmationSlice";
 import homeSlice from "../features/homeSlice";
 import DayScheduleSlice from "../features/DayScheduleSlice";
+import MonthScheduleSlice from "../features/MonthScheduleSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
     confirmation: confirmationSlice,
     home: homeSlice,
     DaySchedule: DayScheduleSlice,
+    MonthSchedule: MonthScheduleSlice,
   },
 });

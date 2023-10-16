@@ -1,0 +1,81 @@
+.wrapper {
+  display: block;
+  border-radius: clamp(5px, 2vw, 50px);
+  border: clamp(2px, 0.4vw, 20px) solid #583225;
+  text-align: center;
+  overflow: hidden;
+
+  .title {
+    width: 100%;
+    background-color: #7e262b;
+    border-bottom: clamp(0.5px, 0.15vw, 10px) solid #583225;
+    font-size: 1.3em;
+  }
+  .body {
+    .operation_wrapper {
+      display: grid;
+      padding: 1% 2%;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3%;
+      font-size: 0.8em;
+    }
+    .month_data_list_wrapper {
+      .month_data_ul {
+        display: grid;
+        grid-template-columns: repeat(16, 1fr);
+        font-size: 0.8em;
+        border-top: clamp(2px, 0.3vw, 20px) solid #583225;
+
+        .month_data_li {
+          display: grid;
+          align-items: center;
+          justify-items: center;
+          padding: 7% 2%;
+          border-right: clamp(2px, 0.3vw, 20px) solid #583225;
+          color: #f9f4fc;
+          &:last-child {
+            border-right: 0 solid #583225;
+          }
+        }
+        .TytleStyle {
+          padding: 10% 2%;
+          background-color: #faf9a6;
+          border-bottom: clamp(2px, 0.3vw, 20px) solid #583225;
+          border-right: clamp(2px, 0.3vw, 20px) solid #583225;
+          &:nth-child(16) {
+            border-right: 0 solid #583225;
+          }
+        }
+        .addStyle {
+          font-size: 0.9em;
+        }
+        .regiredStyle {
+          color: #f19b23;
+        }
+        .applyingStyle {
+          color: #26d04c;
+        }
+        .ButtonStyle {
+          font-size: 0.65em;
+        }
+        .checboxStyle {
+          cursor: pointer;
+          width: 100%;
+          height: 60%;
+        }
+      }
+      .saturday_stayle {
+        background-color: #1ebdea;
+      }
+      .sunday_stayle {
+        background-color: #ff0000;
+      }
+      .specialday_stayle {
+        background-color: #ff0000;
+      }
+      .slecredStyle {
+        background-color: #ab6747;
+      }
+    }
+  }
+}
