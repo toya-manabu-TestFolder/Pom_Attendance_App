@@ -25,6 +25,7 @@ function MonthSchedulePageTmp() {
       dispatch(getMonthAttendanceData(startSendData));
     }, 0);
   }, []);
+
   return (
     <>
       <div className={styles.header}>
@@ -50,7 +51,10 @@ function MonthSchedulePageTmp() {
         </div>
       </div>
       <div className={styles.footer}>
-        <div className={styles.top_scroll_button_wrapper}></div>
+        <div
+          className={styles.top_scroll_button_wrapper}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        ></div>
       </div>
     </>
   );

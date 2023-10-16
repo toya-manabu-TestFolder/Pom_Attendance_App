@@ -28,8 +28,13 @@ import ErrorModal from "../../Organisms/Modals/ErrorModal/ErrorModal";
 
 function DaySchedulePageTmp() {
   const dispatch = useDispatch();
-  const DayAttendanceState = useSelector(State);
-  const DayAttendanceData = DayAttendanceState.editedDayAttendanceData;
+  const {
+    editedDayAttendanceData,
+    errorOfBtnDisable,
+    canApprovalRequest,
+    errorMessage,
+    isError,
+  } = useSelector(State);
   const [isRegistConfirm, setIsRegistConfirm] = useState(false);
   const [isUpdateConfirm, setIsUpdateConfirm] = useState(false);
   const [isModal, setIsModal] = useState(false);
@@ -64,8 +69,8 @@ function DaySchedulePageTmp() {
           <div className={styles.body_right}>
             <div className={styles.day_attendance_setting_section}>
               <div className={styles.day_attendance_setting_button_wrapper}>
-                {!DayAttendanceData.approvel_request_state &&
-                  (DayAttendanceData.regist_state === "登録済み" ? (
+                {!editedDayAttendanceData.approvel_request_state &&
+                  (editedDayAttendanceData.regist_state === "登録済み" ? (
                     <div className={styles.day_attendance_setting_button}>
                       <RequestButton
                         dataTestid=""
@@ -75,7 +80,7 @@ function DaySchedulePageTmp() {
                         style=""
                         text="&nbsp;登録内容変更&nbsp;"
                         type="button"
-                        disabled={DayAttendanceState.errorOfBtnDisable}
+                        disabled={errorOfBtnDisable}
                       />
                     </div>
                   ) : (
@@ -88,17 +93,19 @@ function DaySchedulePageTmp() {
                         style=""
                         text="&nbsp;予定登録&nbsp;"
                         type="button"
-                        disabled={DayAttendanceState.errorOfBtnDisable}
+                        disabled={errorOfBtnDisable}
                       />
                     </div>
                   ))}
 
-                {!DayAttendanceData.approvel_request_state && (
+                {!editedDayAttendanceData.approvel_request_state && (
                   <div className={styles.day_attendance_setting_button}>
                     <RequestButton
                       dataTestid=""
                       onClick={() => {
-                        if (DayAttendanceData.regist_state === "登録済み") {
+                        if (
+                          editedDayAttendanceData.regist_state === "登録済み"
+                        ) {
                           setIsModal(true);
                         } else {
                           setIsApprovalReqError(true);
@@ -107,11 +114,11 @@ function DaySchedulePageTmp() {
                       style=""
                       text="&nbsp;承認依頼&nbsp;"
                       type="button"
-                      disabled={DayAttendanceState.errorOfBtnDisable}
+                      disabled={errorOfBtnDisable}
                     />
                   </div>
                 )}
-                {DayAttendanceData.approvel_request_state && (
+                {editedDayAttendanceData.approvel_request_state && (
                   <div className={styles.day_attendance_setting_button}>
                     <RequestButton
                       dataTestid=""
@@ -119,7 +126,7 @@ function DaySchedulePageTmp() {
                       style=""
                       text="&nbsp;承認依頼取消し&nbsp;"
                       type="button"
-                      disabled={DayAttendanceState.errorOfBtnDisable}
+                      disabled={errorOfBtnDisable}
                     />
                   </div>
                 )}
@@ -130,62 +137,62 @@ function DaySchedulePageTmp() {
               </div>
               <div className={styles.day_attendance_setting_wrapper}>
                 <div className={styles.day_attendance_setting}>
-                  <SettingDay toDay={DayAttendanceData.date} />
+                  <SettingDay toDay={editedDayAttendanceData.date} />
                 </div>
                 <div className={styles.day_attendance_setting}>
                   <SettingState
                     registState={
-                      DayAttendanceData.approvel_request_state
+                      editedDayAttendanceData.approvel_request_state
                         ? "承認依頼済み"
-                        : DayAttendanceData.regist_state
+                        : editedDayAttendanceData.regist_state
                     }
                   />
                 </div>
                 <div className={styles.day_attendance_setting}>
                   <SettingShift
-                    endTime={DayAttendanceData.default_end_time}
-                    registState={DayAttendanceData.attendance_type}
-                    startTime={DayAttendanceData.default_start_time}
-                    disabled={DayAttendanceData.approvel_request_state}
+                    endTime={editedDayAttendanceData.default_end_time}
+                    registState={editedDayAttendanceData.attendance_type}
+                    startTime={editedDayAttendanceData.default_start_time}
+                    disabled={editedDayAttendanceData.approvel_request_state}
                   />
                 </div>
                 <div className={styles.day_attendance_setting}>
                   <AttendTime
-                    endTime={DayAttendanceData.end_time}
-                    startTime={DayAttendanceData.start_time}
-                    disabled={DayAttendanceData.approvel_request_state}
+                    endTime={editedDayAttendanceData.end_time}
+                    startTime={editedDayAttendanceData.start_time}
+                    disabled={editedDayAttendanceData.approvel_request_state}
                   />
                 </div>
                 <div className={styles.day_attendance_setting}>
                   <AttendState
-                    attendState={DayAttendanceData.attendance_state}
-                    disabled={DayAttendanceData.approvel_request_state}
+                    attendState={editedDayAttendanceData.attendance_state}
+                    disabled={editedDayAttendanceData.approvel_request_state}
                   />
                 </div>
                 <div className={styles.day_attendance_setting}>
                   <PaidTime
-                    PaidTime={DayAttendanceData.paid_time}
-                    disabled={DayAttendanceData.approvel_request_state}
+                    PaidTime={editedDayAttendanceData.paid_time}
+                    disabled={editedDayAttendanceData.approvel_request_state}
                   />
                 </div>
                 <div className={styles.day_attendance_setting}>
                   <BreakTime
-                    breakTime={DayAttendanceData.break_time}
-                    disabled={DayAttendanceData.approvel_request_state}
+                    breakTime={editedDayAttendanceData.break_time}
+                    disabled={editedDayAttendanceData.approvel_request_state}
                   />
                 </div>
 
                 <div className={styles.day_attendance_setting}>
                   <TotalTime
-                    attendStartTime={DayAttendanceData.start_time}
-                    attendEndTime={DayAttendanceData.end_time}
-                    breakTime={DayAttendanceData.break_time}
+                    attendStartTime={editedDayAttendanceData.start_time}
+                    attendEndTime={editedDayAttendanceData.end_time}
+                    breakTime={editedDayAttendanceData.break_time}
                   />
                 </div>
                 <div className={styles.day_attendance_setting}>
                   <Comment
-                    Comment={DayAttendanceData.comment}
-                    disabled={DayAttendanceData.approvel_request_state}
+                    Comment={editedDayAttendanceData.comment}
+                    disabled={editedDayAttendanceData.approvel_request_state}
                   />
                 </div>
               </div>
@@ -195,9 +202,9 @@ function DaySchedulePageTmp() {
       </div>
       {isRegistConfirm && (
         <DayAttendRegistConfirm
-          registData={DayAttendanceData}
+          registData={editedDayAttendanceData}
           okBtnFunProps={() => {
-            dispatch(registDayAttendData(DayAttendanceData));
+            dispatch(registDayAttendData(editedDayAttendanceData));
           }}
           noBtnFunProps={() => {}}
           setIsModal={setIsRegistConfirm}
@@ -205,9 +212,9 @@ function DaySchedulePageTmp() {
       )}
       {isUpdateConfirm && (
         <DayAttendRegistConfirm
-          registData={DayAttendanceData}
+          registData={editedDayAttendanceData}
           okBtnFunProps={() => {
-            dispatch(updateDayAttendData(DayAttendanceData));
+            dispatch(updateDayAttendData(editedDayAttendanceData));
           }}
           noBtnFunProps={() => {}}
           setIsModal={setIsUpdateConfirm}
@@ -216,14 +223,14 @@ function DaySchedulePageTmp() {
       {isModal && (
         <RequestModal
           okBtnFunProps={() => {
-            dispatch(approvalRequestDayAttendData(DayAttendanceData));
+            dispatch(approvalRequestDayAttendData(editedDayAttendanceData));
           }}
           noBtnFunProps={() => {}}
           text="承認申請してよろしいですか？"
           complitedText="承認申請を完了しました！！"
           errorText="通信エラーが発生しました。"
           setIsModal={setIsModal}
-          isError={DayAttendanceState.canApprovalRequest}
+          isError={canApprovalRequest}
         />
       )}
       {isApprovalReqError && (
@@ -234,9 +241,9 @@ function DaySchedulePageTmp() {
           }}
         />
       )}
-      {DayAttendanceState.isError && (
+      {isError && (
         <ErrorModal
-          errorText={DayAttendanceState.errorMessage}
+          errorText={errorMessage}
           closeBtnFun={() => {
             dispatch(Reducer.closeErrorModal());
           }}

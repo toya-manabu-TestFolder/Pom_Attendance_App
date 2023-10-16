@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 type Props = {
@@ -7,7 +9,26 @@ type Props = {
     selectMonth: string;
     startDay: string;
     lastDay: string;
-    MonthAttendList: any[];
+    MonthAttendList: [
+      {
+        選択: boolean;
+        日付: string;
+        曜日: string;
+        種類: string;
+        登録: string;
+        承認: string;
+        シフト: string;
+        出次: string;
+        開始: string;
+        終了: string;
+        休憩: string;
+        残業: string;
+        遅早: string;
+        時有給: string;
+        休出: string;
+        コメント: string;
+      }
+    ];
     allAtttendData: {
       data: string | number;
       出勤日数: number;
@@ -19,6 +40,13 @@ type Props = {
       有給取得時間: string;
       遅早時間: string;
       残業時間: string;
+    };
+    uuid: {
+      month_data_ul: string[];
+    };
+    bundleRegistError: {
+      openToggle: boolean;
+      message: string;
     };
   };
 };
@@ -43,8 +71,32 @@ const MonthScheduleSlice = createSlice({
     selectMonth: "",
     startDay: "",
     lastDay: "",
-    MonthAttendList: [],
+    MonthAttendList: [
+      {
+        選択: false,
+        日付: "",
+        曜日: "",
+        種類: "",
+        登録: "",
+        承認: "",
+        シフト: "",
+        出次: "",
+        開始: "",
+        終了: "",
+        休憩: "",
+        残業: "",
+        遅早: "",
+        時有給: "",
+        休出: "",
+        コメント: "",
+      },
+    ],
     allAtttendData: {},
+    uuid: { month_data_ul: [""] },
+    bundleRegistError: {
+      openToggle: false,
+      message: "",
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getMonthAttendanceData.fulfilled, (state, action) => {
@@ -85,6 +137,14 @@ const MonthScheduleSlice = createSlice({
         };
       });
       state.MonthAttendList = MonthAttendList;
+
+      const newUuidArr = {
+        month_data_ul: [""],
+      };
+      for (let i = 0; i < MonthAttendList.length; i++) {
+        newUuidArr.month_data_ul.unshift(uuidv4());
+      }
+      state.uuid = newUuidArr;
     });
   },
   reducers: {
@@ -96,7 +156,47 @@ const MonthScheduleSlice = createSlice({
     changeMonth: (state, action) => {
       state.selectMonth = action.payload;
     },
-    changeSelect: (state, action) => {},
+    changeSelect: (state, action) => {
+      state.MonthAttendList[action.payload[1]].選択 = action.payload[0];
+    },
+    bundleSelect: (state, action) => {
+      state.MonthAttendList.map((data) => {
+        if (data.選択) data.選択 = false;
+      });
+      if (action.payload === "登録") {
+        state.MonthAttendList.map((data) => {
+          if (data.登録 === "登録なし" && data.種類 === "平日")
+            data.選択 = true;
+        });
+      }
+
+      if (action.payload === "承認") {
+        state.MonthAttendList.map((data) => {
+          if (data.承認 === "なし" && data.種類 === "平日") data.選択 = true;
+        });
+      }
+    },
+    bundleAttendEdit: (state, action) => {
+      const slectedResult = state.MonthAttendList.some((data) => data.選択);
+      if (!slectedResult) {
+        state.bundleRegistError.message = "日付が選択されていません！！";
+        state.bundleRegistError.openToggle = true;
+        return;
+      }
+
+      for (const data of state.MonthAttendList) {
+        if (data.選択 && data.登録 === "登録済み") {
+          state.bundleRegistError.message =
+            "登録済みの日付が選択されています！！";
+          state.bundleRegistError.openToggle = true;
+          return;
+        }
+      }
+      action.payload = true;
+    },
+    ErrorCrose: (state) => {
+      state.bundleRegistError.openToggle = false;
+    },
   },
 });
 export const MonthScheduleState = (state: Props) => state.MonthSchedule;

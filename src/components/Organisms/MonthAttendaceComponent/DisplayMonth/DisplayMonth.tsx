@@ -1,10 +1,6 @@
 import Span from "../../../atoms/Span/Span";
-import Button from "../../../atoms/button/Button";
 import styles from "./DisplayMonth.module.scss";
-import {
-  MonthScheduleState,
-  MonthScheduleReducers,
-} from "../../../../features/MonthScheduleSlice";
+import { MonthScheduleState } from "../../../../features/MonthScheduleSlice";
 import { useSelector } from "react-redux";
 
 function DisplayMonth() {

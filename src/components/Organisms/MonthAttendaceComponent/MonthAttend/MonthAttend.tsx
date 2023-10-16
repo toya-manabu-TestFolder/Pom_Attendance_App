@@ -5,7 +5,6 @@ import { useSelector } from "react-redux";
 
 function MonthAttend() {
   const { allAtttendData } = useSelector(MonthScheduleState);
-
   const createList = () => {
     const result = [];
     for (let i = 0; i < 12; i++) {
@@ -17,9 +16,8 @@ function MonthAttend() {
         Object.values(allAtttendData)[i] === undefined
           ? "なし"
           : Object.values(allAtttendData)[i];
-
       result.push(
-        <div className={styles.attend_data_warapper}>
+        <div className={styles.attend_data_warapper} key={i}>
           <div className={styles.attend_type}>
             <Span
               color="#FBD13D"

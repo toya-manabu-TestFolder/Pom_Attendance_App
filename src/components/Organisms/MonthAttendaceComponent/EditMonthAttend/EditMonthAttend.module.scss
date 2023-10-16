@@ -20,17 +20,19 @@
       font-size: 0.8em;
     }
     .month_data_list_wrapper {
-      .month_data_list {
+      .month_data_ul {
         display: grid;
         grid-template-columns: repeat(16, 1fr);
         font-size: 0.8em;
         border-top: clamp(2px, 0.3vw, 20px) solid #583225;
-        .month_data {
+
+        .month_data_li {
           display: grid;
           align-items: center;
           justify-items: center;
           padding: 7% 2%;
           border-right: clamp(2px, 0.3vw, 20px) solid #583225;
+          color: #f9f4fc;
           &:last-child {
             border-right: 0 solid #583225;
           }
@@ -38,12 +40,20 @@
         .TytleStyle {
           padding: 10% 2%;
           background-color: #faf9a6;
+          border-bottom: clamp(2px, 0.3vw, 20px) solid #583225;
+          border-right: clamp(2px, 0.3vw, 20px) solid #583225;
+          &:nth-child(16) {
+            border-right: 0 solid #583225;
+          }
         }
         .addStyle {
           font-size: 0.9em;
         }
         .regiredStyle {
-          background-color: #7e262b;
+          color: #f19b23;
+        }
+        .applyingStyle {
+          color: #26d04c;
         }
         .ButtonStyle {
           font-size: 0.65em;
@@ -55,13 +65,16 @@
         }
       }
       .saturday_stayle {
-        background-color: aqua;
+        background-color: #1ebdea;
       }
       .sunday_stayle {
         background-color: #ff0000;
       }
       .specialday_stayle {
         background-color: #ff0000;
+      }
+      .slecredStyle {
+        background-color: #ab6747;
       }
     }
   }
