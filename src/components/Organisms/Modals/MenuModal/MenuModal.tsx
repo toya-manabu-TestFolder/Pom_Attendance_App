@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Span from "../../../atoms/Span/Span";
 import Button from "../../../atoms/button/Button";
 import styles from "./MenuModal.module.css";
@@ -62,15 +62,15 @@ function MenuModal({ setIsMenu }: Props) {
             />
           </div>
           <div className={styles.menu_button}>
-            <Button
-              dataTestid=""
-              onClick={() => {
-                navigate("/DaySchedule");
-              }}
-              text="日次勤怠"
-              type="button"
-              disabled={false}
-            />
+            <Link to="/DaySchedule">
+              <Button
+                dataTestid=""
+                onClick={async () => {}}
+                text="日次勤怠"
+                type="button"
+                disabled={false}
+              />
+            </Link>
           </div>
         </div>
         <div className={styles.menu_button_wrapper}>
@@ -82,15 +82,15 @@ function MenuModal({ setIsMenu }: Props) {
             />
           </div>
           <div className={styles.menu_button}>
-            <Button
-              dataTestid=""
-              onClick={() => {
-                navigate("/MonthSchedule");
-              }}
-              text="月次勤怠"
-              type="button"
-              disabled={false}
-            />
+            <a href="/MonthSchedule">
+              <Button
+                dataTestid=""
+                onClick={() => {}}
+                text="月次勤怠"
+                type="button"
+                disabled={false}
+              />
+            </a>
           </div>
         </div>
         <div className={styles.menu_button_wrapper}>

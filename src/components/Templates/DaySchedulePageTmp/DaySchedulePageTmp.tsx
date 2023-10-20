@@ -9,6 +9,7 @@ import {
   State,
   updateDayAttendData,
 } from "../../../features/DayScheduleSlice";
+import { homeSliceReducers } from "../../../features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import H2_Ver2 from "../../atoms/h2/ver.2/h2";
@@ -25,6 +26,7 @@ import TotalTime from "../../Organisms/DayAttendaceSettingComponent/TotalTime/To
 import DayAttendRegistConfirm from "../../Organisms/Modals/DayAttendRegistConfirm/DayAttendRegistConfirm";
 import RequestModal from "../../Organisms/Modals/RequestModal/RequestModal";
 import ErrorModal from "../../Organisms/Modals/ErrorModal/ErrorModal";
+import LoadingPage from "../../pages/LoadingPage/LoadingPage";
 
 function DaySchedulePageTmp() {
   const dispatch = useDispatch();
@@ -41,17 +43,17 @@ function DaySchedulePageTmp() {
   const [isApprovalReqError, setIsApprovalReqError] = useState(false);
 
   useEffect(() => {
-    const toDay = new Date();
-    const Year = toDay.getFullYear();
-    const Month = "0" + (toDay.getMonth() + 1);
-    const date = "0" + toDay.getDate();
+    if (editedDayAttendanceData.date === "") {
+      const Today = dispatch(homeSliceReducers.setToDay(""));
 
-    const sendData = {
-      toDay: `${Year + "-" + Month.slice(-2) + "-" + date.slice(-2)}`,
-    };
-    (async function () {
-      await dispatch(getDayAttendanceData(sendData));
-    })();
+      const sendData = {
+        toDay: Today.payload,
+      };
+      (async function () {
+        await dispatch(getDayAttendanceData(sendData));
+      })();
+    }
+    dispatch(homeSliceReducers.toggleLoading(true));
   }, []);
   return (
     <>
@@ -118,6 +120,7 @@ function DaySchedulePageTmp() {
                     />
                   </div>
                 )}
+
                 {editedDayAttendanceData.approvel_request_state && (
                   <div className={styles.day_attendance_setting_button}>
                     <RequestButton
@@ -249,6 +252,7 @@ function DaySchedulePageTmp() {
           }}
         />
       )}
+      {<LoadingPage />}
     </>
   );
 }

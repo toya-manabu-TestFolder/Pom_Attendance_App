@@ -75,7 +75,7 @@ DayScheduleRouter.post("/updateDayAttendData", async (req, res) => {
     });
   } catch (error) {
     res.json({
-      data: "",
+      data: error,
       status: 400,
     });
   }
@@ -119,6 +119,36 @@ DayScheduleRouter.post("/approvalRequestDayAttendData", async (req, res) => {
   } catch (error) {
     res.json({
       data: "",
+      status: 400,
+    });
+  }
+});
+
+DayScheduleRouter.post("/bundleRegist", async (req, res) => {
+  req.body.attendData[0]["user_id"] = req.session.userID;
+  req.body.attendData[0]["regist_state"] = "登録済み";
+  const Days = req.body.selectDays;
+  let arr = [];
+
+  for (const day of Days) {
+    let attendData = JSON.stringify(req.body.attendData[0]);
+    attendData = JSON.parse(attendData);
+    attendData.date = day;
+    arr.push(attendData);
+  }
+
+  try {
+    await axios.post(`${SUPABASE_URL}day_attendance`, arr, {
+      headers: {
+        apikey: `${API_KEY}`,
+        "Content-Type": "application/json",
+      },
+    });
+    res.json({
+      status: 200,
+    });
+  } catch (error) {
+    res.json({
       status: 400,
     });
   }
