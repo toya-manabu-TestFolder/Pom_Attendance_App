@@ -8,6 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 import ListOperation from "./ListOperation/ListOperation";
 import DataOperation from "./DataOperation/DataOperation";
 import Button from "../../../atoms/button/Button";
+import { getDayAttendanceData } from "../../../../features/DayScheduleSlice";
+import { useNavigate } from "react-router-dom";
+import { homeSliceReducers } from "../../../../features/homeSlice";
 // randomUUIDはランダムなIDを生成する。
 // レンダリングの外で生成することで、不変でランダムなIDを造れる。
 // Kye Propsが正常に設定してなければ、無駄なレンダリングをしてしまう。
@@ -15,11 +18,12 @@ import Button from "../../../atoms/button/Button";
 // これにより無駄な挙動が増えてしまう。
 
 function EditMonthAttend() {
-  let { MonthAttendList, uuid } = useSelector(MonthScheduleState);
+  let { MonthAttendList, uuid, selectMonth } = useSelector(MonthScheduleState);
   const dispatch = useDispatch();
-  const CreateListTytle = (list: any) => {
+  const navigate = useNavigate();
+  const CreateListTytle = () => {
     const ListTytle = [];
-    for (const obj in list) {
+    for (const obj in MonthAttendList[0]) {
       ListTytle.push(
         <li className={` ${styles.TytleStyle}`} key={obj}>
           <Span
@@ -36,7 +40,16 @@ function EditMonthAttend() {
   const CreateList = (list: any, index: number) => {
     const List = [];
     List.push(
-      <li className={`${styles.month_data_li} `} key={"選択" + index}>
+      <li
+        className={`
+      ${styles.month_data_li} 
+      ${list["曜日"] === "土" && styles.saturday_stayle}
+      ${list["曜日"] === "日" && styles.sunday_stayle}
+      ${list["種類"] === "祝日" && styles.specialday_stayle}
+      ${list["選択"] && styles.slecredStyle}
+      `}
+        key={"選択" + index}
+      >
         <input
           className={styles.checboxStyle}
           type="checkbox"
@@ -49,6 +62,7 @@ function EditMonthAttend() {
         />
       </li>
     );
+
     for (const obj in list) {
       if (obj !== "選択" && obj !== "コメント") {
         List.push(
@@ -56,6 +70,10 @@ function EditMonthAttend() {
             className={`
           ${styles.month_data_li}
           ${styles.addStyle}
+          ${list["曜日"] === "土" && styles.saturday_stayle}
+          ${list["曜日"] === "日" && styles.sunday_stayle}
+          ${list["種類"] === "祝日" && styles.specialday_stayle}
+          ${list["選択"] && styles.slecredStyle}
           ${
             (list[obj] === "登録済み" || list[obj] === "承認済み") &&
             styles.regiredStyle
@@ -66,8 +84,18 @@ function EditMonthAttend() {
           >
             <Span
               color={""}
-              onClickSpan={() => {}}
-              style="display_block"
+              onClickSpan={async () => {
+                if (obj === "日付") {
+                  await dispatch(
+                    getDayAttendanceData({
+                      toDay: `${selectMonth}-${list[obj].slice(3)}`,
+                    })
+                  );
+                  dispatch(homeSliceReducers.toggleLoading(false));
+                  navigate("/DaySchedule");
+                }
+              }}
+              style={`display_block ${obj === "日付" && "Month_attend_day"}`}
               text={list[obj] === undefined ? "" : String(list[obj])}
             />
           </li>
@@ -76,12 +104,26 @@ function EditMonthAttend() {
     }
     List.push(
       <li
-        className={`${styles.month_data_li} ${styles.ButtonStyle}`}
+        className={`
+        ${styles.month_data_li} 
+        ${styles.ButtonStyle}
+        ${list["曜日"] === "土" && styles.saturday_stayle}
+        ${list["曜日"] === "日" && styles.sunday_stayle}
+        ${list["種類"] === "祝日" && styles.specialday_stayle}
+        ${list["選択"] && styles.slecredStyle}
+        `}
         key={"コメント" + index}
       >
         <Button
           dataTestid=""
-          onClick={() => {}}
+          onClick={() => {
+            dispatch(
+              MonthScheduleReducers.ToggleCommentModal({
+                toggle: true,
+                comment: list.コメント,
+              })
+            );
+          }}
           text="コメント"
           type="button"
           disabled={false}
@@ -107,18 +149,20 @@ function EditMonthAttend() {
           <DataOperation />
         </div>
         <div className={styles.month_data_list_wrapper}>
+          <ul
+            className={`
+        ${styles.month_data_ul}
+        `}
+          >
+            {CreateListTytle()}
+          </ul>
           {MonthAttendList.map((list, index) => (
             <ul
               className={`
             ${styles.month_data_ul}
-            ${list["曜日"] === "土" && styles.saturday_stayle}
-            ${list["曜日"] === "日" && styles.sunday_stayle}
-            ${list["種類"] === "祝日" && styles.specialday_stayle}
-            ${list["選択"] && styles.slecredStyle}
             `}
               key={uuid.month_data_ul[index]}
             >
-              {!index && CreateListTytle(list)}
               {CreateList(list, index)}
             </ul>
           ))}

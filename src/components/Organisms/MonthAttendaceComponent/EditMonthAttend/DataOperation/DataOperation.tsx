@@ -8,15 +8,55 @@ import {
 } from "../../../../../features/MonthScheduleSlice";
 import ErrorModal from "../../../Modals/ErrorModal/ErrorModal";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import ExcelJS from "exceljs";
 
-function DataOperation() {
+const DataOperation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { bundleRegistError } = useSelector(MonthScheduleState);
-  const BundleAttendEdit = () => {
-    const result = dispatch(MonthScheduleReducers.bundleAttendEdit(false));
-    result.payload && navigate("/DaySchedule");
-  };
+  const { bundleRegistError, MonthAttendList } =
+    useSelector(MonthScheduleState);
+  const [select, setSelect] = useState("");
+
+  async function csvORexcelDownload(type: string) {
+    const workbook = new ExcelJS.Workbook();
+    workbook.addWorksheet("sheet1");
+    const worksheet = workbook.getWorksheet("sheet1");
+    if (worksheet !== undefined) {
+      const Columns = [];
+      for (const obj in MonthAttendList[0]) {
+        if (obj === "選択") continue;
+        Columns.push({ header: obj, key: obj });
+      }
+      worksheet.columns = Columns;
+
+      worksheet.addRows(MonthAttendList);
+    }
+    const uint8Array =
+      type === "xlsx"
+        ? await workbook.xlsx.writeBuffer()
+        : await workbook.csv.writeBuffer();
+    const blob = new Blob([uint8Array], { type: "application/octet-binary" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "sampleData." + type; //フォーマットによってファイル拡張子を変えている
+    a.click();
+    a.remove();
+  }
+
+  function runSelected(select: string) {
+    if (select === "登録") {
+      const result = dispatch(MonthScheduleReducers.bundleAttendEdit(false));
+      result.payload && navigate("/BundleAttendEdit");
+    }
+    if (select === "承認") {
+      dispatch(MonthScheduleReducers.BundleApplovalRecuest(true));
+    }
+    if (select === "csv" || select === "xlsx") {
+      csvORexcelDownload(select);
+    }
+  }
   return (
     <>
       <div className={styles.wrapper}>
@@ -29,29 +69,35 @@ function DataOperation() {
           />
         </div>
         <div className={styles.body}>
-          <Button
-            dataTestid=""
-            onClick={() => {
-              BundleAttendEdit();
-            }}
-            text="登録"
-            type="button"
-            disabled={false}
-          />
-          <Button
-            dataTestid=""
-            onClick={() => {}}
-            text="承認申請"
-            type="button"
-            disabled={false}
-          />
-          <Button
-            dataTestid=""
-            onClick={() => {}}
-            text="PDF出力"
-            type="button"
-            disabled={false}
-          />
+          <select
+            className={styles.select}
+            onChange={(event) => setSelect(event.target.value)}
+            defaultValue={"登録"}
+          >
+            <option className={styles.select_option} value="登録">
+              一括 日次勤怠登録
+            </option>
+            <option className={styles.select_option} value="承認">
+              一括 承認申請
+            </option>
+            <option className={styles.select_option} value="csv">
+              CSV形式でダウンロード
+            </option>
+            <option className={styles.select_option} value="xlsx">
+              Excel形式でダウンロード
+            </option>
+          </select>
+          <div className={styles.run_Button}>
+            <Button
+              dataTestid=""
+              onClick={() => {
+                runSelected(select);
+              }}
+              text="実行"
+              type="button"
+              disabled={false}
+            />
+          </div>
         </div>
       </div>
       {bundleRegistError.openToggle && (
@@ -64,6 +110,6 @@ function DataOperation() {
       )}
     </>
   );
-}
+};
 
 export default DataOperation;

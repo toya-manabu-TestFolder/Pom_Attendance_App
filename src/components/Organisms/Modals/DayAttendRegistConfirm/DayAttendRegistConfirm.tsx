@@ -41,6 +41,11 @@ function DayAttendRegistConfirm({
       setIsModal(false);
     }, 300);
   }
+
+  function setDate(date: string) {
+    if (date === "一括設定中") return "一括設定中";
+    return `${date.slice(0, 4)}年 ${date.slice(5, 7)}月 ${date.slice(8, 10)}日`;
+  }
   return (
     <>
       <div
@@ -62,9 +67,7 @@ function DayAttendRegistConfirm({
                 <li>
                   対象日：
                   <span className={styles.li_span}>
-                    {registData.date.slice(0, 4)}年&nbsp;
-                    {registData.date.slice(5, 7)}月&nbsp;
-                    {registData.date.slice(8, 10)}日
+                    {setDate(registData.date)}
                   </span>
                 </li>
                 <li className={styles.li}>

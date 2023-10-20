@@ -23,6 +23,8 @@ const HomePageTmp = ({ attendanceData }: Props) => {
   const [Minute, setMinute] = useState(0);
   const [Second, setSecond] = useState(0);
   useEffect(() => {
+    dispatch(homeSliceReducers.setToDay(""));
+
     setInterval(() => {
       const nowTime = new Date();
       setYear(nowTime.getFullYear());

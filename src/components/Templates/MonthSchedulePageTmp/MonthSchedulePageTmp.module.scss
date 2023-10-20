@@ -1,5 +1,6 @@
 .body {
   padding: 0% 1.5%;
+  margin-top: 22vh;
   .main_title {
     margin: 3% 0;
   }
@@ -38,5 +39,31 @@
     background-size: contain;
     background-image: url("/public/MonthSchedulePage/TopScroll.png");
     background-position: 90%;
+  }
+}
+
+.bundle_approval_days {
+  font-size: clamp(10px, 2.5vw, 1000px);
+  font-family: Meiryo;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 1200px) {
+  .body {
+    padding: 0% 1.5%;
+    margin-top: 0;
+    .bundle_approval_days {
+      font-size: clamp(10px, 3vw, 1000px);
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .bundle_approval_days {
+    font-size: clamp(10px, 4vw, 1000px);
+  }
+}
+@media screen and (max-width: 400px) {
+  .bundle_approval_days {
+    font-size: clamp(10px, 4.5vw, 1000px);
   }
 }

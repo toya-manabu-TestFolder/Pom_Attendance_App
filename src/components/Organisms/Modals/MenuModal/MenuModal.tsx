@@ -62,15 +62,15 @@ function MenuModal({ setIsMenu }: Props) {
             />
           </div>
           <div className={styles.menu_button}>
-            <Button
-              dataTestid=""
-              onClick={() => {
-                navigate("/DaySchedule");
-              }}
-              text="日次勤怠"
-              type="button"
-              disabled={false}
-            />
+            <a href="/DaySchedule">
+              <Button
+                dataTestid=""
+                onClick={async () => {}}
+                text="日次勤怠"
+                type="button"
+                disabled={false}
+              />
+            </a>
           </div>
         </div>
         <div className={styles.menu_button_wrapper}>
@@ -82,15 +82,15 @@ function MenuModal({ setIsMenu }: Props) {
             />
           </div>
           <div className={styles.menu_button}>
-            <Button
-              dataTestid=""
-              onClick={() => {
-                navigate("/MonthSchedule");
-              }}
-              text="月次勤怠"
-              type="button"
-              disabled={false}
-            />
+            <a href="/MonthSchedule">
+              <Button
+                dataTestid=""
+                onClick={() => {}}
+                text="月次勤怠"
+                type="button"
+                disabled={false}
+              />
+            </a>
           </div>
         </div>
         <div className={styles.menu_button_wrapper}>

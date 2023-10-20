@@ -12,6 +12,7 @@ import CompletRegistPage from "./components/pages/CompletRegistPage/CompletRegis
 import HomePage from "./components/pages/HomePage/HomePage.tsx";
 import DaySchedulePage from "./components/pages/DaySchedulePage/DaySchedulePage.tsx";
 import MonthSchedulePage from "./components/pages/MonthSchedulePage/MonthSchedulePage.tsx";
+import BundleAttendEditPageTmp from "./components/Templates/BundleAttendEditPageTmp/BundleAttendEditPageTmp.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   // <React.StrictMode>
@@ -25,6 +26,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Route path="/Home" element={<HomePage />} />
         <Route path="/DaySchedule" element={<DaySchedulePage />} />
         <Route path="/MonthSchedule" element={<MonthSchedulePage />} />
+        <Route path="/BundleAttendEdit" element={<BundleAttendEditPageTmp />} />
       </Routes>
     </Provider>
   </BrowserRouter>

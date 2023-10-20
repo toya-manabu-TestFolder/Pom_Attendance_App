@@ -11,9 +11,72 @@
     border-bottom: clamp(0.5px, 0.15vw, 10px) solid #583225;
   }
   .body {
+    padding: 3% 2%;
+    width: 100%;
     display: grid;
-    padding: 2% 4%;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4%;
+    justify-items: center;
+    .select {
+      width: 80%;
+      font-family: "Meiryo";
+      text-align: center;
+      font-weight: bold;
+      font-size: clamp(10px, 2.2vw, 500px);
+      border-radius: clamp(5px, 2vw, 50px);
+      border: clamp(2px, 0.3vw, 20px) solid #583225;
+      background-color: #7e262b;
+      color: #faf9a6;
+      &:hover {
+        color: #f9f4fc;
+        background-color: #d04f2f;
+      }
+      cursor: url("cursol.png"), pointer;
+      .select_option {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    margin: 5% 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    margin: 5% 0;
+    .title {
+      font-size: 1.1em;
+    }
+    .body {
+      font-size: 1.5em;
+      align-content: space-between;
+
+      padding: 5% 15%;
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(3, 26%);
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wrapper {
+    .title {
+      font-size: 0.9em;
+    }
+    .body {
+      font-size: 1.5em;
+    }
+  }
+}
+@media screen and (max-width: 300px) {
+  .wrapper {
+    .title {
+      font-size: 0.6em;
+    }
+    .body {
+      font-size: 1em;
+    }
   }
 }

@@ -7,11 +7,16 @@ type Props = {
 
 function SettingDay({ toDay }: Props) {
   const week = ["日", "月", "火", "水", "木", "金", "土"];
-  const newDay = new Date(toDay);
-  const year = newDay.getFullYear();
-  const month = newDay.getMonth() + 1;
-  const day = newDay.getDate();
-  const dayOfWeek = week[newDay.getDay()];
+  let setDate = "";
+  setDate = toDay;
+  if (toDay !== "一括設定中") {
+    const newDay = new Date(toDay);
+    const year = newDay.getFullYear();
+    const month = newDay.getMonth() + 1;
+    const day = newDay.getDate();
+    const dayOfWeek = week[newDay.getDay()];
+    setDate = `${year}年 ${month}月 ${day}日 (${dayOfWeek})`;
+  }
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -24,12 +29,10 @@ function SettingDay({ toDay }: Props) {
       </div>
       <div className={styles.body}>
         <Span
-          color="#F9F4FC"
+          color={toDay === "一括設定中" ? "#49F01F" : "#F9F4FC"}
           onClickSpan={() => {}}
           style="display_block"
-          text={
-            year + "年 " + month + "月 " + day + "日 " + "(" + dayOfWeek + ")"
-          }
+          text={setDate}
         />
       </div>
     </div>

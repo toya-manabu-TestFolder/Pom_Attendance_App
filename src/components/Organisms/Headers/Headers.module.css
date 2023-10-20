@@ -1,190 +1,189 @@
 .nav {
+  position: fixed;
+  top: 0;
+  padding-top: 1%;
+  height: 16vh;
   width: 100%;
-  display: grid;
+  display: flex;
+  justify-content: space-around;
   align-items: end;
-  grid-template-columns: 0.3fr 1fr 0.3fr;
-  border-bottom: clamp(3px, 1vw * 0.5, 8px) solid #583225;
+  border-bottom: clamp(3px, 0.5vw, 8px) solid #583225;
+  background-color: #fbd13d;
+  z-index: 100;
   .Home_link_wrapp {
-    width: 100%;
     height: 100%;
+    width: 25%;
     background-image: url("/navigation/titleLogo.png");
-    background-size: 90% 90%;
+    background-size: contain;
     background-position: bottom;
     background-repeat: no-repeat;
   }
   .login_user_wrapp {
     display: grid;
-    align-items: end;
-    grid-template-columns: repeat(100, 1%);
-    grid-template-rows: repeat(100, 1%);
-
-    width: 100%;
+    width: 55%;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: repeat(2, 1fr);
     height: 100%;
-    background-image: url("/navigation/loginUser.png");
-    background-size: 53% 100%;
-    background-position: left;
-    background-repeat: no-repeat;
+    .login_pom_img {
+      grid-row: 1/3;
+      grid-column: 1/2;
+      background-image: url("/navigation/loginUser_Pom.png");
+      background-size: contain;
+      background-position: bottom 0% right 0%;
+      background-repeat: no-repeat;
+    }
+    .login_pomfriend_img {
+      grid-row: 2/3;
+      grid-column: 2/3;
+      background-image: url("/navigation/loginUser_friends.png");
+      background-size: contain;
+      background-position: bottom 0% left 0%;
+      background-repeat: no-repeat;
+    }
     .text_wrapp {
-      grid-row: 1/50;
-      grid-column: 15/100;
+      position: relative;
+      height: 100%;
+      padding-left: 1%;
+      grid-row: 1/2;
+      grid-column: 2/3;
       .text {
-        max-height: 100%;
-        font-size: 1rem;
+        position: absolute;
+        bottom: 0;
+        font-size: clamp(10px, 2vw, 500px);
         font-weight: bold;
         color: #7e262b;
       }
     }
   }
   .menu_button_wrapp {
-    padding: 5% 15%;
-    font-size: 1rem;
+    display: grid;
+    height: 100%;
+    align-items: center;
+    width: 15%;
+    font-size: clamp(10px, 2vw, 500px);
     z-index: 100;
     .menu_button {
       width: 100%;
     }
   }
 }
+.open_nav {
+  transform: translateY(0%);
+  transition: all 0.8s;
+}
+.close_nav {
+  transform: translateY(-120%);
+  transition: all 0.8s;
+}
+.toggle_top_wrapper {
+  position: fixed;
+  right: -15%;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+  width: 15%;
+  height: 20%;
+  z-index: 100;
+  cursor: pointer;
 
-@media screen and (max-width: 1279px) {
-  .nav {
-    .Home_link_wrapp {
-      background-size: 95% 90%;
-    }
-    .login_user_wrapp {
-      .text_wrapp {
-        grid-row: 1/57;
-      }
-    }
-    .menu_button_wrapp {
-      font-size: 0.8rem;
-    }
+  .toggle_top_img {
+    height: 80%;
+    object-fit: contain;
+    object-position: right;
+  }
+  .toggle_top_button {
+    position: relative;
+    right: -105%;
+    height: 30%;
+    font-size: clamp(10px, 1.7vw, 500px);
+    font-weight: bold;
+    color: #7e262b;
+    transition: right 0.8s;
+  }
+  &:hover .toggle_top_button {
+    right: 0%;
   }
 }
 
-@media screen and (max-width: 1279px) and (min-height: 700px) {
+@media screen and (max-width: 1200px) {
   .nav {
-    width: 100%;
-    display: block;
-    grid-template-columns: 1fr;
+    position: relative;
+    padding-top: 0%;
+
+    height: 12vh;
+    margin-top: 10%;
     .Home_link_wrapp {
-      background-size: 70% 60%;
-      background-position: bottom;
-      padding: 25% 0%;
+      width: 30%;
     }
     .login_user_wrapp {
-      margin-top: 15%;
-      background-size: 70% 100%;
-      background-position: center;
-      padding: 6% 0%;
+      width: 60%;
       .text_wrapp {
-        grid-row: 1/40;
-        grid-column: 33/100;
         .text {
-          font-size: 1.5rem;
+          font-size: clamp(10px, 2.2vw, 500px);
         }
       }
     }
     .menu_button_wrapp {
       position: fixed;
-      top: 5%;
-      right: 5%;
+      right: 3%;
+      top: 4%;
+      height: auto;
       width: 20%;
-      padding: 0;
-      font-size: 1.5rem;
+      font-size: clamp(10px, 3vw, 500px);
     }
   }
+  .open_nav {
+    transform: none;
+    transition: none;
+  }
+  .close_nav {
+    transform: none;
+    transition: none;
+  }
+  .toggle_top_wrapper {
+    display: none;
+  }
 }
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 700px) {
   .nav {
-    width: 100%;
+    height: 25vh;
     display: block;
-    grid-template-columns: 1fr;
+    margin-top: 3%;
     .Home_link_wrapp {
-      background-size: 75% 65%;
-      background-position: bottom;
-      padding: 25% 0%;
-    }
-    .login_user_wrapp {
-      margin-top: 15%;
-      background-size: 90% 100%;
+      height: 50%;
+      width: 80%;
       background-position: center;
-      padding: 6% 0%;
-      .text_wrapp {
-        grid-row: 1/40;
-        grid-column: 28/100;
-        .text {
-          font-size: 1.15rem;
-        }
-      }
     }
-    .menu_button_wrapp {
-      position: fixed;
-      top: 5%;
-      right: 5%;
-      width: 20%;
-      padding: 0;
-      font-size: 1.2rem;
-    }
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .nav {
     .login_user_wrapp {
+      grid-template-columns: 30% 70%;
+      height: 50%;
+      width: 100%;
       .text_wrapp {
-        grid-row: 1/35;
         .text {
-          font-size: 1rem;
+          font-size: clamp(10px, 4vw, 500px);
         }
       }
     }
     .menu_button_wrapp {
-      font-size: 1rem;
+      right: 5%;
+      top: 6%;
+      width: 23%;
+      font-size: clamp(10px, 5vw, 500px);
     }
   }
 }
 @media screen and (max-width: 500px) {
   .nav {
+    height: 20vh;
+    .Home_link_wrapp {
+      width: 70%;
+    }
     .login_user_wrapp {
       .text_wrapp {
-        grid-row: 1/35;
         .text {
-          font-size: 0.9rem;
+          font-size: clamp(10px, 4.5vw, 500px);
         }
       }
-    }
-    .menu_button_wrapp {
-      font-size: 0.9rem;
-    }
-  }
-}
-@media screen and (max-width: 400px) {
-  .nav {
-    .login_user_wrapp {
-      .text_wrapp {
-        grid-row: 1/35;
-        .text {
-          font-size: 0.7rem;
-        }
-      }
-    }
-    .menu_button_wrapp {
-      font-size: 0.75rem;
-    }
-  }
-}
-@media screen and (max-width: 300px) {
-  .nav {
-    .login_user_wrapp {
-      .text_wrapp {
-        grid-row: 1/50;
-        .text {
-          font-size: 0.6rem;
-        }
-      }
-    }
-    .menu_button_wrapp {
-      font-size: 0.6rem;
     }
   }
 }
