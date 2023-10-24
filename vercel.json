@@ -1,8 +1,16 @@
 {
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/api/server.js"
-    }
+    { "source": "/", "destination": "/api/server.js" },
+    { "source": "/registar", "destination": "/" },
+    { "source": "/inputConfirmation", "destination": "/" },
+    { "source": "/CompletRegist", "destination": "/" },
+    { "source": "/Home", "destination": "/" },
+    { "source": "/DaySchedule", "destination": "/" },
+    { "source": "/MonthSchedule", "destination": "/" },
+    { "source": "/BundleAttendEdit", "destination": "/" },
+    { "source": "/authApi/(.*)", "destination": "/api/server.js" },
+    { "source": "/registarApi/(.*)", "destination": "/api/server.js" },
+    { "source": "/DayScheduleApi/(.*)", "destination": "/api/server.js" },
+    { "source": "/MonthScheduleApi/(.*)", "destination": "/api/server.js" }
   ]
 }

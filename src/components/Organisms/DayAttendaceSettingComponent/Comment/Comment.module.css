@@ -58,6 +58,7 @@
   animation: Appearance 0.2s linear;
   padding: 2% 5%;
   z-index: 150;
+  font-size: clamp(10px, 2.5vw, 100px);
 
   .modal_textarea_wrapper {
     position: relative;
@@ -69,8 +70,9 @@
       border: 0.3rem solid #f9f4fc;
       background-color: #7e262b;
       font-weight: bold;
-      font-size: 1.5em;
       padding: 1.5%;
+
+      font-size: 1.1em;
       &:focus {
         color: #000;
         background-color: #f9f4fc;
@@ -84,7 +86,6 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 10%;
 
-    font-size: 1.4em;
     .modal_button {
       width: 100%;
     }
@@ -98,58 +99,6 @@
     left: 0;
     background-color: black;
     opacity: 0.5;
-  }
-}
-
-.completed_modal_wrapper {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  animation: Appearance 0.2s linear;
-
-  .completed_message_wrapper {
-    height: 80%;
-    width: 60%;
-    position: relative;
-    background-color: #fbd13d;
-    border: 0.3rem solid #583225;
-    border-radius: 50px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    .message {
-      display: grid;
-      font-size: 2em;
-      text-align: center;
-      margin-bottom: 5%;
-    }
-    .img {
-      position: relative;
-      width: 100%;
-      height: 50%;
-      background-image: url("/DaySchedulePage/comment_edit_comp.png");
-      background-size: contain;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-  }
-  &::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: black;
-    opacity: 0.7;
   }
 }
 
@@ -181,19 +130,6 @@
       justify-content: space-around;
     }
   }
-  .completed_modal_wrapper {
-    .completed_message_wrapper {
-      height: 50%;
-      width: 98%;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      .message {
-        font-size: 1.05em;
-      }
-    }
-  }
 }
 @media screen and (max-width: 700px) {
   .modal_wrapper {
@@ -206,20 +142,6 @@
       font-size: 0.8em;
     }
   }
-  .completed_modal_wrapper {
-    .completed_message_wrapper {
-      .message {
-        font-size: 1em;
-      }
-    }
-  }
 }
 @media screen and (max-width: 500px) {
-  .completed_modal_wrapper {
-    .completed_message_wrapper {
-      .message {
-        font-size: 0.63em;
-      }
-    }
-  }
 }

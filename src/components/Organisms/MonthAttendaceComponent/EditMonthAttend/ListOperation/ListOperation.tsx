@@ -22,7 +22,7 @@ function ListOperation() {
           onClick={() => {
             dispatch(MonthScheduleReducers.bundleSelect("承認"));
           }}
-          text="未承認(平日)"
+          text="未承認"
           type="button"
           disabled={false}
         />

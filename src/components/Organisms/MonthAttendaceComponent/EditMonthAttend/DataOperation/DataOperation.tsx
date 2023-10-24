@@ -15,7 +15,7 @@ function DataOperation() {
   const { bundleRegistError } = useSelector(MonthScheduleState);
   const BundleAttendEdit = () => {
     const result = dispatch(MonthScheduleReducers.bundleAttendEdit(false));
-    result.payload && navigate("/DaySchedule");
+    result.payload && navigate("/BundleAttendEdit");
   };
   return (
     <>
@@ -40,7 +40,9 @@ function DataOperation() {
           />
           <Button
             dataTestid=""
-            onClick={() => {}}
+            onClick={() => {
+              dispatch(MonthScheduleReducers.BundleApplovalRecuest(true));
+            }}
             text="承認申請"
             type="button"
             disabled={false}
