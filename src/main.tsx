@@ -13,6 +13,7 @@ import HomePage from "./components/pages/HomePage/HomePage.tsx";
 import DaySchedulePage from "./components/pages/DaySchedulePage/DaySchedulePage.tsx";
 import MonthSchedulePage from "./components/pages/MonthSchedulePage/MonthSchedulePage.tsx";
 import BundleAttendEditPageTmp from "./components/Templates/BundleAttendEditPageTmp/BundleAttendEditPageTmp.tsx";
+import OtherEditPage from "./components/pages/OtherEditPage/OtherEditPage.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   // <React.StrictMode>
@@ -27,6 +28,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
         <Route path="/DaySchedule" element={<DaySchedulePage />} />
         <Route path="/MonthSchedule" element={<MonthSchedulePage />} />
         <Route path="/BundleAttendEdit" element={<BundleAttendEditPageTmp />} />
+        <Route path="/OtherEditPage" element={<OtherEditPage />} />
       </Routes>
     </Provider>
   </BrowserRouter>

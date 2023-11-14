@@ -1,33 +1,39 @@
-import { useEffect } from "react";
 import Span from "../../../atoms/Span/Span";
 import styles from "./CompletModal.module.css";
-import { useDispatch } from "react-redux";
-import { homeSliceReducers } from "../../../../features/homeSlice";
 import { gsap } from "gsap";
+import { Stats, homeSliceReducers } from "../../../../features/homeSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 type Props = {
-  text: string;
   imgURL: string;
 };
 
-function CompletModal({ text, imgURL }: Props) {
+function CompletModal({ imgURL }: Props) {
+  const { CompletedModalState } = useSelector(Stats);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    gsap.to(".edit_completed", {
-      duration: 0.5,
-      delay: 1.2,
-      opacity: 0,
-    });
-    setTimeout(() => {
-      dispatch(
-        homeSliceReducers.toggleCompletedModal({
-          toggleModal: false,
-          message: "",
-        })
-      );
-    }, 1700);
-  }, []);
+  if (CompletedModalState.toggleModal) {
+    gsap.set(".edit_completed", { display: "grid", opacity: 0 });
+    gsap
+      .timeline()
+      .to(".edit_completed", {
+        duration: 0.4,
+        opacity: 1,
+      })
+      .to(".edit_completed", {
+        duration: 0.4,
+        delay: 1,
+        opacity: 0,
+        onComplete: () => {
+          gsap.set(".edit_completed", { display: "none" });
+          dispatch(
+            homeSliceReducers.toggleCompletedModal({
+              toggleModal: false,
+              message: "",
+            })
+          );
+        },
+      });
+  }
 
   return (
     <div className={`${styles.completed_modal_wrapper} edit_completed`}>
@@ -37,7 +43,7 @@ function CompletModal({ text, imgURL }: Props) {
             color="#F9F4FC"
             onClickSpan={() => {}}
             style="display_block"
-            text={text}
+            text={CompletedModalState.message}
           />
         </div>
         <div

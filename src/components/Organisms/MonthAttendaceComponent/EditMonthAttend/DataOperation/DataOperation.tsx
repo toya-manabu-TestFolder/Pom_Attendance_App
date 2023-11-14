@@ -6,7 +6,6 @@ import {
   MonthScheduleReducers,
   MonthScheduleState,
 } from "../../../../../features/MonthScheduleSlice";
-import ErrorModal from "../../../Modals/ErrorModal/ErrorModal";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import ExcelJS from "exceljs";
@@ -14,9 +13,8 @@ import ExcelJS from "exceljs";
 const DataOperation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { bundleRegistError, MonthAttendList } =
-    useSelector(MonthScheduleState);
-  const [select, setSelect] = useState("");
+  const { MonthAttendList } = useSelector(MonthScheduleState);
+  const [select, setSelect] = useState("登録");
 
   async function csvORexcelDownload(type: string) {
     const workbook = new ExcelJS.Workbook();
@@ -100,14 +98,6 @@ const DataOperation = () => {
           </div>
         </div>
       </div>
-      {bundleRegistError.openToggle && (
-        <ErrorModal
-          errorText={bundleRegistError.message}
-          closeBtnFun={() => {
-            dispatch(MonthScheduleReducers.ErrorCrose());
-          }}
-        />
-      )}
     </>
   );
 };

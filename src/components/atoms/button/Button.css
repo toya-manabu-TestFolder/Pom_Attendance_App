@@ -18,7 +18,7 @@
   letter-spacing: 0.15625rem;
   text-indent: 0.15625rem;
   -webkit-text-stroke: clamp(2.5px, 1vw * 0.3, 8px) #583225;
-  cursor: url("cursol.png"), pointer;
+  cursor: url("/Cursor/cursor.png"), pointer;
 
   color: #fbd13d;
   &:hover {

@@ -31,6 +31,7 @@ authRouter.post("/", async (req, res) => {
           .cookie("LoginUser", `${user.data[0].name}`, {
             secure: true,
           })
+
           .json({
             status: 200,
           });
@@ -41,4 +42,8 @@ authRouter.post("/", async (req, res) => {
   );
 });
 
+authRouter.get("/logout", async (req, res) => {
+  req.session.destroy();
+  res.json();
+});
 export default authRouter;

@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import ListOperation from "./ListOperation/ListOperation";
 import DataOperation from "./DataOperation/DataOperation";
 import Button from "../../../atoms/button/Button";
-import { getDayAttendanceData } from "../../../../features/DayScheduleSlice";
 import { useNavigate } from "react-router-dom";
 import { homeSliceReducers } from "../../../../features/homeSlice";
 // randomUUIDはランダムなIDを生成する。
@@ -86,13 +85,10 @@ function EditMonthAttend() {
               color={""}
               onClickSpan={async () => {
                 if (obj === "日付") {
-                  await dispatch(
-                    getDayAttendanceData({
-                      toDay: `${selectMonth}-${list[obj].slice(3)}`,
-                    })
-                  );
+                  navigate("/DaySchedule", {
+                    state: { toDay: `${selectMonth}-${list[obj].slice(3)}` },
+                  });
                   dispatch(homeSliceReducers.toggleLoading(false));
-                  navigate("/DaySchedule");
                 }
               }}
               style={`display_block ${obj === "日付" && "Month_attend_day"}`}

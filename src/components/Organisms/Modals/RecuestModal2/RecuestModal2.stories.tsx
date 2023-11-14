@@ -27,9 +27,9 @@ type Story = StoryObj<typeof RecuestModal2>;
 export const Default: Story = {
   args: {
     text: "Default",
+    toggleModal: true,
     okBtnFunProps: () => {},
     noBtnFunProps: () => {},
-    setIsModal: () => {},
     message: "",
   },
 };

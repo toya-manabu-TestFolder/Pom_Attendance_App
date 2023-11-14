@@ -4,45 +4,37 @@ import styles from "./RecuestModal2.module.scss";
 import { gsap } from "gsap";
 type Props = {
   text: string;
+  toggleModal: boolean;
   okBtnFunProps: () => void;
   noBtnFunProps: () => void;
-  setIsModal: React.Dispatch<React.SetStateAction<boolean>>;
   message: any;
 };
 
-function RecuestModal2({
+const RecuestModal2 = ({
   text,
+  toggleModal,
   okBtnFunProps,
   noBtnFunProps,
-  setIsModal,
   message,
-}: Props) {
-  function okBtnClick() {
-    gsap.to(".edit_completed", {
-      duration: 0.5,
-      delay: 1.2,
-      opacity: 0,
+}: Props) => {
+  if (toggleModal) {
+    gsap.to("#RecuestModal2", {
+      duration: 0.2,
+      opacity: 1,
     });
-    setTimeout(() => {
-      setIsModal(false);
-    }, 1700);
-  }
-
-  function noBtnClick() {
-    gsap.to(".cancel_animation", {
+    gsap.set("#RecuestModal2", { display: "flex" });
+  } else {
+    gsap.to("#RecuestModal2", {
       duration: 0.2,
       opacity: 0,
+      onComplete: () => {
+        gsap.set("#RecuestModal2", { display: "none" });
+      },
     });
-    setTimeout(() => {
-      setIsModal(false);
-    }, 300);
   }
 
   return (
-    <div
-      id="overlay"
-      className={`${styles.overlay} edit_completed cancel_animation`}
-    >
+    <div id="RecuestModal2" className={styles.overlay}>
       <div className={styles.modal_body}>
         <div className={styles.body_top}>
           <div className={styles.message_wrapper}>
@@ -66,7 +58,6 @@ function RecuestModal2({
               imgSrc="/Modals/Ok.png"
               onClick={() => {
                 okBtnFunProps();
-                okBtnClick();
               }}
               type="button"
             />
@@ -76,7 +67,7 @@ function RecuestModal2({
               dataTestId=""
               imgAlt="NOボタン"
               imgSrc="/Modals/NO.png"
-              onClick={() => [noBtnFunProps(), noBtnClick()]}
+              onClick={() => noBtnFunProps()}
               type="button"
             />
           </div>
@@ -84,6 +75,6 @@ function RecuestModal2({
       </div>
     </div>
   );
-}
+};
 
 export default RecuestModal2;

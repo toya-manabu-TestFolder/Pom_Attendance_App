@@ -13,7 +13,7 @@
   .Home_link_wrapp {
     height: 100%;
     width: 25%;
-    background-image: url("/navigation/titleLogo.png");
+    background-image: url("/public/navigation/titleLogo.png");
     background-size: contain;
     background-position: bottom;
     background-repeat: no-repeat;
@@ -78,7 +78,7 @@
 .toggle_top_wrapper {
   position: fixed;
   right: -15%;
-  top: 5%;
+  bottom: 5%;
   display: flex;
   flex-direction: column;
   width: 15%;
@@ -107,11 +107,6 @@
 
 @media screen and (max-width: 1200px) {
   .nav {
-    position: relative;
-    padding-top: 0%;
-
-    height: 12vh;
-    margin-top: 10%;
     .Home_link_wrapp {
       width: 30%;
     }
@@ -132,6 +127,40 @@
       font-size: clamp(10px, 3vw, 500px);
     }
   }
+  .nav {
+    position: relative;
+    padding-top: 0%;
+
+    height: 25vh;
+    display: block;
+    margin-top: 3%;
+    .Home_link_wrapp {
+      height: 50%;
+      width: 80%;
+      background-position: center;
+    }
+    .login_user_wrapp {
+      grid-template-columns: 30% 70%;
+      height: 50%;
+      width: 100%;
+      .text_wrapp {
+        .text {
+          font-size: clamp(10px, 4vw, 500px);
+        }
+      }
+    }
+    .menu_button_wrapp {
+      right: 5%;
+      top: 6%;
+      width: 23%;
+      font-size: clamp(10px, 5vw, 500px);
+
+      position: fixed;
+      right: 3%;
+      height: auto;
+    }
+  }
+
   .open_nav {
     transform: none;
     transition: none;

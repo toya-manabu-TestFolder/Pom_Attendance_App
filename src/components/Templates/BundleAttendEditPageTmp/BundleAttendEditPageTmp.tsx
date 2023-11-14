@@ -149,14 +149,13 @@ function BundleAttendEditPageTmp() {
           setIsModal={setIsRegistConfirm}
         />
       )}
-      {isError && (
-        <ErrorModal
-          errorText={errorMessage}
-          closeBtnFun={() => {
-            dispatch(Reducer.closeErrorModal());
-          }}
-        />
-      )}
+      <ErrorModal
+        toggleModal={isError}
+        errorText={errorMessage}
+        closeBtnFun={() => {
+          dispatch(Reducer.closeErrorModal());
+        }}
+      />
     </>
   );
 }
