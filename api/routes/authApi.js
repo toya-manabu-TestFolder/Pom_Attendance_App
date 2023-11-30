@@ -31,7 +31,6 @@ authRouter.post("/", async (req, res) => {
           .cookie("LoginUser", `${user.data[0].name}`, {
             secure: true,
           })
-
           .json({
             status: 200,
           });
