@@ -295,52 +295,6 @@ const MonthScheduleSlice = createSlice({
     closeBundleApplovalModal: (state) => {
       state.bundleApplovalRecuest.modalToggle = false;
     },
-    ToggleCommentModal: (state, action) => {
-      state.toggleCommentModal = action.payload;
-    },
-    BundleApplovalRecuest: (state, action) => {
-      const slectedResult = state.MonthAttendList.some((data) => data.選択);
-      let selectDays = [];
-      if (!slectedResult) {
-        state.bundleRegistError.message = "日付が選択されていません！！";
-        state.bundleRegistError.openToggle = true;
-        return;
-      }
-
-      for (const data of state.MonthAttendList) {
-        if (data.選択 && data.登録 === "登録なし") {
-          state.bundleRegistError.message =
-            "登録なしの日付が選択されています！！";
-          state.bundleRegistError.openToggle = true;
-          return;
-        }
-
-        if (data.選択 && data.承認 === "申請中") {
-          state.bundleRegistError.message =
-            "申請中の日付が選択されています！！";
-          state.bundleRegistError.openToggle = true;
-          return;
-        }
-
-        if (data.選択 && data.承認 === "承認済み") {
-          state.bundleRegistError.message =
-            "申請中の日付が選択されています！！";
-          state.bundleRegistError.openToggle = true;
-          return;
-        }
-
-        if (data.選択) {
-          let day = `${state.selectMonth}-${data.日付.slice(3)}`;
-          selectDays.push(day);
-          state.bundleApplovalRecuest.selectDays = selectDays;
-        }
-      }
-
-      state.bundleApplovalRecuest.modalToggle = action.payload;
-    },
-    closeBundleApplovalModal: (state) => {
-      state.bundleApplovalRecuest.modalToggle = false;
-    },
   },
 });
 export const MonthScheduleState = (state: Props) => state.MonthSchedule;
