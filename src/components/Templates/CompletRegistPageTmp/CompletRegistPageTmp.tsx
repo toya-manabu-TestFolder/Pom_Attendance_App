@@ -2,8 +2,11 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../atoms/button/Button";
 import H2_Ver1 from "../../atoms/h2/ver.1/H2";
 import styles from "./CompletRegistPageTmp.module.css";
+import { homeSliceReducers } from "../../../features/homeSlice";
+import { useDispatch } from "react-redux";
 
 const CompletRegistPageTmp = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
     <div className={styles.CompletRegistPageTmp_wrapp}>
@@ -21,6 +24,7 @@ const CompletRegistPageTmp = () => {
         <Button
           dataTestid="button"
           onClick={() => {
+            dispatch(homeSliceReducers.toggleLoading(false));
             navigate("/");
           }}
           text="ログインページへ"

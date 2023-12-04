@@ -9,6 +9,7 @@ import {
   State,
   updateDayAttendData,
 } from "../../../features/DayScheduleSlice";
+import { homeSliceReducers } from "../../../features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import H2_Ver2 from "../../atoms/h2/ver.2/h2";
@@ -25,9 +26,12 @@ import TotalTime from "../../Organisms/DayAttendaceSettingComponent/TotalTime/To
 import DayAttendRegistConfirm from "../../Organisms/Modals/DayAttendRegistConfirm/DayAttendRegistConfirm";
 import RequestModal from "../../Organisms/Modals/RequestModal/RequestModal";
 import ErrorModal from "../../Organisms/Modals/ErrorModal/ErrorModal";
+import LoadingPage from "../../pages/LoadingPage/LoadingPage";
+import { useLocation } from "react-router-dom";
 
 function DaySchedulePageTmp() {
   const dispatch = useDispatch();
+  const Location = useLocation();
   const {
     editedDayAttendanceData,
     errorOfBtnDisable,
@@ -41,17 +45,16 @@ function DaySchedulePageTmp() {
   const [isApprovalReqError, setIsApprovalReqError] = useState(false);
 
   useEffect(() => {
-    const toDay = new Date();
-    const Year = toDay.getFullYear();
-    const Month = "0" + (toDay.getMonth() + 1);
-    const date = "0" + toDay.getDate();
-
+    dispatch(homeSliceReducers.toggleLoading(false));
     const sendData = {
-      toDay: `${Year + "-" + Month.slice(-2) + "-" + date.slice(-2)}`,
+      toDay: Location.state.toDay,
     };
     (async function () {
       await dispatch(getDayAttendanceData(sendData));
     })();
+    setTimeout(() => {
+      dispatch(homeSliceReducers.toggleLoading(true));
+    }, 0);
   }, []);
   return (
     <>
@@ -63,7 +66,11 @@ function DaySchedulePageTmp() {
               <Calendar />
             </div>
             <div className={styles.calendar_img_wrapper}>
-              <div className={styles.calendar_img}></div>
+              <img
+                className={styles.calendar_img}
+                src="/DaySchedulePage/calendar_img.png"
+                alt=""
+              />
             </div>
           </div>
           <div className={styles.body_right}>
@@ -118,6 +125,7 @@ function DaySchedulePageTmp() {
                     />
                   </div>
                 )}
+
                 {editedDayAttendanceData.approvel_request_state && (
                   <div className={styles.day_attendance_setting_button}>
                     <RequestButton
@@ -132,68 +140,70 @@ function DaySchedulePageTmp() {
                 )}
               </div>
 
-              <div className={styles.title_wrapper}>
-                <H2_Ver2 text="日次勤怠入力一覧" />
-              </div>
-              <div className={styles.day_attendance_setting_wrapper}>
-                <div className={styles.day_attendance_setting}>
-                  <SettingDay toDay={editedDayAttendanceData.date} />
+              <div className={styles.edit_section}>
+                <div className={styles.title_wrapper}>
+                  <H2_Ver2 text="日次勤怠入力一覧" />
                 </div>
-                <div className={styles.day_attendance_setting}>
-                  <SettingState
-                    registState={
-                      editedDayAttendanceData.approvel_request_state
-                        ? "承認依頼済み"
-                        : editedDayAttendanceData.regist_state
-                    }
-                  />
-                </div>
-                <div className={styles.day_attendance_setting}>
-                  <SettingShift
-                    endTime={editedDayAttendanceData.default_end_time}
-                    registState={editedDayAttendanceData.attendance_type}
-                    startTime={editedDayAttendanceData.default_start_time}
-                    disabled={editedDayAttendanceData.approvel_request_state}
-                  />
-                </div>
-                <div className={styles.day_attendance_setting}>
-                  <AttendTime
-                    endTime={editedDayAttendanceData.end_time}
-                    startTime={editedDayAttendanceData.start_time}
-                    disabled={editedDayAttendanceData.approvel_request_state}
-                  />
-                </div>
-                <div className={styles.day_attendance_setting}>
-                  <AttendState
-                    attendState={editedDayAttendanceData.attendance_state}
-                    disabled={editedDayAttendanceData.approvel_request_state}
-                  />
-                </div>
-                <div className={styles.day_attendance_setting}>
-                  <PaidTime
-                    PaidTime={editedDayAttendanceData.paid_time}
-                    disabled={editedDayAttendanceData.approvel_request_state}
-                  />
-                </div>
-                <div className={styles.day_attendance_setting}>
-                  <BreakTime
-                    breakTime={editedDayAttendanceData.break_time}
-                    disabled={editedDayAttendanceData.approvel_request_state}
-                  />
-                </div>
+                <div className={styles.day_attendance_setting_wrapper}>
+                  <div className={styles.day_attendance_setting}>
+                    <SettingDay toDay={editedDayAttendanceData.date} />
+                  </div>
+                  <div className={styles.day_attendance_setting}>
+                    <SettingState
+                      registState={
+                        editedDayAttendanceData.approvel_request_state
+                          ? "承認依頼済み"
+                          : editedDayAttendanceData.regist_state
+                      }
+                    />
+                  </div>
+                  <div className={styles.day_attendance_setting}>
+                    <SettingShift
+                      endTime={editedDayAttendanceData.default_end_time}
+                      registState={editedDayAttendanceData.attendance_type}
+                      startTime={editedDayAttendanceData.default_start_time}
+                      disabled={editedDayAttendanceData.approvel_request_state}
+                    />
+                  </div>
+                  <div className={styles.day_attendance_setting}>
+                    <AttendTime
+                      endTime={editedDayAttendanceData.end_time}
+                      startTime={editedDayAttendanceData.start_time}
+                      disabled={editedDayAttendanceData.approvel_request_state}
+                    />
+                  </div>
+                  <div className={styles.day_attendance_setting}>
+                    <AttendState
+                      attendState={editedDayAttendanceData.attendance_state}
+                      disabled={editedDayAttendanceData.approvel_request_state}
+                    />
+                  </div>
+                  <div className={styles.day_attendance_setting}>
+                    <PaidTime
+                      PaidTime={editedDayAttendanceData.paid_time}
+                      disabled={editedDayAttendanceData.approvel_request_state}
+                    />
+                  </div>
+                  <div className={styles.day_attendance_setting}>
+                    <BreakTime
+                      breakTime={editedDayAttendanceData.break_time}
+                      disabled={editedDayAttendanceData.approvel_request_state}
+                    />
+                  </div>
 
-                <div className={styles.day_attendance_setting}>
-                  <TotalTime
-                    attendStartTime={editedDayAttendanceData.start_time}
-                    attendEndTime={editedDayAttendanceData.end_time}
-                    breakTime={editedDayAttendanceData.break_time}
-                  />
-                </div>
-                <div className={styles.day_attendance_setting}>
-                  <Comment
-                    Comment={editedDayAttendanceData.comment}
-                    disabled={editedDayAttendanceData.approvel_request_state}
-                  />
+                  <div className={styles.day_attendance_setting}>
+                    <TotalTime
+                      attendStartTime={editedDayAttendanceData.start_time}
+                      attendEndTime={editedDayAttendanceData.end_time}
+                      breakTime={editedDayAttendanceData.break_time}
+                    />
+                  </div>
+                  <div className={styles.day_attendance_setting}>
+                    <Comment
+                      Comment={editedDayAttendanceData.comment}
+                      disabled={editedDayAttendanceData.approvel_request_state}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -203,8 +213,18 @@ function DaySchedulePageTmp() {
       {isRegistConfirm && (
         <DayAttendRegistConfirm
           registData={editedDayAttendanceData}
-          okBtnFunProps={() => {
-            dispatch(registDayAttendData(editedDayAttendanceData));
+          okBtnFunProps={async () => {
+            const Result = await dispatch(
+              registDayAttendData(editedDayAttendanceData)
+            );
+            if (Result.payload.status === 200) {
+              dispatch(
+                homeSliceReducers.toggleCompletedModal({
+                  toggleModal: true,
+                  message: "登録が完了しました！！",
+                })
+              );
+            }
           }}
           noBtnFunProps={() => {}}
           setIsModal={setIsRegistConfirm}
@@ -213,8 +233,18 @@ function DaySchedulePageTmp() {
       {isUpdateConfirm && (
         <DayAttendRegistConfirm
           registData={editedDayAttendanceData}
-          okBtnFunProps={() => {
-            dispatch(updateDayAttendData(editedDayAttendanceData));
+          okBtnFunProps={async () => {
+            const Result = await dispatch(
+              updateDayAttendData(editedDayAttendanceData)
+            );
+            if (Result.payload.status === 200) {
+              dispatch(
+                homeSliceReducers.toggleCompletedModal({
+                  toggleModal: true,
+                  message: "登録変更が完了しました！！",
+                })
+              );
+            }
           }}
           noBtnFunProps={() => {}}
           setIsModal={setIsUpdateConfirm}
@@ -222,8 +252,18 @@ function DaySchedulePageTmp() {
       )}
       {isModal && (
         <RequestModal
-          okBtnFunProps={() => {
-            dispatch(approvalRequestDayAttendData(editedDayAttendanceData));
+          okBtnFunProps={async () => {
+            const Result = await dispatch(
+              approvalRequestDayAttendData(editedDayAttendanceData)
+            );
+            if (Result.payload.status === 200) {
+              dispatch(
+                homeSliceReducers.toggleCompletedModal({
+                  toggleModal: true,
+                  message: "承認申請が完了しました！！",
+                })
+              );
+            }
           }}
           noBtnFunProps={() => {}}
           text="承認申請してよろしいですか？"
@@ -233,22 +273,21 @@ function DaySchedulePageTmp() {
           isError={canApprovalRequest}
         />
       )}
-      {isApprovalReqError && (
-        <ErrorModal
-          errorText={"予定登録してください！！"}
-          closeBtnFun={() => {
-            setIsApprovalReqError(false);
-          }}
-        />
-      )}
-      {isError && (
-        <ErrorModal
-          errorText={errorMessage}
-          closeBtnFun={() => {
-            dispatch(Reducer.closeErrorModal());
-          }}
-        />
-      )}
+      <ErrorModal
+        toggleModal={isApprovalReqError}
+        errorText={"予定登録してください！！"}
+        closeBtnFun={() => {
+          setIsApprovalReqError(false);
+        }}
+      />
+      <ErrorModal
+        toggleModal={isError}
+        errorText={errorMessage}
+        closeBtnFun={() => {
+          dispatch(Reducer.closeErrorModal());
+        }}
+      />
+      {<LoadingPage />}
     </>
   );
 }

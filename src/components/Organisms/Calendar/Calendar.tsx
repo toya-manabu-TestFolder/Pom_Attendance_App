@@ -10,27 +10,36 @@ import styles from "./Calendar.module.css";
 import { getDayAttendanceData } from "../../../features/DayScheduleSlice";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { homeSliceReducers } from "../../../features/homeSlice";
+import { useLocation } from "react-router-dom";
 
 function Calendar() {
   const dispatch = useDispatch();
+  const Location = useLocation();
+
   useEffect(() => {
-    const toDay = new Date();
-    const Year = toDay.getFullYear();
-    const Month = "0" + (toDay.getMonth() + 1);
-    const date = "0" + toDay.getDate();
+    const setBgColor = document.querySelector(".setBgColor");
+    if (setBgColor !== null) setBgColor.classList.remove("setBgColor");
+
+    const setTextColor = document.querySelector(".setTextColor");
+    if (setTextColor !== null) setTextColor.classList.remove("setTextColor");
 
     const todayElWrapper = document.querySelector(
-      `[data-date="${Year + "-" + Month.slice(-2) + "-" + date.slice(-2)}"]`
+      `[data-date="${Location.state.toDay}"]`
     );
     if (todayElWrapper !== null) todayElWrapper.classList.add("setBgColor");
 
     const todayEl = document.querySelector(
-      `[aria-label="${Year}年${Month.slice(1)}月${date.slice(1)}日"]`
+      `[aria-label="${Location.state.toDay.slice(0, 4)}年${Number(
+        Location.state.toDay.slice(5, 7)
+      )}月${Number(Location.state.toDay.slice(8, 10))}日"]`
     );
+
     if (todayEl !== null) todayEl.classList.add("setTextColor");
-  }, []);
+  }, [Location.state.toDay]);
 
   const handleDateClick = async (event: any) => {
+    dispatch(homeSliceReducers.toggleLoading(false));
     const setBgColor = document.querySelector(".setBgColor");
     if (setBgColor !== null) setBgColor.classList.remove("setBgColor");
 
@@ -43,6 +52,7 @@ function Calendar() {
       toDay: `${event.dateStr}`,
     };
     await dispatch(getDayAttendanceData(sendData));
+    dispatch(homeSliceReducers.toggleLoading(true));
   };
 
   return (
@@ -51,6 +61,7 @@ function Calendar() {
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
+          initialDate={Location.state.toDay}
           locales={[jaLocale]}
           locale="ja"
           headerToolbar={{ left: "prev", center: "title", right: "next" }}

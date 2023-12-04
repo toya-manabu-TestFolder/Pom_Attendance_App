@@ -26,19 +26,6 @@ type Story = StoryObj<typeof CompletModal>;
 
 export const Default: Story = {
   args: {
-    text: "Default",
     imgURL: "/Modals/RegistConfirm.png",
-  },
-};
-export const RegistCompleted: Story = {
-  args: {
-    text: "登録が完了しました！！",
-    imgURL: "/Modals/RegistConfirm.png",
-  },
-};
-export const RegistCompleted2: Story = {
-  args: {
-    text: "登録が完了しました！！",
-    imgURL: "/Modals/comment_edit_comp.png",
   },
 };

@@ -48,6 +48,6 @@
     bottom: 0;
     right: -35%;
     font-size: 0.7em;
-    cursor: url("cursol.png"), pointer;
+    cursor: url("/Cursor/cursor.png"), pointer;
   }
 }

@@ -43,11 +43,6 @@ export const Default: Story = {
         { title: "取得日数", value: String(2.0) + "日" },
         { title: "取得時間", value: String(0.0) + "時間" },
       ],
-      RegistedWorkTimes: {
-        startTime: "09:00",
-        endTime: "18:00",
-      },
-      loginUser: "たぬき",
     },
   },
 };

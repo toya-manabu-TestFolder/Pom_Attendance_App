@@ -48,6 +48,16 @@ type Props = {
       openToggle: boolean;
       message: string;
     };
+    selectDays: string[];
+    toggleCommentModal: {
+      toggle: boolean;
+      comment: string;
+    };
+    bundleApplovalRecuest: {
+      modalToggle: boolean;
+      selectDays: string[];
+      error: boolean;
+    };
   };
 };
 
@@ -56,6 +66,20 @@ export const getMonthAttendanceData: any = createAsyncThunk(
   async (data) => {
     const result = await axios.post(
       `${API_URL}MonthScheduleApi/getMonthAttendanceData`,
+      data,
+      {
+        withCredentials: true,
+      }
+    );
+    return result.data;
+  }
+);
+
+export const postBundleApplovalRecuest: any = createAsyncThunk(
+  "MonthSchedule/postBundleApplovalRecuest",
+  async (data) => {
+    const result = await axios.post(
+      `${API_URL}MonthScheduleApi/postBundleApplovalRecuest`,
       data,
       {
         withCredentials: true,
@@ -96,6 +120,16 @@ const MonthScheduleSlice = createSlice({
     bundleRegistError: {
       openToggle: false,
       message: "",
+    },
+    selectDays: [""],
+    toggleCommentModal: {
+      toggle: false,
+      comment: "",
+    },
+    bundleApplovalRecuest: {
+      modalToggle: false,
+      selectDays: [""],
+      error: false,
     },
   },
   extraReducers: (builder) => {
@@ -146,6 +180,11 @@ const MonthScheduleSlice = createSlice({
       }
       state.uuid = newUuidArr;
     });
+    builder.addCase(postBundleApplovalRecuest.fulfilled, (state, action) => {
+      if (!action.payload.status) {
+        state.bundleApplovalRecuest.error = true;
+      }
+    });
   },
   reducers: {
     startSetState: (state, action) => {
@@ -160,6 +199,7 @@ const MonthScheduleSlice = createSlice({
       state.MonthAttendList[action.payload[1]].選択 = action.payload[0];
     },
     bundleSelect: (state, action) => {
+      console.log(action.payload);
       state.MonthAttendList.map((data) => {
         if (data.選択) data.選択 = false;
       });
@@ -172,11 +212,13 @@ const MonthScheduleSlice = createSlice({
 
       if (action.payload === "承認") {
         state.MonthAttendList.map((data) => {
-          if (data.承認 === "なし" && data.種類 === "平日") data.選択 = true;
+          if (data.承認 === "なし" && data.登録 === "登録済み")
+            data.選択 = true;
         });
       }
     },
     bundleAttendEdit: (state, action) => {
+      const selectDays = [];
       const slectedResult = state.MonthAttendList.some((data) => data.選択);
       if (!slectedResult) {
         state.bundleRegistError.message = "日付が選択されていません！！";
@@ -191,11 +233,67 @@ const MonthScheduleSlice = createSlice({
           state.bundleRegistError.openToggle = true;
           return;
         }
+
+        if (data.選択) {
+          const Year = new Date(state.selectMonth).getFullYear();
+          const ConvertDate = `${Year}-${data.日付.replace("/", "-")}`;
+          selectDays.push(ConvertDate);
+        }
       }
+      state.selectDays = selectDays;
       action.payload = true;
     },
-    ErrorCrose: (state) => {
+    ToggleCommentModal: (state, action) => {
+      state.toggleCommentModal = action.payload;
+    },
+    BundleApplovalRecuest: (state, action) => {
+      const slectedResult = state.MonthAttendList.some((data) => data.選択);
+      let selectDays = [];
+      if (!slectedResult) {
+        state.bundleRegistError.message = "日付が選択されていません！！";
+        state.bundleRegistError.openToggle = true;
+        return;
+      }
+
+      for (const data of state.MonthAttendList) {
+        if (data.選択 && data.登録 === "登録なし") {
+          state.bundleRegistError.message =
+            "登録なしの日付が選択されています！！";
+          state.bundleRegistError.openToggle = true;
+          return;
+        }
+
+        if (data.選択 && data.承認 === "申請中") {
+          state.bundleRegistError.message =
+            "申請中の日付が選択されています！！";
+          state.bundleRegistError.openToggle = true;
+          return;
+        }
+
+        if (data.選択 && data.承認 === "承認済み") {
+          state.bundleRegistError.message =
+            "申請中の日付が選択されています！！";
+          state.bundleRegistError.openToggle = true;
+          return;
+        }
+
+        if (data.選択) {
+          let day = `${state.selectMonth}-${data.日付.slice(3)}`;
+          selectDays.push(day);
+          state.bundleApplovalRecuest.selectDays = selectDays;
+        }
+      }
+
+      state.bundleApplovalRecuest.modalToggle = action.payload;
+    },
+    closeModal: (state) => {
+      state.bundleApplovalRecuest.modalToggle = false;
       state.bundleRegistError.openToggle = false;
+      state.bundleRegistError.message = "";
+    },
+
+    closeBundleApplovalModal: (state) => {
+      state.bundleApplovalRecuest.modalToggle = false;
     },
   },
 });

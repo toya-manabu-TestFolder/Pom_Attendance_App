@@ -97,7 +97,7 @@
         -webkit-text-stroke: clamp(0.7px, 0.07vw, 5px) #583225;
         &::-webkit-calendar-picker-indicator {
           font-size: 0.8em;
-          cursor: url("cursol.png"), pointer;
+          cursor: url("/Cursor/cursor.png"), pointer;
         }
       }
     }

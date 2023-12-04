@@ -17,7 +17,7 @@
     font-family: Meiryo;
     font-style: normal;
     font-weight: bold;
-    cursor: url("cursol.png"), pointer;
+    cursor: url("/Cursor/cursor.png"), pointer;
 
     border-radius: 50px;
     border: #583225 0.2rem solid;
