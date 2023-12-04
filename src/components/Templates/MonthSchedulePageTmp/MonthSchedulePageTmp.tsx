@@ -7,7 +7,7 @@ import {
   getMonthAttendanceData,
   postBundleApplovalRecuest,
 } from "../../../features/MonthScheduleSlice";
-import { homeSliceReducers, Stats } from "../../../features/homeSlice";
+import { homeSliceReducers } from "../../../features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import DisplayMonth from "../../Organisms/MonthAttendaceComponent/DisplayMonth/DisplayMonth";
@@ -22,10 +22,15 @@ import ErrorModal from "../../Organisms/Modals/ErrorModal/ErrorModal";
 import Span from "../../atoms/Span/Span";
 
 function MonthSchedulePageTmp() {
-  let { startDay, lastDay, toggleCommentModal, bundleApplovalRecuest } =
-    useSelector(MonthScheduleState);
-  let { CompletedModalState, ErrorModalState } = useSelector(Stats);
+  let {
+    startDay,
+    lastDay,
+    toggleCommentModal,
+    bundleApplovalRecuest,
+    bundleRegistError,
+  } = useSelector(MonthScheduleState);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const toDay = new Date();
     const Year = toDay.getFullYear();
@@ -36,6 +41,7 @@ function MonthSchedulePageTmp() {
       startDay: `${Year}-${Month}-01`,
       lastDay: `${Year}-${Month}-${last}`,
     };
+    dispatch(homeSliceReducers.toggleLoading(false));
     setTimeout(async () => {
       await dispatch(getMonthAttendanceData(startSendData));
       dispatch(homeSliceReducers.toggleLoading(true));
@@ -48,7 +54,7 @@ function MonthSchedulePageTmp() {
     return (
       <ul>
         {bundleApplovalRecuest.selectDays.map((day, index) => {
-          let getDayOfWeek = DayOfWeekArr[new Date(day).getDate() - 1];
+          let getDayOfWeek = DayOfWeekArr[new Date(day).getDay()];
           let convertDay = `${day
             .replace("-", "年 ")
             .replace("-", "月 ")}日 (${getDayOfWeek})`;
@@ -131,39 +137,26 @@ function MonthSchedulePageTmp() {
       {toggleCommentModal.toggle && (
         <CommentModal Comment={toggleCommentModal.comment} disabled={true} />
       )}
-      {bundleApplovalRecuest.modalToggle && (
-        <RecuestModal2
-          okBtnFunProps={() => {
-            RecuestModal();
-          }}
-          noBtnFunProps={() => {}}
-          text="下記日程を一括承認申請してよろしいですか？"
-          setIsModal={() => {
-            dispatch(MonthScheduleReducers.closeBundleApplovalModal());
-          }}
-          message={approvalList()}
-        />
-      )}
-      {<LoadingPage />}
-      {CompletedModalState.toggleModal && (
-        <CompletModal
-          imgURL="/Modals/RegistConfirm.png"
-          text={CompletedModalState.message}
-        />
-      )}
-      {ErrorModalState.toggleModal && (
-        <ErrorModal
-          errorText={ErrorModalState.message}
-          closeBtnFun={() => {
-            dispatch(
-              homeSliceReducers.toggleErrorModal({
-                toggleModal: false,
-                message: "",
-              })
-            );
-          }}
-        />
-      )}
+      <RecuestModal2
+        toggleModal={bundleApplovalRecuest.modalToggle}
+        okBtnFunProps={() => {
+          RecuestModal();
+        }}
+        noBtnFunProps={() => {
+          dispatch(MonthScheduleReducers.closeModal());
+        }}
+        text="下記日程を一括承認申請してよろしいですか？"
+        message={approvalList()}
+      />
+      <CompletModal imgURL="/Modals/RegistConfirm.png" />
+      <ErrorModal
+        toggleModal={bundleRegistError.openToggle}
+        errorText={bundleRegistError.message}
+        closeBtnFun={() => {
+          dispatch(MonthScheduleReducers.closeModal());
+        }}
+      />
+      <LoadingPage />
     </>
   );
 }

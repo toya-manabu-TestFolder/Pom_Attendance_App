@@ -2,6 +2,7 @@
   padding: 0% 1.5%;
   margin-top: 22vh;
   .main_title {
+    font-size: clamp(10px, 3vw, 1000px);
     margin: 3% 0;
   }
   .date_data_wrapper {
@@ -29,11 +30,11 @@
 .footer {
   display: grid;
   justify-items: end;
-  padding-right: 5%;
+  padding-right: 10%;
   margin: 5% 0;
   .top_scroll_button_wrapper {
     width: 23%;
-    cursor: url("cursol.png"), pointer;
+    cursor: url("/Cursor/cursor.png"), pointer;
     height: clamp(10px, 10vw, 1000px);
     background-repeat: no-repeat;
     background-size: contain;
@@ -52,18 +53,49 @@
   .body {
     padding: 0% 1.5%;
     margin-top: 0;
+    .main_title {
+      font-size: clamp(10px, 4vw, 1000px);
+      margin: 8% 0;
+    }
+    .date_data_wrapper {
+      width: 100%;
+      display: grid;
+      font-size: clamp(10px, 5vw, 1000px);
+      grid-template-columns: 100%;
+      grid-template-rows: repeat(2, 1fr);
+      gap: 8%;
+      margin-bottom: 8%;
+    }
+
     .bundle_approval_days {
       font-size: clamp(10px, 3vw, 1000px);
     }
   }
-}
-@media screen and (max-width: 700px) {
-  .bundle_approval_days {
-    font-size: clamp(10px, 4vw, 1000px);
+  .footer {
+    margin: 15% 0;
+    .top_scroll_button_wrapper {
+      width: clamp(10px, 50vw, 1000px);
+      height: clamp(10px, 15vw, 1000px);
+    }
   }
 }
-@media screen and (max-width: 400px) {
-  .bundle_approval_days {
-    font-size: clamp(10px, 4.5vw, 1000px);
+
+@media screen and (max-width: 500px) {
+  .body {
+    .main_title {
+      font-size: clamp(10px, 6.5vw, 1000px);
+      margin: 8% 0;
+    }
+    .date_data_wrapper {
+      font-size: clamp(10px, 6vw, 1000px);
+      margin-bottom: 8%;
+    }
+  }
+  .footer {
+    margin: 25% 0;
+    .top_scroll_button_wrapper {
+      width: clamp(10px, 50vw, 1000px);
+      height: clamp(10px, 20vw, 1000px);
+    }
   }
 }

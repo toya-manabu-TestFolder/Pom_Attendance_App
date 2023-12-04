@@ -1,20 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+import { HomeSliceType } from "../types/types";
+const API_URL = import.meta.env.VITE_API_URL;
 
-type Props = {
-  home: {
-    toDay: string;
-    startButtonDesable: boolean;
-    toggleLoading: boolean;
-    CompletedModalState: {
-      toggleModal: boolean;
-      message: string;
-    };
-    ErrorModalState: {
-      toggleModal: boolean;
-      message: string;
-    };
-  };
-};
+type Props = HomeSliceType;
+
+export const getUserPaidData: any = createAsyncThunk(
+  "homeSlice/getUserPaidData",
+  async () => {
+    const result = await axios.get(`${API_URL}HomeApi/getUserPaidData`, {
+      withCredentials: true,
+    });
+    return result.data;
+  }
+);
 
 const homeSlice = createSlice({
   name: "home",
@@ -30,8 +29,28 @@ const homeSlice = createSlice({
       toggleModal: false,
       message: "",
     },
+    userPaidData: {
+      all_heve_time: 0,
+      remaind_days: 0,
+      all_have_days: 0,
+      consumption_days: 0,
+      consumption_time: 0,
+    },
   },
-  extraReducers: () => {},
+  extraReducers: (builder) => {
+    builder.addCase(getUserPaidData.fulfilled, (state, action) => {
+      const Status = action.payload.status;
+      const PaidData = action.payload.paidData[0];
+      if (Status) {
+        state.userPaidData.all_have_days = PaidData.all_have_days;
+        state.userPaidData.all_heve_time = PaidData.all_heve_time;
+        state.userPaidData.consumption_days = PaidData.consumption_days;
+        state.userPaidData.consumption_time = PaidData.consumption_time;
+        state.userPaidData.remaind_days =
+          PaidData.all_have_days - PaidData.consumption_days;
+      }
+    });
+  },
   reducers: {
     setToDay: (state, action) => {
       const toDay = new Date();

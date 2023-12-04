@@ -1,3 +1,22 @@
+export type HomeSliceType = {
+  home: {
+    toDay: string;
+    startButtonDesable: boolean;
+    toggleLoading: boolean;
+    CompletedModalState: {
+      toggleModal: boolean;
+      message: string;
+    };
+    ErrorModalState: {
+      toggleModal: boolean;
+      message: string;
+    };
+    userPaidData: {
+      [x: string]: number;
+    };
+  };
+};
+
 export type RegistData = {
   registar: {
     registarDataState: {
@@ -61,11 +80,6 @@ export type attendanceDataType = {
       title: string;
       value: string;
     }[];
-    RegistedWorkTimes: {
-      startTime: string;
-      endTime: string;
-    };
-    loginUser: string;
   };
 };
 

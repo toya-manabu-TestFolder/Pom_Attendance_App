@@ -10,6 +10,7 @@
     { "source": "/BundleAttendEdit", "destination": "/" },
     { "source": "/authApi/(.*)", "destination": "/api/server.js" },
     { "source": "/registarApi/(.*)", "destination": "/api/server.js" },
+    { "source": "/HomeApi/(.*)", "destination": "/api/server.js" },
     { "source": "/DayScheduleApi/(.*)", "destination": "/api/server.js" },
     { "source": "/MonthScheduleApi/(.*)", "destination": "/api/server.js" }
   ]

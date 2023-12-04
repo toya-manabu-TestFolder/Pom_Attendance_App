@@ -27,9 +27,11 @@ import DayAttendRegistConfirm from "../../Organisms/Modals/DayAttendRegistConfir
 import RequestModal from "../../Organisms/Modals/RequestModal/RequestModal";
 import ErrorModal from "../../Organisms/Modals/ErrorModal/ErrorModal";
 import LoadingPage from "../../pages/LoadingPage/LoadingPage";
+import { useLocation } from "react-router-dom";
 
 function DaySchedulePageTmp() {
   const dispatch = useDispatch();
+  const Location = useLocation();
   const {
     editedDayAttendanceData,
     errorOfBtnDisable,
@@ -43,17 +45,16 @@ function DaySchedulePageTmp() {
   const [isApprovalReqError, setIsApprovalReqError] = useState(false);
 
   useEffect(() => {
-    if (editedDayAttendanceData.date === "") {
-      const Today = dispatch(homeSliceReducers.setToDay(""));
-
-      const sendData = {
-        toDay: Today.payload,
-      };
-      (async function () {
-        await dispatch(getDayAttendanceData(sendData));
-      })();
-    }
-    dispatch(homeSliceReducers.toggleLoading(true));
+    dispatch(homeSliceReducers.toggleLoading(false));
+    const sendData = {
+      toDay: Location.state.toDay,
+    };
+    (async function () {
+      await dispatch(getDayAttendanceData(sendData));
+    })();
+    setTimeout(() => {
+      dispatch(homeSliceReducers.toggleLoading(true));
+    }, 0);
   }, []);
   return (
     <>
@@ -212,8 +213,18 @@ function DaySchedulePageTmp() {
       {isRegistConfirm && (
         <DayAttendRegistConfirm
           registData={editedDayAttendanceData}
-          okBtnFunProps={() => {
-            dispatch(registDayAttendData(editedDayAttendanceData));
+          okBtnFunProps={async () => {
+            const Result = await dispatch(
+              registDayAttendData(editedDayAttendanceData)
+            );
+            if (Result.payload.status === 200) {
+              dispatch(
+                homeSliceReducers.toggleCompletedModal({
+                  toggleModal: true,
+                  message: "登録が完了しました！！",
+                })
+              );
+            }
           }}
           noBtnFunProps={() => {}}
           setIsModal={setIsRegistConfirm}
@@ -222,8 +233,18 @@ function DaySchedulePageTmp() {
       {isUpdateConfirm && (
         <DayAttendRegistConfirm
           registData={editedDayAttendanceData}
-          okBtnFunProps={() => {
-            dispatch(updateDayAttendData(editedDayAttendanceData));
+          okBtnFunProps={async () => {
+            const Result = await dispatch(
+              updateDayAttendData(editedDayAttendanceData)
+            );
+            if (Result.payload.status === 200) {
+              dispatch(
+                homeSliceReducers.toggleCompletedModal({
+                  toggleModal: true,
+                  message: "登録変更が完了しました！！",
+                })
+              );
+            }
           }}
           noBtnFunProps={() => {}}
           setIsModal={setIsUpdateConfirm}
@@ -231,8 +252,18 @@ function DaySchedulePageTmp() {
       )}
       {isModal && (
         <RequestModal
-          okBtnFunProps={() => {
-            dispatch(approvalRequestDayAttendData(editedDayAttendanceData));
+          okBtnFunProps={async () => {
+            const Result = await dispatch(
+              approvalRequestDayAttendData(editedDayAttendanceData)
+            );
+            if (Result.payload.status === 200) {
+              dispatch(
+                homeSliceReducers.toggleCompletedModal({
+                  toggleModal: true,
+                  message: "承認申請が完了しました！！",
+                })
+              );
+            }
           }}
           noBtnFunProps={() => {}}
           text="承認申請してよろしいですか？"
@@ -242,22 +273,20 @@ function DaySchedulePageTmp() {
           isError={canApprovalRequest}
         />
       )}
-      {isApprovalReqError && (
-        <ErrorModal
-          errorText={"予定登録してください！！"}
-          closeBtnFun={() => {
-            setIsApprovalReqError(false);
-          }}
-        />
-      )}
-      {isError && (
-        <ErrorModal
-          errorText={errorMessage}
-          closeBtnFun={() => {
-            dispatch(Reducer.closeErrorModal());
-          }}
-        />
-      )}
+      <ErrorModal
+        toggleModal={isApprovalReqError}
+        errorText={"予定登録してください！！"}
+        closeBtnFun={() => {
+          setIsApprovalReqError(false);
+        }}
+      />
+      <ErrorModal
+        toggleModal={isError}
+        errorText={errorMessage}
+        closeBtnFun={() => {
+          dispatch(Reducer.closeErrorModal());
+        }}
+      />
       {<LoadingPage />}
     </>
   );

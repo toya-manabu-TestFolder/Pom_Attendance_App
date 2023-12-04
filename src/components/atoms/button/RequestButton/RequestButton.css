@@ -17,7 +17,7 @@
   border-radius: 0.5rem;
   background-color: transparent;
 
-  cursor: url("cursol.png"), pointer;
+  cursor: url("/Cursor/cursor.png"), pointer;
   &:hover {
     background-color: #7e262b;
     border: clamp(3px, 0.4vw, 20px) solid #f9f4fc;
@@ -47,7 +47,7 @@
 
 @media screen and (max-width: 767px) {
   .RequestButton_component {
-    cursor: url("cursol.png"), pointer;
+    cursor: url("/Cursor/cursor.png"), pointer;
     &:hover {
       border: #f9f4fc 0.15rem solid;
     }

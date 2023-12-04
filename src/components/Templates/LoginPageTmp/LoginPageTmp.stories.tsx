@@ -28,12 +28,5 @@ const meta = {
 export default meta;
 
 export const Default = {
-  args: {
-    LoginError: false,
-  },
-};
-export const Error = {
-  args: {
-    LoginError: true,
-  },
+  args: {},
 };

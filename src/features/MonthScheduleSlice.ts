@@ -243,9 +243,6 @@ const MonthScheduleSlice = createSlice({
       state.selectDays = selectDays;
       action.payload = true;
     },
-    ErrorCrose: (state) => {
-      state.bundleRegistError.openToggle = false;
-    },
     ToggleCommentModal: (state, action) => {
       state.toggleCommentModal = action.payload;
     },
@@ -289,8 +286,10 @@ const MonthScheduleSlice = createSlice({
 
       state.bundleApplovalRecuest.modalToggle = action.payload;
     },
-    closeBundleApplovalModal: (state) => {
+    closeModal: (state) => {
       state.bundleApplovalRecuest.modalToggle = false;
+      state.bundleRegistError.openToggle = false;
+      state.bundleRegistError.message = "";
     },
   },
 });

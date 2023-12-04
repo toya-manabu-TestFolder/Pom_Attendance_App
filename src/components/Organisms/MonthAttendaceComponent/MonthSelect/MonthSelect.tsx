@@ -7,12 +7,14 @@ import {
   getMonthAttendanceData,
 } from "../../../../features/MonthScheduleSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { homeSliceReducers } from "../../../../features/homeSlice";
 
 function MonthSelect() {
   const dispatch = useDispatch();
   const { selectMonth } = useSelector(MonthScheduleState);
 
-  function sendPeriod(selectMonth: string) {
+  async function sendPeriod(selectMonth: string) {
+    dispatch(homeSliceReducers.toggleLoading(false));
     const sendData = {
       yearMonth: selectMonth,
       startDay: `${selectMonth}-01`,
@@ -22,7 +24,8 @@ function MonthSelect() {
         0
       ).getDate()}`,
     };
-    dispatch(getMonthAttendanceData(sendData));
+    await dispatch(getMonthAttendanceData(sendData));
+    dispatch(homeSliceReducers.toggleLoading(true));
   }
 
   return (

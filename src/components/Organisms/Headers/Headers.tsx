@@ -43,17 +43,9 @@ function Headers() {
     if (isToggleHeaderBtn) {
       setToggleHeader(true);
       setToggleHeaderBtn(false);
-      gsap.to("#toggle_top", {
-        duration: 1,
-        y: 120,
-      });
     } else {
       setToggleHeader(false);
       setToggleHeaderBtn(true);
-      gsap.to("#toggle_top", {
-        duration: 1,
-        y: 0,
-      });
     }
   }
   return (

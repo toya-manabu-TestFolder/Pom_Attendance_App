@@ -4,7 +4,7 @@ import { MonthScheduleState } from "../../../../features/MonthScheduleSlice";
 import { useSelector } from "react-redux";
 
 function MonthAttend() {
-  const { allAtttendData } = useSelector(MonthScheduleState);
+  const { allAtttendData, MonthAttendList } = useSelector(MonthScheduleState);
   const createList = () => {
     const result = [];
     for (let i = 0; i < 12; i++) {
@@ -46,7 +46,7 @@ function MonthAttend() {
           color="#FBD13D"
           onClickSpan={() => {}}
           style="display_block"
-          text="勤&nbsp;怠&nbsp;状&nbsp;況"
+          text={`${MonthAttendList[0].日付.slice(0, 2)} 月 の 勤 怠 状 況`}
         />
       </div>
       <div className={styles.body}>{createList()}</div>

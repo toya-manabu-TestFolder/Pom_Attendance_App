@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Span from "../../../atoms/Span/Span";
 import ModalButton from "../../../atoms/button/ModalButton/ModalButton";
 import styles from "./DayAttendRegistConfirm.module.css";
@@ -17,17 +16,13 @@ function DayAttendRegistConfirm({
   noBtnFunProps,
   setIsModal,
 }: Props) {
-  const [isRegistComplet, setIsRegistComplet] = useState(false);
-
   function okBtnClick() {
-    setIsRegistComplet(true);
-    gsap.to(".edit_completed", {
+    gsap.to(".DayAttendRegistConfirm", {
       duration: 0.5,
       delay: 1.2,
       opacity: 0,
     });
     setTimeout(() => {
-      setIsRegistComplet(false);
       setIsModal(false);
     }, 1700);
   }
@@ -50,7 +45,7 @@ function DayAttendRegistConfirm({
     <>
       <div
         id="overlay"
-        className={`${styles.overlay} cancel_animation edit_completed`}
+        className={`${styles.overlay} cancel_animation DayAttendRegistConfirm`}
       >
         <div className={styles.modal_body}>
           <div className={styles.body_top}>
@@ -154,12 +149,7 @@ function DayAttendRegistConfirm({
             </div>
           </div>
         </div>
-        {isRegistComplet && (
-          <CompletModal
-            imgURL="/Modals/RegistConfirm.png"
-            text="登録が完了しました！！"
-          />
-        )}
+        <CompletModal imgURL="/Modals/RegistConfirm.png" />
       </div>
     </>
   );

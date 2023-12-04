@@ -28,5 +28,6 @@ export const Default: Story = {
   args: {
     errorText: "Default",
     closeBtnFun: () => {},
+    toggleModal: true,
   },
 };

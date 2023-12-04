@@ -3,41 +3,67 @@ import { attendanceDataType } from "../../../types/types";
 import Span from "../../atoms/Span/Span";
 import styles from "./HomePageTmp.module.css";
 import RequestButton from "../../atoms/button/RequestButton/RequestButton";
-import { Stats, homeSliceReducers } from "../../../features/homeSlice";
+import {
+  Stats,
+  homeSliceReducers,
+  getUserPaidData,
+} from "../../../features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import RequestModal from "../../Organisms/Modals/RequestModal/RequestModal";
 import Box from "../../atoms/Box/Box";
 import Headers from "../../Organisms/Headers/Headers";
+import { HomeSliceType } from "../../../types/types";
+import LoadingPage from "../../pages/LoadingPage/LoadingPage";
+
 type Props = attendanceDataType;
 
 const HomePageTmp = ({ attendanceData }: Props) => {
   const dispatch = useDispatch();
-  const homeSliceStats = useSelector(Stats);
+  const { startButtonDesable, toDay, userPaidData } = useSelector(Stats);
   const [isModal, setIsModal] = useState(false);
-
-  const [Year, setYear] = useState(0);
-  const [Month, setMonth] = useState(0);
-  const [Data, setData] = useState(0);
   const [Week, setWeek] = useState<string | undefined>("");
   const [Hour, setHour] = useState(0);
   const [Minute, setMinute] = useState(0);
   const [Second, setSecond] = useState(0);
+
   useEffect(() => {
+    dispatch(homeSliceReducers.toggleLoading(false));
     dispatch(homeSliceReducers.setToDay(""));
+    dispatch(getUserPaidData());
 
     setInterval(() => {
       const nowTime = new Date();
-      setYear(nowTime.getFullYear());
-      setMonth(nowTime.getMonth() + 1);
-      setData(nowTime.getDate());
       const WeekArr = ["日", "月", "火", "水", "木", "金", "土"];
       setWeek(WeekArr[nowTime.getDay()]);
       setHour(nowTime.getHours());
       setMinute(nowTime.getMinutes());
       setSecond(nowTime.getSeconds());
     }, 1000);
+    setTimeout(() => {
+      dispatch(homeSliceReducers.toggleLoading(true));
+    }, 0);
   }, []);
 
+  function setUserPaidDataEl(
+    userPaidData: HomeSliceType["home"]["userPaidData"]
+  ) {
+    let ElArr = [];
+    for (let data in userPaidData) {
+      if (data !== "all_heve_time") {
+        ElArr.push(
+          <div className={styles.under_content} key={data}>
+            <Span
+              style=""
+              color="#F9F4FC"
+              onClickSpan={() => {}}
+              text={userPaidData[data]}
+            />
+          </div>
+        );
+      }
+    }
+    return ElArr;
+  }
   return (
     <>
       <div className={styles.HomePateTmp_wrapp}>
@@ -86,18 +112,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                           text="有給休暇"
                         />
                       </div>
-                      <>
-                        {attendanceData.payds.map((payd, index) => (
-                          <div className={styles.under_content} key={index}>
-                            <Span
-                              style=""
-                              color="#F9F4FC"
-                              onClickSpan={() => {}}
-                              text={payd.value}
-                            />
-                          </div>
-                        ))}
-                      </>
+                      <>{setUserPaidDataEl(userPaidData)}</>
                     </div>
                   </div>
                 </div>
@@ -121,7 +136,10 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                         style=""
                         color="#FFFEF6"
                         onClickSpan={() => {}}
-                        text={`${Year}年 ${Month}月 ${Data}日 (${Week})`}
+                        text={`${toDay.slice(0, 4)}年 ${toDay.slice(
+                          5,
+                          7
+                        )}月 ${toDay.slice(8, 10)}日 (${Week})`}
                       />
                     </div>
                   </div>
@@ -154,7 +172,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                       <div className={styles.button}>
                         <RequestButton
                           dataTestid=""
-                          disabled={homeSliceStats.startButtonDesable}
+                          disabled={startButtonDesable}
                           onClick={() => setIsModal(true)}
                           style=""
                           text="出&nbsp;勤"
@@ -186,7 +204,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                       <div className={styles.button}>
                         <RequestButton
                           dataTestid=""
-                          disabled={homeSliceStats.startButtonDesable}
+                          disabled={startButtonDesable}
                           onClick={() => setIsModal(true)}
                           style=""
                           text="退&nbsp;勤"
@@ -218,7 +236,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                     <div className={styles.approvalbutton}>
                       <RequestButton
                         dataTestid=""
-                        disabled={homeSliceStats.startButtonDesable}
+                        disabled={startButtonDesable}
                         onClick={() => {}}
                         style=""
                         text="承認申請"
@@ -246,6 +264,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
           isError={false}
         />
       )}
+      {<LoadingPage />}
     </>
   );
 };

@@ -6,11 +6,10 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  display: grid;
+  display: none;
   justify-items: center;
   align-items: center;
   font-size: clamp(10px, 3vw, 500px);
-  animation: Appearance 0.2s linear;
   z-index: 100;
 
   .error_message_wrapper {
@@ -50,15 +49,6 @@
     left: 0;
     background-color: black;
     opacity: 0.7;
-  }
-}
-
-@keyframes Appearance {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
 

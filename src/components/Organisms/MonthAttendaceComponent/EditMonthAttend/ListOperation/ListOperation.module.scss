@@ -1,11 +1,14 @@
 .wrapper {
-  display: block;
+  display: grid;
+  grid-template-rows: 1fr 2fr;
   border-radius: clamp(5px, 2vw, 50px);
   border: clamp(2px, 0.4vw, 20px) solid #583225;
   text-align: center;
   overflow: hidden;
 
   .title {
+    display: flex;
+    align-items: center;
     width: 100%;
     background-color: #7e262b;
     border-bottom: clamp(0.5px, 0.15vw, 10px) solid #583225;
@@ -15,6 +18,7 @@
     width: 100%;
     display: grid;
     justify-items: center;
+    align-items: center;
     .select {
       width: 80%;
       font-family: "Meiryo";
@@ -29,7 +33,7 @@
         color: #f9f4fc;
         background-color: #d04f2f;
       }
-      cursor: url("cursol.png"), pointer;
+      cursor: url("/Cursor/cursor.png"), pointer;
       .select_option {
         font-weight: bold;
       }
@@ -39,44 +43,46 @@
 
 @media screen and (max-width: 1200px) {
   .wrapper {
-    margin: 5% 0;
+    margin-bottom: 5%;
+    .title {
+      font-size: 1.2em;
+    }
+    .body {
+      .select {
+        font-size: clamp(10px, 5vw, 500px);
+        border-radius: clamp(5px, 2vw, 50px);
+        border: clamp(2px, 0.3vw, 20px) solid #583225;
+        .select_option {
+          font-weight: bold;
+          font-size: 0.8em;
+        }
+      }
+    }
   }
 }
 
 @media screen and (max-width: 500px) {
   .wrapper {
-    margin: 5% 0;
+    margin-bottom: 10%;
     .title {
-      font-size: 1.1em;
+      font-size: 1em;
     }
     .body {
-      font-size: 1.5em;
-      align-content: space-between;
-
-      padding: 5% 15%;
-      grid-template-columns: 100%;
-      grid-template-rows: repeat(3, 26%);
+      padding: 5% 0;
+      .select {
+        font-size: clamp(10px, 6vw, 500px);
+        border-radius: clamp(5px, 2vw, 50px);
+        border: clamp(2px, 0.3vw, 20px) solid #583225;
+        .select_option {
+          font-weight: bold;
+          font-size: 0.8em;
+        }
+      }
     }
   }
 }
 
 @media screen and (max-width: 400px) {
-  .wrapper {
-    .title {
-      font-size: 0.9em;
-    }
-    .body {
-      font-size: 1.5em;
-    }
-  }
 }
 @media screen and (max-width: 300px) {
-  .wrapper {
-    .title {
-      font-size: 0.6em;
-    }
-    .body {
-      font-size: 1em;
-    }
-  }
 }

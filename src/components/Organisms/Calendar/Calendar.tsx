@@ -7,33 +7,39 @@ import jaLocale from "@fullcalendar/core/locales/ja";
 import interactionPlugin from "@fullcalendar/interaction";
 import styled from "@emotion/styled";
 import styles from "./Calendar.module.css";
-import {
-  getDayAttendanceData,
-  State,
-} from "../../../features/DayScheduleSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { getDayAttendanceData } from "../../../features/DayScheduleSlice";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { homeSliceReducers } from "../../../features/homeSlice";
+import { useLocation } from "react-router-dom";
 
 function Calendar() {
   const dispatch = useDispatch();
-  const { editedDayAttendanceData } = useSelector(State);
+  const Location = useLocation();
 
   useEffect(() => {
+    const setBgColor = document.querySelector(".setBgColor");
+    if (setBgColor !== null) setBgColor.classList.remove("setBgColor");
+
+    const setTextColor = document.querySelector(".setTextColor");
+    if (setTextColor !== null) setTextColor.classList.remove("setTextColor");
+
     const todayElWrapper = document.querySelector(
-      `[data-date="${editedDayAttendanceData.date}"]`
+      `[data-date="${Location.state.toDay}"]`
     );
     if (todayElWrapper !== null) todayElWrapper.classList.add("setBgColor");
 
     const todayEl = document.querySelector(
-      `[aria-label="${editedDayAttendanceData.date.slice(0, 4)}年${Number(
-        editedDayAttendanceData.date.slice(5, 7)
-      )}月${Number(editedDayAttendanceData.date.slice(8, 10))}日"]`
+      `[aria-label="${Location.state.toDay.slice(0, 4)}年${Number(
+        Location.state.toDay.slice(5, 7)
+      )}月${Number(Location.state.toDay.slice(8, 10))}日"]`
     );
 
     if (todayEl !== null) todayEl.classList.add("setTextColor");
-  }, [editedDayAttendanceData.date]);
+  }, [Location.state.toDay]);
 
   const handleDateClick = async (event: any) => {
+    dispatch(homeSliceReducers.toggleLoading(false));
     const setBgColor = document.querySelector(".setBgColor");
     if (setBgColor !== null) setBgColor.classList.remove("setBgColor");
 
@@ -46,6 +52,7 @@ function Calendar() {
       toDay: `${event.dateStr}`,
     };
     await dispatch(getDayAttendanceData(sendData));
+    dispatch(homeSliceReducers.toggleLoading(true));
   };
 
   return (
@@ -54,11 +61,7 @@ function Calendar() {
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
-          initialDate={
-            editedDayAttendanceData.date === ""
-              ? new Date()
-              : editedDayAttendanceData.date
-          }
+          initialDate={Location.state.toDay}
           locales={[jaLocale]}
           locale="ja"
           headerToolbar={{ left: "prev", center: "title", right: "next" }}
