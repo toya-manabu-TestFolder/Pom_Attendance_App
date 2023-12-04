@@ -6,12 +6,16 @@ import {
   RegistData,
   confirmationReducers,
 } from "../../../features/confirmationSlice";
+import { reducers } from "../../../features/registarSlice";
 import InputConfirmationSection from "../../Organisms/InputConfirmationSection/InputConfirmationSection";
 import Button from "../../atoms/button/Button";
 import H2_Ver1 from "../../atoms/h2/ver.1/H2";
 import "./InputConfirmationPageTmp.css";
 import Span from "../../atoms/Span/Span";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { homeSliceReducers } from "../../../features/homeSlice";
+import LoadingPage from "../../pages/LoadingPage/LoadingPage";
 
 type Props = { confirmationState: ConfirmationDataType["confirmation"] };
 
@@ -21,15 +25,30 @@ function InputConfirmationPageTmp({ confirmationState }: Props) {
   const sendData = useSelector(sendDataState);
   const error = useSelector(errorState);
 
+  useEffect(() => {
+    dispatch(homeSliceReducers.toggleLoading(false));
+    setTimeout(() => {
+      dispatch(homeSliceReducers.toggleLoading(true));
+    }, 0);
+  }, []);
+
   const sendRegistData = async (
     event: React.FormEvent<HTMLFormElement>,
     sendData: Props["confirmationState"]["sendData"]
   ) => {
     event.preventDefault();
+    dispatch(homeSliceReducers.toggleLoading(false));
     const result = await dispatch(RegistData(sendData));
-    if (result.payload === 201) {
+    if (result.payload === 200) {
       dispatch(confirmationReducers.sendEmail());
-      navigate("/CompletRegist");
+      setTimeout(() => {
+        dispatch(homeSliceReducers.toggleLoading(true));
+        dispatch(confirmationReducers.resetState());
+        dispatch(reducers.resetRegistarData());
+        navigate("/CompletRegist");
+      }, 0);
+    } else {
+      dispatch(homeSliceReducers.toggleLoading(true));
     }
   };
 
@@ -51,6 +70,7 @@ function InputConfirmationPageTmp({ confirmationState }: Props) {
             text="これで登録する"
             type="submit"
             dataTestid="submit-button"
+            disabled={false}
           />
         </div>
         <div className="confirmation-button">
@@ -61,9 +81,11 @@ function InputConfirmationPageTmp({ confirmationState }: Props) {
             text="内容を変更する"
             type="button"
             dataTestid="change-button"
+            disabled={false}
           />
         </div>
       </div>
+      <LoadingPage />
     </form>
   );
 }

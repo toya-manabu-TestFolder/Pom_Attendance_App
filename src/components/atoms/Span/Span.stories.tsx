@@ -20,7 +20,7 @@ type Story = StoryObj<typeof Span>;
 export const Default: Story = {
   args: {
     text: "Default",
-    style: "",
+    style: "display_block",
     color: "red",
     onClickSpan: () => {},
   },

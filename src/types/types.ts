@@ -1,3 +1,22 @@
+export type HomeSliceType = {
+  home: {
+    toDay: string;
+    startButtonDesable: boolean;
+    toggleLoading: boolean;
+    CompletedModalState: {
+      toggleModal: boolean;
+      message: string;
+    };
+    ErrorModalState: {
+      toggleModal: boolean;
+      message: string;
+    };
+    userPaidData: {
+      [x: string]: number;
+    };
+  };
+};
+
 export type RegistData = {
   registar: {
     registarDataState: {
@@ -61,10 +80,29 @@ export type attendanceDataType = {
       title: string;
       value: string;
     }[];
-    RegistedWorkTimes: {
-      startTime: string;
-      endTime: string;
-    };
-    loginUser: string;
+  };
+};
+
+export type DayScheduleTypes = {
+  DayAttendanceDataType: {
+    id: number;
+    user_id: string;
+    date: string;
+    approvel_request_state: boolean;
+    approvel_state: boolean;
+    regist_state: string;
+    attendance_type: string;
+    default_start_time: string;
+    default_end_time: string;
+    start_time: string;
+    end_time: string;
+    attendance_state: string;
+    paid_time: string;
+    break_time: string;
+    lose_time: string;
+    over_time: string;
+    total_time: string;
+    comment: string;
+    selected: boolean;
   };
 };

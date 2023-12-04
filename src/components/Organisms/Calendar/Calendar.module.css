@@ -1,0 +1,23 @@
+.calendar_component_wrapper {
+  .StyleWrapper {
+    position: relative;
+    padding: 4%;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: url("/DaySchedulePage/calendar_wrapp.png");
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      z-index: 1;
+    }
+  }
+}
+
+:root {
+  --fc-border-color: none;
+}
