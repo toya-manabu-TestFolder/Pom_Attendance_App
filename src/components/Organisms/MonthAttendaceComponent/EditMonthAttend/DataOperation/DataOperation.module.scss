@@ -1,0 +1,89 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  border-radius: clamp(5px, 2vw, 50px);
+  border: clamp(2px, 0.4vw, 20px) solid #583225;
+  text-align: center;
+  overflow: hidden;
+
+  .title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #7e262b;
+    border-bottom: clamp(0.5px, 0.15vw, 10px) solid #583225;
+  }
+  .body {
+    padding: 3% 2%;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .select {
+      width: 70%;
+      font-family: "Meiryo";
+      text-align: center;
+      font-weight: bold;
+      font-size: clamp(10px, 2.2vw, 500px);
+      border-radius: clamp(5px, 2vw, 50px);
+      border: clamp(2px, 0.3vw, 20px) solid #583225;
+      background-color: #7e262b;
+      color: #faf9a6;
+      cursor: url("/Cursor/cursor.png"), pointer;
+      &:hover {
+        color: #f9f4fc;
+        background-color: #d04f2f;
+      }
+      .select_option {
+        font-weight: bold;
+      }
+    }
+    .run_Button {
+      font-size: clamp(10px, 1.8vw, 500px);
+      width: 20%;
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    .title {
+      font-size: 1.2em;
+    }
+    .body {
+      .select {
+        font-size: clamp(10px, 4.5vw, 500px);
+      }
+      .run_Button {
+        font-size: clamp(10px, 3.5vw, 500px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .wrapper {
+    grid-template-rows: 1fr 3.5fr;
+    .title {
+      font-size: 1em;
+    }
+    .body {
+      flex-direction: column;
+      padding: 5% 0;
+      .select {
+        width: 90%;
+        font-size: clamp(10px, 5vw, 500px);
+        margin-bottom: 5%;
+      }
+      .run_Button {
+        width: 40%;
+        font-size: clamp(10px, 5vw, 500px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+}
+@media screen and (max-width: 300px) {
+}

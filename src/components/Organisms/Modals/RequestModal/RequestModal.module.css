@@ -1,0 +1,114 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  animation: Appearance 0.2s linear;
+
+  .modal_body {
+    display: grid;
+    grid-template-rows: 75% 25%;
+    z-index: 1;
+    width: 80%;
+    height: 80%;
+    background-color: #fbd13d;
+    border: #583225 0.5rem solid;
+    border-radius: 0.5rem;
+    .body_top {
+      width: 100%;
+      display: grid;
+      align-items: center;
+      grid-template-columns: 70% 30%;
+      .text {
+        display: flex;
+        text-align: center;
+        font-size: clamp(10px, 3.5vw, 500px);
+      }
+      .img {
+        height: 100%;
+        background-image: url("/Modals/RequestModal_img.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+    }
+    .body_under {
+      width: 100%;
+      display: grid;
+      justify-items: center;
+      align-items: start;
+      grid-template-columns: repeat(2, 1fr);
+      .botton_wrapp {
+        width: 70%;
+        height: 70%;
+      }
+    }
+  }
+}
+
+@keyframes Appearance {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .overlay {
+    .modal_body {
+      grid-template-rows: 60% 40%;
+      .body_top {
+        display: grid;
+        align-items: center;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 50%);
+        .text {
+          font-size: 1.5rem;
+        }
+      }
+      .body_under {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        grid-template-columns: repeat(2, 1fr);
+        .botton_wrapp {
+          width: 70%;
+          height: 40%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .overlay {
+    .modal_body {
+      .body_top {
+        .text {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .overlay {
+    .modal_body {
+      .body_top {
+        .text {
+          font-size: 0.93rem;
+        }
+      }
+    }
+  }
+}

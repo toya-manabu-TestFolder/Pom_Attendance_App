@@ -5,8 +5,10 @@ type Props = {
   input_placeholder: string;
   input_id: string;
   input_style: string | undefined;
-  inputValue: string;
+  inputValue: string | number;
   onChange: (e: string) => void;
+  disabled: boolean;
+  dataTestid: string;
 };
 
 export default function Input({
@@ -16,36 +18,24 @@ export default function Input({
   input_style,
   inputValue,
   onChange,
+  disabled,
+  dataTestid,
 }: Props) {
   return (
     <>
-      {input_type !== "radio" ? (
-        <input
-          id={input_id}
-          className={input_style}
-          type={input_type}
-          placeholder={input_placeholder}
-          value={inputValue}
-          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-            onChange(event.target.value)
-          }
-        />
-      ) : (
-        <>
-          <input
-            id={input_id}
-            className="radio-button"
-            type={input_type}
-            placeholder={input_placeholder}
-            value={input_id}
-            name="gender"
-          />
-          <label className="radio-label" htmlFor={input_id}>
-            <span className="radio-span">{input_id}</span>
-            {input_id}
-          </label>
-        </>
-      )}
+      <input
+        data-testid={dataTestid}
+        id={input_id}
+        className={`${"input"} ${input_style}`}
+        type={input_type}
+        placeholder={input_placeholder}
+        value={inputValue}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+          onChange(event.target.value)
+        }
+        autoComplete="off"
+        disabled={disabled}
+      />
     </>
   );
 }

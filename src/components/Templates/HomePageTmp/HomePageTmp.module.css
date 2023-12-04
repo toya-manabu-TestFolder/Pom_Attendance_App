@@ -1,0 +1,396 @@
+.HomePateTmp_wrapp {
+  overflow: hidden;
+  .employee_attend_wrapp {
+    overflow: auto;
+    padding-top: 16vh;
+    .attendance_operation {
+      height: 84vh;
+      display: grid;
+      width: 100%;
+      grid-template-columns: 50% 50%;
+      .left_column {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 84vh;
+        .payd_info_wrapp {
+          padding: 2% 2%;
+          .section_box {
+            border: #583225 clamp(1.5px, 1vw, 10px) solid;
+            border-radius: 0.5rem;
+            .title {
+              display: flex;
+              justify-content: center;
+              text-align: center;
+              background-color: #7e262b;
+              font-size: clamp(10px, 2vw, 500px);
+              border-bottom: clamp(1.5px, 1vw, 10px) solid #583225;
+              width: 100%;
+            }
+            .body {
+              display: grid;
+              grid-template-rows: repeat(2, 1fr);
+              width: 100%;
+              .body_content {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                text-align: center;
+                font-size: clamp(10px, 2vw, 500px);
+                .top_content {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-right: clamp(1.5px, 0.4vw, 10px) solid #583225;
+                  border-bottom: clamp(1.5px, 0.3vw, 10px) solid #583225;
+                  padding: 10% 0;
+                  &:last-child {
+                    border-right: 0rem solid #583225;
+                  }
+                  .img_wrapp {
+                    height: 100%;
+                    width: 100%;
+                    background-image: url("/navigation/space.png");
+                    background-size: contain;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                  }
+                }
+
+                .under_content {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  border-right: clamp(1.5px, 0.4vw, 10px) solid #583225;
+                  border-top: clamp(1.5px, 0.3vw, 10px) solid #583225;
+                  padding: 10% 0;
+                  &:last-child {
+                    border-right: 0rem solid #583225;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .now_time_info_wrapp {
+          position: sticky;
+          width: 100%;
+          padding: 15% 4% 3% 50%;
+          &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-image: url("/navigation/nowTime.png");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+          }
+          .time_now {
+            width: 100%;
+            font-size: clamp(10px, 2.2vw, 500px);
+            .top {
+              display: flex;
+              text-align: center;
+              justify-content: center;
+              font-size: 1.3em;
+              background-color: #7e262b;
+              border-bottom: 0.3rem solid #583225;
+              padding-top: 3%;
+            }
+            .center {
+              display: grid;
+              text-align: center;
+              align-items: center;
+              font-size: 0.75em;
+              border-bottom: 0.3rem solid #583225;
+              padding: 3% 0px;
+            }
+            .under {
+              background-color: #faf9a6;
+              display: grid;
+              text-align: center;
+              align-items: center;
+              font-size: 0.9em;
+              padding: 4% 0px;
+            }
+          }
+        }
+      }
+      .right_column {
+        height: 84vh;
+        padding: 1.6% 2%;
+        font-size: clamp(10px, 2.5vw, 1000px);
+        .attend_stanp_operation {
+          height: 100%;
+          border: #583225 clamp(1.5px, 1vw, 10px) solid;
+          border-radius: 0.5rem;
+          .title_of_right_column {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            background-color: #7e262b;
+            font-size: 1em;
+            border-bottom: clamp(1.5px, 1vw, 10px) solid #583225;
+            width: 100%;
+            height: 10%;
+          }
+          .body_of_right_column {
+            width: 100%;
+            display: grid;
+            height: fit-content;
+            height: 90%;
+            grid-template-rows: repeat(3, 1fr);
+            .content {
+              display: grid;
+              width: 100%;
+              grid-template-columns: repeat(2, 50%);
+              border-bottom: #583225 clamp(1.5px, 0.6vw, 100px) solid;
+              &:last-child {
+                border-bottom: none;
+              }
+              .left_content {
+                display: grid;
+                grid-template-columns: repeat(2, 50%);
+                align-items: center;
+                justify-items: center;
+                border-right: clamp(1.5px, 0.4vw, 10px) solid #583225;
+                .button {
+                  font-size: 1.1em;
+                  height: 50%;
+                  width: 80%;
+                }
+                .start_img {
+                  width: 100%;
+                  height: 100%;
+                  background-image: url("/homepage/attendance_img1.png");
+                  background-size: contain;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                }
+                .end_img {
+                  width: 90%;
+                  height: 90%;
+                  background-image: url("/homepage/attendance_img2.png");
+                  background-size: contain;
+                  background-position: center;
+                  background-repeat: no-repeat;
+                }
+              }
+              .right_content {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 0.7em;
+                padding: 5% 0;
+                .stanpTime_wrapp {
+                  display: flex;
+                  align-items: center;
+                  text-align: center;
+                  width: 80%;
+                  height: 85%;
+                  font-size: 1.4em;
+                }
+              }
+            }
+            .body_approvalbutton_wrapp {
+              display: flex;
+              width: 100%;
+              align-items: center;
+              justify-content: space-evenly;
+              .approvalbutton {
+                width: 30%;
+                height: 50%;
+                font-size: 1.1em;
+              }
+              .approvalbutton_left_Img {
+                width: 30%;
+                height: 90%;
+                background-image: url("/homepage/applovar_left.png");
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+              }
+              .approvalbutton_right_Img {
+                width: 30%;
+                height: 80%;
+                background-image: url("/homepage/applovar_right.png");
+                background-size: contain;
+                background-position: center;
+                background-repeat: no-repeat;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .HomePateTmp_wrapp {
+    overflow: hidden;
+    .employee_attend_wrapp {
+      overflow: auto;
+
+      padding-top: 0;
+      .attendance_operation {
+        height: auto;
+        display: block;
+        width: 100%;
+        .left_column {
+          display: block;
+          height: auto;
+          .payd_info_wrapp {
+            padding: 0% 2%;
+            margin-top: 5%;
+            .section_box {
+              .title {
+                font-size: clamp(10px, 5vw, 500px);
+              }
+              .body {
+                .body_content {
+                  font-size: clamp(10px, 4vw, 500px);
+                  .top_content {
+                    border-right: clamp(1.5px, 0.6vw, 10px) solid #583225;
+                    padding: 15% 0;
+                  }
+
+                  .under_content {
+                    border-right: clamp(1.5px, 0.6vw, 10px) solid #583225;
+                    padding: 15% 0;
+                  }
+                }
+              }
+            }
+          }
+          .now_time_info_wrapp {
+            margin: 5% 0;
+            .time_now {
+              font-size: clamp(10px, 4.5vw, 500px);
+            }
+          }
+        }
+        .right_column {
+          padding: 0% 2%;
+          margin-bottom: 20%;
+          height: auto;
+          font-size: clamp(10px, 5.5vw, 1000px);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .HomePateTmp_wrapp {
+    .employee_attend_wrapp {
+      .attendance_operation {
+        .left_column {
+          .payd_info_wrapp {
+            .section_box {
+              .title {
+                font-size: clamp(10px, 6vw, 500px);
+              }
+              .body {
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: 100%;
+                .body_content {
+                  font-size: clamp(10px, 6vw, 500px);
+                  grid-template-columns: 100%;
+                  grid-template-rows: repeat(4, 1fr);
+                  .top_content {
+                    border-right: 0;
+                    padding: 3% 0;
+                    border-bottom: clamp(1.5px, 1vw, 10px) solid #583225;
+                    &:first-child {
+                      display: none;
+                    }
+                    &:last-child {
+                      border-bottom: 0;
+                    }
+                  }
+
+                  .under_content {
+                    border-right: 0;
+                    border-left: clamp(1.5px, 1vw, 10px) solid #583225;
+                    border-bottom: clamp(1.5px, 1vw, 10px) solid #583225;
+                    padding: 3% 0;
+                    &:first-child {
+                      display: none;
+                    }
+                    &:last-child {
+                      border-bottom: 0;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .right_column {
+          .attend_stanp_operation {
+            height: 100%;
+            border: #583225 clamp(1.5px, 1vw, 10px) solid;
+            border-radius: 0.5rem;
+            .title_of_right_column {
+              display: flex;
+              justify-content: center;
+              text-align: center;
+              background-color: #7e262b;
+              font-size: 1.3em;
+              border-bottom: clamp(1.5px, 1vw, 10px) solid #583225;
+              width: 100%;
+              height: 10%;
+            }
+            .body_of_right_column {
+              width: 100%;
+              display: grid;
+              height: fit-content;
+              height: 90%;
+              grid-template-rows: repeat(3, 1fr);
+              .content {
+                display: grid;
+                width: 100%;
+                grid-template-columns: repeat(2, 50%);
+                border-bottom: #583225 clamp(1.5px, 0.6vw, 100px) solid;
+                &:last-child {
+                  border-bottom: none;
+                }
+                .left_content {
+                  grid-template-columns: 100%;
+                  border-right: clamp(1.5px, 0.6vw, 10px) solid #583225;
+                  .button {
+                    font-size: 1.3em;
+                    height: 70%;
+                  }
+                  .start_img {
+                    display: none;
+                  }
+                  .end_img {
+                    display: none;
+                  }
+                }
+              }
+              .body_approvalbutton_wrapp {
+                .approvalbutton {
+                  width: 50%;
+                  height: 70%;
+                  font-size: 1.3em;
+                }
+                .approvalbutton_left_Img {
+                  display: none;
+                }
+                .approvalbutton_right_Img {
+                  display: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

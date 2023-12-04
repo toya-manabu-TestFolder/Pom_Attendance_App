@@ -1,16 +1,29 @@
 .label {
-  width: 100%;
-  height: 100%;
-
   position: relative;
   font-family: Meiryo;
   font-style: normal;
+  font-size: 1.2em;
   font-weight: bold;
-  -webkit-text-stroke: 6px #583225;
-  cursor: url("../../../../public/cursol.png"), pointer;
-  .futidori {
-    color: #f9f4fc;
-    -webkit-text-stroke: 0;
-    position: absolute;
+  color: #f9f4fc;
+
+  -webkit-text-stroke: 0.3rem #583225;
+  cursor: url("/Cursor/cursor.png"), pointer;
+}
+
+@media screen and (max-width: 1279px) {
+  .label {
+    -webkit-text-stroke: 0.15rem #583225;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .label {
+    -webkit-text-stroke: 0.1rem #583225;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .label {
+    -webkit-text-stroke: 0.07rem #583225;
   }
 }

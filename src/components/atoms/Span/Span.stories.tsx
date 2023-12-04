@@ -20,7 +20,9 @@ type Story = StoryObj<typeof Span>;
 export const Default: Story = {
   args: {
     text: "Default",
+    style: "display_block",
     color: "red",
+    onClickSpan: () => {},
   },
 };
 export const LoginError: Story = {
@@ -35,4 +37,17 @@ export const moveAgainPassLink: Story = {
 };
 export const InputEmailError: Story = {
   args: { ...Default.args, text: "メールアドレスが間違っています。" },
+};
+export const RegistError: Story = {
+  args: {
+    ...Default.args,
+    text: "登録が失敗しました。ネットワーク状況をご確認ください。",
+  },
+};
+export const PaydInfo: Story = {
+  args: {
+    ...Default.args,
+    text: "有給休暇",
+    color: "#fbd13d",
+  },
 };

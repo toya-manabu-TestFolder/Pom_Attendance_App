@@ -1,9 +1,19 @@
 .RegistarInputSection {
-  display: grid;
+  font-size: 1em;
+  height: 100%;
+  width: 100%;
   .RegistarInputForm-wrapp {
     margin-bottom: 6%;
     &:last-child {
       margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .RegistarInputSection {
+    .RegistarInputForm-wrapp {
+      margin-bottom: 9%;
     }
   }
 }

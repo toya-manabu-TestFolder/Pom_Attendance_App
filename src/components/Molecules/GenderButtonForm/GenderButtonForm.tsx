@@ -1,37 +1,40 @@
-import Input from "../../atoms/input/Input";
+import { useDispatch } from "react-redux";
+import { reducers } from "../../../features/registarSlice";
+import Span from "../../atoms/Span/Span";
 import "./GenderButtonForm.css";
+import RadioButton from "../../atoms/input/RadioButton/RadioButton";
 
-export default function GenderButtonForm() {
+export default function GenderButtonForm({ errorText }: any) {
+  const dispatch = useDispatch();
+  const selectGenderType = [
+    { id: "male", value: 1, name: "男性" },
+    { id: "female", value: 2, name: "女性" },
+    { id: "other", value: 3, name: "回答しない" },
+  ];
   return (
-    <div className="input-form">
+    <div className="GenderButtonForm">
       <label className="gender-label">
         <span className="futidori">性別</span>
         性別
       </label>
       <div className="select-gender-wrap">
-        <Input
-          input_id="男性"
-          input_placeholder=""
-          input_style="gender-select-btn"
-          input_type="radio"
-          inputValue="男性"
-          onChange={() => {}}
-        />
-        <Input
-          input_id="女性"
-          input_placeholder=""
-          input_style="gender-select-btn"
-          input_type="radio"
-          inputValue="女性"
-          onChange={() => {}}
-        />
-        <Input
-          input_id="回答しない"
-          input_placeholder=""
-          input_style="gender-select-btn"
-          input_type="radio"
-          inputValue="回答しない"
-          onChange={() => {}}
+        {selectGenderType.map((select) => (
+          <div className="RadioButton-wrapp" key={select.id}>
+            <RadioButton
+              inputId={select.id}
+              onClick={() => dispatch(reducers.inputGenderId(select.value))}
+              radioName={select.name}
+              dataTestid="gender-radio"
+            />
+          </div>
+        ))}
+      </div>
+      <div className="input-form-errorMsg">
+        <Span
+          style="display_block"
+          color="red"
+          text={errorText}
+          onClickSpan={() => {}}
         />
       </div>
     </div>
