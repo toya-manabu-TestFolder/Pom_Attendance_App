@@ -6,11 +6,10 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  display: grid;
+  display: none;
   justify-items: center;
   align-items: center;
   font-size: clamp(10px, 3vw, 500px);
-  animation: Appearance 0.2s linear;
   z-index: 100;
 
   .error_message_wrapper {
@@ -53,15 +52,6 @@
   }
 }
 
-@keyframes Appearance {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 @media screen and (max-width: 1200px) {
   .error_modal_wrapper {
     .error_message_wrapper {
@@ -69,14 +59,14 @@
       width: 90%;
       align-items: center;
       .message {
-        font-size: 2.7em;
+        font-size: 1.8em;
       }
       .img {
-        width: 90%;
+        width: 80%;
       }
       .errorModal_button_wrapper {
         width: 100%;
-        font-size: 3.2em;
+        font-size: 3em;
       }
     }
   }
@@ -84,9 +74,9 @@
 @media screen and (max-width: 700px) {
   .error_modal_wrapper {
     .error_message_wrapper {
-      height: 60%;
+      height: 80%;
       .message {
-        font-size: 2.7em;
+        font-size: 1.9em;
       }
     }
   }
@@ -96,7 +86,7 @@
     .error_message_wrapper {
       height: 50%;
       .message {
-        font-size: 2.1em;
+        font-size: 1.7em;
       }
     }
   }

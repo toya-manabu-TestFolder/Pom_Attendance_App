@@ -15,6 +15,7 @@ import session from "express-session";
 import RedisStore from "connect-redis";
 import redis from "redis";
 import MonthScheduleRouter from "./routes/MonthScheduleApi.js";
+import HomeRouter from "./routes/HomeApi.js";
 
 const app = express();
 const port = 3000;
@@ -74,11 +75,8 @@ app.use(
   })
 );
 
-app.get("/logout", async (req, res) => {
-  redisClient.del(`myapp:${req.sessionID}`);
-});
-
 app.use("/authApi", authRouter);
 app.use("/registarApi", registarRouter);
+app.use("/HomeApi", HomeRouter);
 app.use("/DayScheduleApi", DayScheduleRouter);
 app.use("/MonthScheduleApi", MonthScheduleRouter);

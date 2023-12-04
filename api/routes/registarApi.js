@@ -120,9 +120,10 @@ regisatrRouter.post("/regist", async (req, res) => {
 
         const sendPaidData = {
           user_id: res.data[0].id,
-          remaining_paiddays: 0,
-          remaining_psidtime: 0,
-          consumption_time: 80,
+          all_have_days: 10,
+          all_heve_time: 80,
+          consumption_days: 0,
+          consumption_time: 0,
           give_lastday: `${
             Year + "-" + Month.slice(-2) + "-" + date.slice(-2)
           }`,
@@ -140,4 +141,127 @@ regisatrRouter.post("/regist", async (req, res) => {
     res.status(400).json();
   }
 });
+
+regisatrRouter.post(
+  "/ValidateChangeEmail",
+  checkSchema({
+    Email: {
+      notEmpty: {
+        errorMessage: "※ 入力内容がありません !!",
+      },
+      isEmail: {
+        errorMessage: "※ メールアドレスのフォーマットが正しくありません !!",
+      },
+    },
+    ConfirmationEmail: {
+      custom: {
+        if: (value, { req }) => {
+          if (value !== req.body.Email) return true;
+        },
+        errorMessage: "※ メールアドレスが一致しません !!",
+      },
+    },
+  }),
+  async (req, res) => {
+    const errors = validationResult(req).array();
+    await axios
+      .get(`${SUPABASE_URL}users?mailaddress=eq.${req.body.Email}`, {
+        headers: {
+          apikey: `${API_KEY}`,
+        },
+      })
+      .then((res) => {
+        if (res.data.length) {
+          const emailError = {
+            msg: "※ 既に登録済みのメールアドレスです !!",
+            path: "Email",
+          };
+          errors.push(emailError);
+        }
+      });
+
+    if (errors.length) {
+      res.json({ status: false, errors: errors[0] });
+    } else {
+      res.json({ status: true, errors: errors });
+    }
+  }
+);
+
+regisatrRouter.post("/ChangeEmail", async (req, res) => {
+  try {
+    await axios.patch(
+      `${SUPABASE_URL}users?id=eq.${req.session.userID}`,
+      { mailaddress: req.body.data },
+      {
+        headers: {
+          apikey: `${API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    res.json({ status: true, body: req.body.data });
+  } catch (error) {
+    res.json({ status: false, body: "" });
+  }
+});
+
+regisatrRouter.post(
+  "/ValidateChangePassword",
+  checkSchema({
+    NowPassword: {
+      notEmpty: {
+        errorMessage: "※ 入力内容がありません !!",
+      },
+    },
+    NewPassword: {
+      notEmpty: {
+        errorMessage: "※ 入力内容がありません !!",
+      },
+      matches: {
+        options: "^(?=.*[0-9])(?=.*[a-z])[a-z0-9]{8,24}$",
+        errorMessage: "※ 8文字以上24文字以内の半角英数字を入力してください!!",
+      },
+    },
+    ConfirmationPassword: {
+      custom: {
+        if: (value, { req }) => {
+          if (value !== req.body.NewPassword) return true;
+        },
+        errorMessage: "※ 入力内容が一致しません !!",
+      },
+    },
+  }),
+  async (req, res) => {
+    const errors = validationResult(req).array();
+    await axios
+      .get(`${SUPABASE_URL}users?select=password&id=eq.${req.session.userID}`, {
+        headers: {
+          apikey: `${API_KEY}`,
+        },
+      })
+      .then((Res) => {
+        bcrypt.compare(
+          req.body.NowPassword,
+          Res.data[0].password,
+          async (err, result) => {
+            if (!result) {
+              const NowPasswordError = {
+                msg: "※ 現在のメールアドレスと違います !!",
+                path: "NowPassword",
+              };
+              errors.push(NowPasswordError);
+            }
+
+            if (errors.length) {
+              res.json({ status: false, errors: errors });
+            } else {
+              res.json({ status: true, errors: errors });
+            }
+          }
+        );
+      });
+  }
+);
+
 export default regisatrRouter;

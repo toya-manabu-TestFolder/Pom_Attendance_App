@@ -1,5 +1,4 @@
 .wrapper {
-  display: block;
   border-radius: clamp(5px, 2vw, 50px);
   border: clamp(2px, 0.4vw, 20px) solid #583225;
   text-align: center;
@@ -9,22 +8,34 @@
     width: 100%;
     background-color: #7e262b;
     border-bottom: clamp(0.5px, 0.15vw, 10px) solid #583225;
-    font-size: 1.3em;
+    font-size: 1.4em;
   }
   .body {
     .operation_wrapper {
       display: grid;
-      padding: 1% 2%;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3%;
-      font-size: 0.8em;
+      justify-content: space-between;
+      padding: 2%;
+      grid-template-columns: repeat(2, 49%);
+      font-size: 0.9em;
     }
     .month_data_list_wrapper {
+      overflow: auto;
+      height: 90vh;
       .month_data_ul {
         display: grid;
+        width: 100%;
         grid-template-columns: repeat(16, 1fr);
-        font-size: 0.8em;
+        font-size: 0.7em;
         border-top: clamp(2px, 0.3vw, 20px) solid #583225;
+        &:nth-child(1) {
+          position: sticky;
+          top: 0;
+          z-index: 10;
+          border-bottom: clamp(2px, 0.3vw, 20px) solid #583225;
+        }
+        &:nth-child(2) {
+          border-top: 0;
+        }
 
         .month_data_li {
           display: grid;
@@ -33,18 +44,12 @@
           padding: 7% 2%;
           border-right: clamp(2px, 0.3vw, 20px) solid #583225;
           color: #f9f4fc;
-          &:last-child {
-            border-right: 0 solid #583225;
-          }
         }
         .TytleStyle {
+          font-size: 1.1em;
           padding: 10% 2%;
-          background-color: #faf9a6;
-          border-bottom: clamp(2px, 0.3vw, 20px) solid #583225;
+          background-color: #faf9a6 !important;
           border-right: clamp(2px, 0.3vw, 20px) solid #583225;
-          &:nth-child(16) {
-            border-right: 0 solid #583225;
-          }
         }
         .addStyle {
           font-size: 0.9em;
@@ -65,16 +70,147 @@
         }
       }
       .saturday_stayle {
-        background-color: #1ebdea;
+        background-color: #1ebdea !important;
       }
       .sunday_stayle {
-        background-color: #ff0000;
+        background-color: #ff0000 !important;
       }
       .specialday_stayle {
-        background-color: #ff0000;
+        background-color: #ff0000 !important;
       }
       .slecredStyle {
-        background-color: #ab6747;
+        background-color: #ab6747 !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .wrapper {
+    margin: 10% 0;
+    .title {
+      font-size: 3em;
+    }
+    .body {
+      .operation_wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 5%;
+        font-size: 1.7em;
+      }
+      .month_data_list_wrapper {
+        overflow: auto;
+        .month_data_ul {
+          width: 240%;
+          grid-template-columns: repeat(16, 1fr);
+          font-size: 1.6em;
+          border-top: 0;
+          .month_data_li {
+            width: 100%;
+            border-right: clamp(2px, 0.3vw, 20px) solid #583225;
+            border-bottom: clamp(2px, 0.3vw, 20px) solid #583225;
+            &:nth-child(1) {
+              position: sticky;
+              left: 0%;
+              background-color: #fbd13d;
+              z-index: 5;
+            }
+            &:nth-child(2) {
+              position: sticky;
+              left: 15%;
+              background-color: #fbd13d;
+              z-index: 5;
+            }
+          }
+          .TytleStyle {
+            border-top: clamp(2px, 0.3vw, 20px) solid #583225;
+            border-bottom: clamp(2px, 0.3vw, 20px) solid #583225;
+            border-right: clamp(2px, 0.3vw, 20px) solid #583225;
+            &:nth-child(1) {
+              position: sticky;
+              left: 0%;
+              background-color: #fbd13d;
+              z-index: 5;
+            }
+            &:nth-child(2) {
+              position: sticky;
+              left: 15%;
+              background-color: #fbd13d;
+              z-index: 5;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 700px) {
+  .wrapper {
+    .title {
+      font-size: 2.5em;
+    }
+    .body {
+      .operation_wrapper {
+        font-size: 2em;
+      }
+      .month_data_list_wrapper {
+        .month_data_ul {
+          width: 272%;
+          font-size: 2em;
+          .month_data_li {
+            &:nth-child(2) {
+              left: 17%;
+            }
+          }
+          .TytleStyle {
+            font-size: 1em;
+            &:nth-child(2) {
+              left: 17%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .wrapper {
+    .title {
+      font-size: 2.5em;
+    }
+    .body {
+      .operation_wrapper {
+        display: flex;
+        flex-direction: column;
+        padding: 10% 5%;
+        font-size: 1.7em;
+      }
+      .month_data_list_wrapper {
+        .month_data_ul {
+          width: 320%;
+          font-size: 1.7em;
+          .month_data_li {
+            &:nth-child(2) {
+              left: 20%;
+            }
+          }
+          .TytleStyle {
+            font-size: 1em;
+            &:nth-child(2) {
+              left: 20%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .wrapper {
+    .body {
+      .operation_wrapper {
+        font-size: 1.5em;
       }
     }
   }

@@ -170,4 +170,56 @@ MonthScheduleRouter.post("/getMonthAttendanceData", async (req, res) => {
   }
 });
 
+MonthScheduleRouter.post("/postBundleApplovalRecuest", async (req, res) => {
+  let daysQuery = "";
+  for (let i = 0; i < req.body.length; i++) {
+    if (i) {
+      daysQuery += `,${req.body[i]}`;
+    } else {
+      daysQuery += req.body[i];
+    }
+  }
+  try {
+    await axios.patch(
+      `${SUPABASE_URL}day_attendance?user_id=eq.${req.session.userID}&date=in.(${daysQuery})`,
+      {
+        approvel_request_state: true,
+      },
+      {
+        headers: {
+          apikey: `${API_KEY}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    await axios
+      .get(
+        `${SUPABASE_URL}day_attendance?user_id=eq.${req.session.userID}&date=in.(${daysQuery})&order=date`,
+        {
+          headers: {
+            apikey: `${API_KEY}`,
+          },
+        }
+      )
+      .then(async (res) => {
+        await axios.post(`${SUPABASE_URL}approval_request`, res.data, {
+          headers: {
+            apikey: `${API_KEY}`,
+            "Content-Type": "application/json",
+          },
+        });
+      });
+
+    res.json({
+      status: true,
+    });
+  } catch (error) {
+    res.json({
+      data: error,
+      status: false,
+    });
+  }
+});
+
 export default MonthScheduleRouter;

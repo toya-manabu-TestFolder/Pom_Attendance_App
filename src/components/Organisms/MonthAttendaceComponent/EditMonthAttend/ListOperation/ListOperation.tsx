@@ -1,11 +1,9 @@
 import { useDispatch } from "react-redux";
 import Span from "../../../../atoms/Span/Span";
-import Button from "../../../../atoms/button/Button";
 import styles from "./ListOperation.module.scss";
 import { MonthScheduleReducers } from "../../../../../features/MonthScheduleSlice";
 function ListOperation() {
   const dispatch = useDispatch();
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -17,33 +15,23 @@ function ListOperation() {
         />
       </div>
       <div className={styles.body}>
-        <Button
-          dataTestid=""
-          onClick={() => {
-            dispatch(MonthScheduleReducers.bundleSelect("承認"));
-          }}
-          text="未承認(平日)"
-          type="button"
-          disabled={false}
-        />
-        <Button
-          dataTestid=""
-          onClick={() => {
-            dispatch(MonthScheduleReducers.bundleSelect("登録"));
-          }}
-          text="未登録(平日)"
-          type="button"
-          disabled={false}
-        />
-        <Button
-          dataTestid=""
-          onClick={() => {
-            dispatch(MonthScheduleReducers.bundleSelect(""));
-          }}
-          text="選択解除"
-          type="button"
-          disabled={false}
-        />
+        <select
+          className={styles.select}
+          onChange={(event) =>
+            dispatch(MonthScheduleReducers.bundleSelect(event.target.value))
+          }
+          defaultValue={""}
+        >
+          <option className={styles.select_option} value="登録">
+            未登録 (平日)
+          </option>
+          <option className={styles.select_option} value="承認">
+            未承認 (登録済み)
+          </option>
+          <option className={styles.select_option} value="">
+            全選択解除
+          </option>
+        </select>
       </div>
     </div>
   );

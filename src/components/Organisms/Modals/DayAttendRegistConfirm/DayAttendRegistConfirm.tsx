@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Span from "../../../atoms/Span/Span";
 import ModalButton from "../../../atoms/button/ModalButton/ModalButton";
 import styles from "./DayAttendRegistConfirm.module.css";
@@ -17,17 +16,13 @@ function DayAttendRegistConfirm({
   noBtnFunProps,
   setIsModal,
 }: Props) {
-  const [isRegistComplet, setIsRegistComplet] = useState(false);
-
   function okBtnClick() {
-    setIsRegistComplet(true);
-    gsap.to(".edit_completed", {
+    gsap.to(".DayAttendRegistConfirm", {
       duration: 0.5,
       delay: 1.2,
       opacity: 0,
     });
     setTimeout(() => {
-      setIsRegistComplet(false);
       setIsModal(false);
     }, 1700);
   }
@@ -41,11 +36,16 @@ function DayAttendRegistConfirm({
       setIsModal(false);
     }, 300);
   }
+
+  function setDate(date: string) {
+    if (date === "一括設定中") return "一括設定中";
+    return `${date.slice(0, 4)}年 ${date.slice(5, 7)}月 ${date.slice(8, 10)}日`;
+  }
   return (
     <>
       <div
         id="overlay"
-        className={`${styles.overlay} cancel_animation edit_completed`}
+        className={`${styles.overlay} cancel_animation DayAttendRegistConfirm`}
       >
         <div className={styles.modal_body}>
           <div className={styles.body_top}>
@@ -62,9 +62,7 @@ function DayAttendRegistConfirm({
                 <li>
                   対象日：
                   <span className={styles.li_span}>
-                    {registData.date.slice(0, 4)}年&nbsp;
-                    {registData.date.slice(5, 7)}月&nbsp;
-                    {registData.date.slice(8, 10)}日
+                    {setDate(registData.date)}
                   </span>
                 </li>
                 <li className={styles.li}>
@@ -151,12 +149,7 @@ function DayAttendRegistConfirm({
             </div>
           </div>
         </div>
-        {isRegistComplet && (
-          <CompletModal
-            imgURL="/Modals/RegistConfirm.png"
-            text="登録が完了しました！！"
-          />
-        )}
+        <CompletModal imgURL="/Modals/RegistConfirm.png" />
       </div>
     </>
   );

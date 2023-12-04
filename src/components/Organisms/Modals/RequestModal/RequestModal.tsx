@@ -17,7 +17,6 @@ type Props = {
 
 function RequestModal({
   text,
-  complitedText,
   errorText,
   okBtnFunProps,
   noBtnFunProps,
@@ -29,7 +28,7 @@ function RequestModal({
 
   function okBtnClick() {
     setIsRegistComplet(true);
-    gsap.to(".edit_completed", {
+    gsap.to(".RequestModal", {
       duration: 0.5,
       delay: 1.2,
       opacity: 0,
@@ -54,7 +53,7 @@ function RequestModal({
   return (
     <div
       id="overlay"
-      className={`${styles.overlay} edit_completed cancel_animation`}
+      className={`${styles.overlay} RequestModal cancel_animation`}
     >
       <div className={styles.modal_body}>
         <div className={styles.body_top}>
@@ -92,17 +91,14 @@ function RequestModal({
           </div>
         </div>
       </div>
-      {isRegistComplet && (
-        <CompletModal imgURL="/Modals/RegistConfirm.png" text={complitedText} />
-      )}
-      {isErrorModal && (
-        <ErrorModal
-          errorText={errorText}
-          closeBtnFun={() => {
-            noBtnClick();
-          }}
-        />
-      )}
+      {isRegistComplet && <CompletModal imgURL="/Modals/RegistConfirm.png" />}
+      <ErrorModal
+        toggleModal={isErrorModal}
+        errorText={errorText}
+        closeBtnFun={() => {
+          noBtnClick();
+        }}
+      />
     </div>
   );
 }

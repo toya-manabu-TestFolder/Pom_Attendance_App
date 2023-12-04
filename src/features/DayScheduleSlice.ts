@@ -9,6 +9,7 @@ type Props = {
     resetDayAttendanceData: DayScheduleTypes["DayAttendanceDataType"];
     defaultDayAttendanceData: DayScheduleTypes["DayAttendanceDataType"];
     editedDayAttendanceData: DayScheduleTypes["DayAttendanceDataType"];
+    bundleAttendData: DayScheduleTypes["DayAttendanceDataType"][];
     canApprovalRequest: boolean;
     isError: boolean;
     errorMessage: string;
@@ -35,8 +36,21 @@ export const registDayAttendData: any = createAsyncThunk(
   async (data) => {
     const result = await axios.post(
       `${API_URL}DayScheduleApi/registDayAttendData`,
-      data
-      ,
+      data,
+      {
+        withCredentials: true,
+      }
+    );
+    return result.data;
+  }
+);
+
+export const bundleRegist: any = createAsyncThunk(
+  "DaySchedule/bundleRegist",
+  async (data) => {
+    const result = await axios.post(
+      `${API_URL}DayScheduleApi/bundleRegist`,
+      data,
       {
         withCredentials: true,
       }
@@ -88,7 +102,7 @@ const DayScheduleSlice = createSlice({
       end_time: "18:00",
       attendance_state: "出勤",
       paid_time: "00:00",
-      break_time: "00:00",
+      break_time: "01:00",
       lose_time: "00:00",
       over_time: "00:00",
       total_time: "08:00",
@@ -107,13 +121,14 @@ const DayScheduleSlice = createSlice({
       end_time: "18:00",
       attendance_state: "出勤",
       paid_time: "00:00",
-      break_time: "00:00",
+      break_time: "01:00",
       lose_time: "00:00",
       over_time: "00:00",
       total_time: "08:00",
       comment: "",
       selected: false,
     },
+
     canApprovalRequest: true,
     isError: false,
     errorOfBtnDisable: false,
@@ -156,6 +171,12 @@ const DayScheduleSlice = createSlice({
       if (action.payload.status === 200) {
         state.editedDayAttendanceData = action.payload.data;
       } else {
+        state.isError = true;
+        state.errorMessage = "通信エラーが発生しました。";
+      }
+    });
+    builder.addCase(bundleRegist.fulfilled, (state, action) => {
+      if (action.payload.status !== 200) {
         state.isError = true;
         state.errorMessage = "通信エラーが発生しました。";
       }

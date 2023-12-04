@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import LoadingModal from "./LoadingModal";
+import LoadingPageTmp from "./LoadingPageTmp";
 
 const meta = {
-  title: "Organisms/Modals/LoadingModal ",
-  component: LoadingModal,
+  title: "Organisms/Modals/LoadingPageTmp ",
+  component: LoadingPageTmp,
   tags: ["autodocs"],
   parameters: {
     backgrounds: {
@@ -12,11 +12,11 @@ const meta = {
   },
   decorators: [(Story) => <Story />],
   argTypes: {},
-} satisfies Meta<typeof LoadingModal>;
+} satisfies Meta<typeof LoadingPageTmp>;
 
 export default meta;
 
-type Story = StoryObj<typeof LoadingModal>;
+type Story = StoryObj<typeof LoadingPageTmp>;
 
 export const Default: Story = {
   args: {},

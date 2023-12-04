@@ -1,14 +1,35 @@
 import Span from "../../../atoms/Span/Span";
 import Button from "../../../atoms/button/Button";
 import styles from "./ErrorModal.module.css";
+import { gsap } from "gsap";
+
 type Props = {
   errorText: string;
   closeBtnFun: () => void;
+  toggleModal: boolean;
 };
 
-function ErrorModal({ errorText, closeBtnFun }: Props) {
+const ErrorModal = ({ errorText, closeBtnFun, toggleModal }: Props) => {
+  if (toggleModal) {
+    gsap.set("#ErrorModal", { display: "grid", opacity: 0 });
+    gsap.to("#ErrorModal", {
+      duration: 0.3,
+      opacity: 1,
+    });
+  }
+  function BtnFun() {
+    gsap.to("#ErrorModal", {
+      duration: 0.2,
+      opacity: 0,
+      onComplete: () => {
+        gsap.set("#ErrorModal", { display: "none" });
+        closeBtnFun();
+      },
+    });
+  }
+
   return (
-    <div className={styles.error_modal_wrapper}>
+    <div id="ErrorModal" className={styles.error_modal_wrapper}>
       <div className={styles.error_message_wrapper}>
         <div className={styles.message}>
           <Span
@@ -23,7 +44,7 @@ function ErrorModal({ errorText, closeBtnFun }: Props) {
           <Button
             dataTestid=""
             onClick={() => {
-              closeBtnFun();
+              BtnFun();
             }}
             text="閉じる"
             type="button"
@@ -33,6 +54,6 @@ function ErrorModal({ errorText, closeBtnFun }: Props) {
       </div>
     </div>
   );
-}
+};
 
 export default ErrorModal;

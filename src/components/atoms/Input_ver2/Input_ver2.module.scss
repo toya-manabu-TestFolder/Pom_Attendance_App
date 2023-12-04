@@ -1,0 +1,55 @@
+.Input_ver2_wrapper {
+  &:hover .input {
+    cursor: url("/Cursor/cursor.png"), pointer;
+  }
+  &:hover .label {
+    cursor: url("/Cursor/cursor.png"), pointer;
+    color: #d04f2f;
+  }
+  .label {
+    height: fit-content;
+    color: #f9f4fc;
+  }
+  .input {
+    padding: 1% 3%;
+    width: 100%;
+    background-color: #d04f2f;
+    border-radius: 50px;
+    border: clamp(3px, 0.4vw, 20px) solid #583225;
+
+    color: #faf9a6;
+    font-family: Meiryo;
+    font-size: 1em;
+    font-weight: bold;
+    &::placeholder {
+      color: #faf9a6;
+    }
+    &:focus {
+      color: #d04f2f;
+      background-color: #faf9a6;
+      &::placeholder {
+        color: #d04f2f;
+      }
+    }
+    &:autofill {
+      -webkit-text-fill-color: #faf9a6 !important;
+      box-shadow: 0 0 0 1000px #d04f2f inset !important;
+    }
+    &:-webkit-autofill {
+      -webkit-text-fill-color: #faf9a6 !important;
+      box-shadow: 0 0 0 1000px #d04f2f inset !important;
+    }
+  }
+
+  .password_input_wrapper {
+    position: relative;
+    .type_changebutton {
+      position: absolute;
+      padding: 0.8% 0;
+      height: 100%;
+      width: 15%;
+      top: 0;
+      right: 3%;
+    }
+  }
+}

@@ -41,4 +41,8 @@ authRouter.post("/", async (req, res) => {
   );
 });
 
+authRouter.get("/logout", async (req, res) => {
+  req.session.destroy();
+  res.json();
+});
 export default authRouter;

@@ -116,10 +116,7 @@ function Comment({ Comment, disabled }: Props) {
           </div>
 
           {isEditComplet && (
-            <CompletModal
-              imgURL="/Modals/comment_edit_comp.png"
-              text={"コメントを保存しました！！"}
-            />
+            <CompletModal imgURL="/Modals/comment_edit_comp.png" />
           )}
         </div>
       )}

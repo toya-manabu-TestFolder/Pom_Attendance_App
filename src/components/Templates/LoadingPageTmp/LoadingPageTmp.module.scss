@@ -4,11 +4,20 @@
   bottom: 0;
   right: 0;
   left: 0;
-  display: grid;
+  display: none;
   animation: Appearance 0.2s linear;
   z-index: 200;
-  background-color: #fbd13d;
-
+  &::before {
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    background-color: #fbd13d;
+    opacity: 0.7;
+    z-index: -2;
+  }
   @for $i from 1 through 8 {
     .Loding_text#{$i} {
       position: absolute;

@@ -65,11 +65,23 @@ const confirmationSlice = createSlice({
   },
   reducers: {
     confirmationDataToUpdate: (state, action) => {
+      function selectGender(genderId: number) {
+        if (genderId === 1) return "男性";
+        if (genderId === 2) return "女性";
+        return "回答しない";
+      }
+
+      function convertBirthday(birthday: string) {
+        const convertBirthDay =
+          birthday.replace("-", "年 ").replace("-", "月 ") + "日";
+        return convertBirthDay;
+      }
+
       const confirmationData = state.confirmationData;
       confirmationData[0].value = action.payload.name;
       confirmationData[1].value = action.payload.furigana;
-      confirmationData[2].value = action.payload.gender_id;
-      confirmationData[3].value = action.payload.birthday;
+      confirmationData[2].value = selectGender(action.payload.gender_id);
+      confirmationData[3].value = convertBirthday(action.payload.birthday);
       confirmationData[4].value = action.payload.mailaddress;
       confirmationData[5].value = action.payload.phone;
       confirmationData[6].value = action.payload.password;
@@ -96,11 +108,13 @@ const confirmationSlice = createSlice({
     },
     sendEmail: (state) => {
       // emailJS送信データを定義
+      const UrlPath = window.location.pathname;
+      const LoginPageURL = window.location.href.replace(UrlPath, "");
+
       const templateVariables: any = {
         from_name: state.confirmationData[0].value,
         email: state.confirmationData[4].value,
-        message:
-          "お疲れ様です！登録が完了しました！！\n下記URLのログインページよりログインしてください。\nログインページ：http://localhost:5173/",
+        message: `お疲れ様です！登録が完了しました！！\n下記URLのログインページよりログインしてください。\nログインページ：${LoginPageURL}`,
       };
 
       // emailJS送信
