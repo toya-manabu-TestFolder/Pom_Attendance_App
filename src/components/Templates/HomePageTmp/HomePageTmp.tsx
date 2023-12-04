@@ -1,219 +1,271 @@
 import { useEffect, useState } from "react";
 import { attendanceDataType } from "../../../types/types";
-import Img from "../../atoms/Img/Img";
 import Span from "../../atoms/Span/Span";
-import Button from "../../atoms/button/Button";
 import styles from "./HomePageTmp.module.css";
 import RequestButton from "../../atoms/button/RequestButton/RequestButton";
-import { Stats, homeSliceReducers } from "../../../features/homeSlice";
+import {
+  Stats,
+  homeSliceReducers,
+  getUserPaidData,
+} from "../../../features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
+import RequestModal from "../../Organisms/Modals/RequestModal/RequestModal";
+import Box from "../../atoms/Box/Box";
+import Headers from "../../Organisms/Headers/Headers";
+import { HomeSliceType } from "../../../types/types";
+import LoadingPage from "../../pages/LoadingPage/LoadingPage";
 
 type Props = attendanceDataType;
 
 const HomePageTmp = ({ attendanceData }: Props) => {
-  const [Year, setYear] = useState(0);
-  const [Month, setMonth] = useState(0);
-  const [Data, setData] = useState(0);
+  const dispatch = useDispatch();
+  const { startButtonDesable, toDay, userPaidData } = useSelector(Stats);
+  const [isModal, setIsModal] = useState(false);
   const [Week, setWeek] = useState<string | undefined>("");
   const [Hour, setHour] = useState(0);
   const [Minute, setMinute] = useState(0);
   const [Second, setSecond] = useState(0);
+
   useEffect(() => {
+    dispatch(homeSliceReducers.toggleLoading(false));
+    dispatch(homeSliceReducers.setToDay(""));
+    dispatch(getUserPaidData());
+
     setInterval(() => {
       const nowTime = new Date();
-      setYear(nowTime.getFullYear());
-      setMonth(nowTime.getMonth() + 1);
-      setData(nowTime.getDate());
       const WeekArr = ["日", "月", "火", "水", "木", "金", "土"];
       setWeek(WeekArr[nowTime.getDay()]);
       setHour(nowTime.getHours());
       setMinute(nowTime.getMinutes());
       setSecond(nowTime.getSeconds());
     }, 1000);
+    setTimeout(() => {
+      dispatch(homeSliceReducers.toggleLoading(true));
+    }, 0);
   }, []);
-  const dispatch = useDispatch();
-  const homeSliceStats = useSelector(Stats);
-  const startButtonDisabled = homeSliceStats.startButtonDisabled;
-  return (
-    <div className={styles.HomePateTmp_wrapp}>
-      <div className={styles.employee_attend_wrapp}>
-        <nav className={styles.nav}>
-          <div className={styles.Home_link_wrapp} data-testid="Home-link">
-            <Img
-              alt="タイトルロゴ"
-              src="../../../../public/navigation/titleLogo.png"
+
+  function setUserPaidDataEl(
+    userPaidData: HomeSliceType["home"]["userPaidData"]
+  ) {
+    let ElArr = [];
+    for (let data in userPaidData) {
+      if (data !== "all_heve_time") {
+        ElArr.push(
+          <div className={styles.under_content} key={data}>
+            <Span
               style=""
+              color="#F9F4FC"
+              onClickSpan={() => {}}
+              text={userPaidData[data]}
             />
           </div>
-          <div className={styles.login_user_wrapp} data-testid="login-user">
-            <div className={styles.img_wrapp}>
-              <Img
-                alt="ログインしているユーザー名"
-                src="../../../../public/navigation/loginUser.png"
-                style="login_user"
-              />
-              <span className={styles.text}>
-                こんにちは！{attendanceData.loginUser}さん！
-              </span>
-            </div>
-          </div>
-          <div className={styles.menu_button_wrapp} data-testid="menu-button">
-            <div className={styles.menu_button}>
-              <Button
-                dataTestid=""
-                onClick={() => {}}
-                text="MENU"
-                type="button"
-              />
-            </div>
-          </div>
-        </nav>
+        );
+      }
+    }
+    return ElArr;
+  }
+  return (
+    <>
+      <div className={styles.HomePateTmp_wrapp}>
+        <div className={styles.employee_attend_wrapp}>
+          <Headers />
 
-        <section className={styles.attendance_operation}>
-          <div className={styles.left_column}>
-            <div
-              className={styles.payd_info_wrapp}
-              data-testid="payd-infomation"
-            >
-              <div className={styles.section_box}>
-                <div className={styles.title}>
-                  <Span
-                    style=""
-                    color="#fbd13d"
-                    onClickSpan={() => {}}
-                    text="有&nbsp;給&nbsp;休&nbsp;暇"
-                  />
-                </div>
-                <div className={styles.body}>
-                  <div className={styles.body_content}>
-                    <div className={styles.top_content}>
-                      <div className={styles.img_wrapp}>
-                        <Img
-                          alt="空白"
-                          src="../../../../public/navigation/space.png"
+          <section className={styles.attendance_operation}>
+            <div className={styles.left_column}>
+              <div
+                className={styles.payd_info_wrapp}
+                data-testid="payd-infomation"
+              >
+                <div className={styles.section_box}>
+                  <div className={styles.title}>
+                    <Span
+                      style=""
+                      color="#fbd13d"
+                      onClickSpan={() => {}}
+                      text="有&nbsp;給&nbsp;休&nbsp;暇"
+                    />
+                  </div>
+                  <div className={styles.body}>
+                    <div className={styles.body_content}>
+                      <div className={styles.top_content}>
+                        <div className={styles.img_wrapp}></div>
+                      </div>
+                      <>
+                        {attendanceData.payds.map((payd, index) => (
+                          <div className={styles.top_content} key={index}>
+                            <Span
+                              style=""
+                              color="#D04F2F"
+                              onClickSpan={() => {}}
+                              text={payd.title}
+                            />
+                          </div>
+                        ))}
+                      </>
+                    </div>
+                    <div className={styles.body_content}>
+                      <div className={styles.under_content}>
+                        <Span
                           style=""
+                          color="#D04F2F"
+                          onClickSpan={() => {}}
+                          text="有給休暇"
                         />
                       </div>
+                      <>{setUserPaidDataEl(userPaidData)}</>
                     </div>
-                    <>
-                      {attendanceData.payds.map((payd) => (
-                        <div className={styles.top_content}>
-                          <Span
-                            style=""
-                            color="#D04F2F"
-                            onClickSpan={() => {}}
-                            text={payd.title}
-                          />
-                        </div>
-                      ))}
-                    </>
                   </div>
-                  <div className={styles.body_content}>
+                </div>
+              </div>
+              <div
+                className={styles.now_time_info_wrapp}
+                data-testid="time-now"
+              >
+                <div className={styles.time_now}>
+                  <div className={styles.top}>
+                    <Span
+                      style="time_now_top"
+                      color="#fbd13d"
+                      onClickSpan={() => {}}
+                      text="TIME&nbsp;NOW"
+                    />
+                  </div>
+                  <div className={styles.center}>
+                    <div className={styles.center_content}>
+                      <Span
+                        style=""
+                        color="#FFFEF6"
+                        onClickSpan={() => {}}
+                        text={`${toDay.slice(0, 4)}年 ${toDay.slice(
+                          5,
+                          7
+                        )}月 ${toDay.slice(8, 10)}日 (${Week})`}
+                      />
+                    </div>
+                  </div>
+                  <div className={styles.under}>
                     <div className={styles.under_content}>
                       <Span
                         style=""
                         color="#D04F2F"
                         onClickSpan={() => {}}
-                        text="有給休暇"
+                        text={`${Hour}時 ${Minute}分 ${Second}秒`}
                       />
                     </div>
-                    <>
-                      {attendanceData.payds.map((payd) => (
-                        <div className={styles.under_content}>
-                          <Span
-                            style=""
-                            color="#F9F4FC"
-                            onClickSpan={() => {}}
-                            text={payd.value}
-                          />
-                        </div>
-                      ))}
-                    </>
                   </div>
                 </div>
               </div>
             </div>
-            <div className={styles.now_time_info_wrapp} data-testid="time-now">
-              <Img
-                alt=""
-                src="../../../../public/navigation/nowTime.png"
-                style="now_time"
-              />
-              <div className={styles.time_now}>
-                <div className={styles.top}>
+            <div className={styles.right_column}>
+              <div className={styles.attend_stanp_operation} data-testid="">
+                <div className={styles.title_of_right_column}>
                   <Span
-                    style="time_now_top"
+                    style=""
                     color="#fbd13d"
                     onClickSpan={() => {}}
-                    text="TIME&nbsp;NOW"
+                    text="打&nbsp;刻"
                   />
                 </div>
-                <div className={styles.center}>
-                  <div className={styles.center_content}>
-                    <Span
-                      style=""
-                      color="#FFFEF6"
-                      onClickSpan={() => {}}
-                      text={`${Year}年 ${Month}月 ${Data}日 (${Week})`}
-                    />
+                <div className={styles.body_of_right_column}>
+                  <div className={styles.content}>
+                    <div className={styles.left_content}>
+                      <div className={styles.button}>
+                        <RequestButton
+                          dataTestid=""
+                          disabled={startButtonDesable}
+                          onClick={() => setIsModal(true)}
+                          style=""
+                          text="出&nbsp;勤"
+                          type="button"
+                        />
+                      </div>
+                      <div className={styles.start_img}></div>
+                    </div>
+                    <div className={styles.right_content}>
+                      <div className={styles.stanpTime_wrapp}>
+                        <Box
+                          element={
+                            <div className="Time">
+                              <Span
+                                color="#F9F4FC"
+                                onClickSpan={() => {}}
+                                style="display_block"
+                                text="09&nbsp;:&nbsp;00"
+                              />
+                            </div>
+                          }
+                          title="開始時間"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div className={styles.under}>
-                  <div className={styles.under_content}>
-                    <Span
-                      style=""
-                      color="#D04F2F"
-                      onClickSpan={() => {}}
-                      text={`${Hour}時 ${Minute}分 ${Second}秒`}
-                    />
+                  <div className={styles.content}>
+                    <div className={styles.left_content}>
+                      <div className={styles.button}>
+                        <RequestButton
+                          dataTestid=""
+                          disabled={startButtonDesable}
+                          onClick={() => setIsModal(true)}
+                          style=""
+                          text="退&nbsp;勤"
+                          type="button"
+                        />
+                      </div>
+                      <div className={styles.end_img}></div>
+                    </div>
+                    <div className={styles.right_content}>
+                      <div className={styles.stanpTime_wrapp}>
+                        <Box
+                          element={
+                            <div className="Time">
+                              <Span
+                                color="#F9F4FC"
+                                onClickSpan={() => {}}
+                                style="display_block"
+                                text="18&nbsp;:&nbsp;00"
+                              />
+                            </div>
+                          }
+                          title="終了時間"
+                        />
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className={styles.right_column}>
-            <div className={styles.attend_stanp_operation} data-testid="">
-              <div className={styles.title}>
-                <Span
-                  style=""
-                  color="#fbd13d"
-                  onClickSpan={() => {}}
-                  text="打&nbsp;刻"
-                />
-              </div>
-              <div className={styles.body}>
-                <div className={styles.content}>
-                  <div className={styles.left}>
-                    <div className={styles.button}>
+                  <div className={styles.body_approvalbutton_wrapp}>
+                    <div className={styles.approvalbutton_left_Img}></div>
+                    <div className={styles.approvalbutton}>
                       <RequestButton
                         dataTestid=""
-                        disabled={startButtonDisabled}
-                        onClick={() => {
-                          dispatch(homeSliceReducers.startButtonFn());
-                        }}
+                        disabled={startButtonDesable}
+                        onClick={() => {}}
                         style=""
-                        text="出勤"
+                        text="承認申請"
                         type="button"
                       />
                     </div>
-                    <div className={styles.img}>
-                      <Img
-                        alt=""
-                        src="../../../../public/homepage/attendance_img1.png"
-                        style=""
-                      />
-                    </div>
+                    <div className={styles.approvalbutton_right_Img}></div>
                   </div>
-                  <div className={styles.right}></div>
                 </div>
-                <div className={styles.content}></div>
-                <div className={styles.content}></div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
-    </div>
+      {isModal && (
+        <RequestModal
+          okBtnFunProps={() => {
+            dispatch(homeSliceReducers.startOkFn());
+          }}
+          noBtnFunProps={() => {}}
+          text="午前09:00で出勤登録してよろしいですか？"
+          complitedText="出勤登録を完了しました！！"
+          errorText=""
+          setIsModal={setIsModal}
+          isError={false}
+        />
+      )}
+      {<LoadingPage />}
+    </>
   );
 };
 

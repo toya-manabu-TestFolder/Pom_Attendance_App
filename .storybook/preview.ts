@@ -9,7 +9,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    layout: "fullscreen",
   },
 };
-
 export default preview;

@@ -28,6 +28,7 @@ export const Default: Story = {
     text: "Default",
     onClick: () => alert("Success"),
     dataTestid: "",
+    disabled: false,
   },
 };
 export const Regiter_Confirmation: Story = {

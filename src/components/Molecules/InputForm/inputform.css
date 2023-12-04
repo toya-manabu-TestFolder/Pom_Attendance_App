@@ -1,8 +1,5 @@
 .input-form {
-  display: grid;
-  grid-template-rows: 1fr 2fr 1fr;
   width: 100%;
-  height: 100%;
   font-size: 1em;
 
   .input-label-wrapp {
@@ -10,6 +7,7 @@
     grid-template-columns: 1fr 1fr;
     cursor: pointer;
     font-size: 0.7em;
+
     .input-form-label {
       padding-left: 3%;
     }
@@ -27,5 +25,27 @@
     padding-top: 0.5%;
     width: 100%;
     font-size: 0.5em;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .input-form {
+    .input-form-errorMsg {
+      font-size: 0.8em;
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .input-form {
+    .input-form-errorMsg {
+      font-size: 0.9em;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .input-form {
+    .input-form-errorMsg {
+      font-size: 1em;
+    }
   }
 }
