@@ -31,6 +31,8 @@ export default function LoginPageTmp() {
     const result = await dispatch(sendInputData(authData));
     if (result.payload.status === 200) {
       navigate("/Home");
+    } else {
+      dispatch(homeSliceReducers.toggleLoading(true));
     }
   };
   return (

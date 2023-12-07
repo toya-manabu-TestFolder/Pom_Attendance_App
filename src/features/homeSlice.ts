@@ -5,10 +5,10 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 type Props = HomeSliceType;
 
-export const getUserPaidData: any = createAsyncThunk(
-  "homeSlice/getUserPaidData",
+export const getUserAttendData: any = createAsyncThunk(
+  "homeSlice/getUserAttendData",
   async () => {
-    const result = await axios.get(`${API_URL}HomeApi/getUserPaidData`, {
+    const result = await axios.get(`${API_URL}HomeApi/getUserAttendData`, {
       withCredentials: true,
     });
     return result.data;
@@ -36,18 +36,22 @@ const homeSlice = createSlice({
       consumption_days: 0,
       consumption_time: 0,
     },
+    userRegistData: [
+      {
+        title: "登録承認状況",
+        body: "",
+      },
+      { title: "有給取得状況", body: "" },
+      { title: "出勤予定時間", body: "" },
+      { title: "退勤予定時間", body: "" },
+    ],
   },
   extraReducers: (builder) => {
-    builder.addCase(getUserPaidData.fulfilled, (state, action) => {
+    builder.addCase(getUserAttendData.fulfilled, (state, action) => {
       const Status = action.payload.status;
-      const PaidData = action.payload.paidData[0];
       if (Status) {
-        state.userPaidData.all_have_days = PaidData.all_have_days;
-        state.userPaidData.all_heve_time = PaidData.all_heve_time;
-        state.userPaidData.consumption_days = PaidData.consumption_days;
-        state.userPaidData.consumption_time = PaidData.consumption_time;
-        state.userPaidData.remaind_days =
-          PaidData.all_have_days - PaidData.consumption_days;
+        state.userPaidData = action.payload.paidData;
+        state.userRegistData = action.payload.attendData;
       }
     });
   },

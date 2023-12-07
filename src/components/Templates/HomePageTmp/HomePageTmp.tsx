@@ -2,24 +2,27 @@ import { useEffect, useState } from "react";
 import { attendanceDataType } from "../../../types/types";
 import Span from "../../atoms/Span/Span";
 import styles from "./HomePageTmp.module.css";
-import RequestButton from "../../atoms/button/RequestButton/RequestButton";
 import {
   Stats,
   homeSliceReducers,
-  getUserPaidData,
+  getUserAttendData,
 } from "../../../features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import RequestModal from "../../Organisms/Modals/RequestModal/RequestModal";
-import Box from "../../atoms/Box/Box";
 import Headers from "../../Organisms/Headers/Headers";
 import { HomeSliceType } from "../../../types/types";
 import LoadingPage from "../../pages/LoadingPage/LoadingPage";
+import TopPageAttendDataBox from "../../Molecules/TopPageAttendDataBox/TopPageAttendDataBox";
+import Button from "../../atoms/button/Button";
+import { useNavigate } from "react-router-dom";
+import H2_Ver2 from "../../atoms/h2/ver.2/h2";
 
 type Props = attendanceDataType;
 
 const HomePageTmp = ({ attendanceData }: Props) => {
   const dispatch = useDispatch();
-  const { startButtonDesable, toDay, userPaidData } = useSelector(Stats);
+  const navigate = useNavigate();
+  const { toDay, userPaidData, userRegistData } = useSelector(Stats);
   const [isModal, setIsModal] = useState(false);
   const [Week, setWeek] = useState<string | undefined>("");
   const [Hour, setHour] = useState(0);
@@ -29,7 +32,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
   useEffect(() => {
     dispatch(homeSliceReducers.toggleLoading(false));
     dispatch(homeSliceReducers.setToDay(""));
-    dispatch(getUserPaidData());
+    dispatch(getUserAttendData());
 
     setInterval(() => {
       const nowTime = new Date();
@@ -63,6 +66,12 @@ const HomePageTmp = ({ attendanceData }: Props) => {
       }
     }
     return ElArr;
+  }
+
+  function setBackGroundColor(stateData: string) {
+    if (stateData === "登録済み") return "#D1362E";
+    if (stateData === "承認申請済み") return "#26d04c";
+    return "";
   }
   return (
     <>
@@ -163,85 +172,57 @@ const HomePageTmp = ({ attendanceData }: Props) => {
                     style=""
                     color="#fbd13d"
                     onClickSpan={() => {}}
-                    text="打&nbsp;刻"
+                    text="今&nbsp;日&nbsp;の&nbsp;勤&nbsp;怠&nbsp;登&nbsp;録&nbsp;状&nbsp;況"
                   />
                 </div>
                 <div className={styles.body_of_right_column}>
-                  <div className={styles.content}>
-                    <div className={styles.left_content}>
-                      <div className={styles.button}>
-                        <RequestButton
-                          dataTestid=""
-                          disabled={startButtonDesable}
-                          onClick={() => setIsModal(true)}
-                          style=""
-                          text="出&nbsp;勤"
-                          type="button"
-                        />
-                      </div>
-                      <div className={styles.start_img}></div>
+                  {userRegistData.map((data) => (
+                    <div
+                      className={styles.TopPageAttendDataBox_Wrapper}
+                      key={data.title}
+                    >
+                      <TopPageAttendDataBox
+                        title={data.title}
+                        registApprovalState={data.body}
+                        BackGroundColor={setBackGroundColor(
+                          userRegistData[0].body
+                        )}
+                      />
                     </div>
-                    <div className={styles.right_content}>
-                      <div className={styles.stanpTime_wrapp}>
-                        <Box
-                          element={
-                            <div className="Time">
-                              <Span
-                                color="#F9F4FC"
-                                onClickSpan={() => {}}
-                                style="display_block"
-                                text="09&nbsp;:&nbsp;00"
-                              />
-                            </div>
-                          }
-                          title="開始時間"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className={styles.content}>
-                    <div className={styles.left_content}>
-                      <div className={styles.button}>
-                        <RequestButton
-                          dataTestid=""
-                          disabled={startButtonDesable}
-                          onClick={() => setIsModal(true)}
-                          style=""
-                          text="退&nbsp;勤"
-                          type="button"
-                        />
-                      </div>
-                      <div className={styles.end_img}></div>
-                    </div>
-                    <div className={styles.right_content}>
-                      <div className={styles.stanpTime_wrapp}>
-                        <Box
-                          element={
-                            <div className="Time">
-                              <Span
-                                color="#F9F4FC"
-                                onClickSpan={() => {}}
-                                style="display_block"
-                                text="18&nbsp;:&nbsp;00"
-                              />
-                            </div>
-                          }
-                          title="終了時間"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                  ))}
+
                   <div className={styles.body_approvalbutton_wrapp}>
                     <div className={styles.approvalbutton_left_Img}></div>
                     <div className={styles.approvalbutton}>
-                      <RequestButton
-                        dataTestid=""
-                        disabled={startButtonDesable}
-                        onClick={() => {}}
-                        style=""
-                        text="承認申請"
-                        type="button"
-                      />
+                      {userRegistData[0].body === "登録済み" && (
+                        <Button
+                          dataTestid=""
+                          onClick={() => {
+                            navigate("/DaySchedule", {
+                              state: { toDay: toDay },
+                            });
+                          }}
+                          text="承認確認へ"
+                          type="button"
+                          disabled={false}
+                        />
+                      )}
+                      {userRegistData[0].body === "登録なし" && (
+                        <Button
+                          dataTestid=""
+                          onClick={() => {
+                            navigate("/DaySchedule", {
+                              state: { toDay: toDay },
+                            });
+                          }}
+                          text="登録ページへ"
+                          type="button"
+                          disabled={false}
+                        />
+                      )}
+                      {userRegistData[0].body === "承認申請済み" && (
+                        <H2_Ver2 text="承認待ち" />
+                      )}
                     </div>
                     <div className={styles.approvalbutton_right_Img}></div>
                   </div>
@@ -264,7 +245,7 @@ const HomePageTmp = ({ attendanceData }: Props) => {
           isError={false}
         />
       )}
-      {<LoadingPage />}
+      <LoadingPage />
     </>
   );
 };

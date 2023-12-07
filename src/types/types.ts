@@ -14,6 +14,7 @@ export type HomeSliceType = {
     userPaidData: {
       [x: string]: number;
     };
+    userRegistData: { [x: string]: string }[];
   };
 };
 

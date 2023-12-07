@@ -22,8 +22,8 @@ const port = 3000;
 //---------------------------------------------------------------------
 // const option = {
 //   // fs.readFileSyncでのファイル指定はルートディレクトリからスタート
-//   cert: fs.readFileSync("/certification/cert.pem"),
-//   key: fs.readFileSync("/certification/privatekey.pem"),
+//   cert: fs.readFileSync("certification/cert.pem"),
+//   key: fs.readFileSync("certification/privatekey.pem"),
 // };
 // const server = https.createServer(option, app);
 // server.listen(port, () => console.log("startExpress!!"));

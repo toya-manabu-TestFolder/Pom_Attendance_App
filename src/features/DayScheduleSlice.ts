@@ -226,8 +226,13 @@ const DayScheduleSlice = createSlice({
         ? false
         : true;
     },
+    openErrorModal: (state, action) => {
+      state.isError = true;
+      state.errorMessage = action.payload;
+    },
     closeErrorModal: (state) => {
       state.isError = false;
+      state.errorMessage = "";
     },
   },
 });

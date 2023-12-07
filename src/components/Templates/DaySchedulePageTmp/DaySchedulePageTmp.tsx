@@ -42,7 +42,6 @@ function DaySchedulePageTmp() {
   const [isRegistConfirm, setIsRegistConfirm] = useState(false);
   const [isUpdateConfirm, setIsUpdateConfirm] = useState(false);
   const [isModal, setIsModal] = useState(false);
-  const [isApprovalReqError, setIsApprovalReqError] = useState(false);
 
   useEffect(() => {
     dispatch(homeSliceReducers.toggleLoading(false));
@@ -115,7 +114,9 @@ function DaySchedulePageTmp() {
                         ) {
                           setIsModal(true);
                         } else {
-                          setIsApprovalReqError(true);
+                          dispatch(
+                            Reducer.openErrorModal("予定登録してください！！")
+                          );
                         }
                       }}
                       style=""
@@ -274,20 +275,13 @@ function DaySchedulePageTmp() {
         />
       )}
       <ErrorModal
-        toggleModal={isApprovalReqError}
-        errorText={"予定登録してください！！"}
-        closeBtnFun={() => {
-          setIsApprovalReqError(false);
-        }}
-      />
-      <ErrorModal
         toggleModal={isError}
         errorText={errorMessage}
         closeBtnFun={() => {
           dispatch(Reducer.closeErrorModal());
         }}
       />
-      {<LoadingPage />}
+      <LoadingPage />
     </>
   );
 }

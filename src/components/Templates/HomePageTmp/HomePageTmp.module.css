@@ -143,70 +143,24 @@
             height: fit-content;
             height: 90%;
             grid-template-rows: repeat(3, 1fr);
-            .content {
-              display: grid;
-              width: 100%;
-              grid-template-columns: repeat(2, 50%);
-              border-bottom: #583225 clamp(1.5px, 0.6vw, 100px) solid;
-              &:last-child {
-                border-bottom: none;
-              }
-              .left_content {
-                display: grid;
-                grid-template-columns: repeat(2, 50%);
-                align-items: center;
-                justify-items: center;
-                border-right: clamp(1.5px, 0.4vw, 10px) solid #583225;
-                .button {
-                  font-size: 1.1em;
-                  height: 50%;
-                  width: 80%;
-                }
-                .start_img {
-                  width: 100%;
-                  height: 100%;
-                  background-image: url("/homepage/attendance_img1.png");
-                  background-size: contain;
-                  background-position: center;
-                  background-repeat: no-repeat;
-                }
-                .end_img {
-                  width: 90%;
-                  height: 90%;
-                  background-image: url("/homepage/attendance_img2.png");
-                  background-size: contain;
-                  background-position: center;
-                  background-repeat: no-repeat;
-                }
-              }
-              .right_content {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 0.7em;
-                padding: 5% 0;
-                .stanpTime_wrapp {
-                  display: flex;
-                  align-items: center;
-                  text-align: center;
-                  width: 80%;
-                  height: 85%;
-                  font-size: 1.4em;
-                }
-              }
+            grid-template-columns: repeat(2, 1fr);
+            .TopPageAttendDataBox_Wrapper {
+              padding: 2% 4%;
             }
             .body_approvalbutton_wrapp {
+              grid-row: 3/4;
+              grid-column: 1/3;
               display: flex;
               width: 100%;
               align-items: center;
               justify-content: space-evenly;
               .approvalbutton {
-                width: 30%;
+                width: 50%;
                 height: 50%;
-                font-size: 1.1em;
+                font-size: 1em;
               }
               .approvalbutton_left_Img {
-                width: 30%;
+                width: 20%;
                 height: 90%;
                 background-image: url("/homepage/applovar_left.png");
                 background-size: contain;
@@ -214,7 +168,7 @@
                 background-repeat: no-repeat;
               }
               .approvalbutton_right_Img {
-                width: 30%;
+                width: 20%;
                 height: 80%;
                 background-image: url("/homepage/applovar_right.png");
                 background-size: contain;
@@ -376,7 +330,7 @@
               }
               .body_approvalbutton_wrapp {
                 .approvalbutton {
-                  width: 50%;
+                  width: 70%;
                   height: 70%;
                   font-size: 1.3em;
                 }
